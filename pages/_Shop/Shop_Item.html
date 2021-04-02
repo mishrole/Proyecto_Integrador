@@ -26,6 +26,9 @@
                         <a class="nav-link active" aria-current="page" href="../../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#">Servicios</a>
                     </li>
                     <li class="nav-item">
@@ -41,11 +44,12 @@
 
     <div class="container mt-4">
         <div class="row text-center mt-5">
-            <div class="col-sm-6 mx-auto">
+            <div class="col-sm-6 mx-auto d-flex justify-content-center align-items-center">
                 <img src="../../images/medicine-img.jpg" class="img-fluid" alt="..." width="400">
             </div>
             <div class="col-sm-6 mx-auto text-start">
                 <p>CAJA 100 UN</p>
+                <span class="badge bg-dark mb-4">Categoría A</span>
                 <h3 class="bold">
                     <span class="product__name"> Ibuprofeno </span>
                     <span class="product__mg"> 400mg </span>
@@ -70,20 +74,33 @@
                         +
                     </button>
                 </form>
-
                 <div class="d-flex">
                     <button class="btn btn-primary mx-auto btn-lg">Agregar al carrito</button>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
-                <h5>Descripción del Producto</h5>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <h5>Términos y Condiciones</h5>
+            <div class="col-sm-12 mt-5 mb-5">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="contraindicaciones-tab" data-bs-toggle="tab" data-bs-target="#contraindicaciones" type="button" role="tab" aria-controls="contraindicaciones" aria-selected="true">Contraindicaciones</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="precauciones-tab" data-bs-toggle="tab" data-bs-target="#precauciones" type="button" role="tab" aria-controls="precauciones" aria-selected="false">Precauciones</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="composicion-tab" data-bs-toggle="tab" data-bs-target="#composicion" type="button" role="tab" aria-controls="composicion" aria-selected="false">Composición</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active pt-3 pb-3" id="contraindicaciones" role="tabpanel" aria-labelledby="contraindicaciones-tab">
+                        Ibuprofeno 400 mg tabletas recubiertas está contraindicado: Hipersensibilidad conocida al ibuprofeno, a otros AINEs o a cualquiera de los excipientes de la formulación. Pacientes que hayan experimentado crisis de asma, rinitis aguda, urticaria, edema angioneurótico u otras reacciones de tipo alérgico tras haber utilizado sustancias de acción similar (p. ej. ácido acetilsalicílico u otros AINEs). Enfermedad inflamatoria intestinal. Ibuprofeno está contraindicado en pacientes con disfunción renal grave (filtración glomerular inferior a 30 ml/min). Ibuprofeno está contraindicado en pacientes con disfunción hepática grave. Ibuprofeno no debe administrarse en pacientes con enfermedades que supongan una tendencia incrementada al sangrado. Antecedentes de hemorragia gastrointestinal o perforación relacionados con tratamientos anteriores con AINEs. Úlcera péptica/hemorragia gastrointestinal activa o recidivante. Para mayor información. Leer Inserto.
+                    </div>
+                    <div class="tab-pane fade pt-3 pb-3" id="precauciones" role="tabpanel" aria-labelledby="precauciones-tab">
+                        Se debe evitar la administración concomitante de ibuprofeno y otros AINEs, incluyendo los inhibidores selectivos de la ciclooxigenasa-2 (Cox-2) debido al incremento del riesgo de ulceración y sangrado gastrointestinal (ver sección 2.5). Las reacciones adversas pueden reducirse si se utiliza la menor dosis eficaz durante el menor tiempo posible para controlar los síntomas (ver sección 2.2 y riesgos gastrointestinales y cardiovasculares a continuación). Riesgos gastrointestinales: Hemorragias gastrointestinales, úlceras y perforaciones: durante el tratamiento con AINEs entre los que se encuentra el ibuprofeno, se han notificado hemorragias gastrointestinales, úlceras y perforaciones (que pueden ser mortales) en cualquier momento del mismo, con o sin síntomas previos de alerta y con o sin antecedentes previos de acontecimientos gastrointestinales graves previos. El riesgo de hemorragia gastrointestinal. Para mayor información. Leer Inserto.
+                    </div>
+                    <div class="tab-pane fade pt-3 pb-3" id="composicion" role="tabpanel" aria-labelledby="composicion-tab">Ibuprofeno 400mg</div>
+                  </div>
             </div>
         </div>
     </div>
