@@ -46,6 +46,7 @@
     </div>
   </nav>
 
+  <!--Modal de la nueva mascota-->
   <div class="modal" id="myModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
@@ -59,6 +60,24 @@
               <input class="form-control" type="text" placeholder="Nombre" id="pet__name" aria-label="default input example">
               <label for="pet__name">Nombre</label>
             </div>
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" placeholder="Especie" id="pet__especie" aria-label="default input example">
+              <label for="pet__name">Especie</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" placeholder="Raza" id="pet__raza" aria-label="default input example">
+              <label for="pet__name">Raza</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" placeholder="Color" id="pet__color" aria-label="default input example">
+              <label for="pet__name">Color de Pelo</label>
+            </div>
+            <div>
+              <label for="start">Fecha de Nacimiento</label>
+              <input type="date" id="start" name="trip-start"
+              value="2018-07-22"
+              min="2018-01-01" max="2030-12-31">
+            </div>
             
           </form>
         </div>
@@ -69,6 +88,59 @@
       </div>
     </div>
   </div>
+
+
+  <!--Modal del historial de la mascota-->
+  <div class="modal" id="myModalHistorial" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title">Nueva Historial</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post">
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" placeholder="Nombre" id="pet__name" aria-label="default input example">
+              <label for="pet__name">Nombre</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal de agendar Cita-->
+  <div class="modal" id="myModalCita" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title">Nueva Cita</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post">
+            <div class="form-floating mb-3">
+              <input class="form-control" type="text" placeholder="Nombre" id="pet__name" aria-label="default input example">
+              <label for="pet__name">Nombre</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 
 <!-- 
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -121,8 +193,8 @@
               </div>
               <div class="card-footer text-center">
                 <small class="text-muted text-center">
-                  <button class="btn btn-secondary">Ver historial</button>
-                  <button class="btn btn-primary">Agendar cita</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalHistorial" class="btn btn-secondary">Ver historial</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalCita" class="btn btn-primary">Agendar cita</button>
                 </small>
               </div>
             </div>
@@ -136,8 +208,8 @@
               </div>
               <div class="card-footer text-center">
                 <small class="text-muted text-center">
-                  <button class="btn btn-secondary">Ver historial</button>
-                  <button class="btn btn-primary">Agendar cita</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalHistorial" class="btn btn-secondary">Ver historial</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalCita" class="btn btn-primary">Agendar cita</button>
                 </small>
               </div>
             </div>
@@ -151,8 +223,8 @@
               </div>
               <div class="card-footer text-center">
                 <small class="text-muted text-center">
-                  <button class="btn btn-secondary">Ver historial</button>
-                  <button class="btn btn-primary">Agendar cita</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalHistorial" class="btn btn-secondary">Ver historial</button>
+                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalCita" class="btn btn-primary">Agendar cita</button>
                 </small>
               </div>
             </div>
