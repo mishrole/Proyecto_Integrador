@@ -1,7 +1,8 @@
 (() => {
+  
   // DOM Elements
   const productCards = document.querySelectorAll('.product__card');
-  const btnSingIn = document.querySelector('.btn__Sing-In');
+  const btnSingIn = document.querySelector('#btn-signin');
   const inputBornDate = document.querySelector('#pet__bornDate');
   const calendar = document.querySelector('#calendar');
 
@@ -16,9 +17,14 @@
 
   if(btnSingIn) {
       // Click event on Sign In Button
+      const inputEmail = document.querySelector('#singin-email');
       btnSingIn.addEventListener('click', (e) => {
           e.preventDefault();
-          window.location.href = '../_Home/Home.html';
+          if(inputEmail.value !== '') {
+            window.location.href = '../_Home/Home.html';
+          } else {
+            window.location.href = '../_Admin/Home_admin.html';
+          }
       });
   }
 

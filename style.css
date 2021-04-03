@@ -34,6 +34,10 @@ body {
     padding: 0.6rem 0.9rem;
 }
 
+.btn-primary.btn-generic {
+    background-color: var( --primary-color );
+}
+
 .nav-link.link-menu:hover, .nav-link.link-menu:active {
     color: var( --primary-color-dark ) !important
 }
@@ -108,6 +112,18 @@ h2.fc-toolbar-title {
 .hero__services__title {
     color: var(--secondary-color-dark) !important;
 }
+
+/* Home Admin */
+
+.icon__home__admin > i {
+    border: none;
+    color: var(--white-color);
+    font-size: 1.5rem;
+    padding: 0.8rem 1.25rem;
+    border-radius: 50%;
+    background-color: var(--primary-color-light);
+}
+
 
 /* Media queries */
 
