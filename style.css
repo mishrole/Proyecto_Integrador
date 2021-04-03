@@ -14,6 +14,11 @@ body {
     padding: 0.8rem 1rem;
 }
 
+.btn-primary.btn-buy {
+    background-color: #6C63FF;
+    padding: 0.6rem 0.9rem;
+}
+
 /* a {
     color: #335eea !important;
 } */
@@ -29,7 +34,8 @@ body {
 
 .text-secondary-color {
     /* color: #506690 !important; */
-    color: #455a64 !important;
+    /*  #677788; */
+    color: #546670 !important;
 }
 
 .text-action-color {
@@ -86,9 +92,9 @@ h2.fc-toolbar-title {
 }
 
 .hero__title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 600;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     overflow: hidden;
 }
 
@@ -107,14 +113,6 @@ h2.fc-toolbar-title {
 
 .hero__title > span.cursor.typing {
     animation: none;
-  }
-
-@keyframes blink {
-    0%  { background-color: #ccc; }
-    49% { background-color: #ccc; }
-    50% { background-color: transparent; }
-    99% { background-color: transparent; }
-    100%  { background-color: #ccc; }
 }
 
 /* Media queries */
