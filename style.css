@@ -1,3 +1,18 @@
+:root {
+    --primary-color: #6C63FF;
+    --primary-color-light: #A491FF;
+    --primary-color-dark: #2838cb;
+
+    --secondary-color: #455A64;
+    --secondary-color-light: #718792;
+    --secondary-color-dark: #1C313A;
+
+    --accent-color-primary: #506690;
+    --accent-color-secondary: #546670;
+    --white-color: #FFFFFF;
+}
+
+
 body {
     font-family: 'Noto Sans KR', sans-serif;
 }
@@ -5,48 +20,44 @@ body {
 /* Hardcode Bootstrap */
 
 .bg-light {
-    background-color: #FFFFFF !important;
-    color: #506690 !important;
+    background-color: var( --white-color ) !important;
+    color: var( --accent-color ) !important;
 }
 
 .btn-primary.btn-singin {
-    background-color: #6C63FF;
+    background-color: var( --primary-color );
     padding: 0.8rem 1rem;
 }
 
 .btn-primary.btn-buy {
-    background-color: #6C63FF;
+    background-color: var( --primary-color );
     padding: 0.6rem 0.9rem;
 }
 
-/* a {
-    color: #335eea !important;
-} */
-
-
 .nav-link.link-menu:hover, .nav-link.link-menu:active {
-    color: #2838cb !important
+    color: var( --primary-color-dark ) !important
 }
 
 .text-primary-color {
-    color: #6C63FF !important;
+    color: var( --primary-color ) !important;
 }
 
 .text-secondary-color {
-    /* color: #506690 !important; */
-    /*  #677788; */
-    color: #546670 !important;
+    color: var( --accent-color-secondary ) !important;
+}
+
+.bg-secondary-color {
+    background-color: var( --accent-color-secondary) !important;
 }
 
 .text-action-color {
-    color: #2838cb !important;
+    color: var( --primary-color-dark ) !important;
 }
 
 li.nav-item {
     padding-left: 1rem;
     padding-right: 1rem;
 }
-
 
 .product__select {
     width: 200px;
@@ -80,11 +91,6 @@ h2.fc-toolbar-title {
     justify-content: space-between;
 }
 
-/* .hero__container > .hero__img {
-    width: 600px;
-    height: 600px;
-} */
-
 .hero__container > div > img {
     margin: 2rem 0; 
     height: 100%;
@@ -96,23 +102,11 @@ h2.fc-toolbar-title {
     font-weight: 600;
     letter-spacing: 1.2px;
     overflow: hidden;
+    color: var(--secondary-color-dark) !important;
 }
 
-.hero__title > span.typed-text {
-    font-weight: normal;
-    color: red;
-}
-
-.hero__title > span.cursor {
-    display: inline-block;
-    background-color: #ccc;
-    margin-left: 0.1rem;
-    width: 3px;
-    animation: blink 1s infinite;
-}
-
-.hero__title > span.cursor.typing {
-    animation: none;
+.hero__services__title {
+    color: var(--secondary-color-dark) !important;
 }
 
 /* Media queries */
