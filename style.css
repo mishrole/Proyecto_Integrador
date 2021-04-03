@@ -121,7 +121,22 @@ h2.fc-toolbar-title {
     font-size: 1.5rem;
     padding: 0.8rem 1.25rem;
     border-radius: 50%;
-    background-color: var(--primary-color-light);
+    background-color: var(--secondary-color-light);
+}
+
+.cardNumber__home__admin {
+    color: var(--accent-color-primary);
+}
+
+.cardTitle__home__admin {
+    color: var(--secondary-color-light);
+}
+
+/*  */
+
+.chart__container__home__admin {
+    width: 500px;
+    height: 500px;
 }
 
 

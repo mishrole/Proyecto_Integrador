@@ -31,7 +31,7 @@
                 <a href="./Appointment_admin.html" class="nav-link link-menu text-secondary-color">Citas</a>
               </li>
               <li class="nav-item">
-                <a href="./Orders _admin.html" class="nav-link link-menu text-secondary-color">Pedidos</a>
+                <a href="./Orders_admin.html" class="nav-link link-menu text-secondary-color">Pedidos</a>
               </li>
               <li class="nav-item">
                 <a href="./Maintenance_admin.html" class="nav-link link-menu text-secondary-color">Mantenimiento</a>
@@ -45,39 +45,20 @@
   </nav>
 
   <!-- Dashboard Info -->
-
-      <!-- 
-
-      <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="..." alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-      </div>
-    </div>
-  </div>
-</div>
-     -->
-
+  
   <div class="container mt-4 px-5">
     <div class="row g-4">
       
       <div class="col-sm-4">
         <div class="card">
-          <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="row">
             <div class="col-sm-4 d-flex align-items-center justify-content-center">
-              <span class="icon__home__admin"><i class="bi bi-files"></i></span>
+              <span class="icon__home__admin"><i class="bi bi-calendar-week"></i></span>
             </div>
             <div class="col-sm-8">
               <div class="card-body">
-                <h3 class="card-title">15</h3>
-                <p class="card-text">Citas programadas</p>
+                <h3 class="card-title cardNumber__home__admin">15</h3>
+                <p class="card-text cardTitle__home__admin">Citas programadas</p>
               </div>
             </div>
           </div>
@@ -86,15 +67,14 @@
 
       <div class="col-sm-4">
         <div class="card">
-          <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="row">
             <div class="col-sm-4 d-flex align-items-center justify-content-center">
               <span class="icon__home__admin"><i class="bi bi-box-seam"></i></span>
             </div>
             <div class="col-sm-8">
               <div class="card-body">
-                <h3 class="card-title">23</h3>
-                <p class="card-text">Pedidos pendientes</p>
+                <h3 class="card-title cardNumber__home__admin">23</h3>
+                <p class="card-text cardTitle__home__admin">Pedidos pendientes</p>
               </div>
             </div>
           </div>
@@ -103,15 +83,14 @@
 
       <div class="col-sm-4">
         <div class="card">
-          <!-- <img src="..." class="card-img-top" alt="..."> -->
           <div class="row">
             <div class="col-sm-4 d-flex align-items-center justify-content-center">
               <span class="icon__home__admin"><i class="bi bi-cart-x"></i></i></span>
             </div>
             <div class="col-sm-8">
               <div class="card-body">
-                <h3 class="card-title">5</h3>
-                <p class="card-text">Productos sin stock</p>
+                <h3 class="card-title cardNumber__home__admin">5</h3>
+                <p class="card-text cardTitle__home__admin">Productos sin stock</p>
               </div>
             </div>
           </div>
@@ -120,10 +99,18 @@
 
   </div>
 
+  <div class="row">
+    <div class="col-sm-12 mx-auto mt-5 chart__container__home__admin">
+      <canvas id="myChart" width="300" height="300"></canvas>
+    </div>
+  </div>
+  
+
   <!-- JavaScript Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
     crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.js" integrity="sha512-HJ+fjW1Hyzl79N1FHXTVgXGost+3N5d1i3rr6URACJItm5CjhEVy2UWlNNmFPHgX94k1RMrGACdmGgVi0vptrw==" crossorigin="anonymous"></script>
   <script src="../../index.js"></script>
 </body>
 
