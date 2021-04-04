@@ -139,6 +139,11 @@ h2.fc-toolbar-title {
     height: 500px;
 }
 
+.maintenance__services > h5,
+.maintenance__products > h5 { 
+    color: var(--secondary-color);
+}
+
 
 /* Media queries */
 
