@@ -3,7 +3,7 @@
   // DOM Elements
   const productCards = document.querySelectorAll('.product__card');
   const btnSingIn = document.querySelector('#btn-signin');
-  const inputBornDate = document.querySelector('#pet__bornDate');
+  const inputBornDate = document.querySelector('#pet__bornDate__new');
   const calendar = document.querySelector('#calendar');
   const ctxLine = document.querySelector('#chart__line');
   const ctxDoughnut = document.querySelector('#chart__doughtnut');
