@@ -48,22 +48,6 @@
   
   <div class="container mt-4 px-5">
     <div class="row g-4">
-      
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="row">
-            <div class="col-sm-4 d-flex align-items-center justify-content-center">
-              <span class="icon__home__admin"><i class="bi bi-calendar-week"></i></span>
-            </div>
-            <div class="col-sm-8">
-              <div class="card-body">
-                <h3 class="card-title cardNumber__home__admin">15</h3>
-                <p class="card-text cardTitle__home__admin">Citas programadas</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div class="col-sm-4">
         <div class="card">
@@ -97,11 +81,32 @@
         </div>
       </div>
 
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="row">
+            <div class="col-sm-4 d-flex align-items-center justify-content-center">
+              <span class="icon__home__admin"><i class="bi bi-calendar-week"></i></span>
+            </div>
+            <div class="col-sm-8">
+              <div class="card-body">
+                <h3 class="card-title cardNumber__home__admin">15</h3>
+                <p class="card-text cardTitle__home__admin">Consultas programadas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   </div>
 
   <div class="row">
-    <div class="col-sm-12 mx-auto mt-5 chart__container__home__admin">
-      <canvas id="myChart" width="300" height="300"></canvas>
+    <div class="col-sm-6 mt-5 mb-3 chart__container__home__admin">
+      <h4>Estadísticas Anuales</h4>
+      <canvas id="chart__line" width="300" height="300"></canvas>
+    </div>
+    <div class="col-sm-6 mt-5 mb-3 chart__container__home__admin">
+      <h4>Consultas por especie</h4>
+      <canvas id="chart__doughtnut" width="300" height="300"></canvas>
     </div>
   </div>
   
