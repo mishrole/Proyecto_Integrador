@@ -1,10 +1,14 @@
 package com.veterinaria.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.UsuarioService;
@@ -15,20 +19,24 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService service;
 	
-	@RequestMapping("/verUsuario")
+	@RequestMapping("/verRegistraUsuario")
 	public String verRegistra() {
 		return "registraUsuario";
 	}
 	
-	@RequestMapping("/registroDeUsuario")
-	public String registra(Usuario objUsuario, HttpSession session) {
+	@RequestMapping("/registraUsuario")
+	@ResponseBody
+	public Map<String, Object> registra(Usuario objUsuario) {
+		Map<String, Object> salida = new HashMap<>();
 		Usuario objSalida = service.insertaUsuario(objUsuario);
 		
 		if (objSalida == null) {
-			session.setAttribute("MENSAJE", "El registro no pudo ser completado");
+			salida.put("MENSAJE", "El registro no pudo ser completado");
 		} else {
-			session.setAttribute("MENSAJE", "¡Registro exitoso!");
+			salida.put("MENSAJE", "¡Registro exitoso!");
 		}
-		return "redirect:verUsuario";
+		
+		return salida;
 	}
+	
 }

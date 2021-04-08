@@ -19,7 +19,7 @@ body {
 
 /* Hardcode Bootstrap */
 
-.bg-light {
+.bg-light-custom {
     background-color: var( --white-color ) !important;
     color: var( --accent-color ) !important;
 }
