@@ -20,8 +20,8 @@ public class UsuarioServiceImplem implements UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> listaUsuarioPorEmailYContrasena(String filtro) {
-		return repository.listaPorEmailyContrasena(filtro +  "%");
+	public List<Usuario> listaUsuarioPorEmailYContrasena(String param_email, String param_contrasena) {
+		return repository.listaUsuarioPorEmailyContrasena(param_email +  "%", param_contrasena + "%");
 	}
 
 }
