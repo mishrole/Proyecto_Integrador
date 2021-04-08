@@ -38,9 +38,9 @@
                     <a class="nav-link link-menu text-secondary-color" href="">Tienda</a>
                 </li>
             </ul>
-        </div>
-        <div class="d-flex">
-            <a class="btn btn-primary btn-singin" href="">Iniciar Sesión</a>
+            <div class="d-flex">
+            	<a class="btn btn-primary btn-singin" href="">Iniciar Sesión</a>
+        	</div>
         </div>
     </div>
   </nav>
