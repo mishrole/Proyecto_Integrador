@@ -10,6 +10,6 @@ import com.veterinaria.entity.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
-	@Query("Select u from Usuario u where u.emailUsuario like :param_email and u.contrasenaUsuario like :param_contrasena")
-	public abstract List<Usuario> listaUsuarioPorEmailyContrasena(@Param("param_email") String param_email, @Param("param_contrasena") String param_contrasena);
+	/*@Query("Select u from Usuario u where u.emailUsuario like :param_email and u.contrasenaUsuario like :param_contrasena")
+	public abstract List<Usuario> listaUsuarioPorEmailyContrasena(@Param("param_email") String param_email, @Param("param_contrasena") String param_contrasena); */
 }

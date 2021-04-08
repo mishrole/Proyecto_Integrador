@@ -17,37 +17,37 @@ public class Usuario {
 	private int codigoUsuario;
 	
 	@Column(name = "email_usuario")
-	private String emailUsuario;
+	private String email_usuario;
 	
 	@Column(name = "contrasena_usuario")
-	private String contrasenaUsuario;
+	private String contrasena_usuario;
 	
 	@Column(name = "nombre_usuario")
-	private String nombreUsuario;
+	private String nombre_usuario;
 	
 	@Column(name = "apellido_usuario")
-	private String apellidoUsuario;
+	private String apellido_usuario;
 	
 	@Column(name = "fecha_nacimiento_usuario")
-	private String fechaNacimientoUsuario;
+	private String fecha_nacimiento_usuario;
 	
 	@Column(name = "genero_usuario")
-	private String generoUsuario;
+	private String genero_usuario;
 	
 	@Column(name = "dni_usuario")
-	private String dniUsuario;
+	private String dni_usuario;
 	
 	@Column(name = "direccion_usuario")
-	private String direccionUsuario;
+	private String direccion_usuario;
 	
 	@Column(name = "referencia_pedido")
-	private String referenciaPedido;
+	private String referencia_pedido;
 	
 	@Column(name = "telefono_usuario")
-	private String telefonoUsuario;
+	private String telefono_usuario;
 	
 	@Column(name = "codigo_distrito")
-	private String codigoDistrito;
+	private String codigo_distrito;
 
 	public int getCodigoUsuario() {
 		return codigoUsuario;
@@ -57,92 +57,92 @@ public class Usuario {
 		this.codigoUsuario = codigoUsuario;
 	}
 
-	public String getEmailUsuario() {
-		return emailUsuario;
+	public String getEmail_usuario() {
+		return email_usuario;
 	}
 
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
+	public void setEmail_usuario(String email_usuario) {
+		this.email_usuario = email_usuario;
 	}
 
-	public String getContrasenaUsuario() {
-		return contrasenaUsuario;
+	public String getContrasena_usuario() {
+		return contrasena_usuario;
 	}
 
-	public void setContrasenaUsuario(String contrasenaUsuario) {
-		this.contrasenaUsuario = contrasenaUsuario;
+	public void setContrasena_usuario(String contrasena_usuario) {
+		this.contrasena_usuario = contrasena_usuario;
 	}
 
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getNombre_usuario() {
+		return nombre_usuario;
 	}
 
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setNombre_usuario(String nombre_usuario) {
+		this.nombre_usuario = nombre_usuario;
 	}
 
-	public String getApellidoUsuario() {
-		return apellidoUsuario;
+	public String getApellido_usuario() {
+		return apellido_usuario;
 	}
 
-	public void setApellidoUsuario(String apellidoUsuario) {
-		this.apellidoUsuario = apellidoUsuario;
+	public void setApellido_usuario(String apellido_usuario) {
+		this.apellido_usuario = apellido_usuario;
 	}
 
-	public String getFechaNacimientoUsuario() {
-		return fechaNacimientoUsuario;
+	public String getFecha_nacimiento_usuario() {
+		return fecha_nacimiento_usuario;
 	}
 
-	public void setFechaNacimientoUsuario(String fechaNacimientoUsuario) {
-		this.fechaNacimientoUsuario = fechaNacimientoUsuario;
+	public void setFecha_nacimiento_usuario(String fecha_nacimiento_usuario) {
+		this.fecha_nacimiento_usuario = fecha_nacimiento_usuario;
 	}
 
-	public String getGeneroUsuario() {
-		return generoUsuario;
+	public String getGenero_usuario() {
+		return genero_usuario;
 	}
 
-	public void setGeneroUsuario(String generoUsuario) {
-		this.generoUsuario = generoUsuario;
+	public void setGenero_usuario(String genero_usuario) {
+		this.genero_usuario = genero_usuario;
 	}
 
-	public String getDniUsuario() {
-		return dniUsuario;
+	public String getDni_usuario() {
+		return dni_usuario;
 	}
 
-	public void setDniUsuario(String dniUsuario) {
-		this.dniUsuario = dniUsuario;
+	public void setDni_usuario(String dni_usuario) {
+		this.dni_usuario = dni_usuario;
 	}
 
-	public String getDireccionUsuario() {
-		return direccionUsuario;
+	public String getDireccion_usuario() {
+		return direccion_usuario;
 	}
 
-	public void setDireccionUsuario(String direccionUsuario) {
-		this.direccionUsuario = direccionUsuario;
+	public void setDireccion_usuario(String direccion_usuario) {
+		this.direccion_usuario = direccion_usuario;
 	}
 
-	public String getReferenciaPedido() {
-		return referenciaPedido;
+	public String getReferencia_pedido() {
+		return referencia_pedido;
 	}
 
-	public void setReferenciaPedido(String referenciaPedido) {
-		this.referenciaPedido = referenciaPedido;
+	public void setReferencia_pedido(String referencia_pedido) {
+		this.referencia_pedido = referencia_pedido;
 	}
 
-	public String getTelefonoUsuario() {
-		return telefonoUsuario;
+	public String getTelefono_usuario() {
+		return telefono_usuario;
 	}
 
-	public void setTelefonoUsuario(String telefonoUsuario) {
-		this.telefonoUsuario = telefonoUsuario;
+	public void setTelefono_usuario(String telefono_usuario) {
+		this.telefono_usuario = telefono_usuario;
 	}
 
-	public String getCodigoDistrito() {
-		return codigoDistrito;
+	public String getCodigo_distrito() {
+		return codigo_distrito;
 	}
 
-	public void setCodigoDistrito(String codigoDistrito) {
-		this.codigoDistrito = codigoDistrito;
-	}	
+	public void setCodigo_distrito(String codigo_distrito) {
+		this.codigo_distrito = codigo_distrito;
+	}
 	
 }
