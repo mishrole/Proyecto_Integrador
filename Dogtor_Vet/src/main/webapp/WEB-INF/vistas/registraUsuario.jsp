@@ -179,7 +179,6 @@
 			
 			if(validator.isValid()) {
 				if(inputPassword.val() === inputPasswordValidate.val()) {
-					console.log(inputPassword.val(), inputPasswordValidate.val())
 					
 					$.ajax({
 						type: 'POST',
