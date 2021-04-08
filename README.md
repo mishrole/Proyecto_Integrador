@@ -28,6 +28,8 @@
 * **Spring Boot 2.4.4**
 * **Angular**
 * **MySQL**
+* **Bootstrap 5.0**
+* **jQuery 3.6.0**
 
 ## Collaborators
 
