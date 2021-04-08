@@ -52,27 +52,27 @@
                     <form id="id_form">
                       <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Crea una cuenta</b></h1>
                     
-                      <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="id_nombre" name="nombre_usuario" placeholder="John" autocomplete="on" >
-                        <label for="id_nombre">Nombre</label>
+                   	  <div class="form-group form-floating mb-3">
+	                      <input type="text" class="form-control" id="id_nombre" name="nombre_usuario" placeholder="John" autocomplete="on" >
+	                      <label for="id_nombre">Nombre</label>
                       </div>
-                      <div class="form-floating mb-3">
+                      <div class="form-group form-floating mb-3">
                         <input type="text" class="form-control" id="id_apellido" name="apellido_usuario" placeholder="Doe" autocomplete="on">
                         <label for="id_apellido">Apellidos</label>
                       </div>
-                      <div class="form-floating mb-3">
+                      <div class="form-group form-floating mb-3">
                         <input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_usuario" autocomplete="on">
                         <label for="id_fecha_nacimiento">Fecha de nacimiento</label>
                       </div>
-                      <div class="form-floating mb-3">
+                      <div class="form-group form-floating mb-3">
                         <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on">
                         <label for="id_email">Correo electrónico</label>
                       </div>
-                      <div class="form-floating mb-3">
+                      <div class="form-group form-floating mb-3">
                         <input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on">
                         <label for="id_contrasena">Contraseña</label>
                       </div>
-                      <div class="form-floating mb-3">
+                      <div class="form-group form-floating mb-3">
                         <input type="password" class="form-control" id="id_validar_contrasena" placeholder="Password" autocomplete="off">
                         <label for="id_validar_contrasena">Verificar contraseña</label>
                       </div>
@@ -90,89 +90,128 @@
 		
 	$(document).ready(function() {
 		
-		$("#registrar_usuario").click(function() {
-			$.ajax({
-				type: 'POST',
-				data: $("#id_form").serialize(),
-				url: 'registraUsuario',
-				success: function(data) {
-					mostrarMensaje(data.MENSAJE)
+		const btnRegister = $('#registrar_usuario');
+		
+		$('#id_form').bootstrapValidator({
+			message: 'El valor no es válido',
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				nombre_usuario: {
+					selector: '#id_nombre',
+					validators : {
+						notEmpty: {
+							message: 'El nombre es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
 				},
-				error: function() {
-					mostrarMensaje(MSG_ERROR)
+				apellido_usuario: {
+					selector: '#id_apellido',
+					validators : {
+						notEmpty: {
+							message: 'El apellido es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El apellido debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				email_usuario: {
+					selector: '#id_email',
+					validators: {
+						notEmpty: {
+							message: 'El correo electrónico es obligatorio'
+						}
+					}
+				},
+				fecha_nacimiento_usuario: {
+					selector: '#id_fecha_nacimiento',
+					validators: {
+						notEmpty: {
+							message: 'La fecha de nacimiento es obligatoria'
+						}
+					}
+				},
+				contrasena_usuario: {
+					selector: '#id_contrasena',
+					validators: {
+						notEmpty: {
+							message: 'La contraseña es obligatoria'
+						}
+					}
+				},
+				val_contrasena_usuario: {
+					selector: '#id_validar_contrasena',
+					validators: {
+						notEmpty: {
+							message: 'La validación de contraseña es obligatoria'
+						}
+					}
 				}
-			});
-			
+				
+			}
 		});
+		
+		const inputPassword = $('#id_contrasena');
+		const inputPasswordValidate = $('#id_validar_contrasena');
+		
+		const passwordDoesntMatch = document.createElement('span');
+		passwordDoesntMatch.id = 'validatePasswordMessage';
+		
+		$('#registrar_usuario').click(function() {
+			
+			if($('#validatePasswordMessage')) {
+				$('#validatePasswordMessage').remove()
+			}
+			
+			var validator = $('#id_form').data('bootstrapValidator');
+			validator.validate();
+			
+			if(validator.isValid()) {
+				if(inputPassword.val() === inputPasswordValidate.val()) {
+					console.log(inputPassword.val(), inputPasswordValidate.val())
+					
+					$.ajax({
+						type: 'POST',
+						data: $('#id_form').serialize(),
+						url: 'registraUsuario',
+						success: function(data) {
+							mostrarMensaje(data.MENSAJE)
+							limpiar();
+							validator.resetForm()
+						},
+						error: function() {
+							mostrarMensaje(MSG_ERROR)
+						}
+					});
+				} else {
+					console.log(inputPassword, inputPasswordValidate)
+					passwordDoesntMatch.innerHTML = 'Las contraseñas deben coincidir';
+					inputPasswordValidate.after(passwordDoesntMatch);
+				}
+			}
+		});
+		
+		function limpiar() {
+			$('#id_nombre').val('');
+			$('#id_apellido').val('');
+			$('#id_email').val('');
+			$('#id_fecha_nacimiento').val('');
+			$('#id_contrasena').val('');
+			$('#id_validar_contrasena').val('');
+		}
 	});
 	
-	/*
-	function limpiar(){
-		$('#id_nombre').val('');
-		$('#id_dni').val('');
-		$('#id_correo').val('');
-		$('#id_fecha').val('');
-	}
-	
-	$(document).ready(function() {
-	    $('#id_form').bootstrapValidator({
-	        message: 'This value is not valid',
-	        feedbackIcons: {
-	            valid: 'glyphicon glyphicon-ok',
-	            invalid: 'glyphicon glyphicon-remove',
-	            validating: 'glyphicon glyphicon-refresh'
-	        },
-	        fields: {
-	        		nombre:{
-	                    selector: "#id_nombre",
-	                    validators:{
-	                        notEmpty: {
-	                             message: 'El nombre es obligatorio'
-	                        },
-	                        stringLength: {
-	                            min: 3,
-	                            max: 40,
-	                            message: 'El nombre es de 3 a 40 caracteres'
-	                        },
-	                    }
-	                },
-	                dni:{
-	                    selector: "#id_dni",
-	                    validators:{
-	                        notEmpty: {
-	                             message: 'El dni es obligatorio'
-	                        },
-	                        regexp: {
-	                            regexp: /^[0-9]{8}$/,
-	                            message: 'el dni es 8 dígitos'
-	                        }
-	                    }
-	                },
-	                correo:{
-	                    selector: "#id_correo",
-	                    validators:{
-	                        notEmpty: {
-	                             message: 'El correo es obligatorio'
-	                        },
-	                        emailAddress: {
-	                            message: 'El correo no es valido'
-	                        }
-	                    }
-	                },
-	                fechaNacimiento:{
-	                    selector: "#id_fecha",
-	                    validators:{
-	                        notEmpty: {
-	                             message: 'La fecha es obligatorio'
-	                        }
-	                    }
-	                },
-	        }   
-	    });
-	
-	    
-	});
-	*/
 	</script>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
