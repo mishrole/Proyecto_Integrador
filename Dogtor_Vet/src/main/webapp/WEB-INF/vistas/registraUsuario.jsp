@@ -194,7 +194,6 @@
 						}
 					});
 				} else {
-					console.log(inputPassword, inputPasswordValidate)
 					passwordDoesntMatch.innerHTML = 'Las contraseñas deben coincidir';
 					inputPasswordValidate.after(passwordDoesntMatch);
 				}
