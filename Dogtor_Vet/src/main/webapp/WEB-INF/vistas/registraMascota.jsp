@@ -61,7 +61,7 @@
 					  	<div class="col-12 col-md-6 mb-3">
 					  		<div class="form-floating">
 		                      	<select class="form-select" id="select_especie" name="codigo_especie_mascota" aria-label="Default select example">
-								  <option selected>Seleccione Especie</option>
+								  <option selected value="0">Seleccione Especie</option>
 								</select>
 								<label for="select_especie">Especie</label>
                       		</div>
@@ -69,7 +69,7 @@
 					  	<div class="col-12 col-md-6 mb-3">
 						  	<div class="form-floating">
 		                      	<select class="form-select" id="select_raza" name="codigo_raza_mascota" aria-label="Default select example">
-								  <option selected>Seleccione Raza</option>
+								  <option selected value="0">Seleccione Raza</option>
 								</select>
 								<label for="select_raza">Raza</label>
 	                      </div>
@@ -79,7 +79,7 @@
                       	<div class="col-12 col-md-6 mb-3">
 	                      	<div class="form-floating">
 		                      	<select class="form-select" id="select_color" name="codigo_color_mascota" aria-label="Default select example">
-								  <option selected>Seleccione Color</option>
+								  <option selected value="0">Seleccione Color</option>
 								</select>
 								<label for="select_color">Color</label>
 	                      </div>
@@ -87,7 +87,7 @@
                       	<div class="col-12 col-md-6 mb-3">
 	                      	<div class="form-floating">
 		                      	<select class="form-select" id="select_sexo" name="codigo_sexo_mascota" aria-label="Default select example">
-								  <option selected>Seleccione Sexo</option>
+								  <option selected value="0">Seleccione Sexo</option>
 								</select>
 								<label for="select_sexo">Sexo</label>
 	                      </div>
@@ -100,7 +100,7 @@
 					  <div class="form-group row">
 					  	<div class="col-12 col-md-6 mb-3">
 						  	<div class="form-floating">
-					  			<input type="text" class="form-control" id="id_identificación" name="codigo_identificacion_mascota" autocomplete="on" >
+					  			<input type="text" class="form-control" id="id_identificacion" name="codigo_identificacion_mascota" autocomplete="on" >
 	                   			<label for="id_identificación"># Identificación</label>
 					  		</div>
 					  	</div>
@@ -130,6 +130,8 @@
 		const selectColor = $('#select_color');
 		const selectSexo = $('#select_sexo');
 		const selectRaza = $('#select_raza');
+		
+		const btnRegister = $('#registrar_mascota');
 		
 		// Get Especie
 		
@@ -164,11 +166,31 @@
 			});
 		});
 		
+		var selectedColor;
+		
+		selectColor.change(function(e) {
+			selectedColor = e.target.selectedIndex;
+		});
+		
+		var selectedSexo;
+		
+		selectSexo.change(function(e) {
+			selectedSexo = e.target.selectedIndex;
+		});
+		
+		var selectedRaza;
+		
+		selectRaza.change(function(e) {
+			selectedRaza = e.target.selectedIndex;
+		});
+		
 		// Get Raza en función a la especie
+		
+		var selectedEspecie;
 		
 		selectEspecie.change(function(e) {
 			//console.log(e.target.options[e.target.selectedIndex].text); // Selected Value
-			const selectedEspecie = e.target.selectedIndex;
+			selectedEspecie = e.target.selectedIndex;
 			
 			$.getJSON('listaRaza', {"especie":selectedEspecie}, function(data) {
 				
@@ -176,6 +198,8 @@
 				
 				if($('#select_raza > option').hasClass("option__raza")) {
 					$("#select_raza > option.option__raza").remove();
+					//$("#select_raza")[0].selectedIndex = 0;
+					selectedRaza = 0;
 				}
 				
 				$.each( data, function( index, value) {
@@ -188,7 +212,89 @@
 			});
 		});
 		
+		$('#id_form').bootstrapValidator({
+			message: 'El valor no es válido',
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				nombre_mascota: {
+					selector: '#id_nombre',
+					validators: {
+						notEmpty: {
+							message: 'El nombre de la mascota es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				fecha_nacimiento_mascota: {
+					selector: '#id_fecha_nacimiento',
+					validators: {
+						notEmpty: {
+							message: 'La fecha de nacimiento de la mascota es obligatoria'
+						}
+					}
+				}
+			}
+		});
+	
+		btnRegister.click(function() {
+			const validator = $('#id_form').data('bootstrapValidator');
+			validator.validate();
+			
+			console.log(selectedEspecie, selectedRaza, selectedColor, selectedSexo );
+			// selectEspecie
+			// selectColor
+			// selectSexo
+			// selectRaza
+			
+			// Si nombre y fecha de nacimiento son válidos
+			
+			if(validator.isValid()) {
+				if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0) {
+					
+					$.ajax({
+						type: 'POST',
+						data: $('#id_form').serialize(),
+						url: 'registraMascota',
+						success: function(data) {
+							mostrarMensaje(data.MENSAJE)
+							limpiar();
+							validator.resetForm()
+						},
+						error: function() {
+							mostrarMensaje(MSG_ERROR)
+						}
+					});
+				} else {
+					if(!(selectedEspecie > 0)) {
+						//.invalid-feedback
+						const errorMessage = document.createElement('div');
+						errorMessage.id = 'selectErrorMessage';
+						errorMessage.className = 'invalid-feedback';
+						errorMessage.innerHTML = 'La especie es obligatoria';
+						selectEspecie.after(errorMessage);
+					}
+				}
+			}
+		});
 		
+		function limpiar() {
+			$('#id_nombre').val('');
+			$('#select_especie')[0].selectedIndex = 0;
+			$('#select_raza')[0].selectedIndex = 0;
+			$('#select_color')[0].selectedIndex = 0;
+			$('#select_sexo')[0].selectedIndex = 0;
+			$('#id_fecha_nacimiento').val('');
+			$('#id_identificacion').val('');
+			$('#id_sanitaria').val('');
+		}
 	
 /*		$.ajax({
 			type: 'POST',
