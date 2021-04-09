@@ -14,7 +14,7 @@ public class Usuario {
 	@Column(name = "codigo_usuario")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigoUsuario;
+	private int codigo_usuario;
 	
 	@Column(name = "email_usuario")
 	private String email_usuario;
@@ -50,11 +50,11 @@ public class Usuario {
 	private String codigo_distrito;
 
 	public int getCodigoUsuario() {
-		return codigoUsuario;
+		return codigo_usuario;
 	}
 
-	public void setCodigoUsuario(int codigoUsuario) {
-		this.codigoUsuario = codigoUsuario;
+	public void setCodigoUsuario(int codigo_usuario) {
+		this.codigo_usuario = codigo_usuario;
 	}
 
 	public String getEmail_usuario() {

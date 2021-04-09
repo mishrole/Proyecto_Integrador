@@ -8,28 +8,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.veterinaria.entity.Usuario;
-import com.veterinaria.service.UsuarioService;
+import com.veterinaria.entity.Mascota;
+import com.veterinaria.service.MascotaService;
 
 @Controller
-public class UsuarioController {
+public class MascotaController {
 	
 	@Autowired
-	private UsuarioService service;
+	private MascotaService service;
 	
-	@RequestMapping("/verRegistraUsuario")
+	@RequestMapping("/verRegistraMascota")
 	public String verRegistra() {
-		return "registraUsuario";
+		return "registraMascota";
 	}
 	
-	@RequestMapping("/registraUsuario")
+	@RequestMapping("/registraMascota")
 	@ResponseBody
-	public Map<String, Object> registra(Usuario objUsuario) {
+	public Map<String, Object> registra(Mascota objMascota) {
 		
 		Map<String, Object> salida = new HashMap<>();
-		Usuario objSalida = service.insertaUsuario(objUsuario);
+		Mascota objSalida = service.insertaMascota(objMascota);
 		
-		if (objSalida == null) {
+		if(objSalida == null) {
 			salida.put("MENSAJE", "El registro no pudo ser completado");
 		} else {
 			salida.put("MENSAJE", "¡Registro exitoso!");
