@@ -18,4 +18,22 @@ public class Sexo {
 
 	@Column(name = "nombre_sexo_mascota")
 	private String nombre_sexo_mascota;
+
+	public int getCodigo_sexo_mascota() {
+		return codigo_sexo_mascota;
+	}
+
+	public void setCodigo_sexo_mascota(int codigo_sexo_mascota) {
+		this.codigo_sexo_mascota = codigo_sexo_mascota;
+	}
+
+	public String getNombre_sexo_mascota() {
+		return nombre_sexo_mascota;
+	}
+
+	public void setNombre_sexo_mascota(String nombre_sexo_mascota) {
+		this.nombre_sexo_mascota = nombre_sexo_mascota;
+	}
+	
+	
 }

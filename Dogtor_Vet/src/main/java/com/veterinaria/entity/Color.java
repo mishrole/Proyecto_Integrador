@@ -18,4 +18,22 @@ public class Color {
 
 	@Column(name = "nombre_color_mascota")
 	private String nombre_color_mascota;
+
+	public int getCodigo_color_mascota() {
+		return codigo_color_mascota;
+	}
+
+	public void setCodigo_color_mascota(int codigo_color_mascota) {
+		this.codigo_color_mascota = codigo_color_mascota;
+	}
+
+	public String getNombre_color_mascota() {
+		return nombre_color_mascota;
+	}
+
+	public void setNombre_color_mascota(String nombre_color_mascota) {
+		this.nombre_color_mascota = nombre_color_mascota;
+	}
+	
+	
 }

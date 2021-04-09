@@ -18,4 +18,22 @@ public class Especie {
 
 	@Column(name = "nombre_especie_mascota")
 	private String nombre_especie_mascota;
+
+	public int getCodigo_especie_mascota() {
+		return codigo_especie_mascota;
+	}
+
+	public void setCodigo_especie_mascota(int codigo_especie_mascota) {
+		this.codigo_especie_mascota = codigo_especie_mascota;
+	}
+
+	public String getNombre_especie_mascota() {
+		return nombre_especie_mascota;
+	}
+
+	public void setNombre_especie_mascota(String nombre_especie_mascota) {
+		this.nombre_especie_mascota = nombre_especie_mascota;
+	}
+	
+	
 }
