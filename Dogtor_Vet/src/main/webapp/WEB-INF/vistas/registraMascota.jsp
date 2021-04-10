@@ -130,7 +130,6 @@
 		const selectColor = $('#select_color');
 		const selectSexo = $('#select_sexo');
 		const selectRaza = $('#select_raza');
-		
 		const btnRegister = $('#registrar_mascota');
 		
 		// Get Especie
@@ -166,27 +165,48 @@
 			});
 		});
 		
-		var selectedColor;
+		function createErrorMessage (element, message, name) {
+			
+			if($('#'+name+'ErrorMessage').length < 1) {
+				const errorMessage = document.createElement('div');
+				errorMessage.className = 'invalid-feedback d-block';
+				errorMessage.id = name + 'ErrorMessage';
+				errorMessage.innerHTML = message;
+				element.parent().after(errorMessage);
+			}
+			
+		}
+		
+		function validateSelect (element, selectedIndex, name) {
+			console.log(selectedIndex)
+			
+			if(selectedIndex === 0 || selectedIndex === undefined) {
+				createErrorMessage(element, '* Este campo es obligatorio', name);
+			} else {
+				if(selectedIndex > 0) {
+					$('#'+name+'ErrorMessage').remove();
+				}
+			}
+		}
+		
+		var selectedColor, selectedSexo, selectedRaza, selectedEspecie;
 		
 		selectColor.change(function(e) {
 			selectedColor = e.target.selectedIndex;
+			validateSelect(selectColor, selectedColor, 'color');
 		});
-		
-		var selectedSexo;
-		
+
 		selectSexo.change(function(e) {
 			selectedSexo = e.target.selectedIndex;
+			validateSelect(selectSexo, selectedSexo, 'sexo');
 		});
-		
-		var selectedRaza;
 		
 		selectRaza.change(function(e) {
 			selectedRaza = e.target.selectedIndex;
+			validateSelect(selectRaza, selectedRaza, 'raza');
 		});
 		
 		// Get Raza en función a la especie
-		
-		var selectedEspecie;
 		
 		selectEspecie.change(function(e) {
 			//console.log(e.target.options[e.target.selectedIndex].text); // Selected Value
@@ -210,6 +230,9 @@
 					selectRaza.append(option);
 				});
 			});
+			
+			validateSelect(selectEspecie, selectedEspecie, 'especie');
+			validateSelect(selectRaza, selectedRaza, 'raza');
 		});
 		
 		$('#id_form').bootstrapValidator({
@@ -224,7 +247,7 @@
 					selector: '#id_nombre',
 					validators: {
 						notEmpty: {
-							message: 'El nombre de la mascota es obligatorio'
+							message: '* Este campo es obligatorio'
 						},
 						stringLength: {
 							min: 3,
@@ -237,7 +260,7 @@
 					selector: '#id_fecha_nacimiento',
 					validators: {
 						notEmpty: {
-							message: 'La fecha de nacimiento de la mascota es obligatoria'
+							message: '* Este campo es obligatorio'
 						}
 					}
 				}
@@ -245,46 +268,31 @@
 		});
 	
 		btnRegister.click(function() {
-			const validator = $('#id_form').data('bootstrapValidator');
+			var validator = $('#id_form').data('bootstrapValidator');
 			validator.validate();
 			
-			console.log(selectedEspecie, selectedRaza, selectedColor, selectedSexo );
-			// selectEspecie
-			// selectColor
-			// selectSexo
-			// selectRaza
+			validateSelect(selectEspecie, selectedEspecie, 'especie');
+			validateSelect(selectRaza, selectedRaza, 'raza');
+			validateSelect(selectSexo, selectedSexo, 'sexo');
+			validateSelect(selectColor, selectedColor, 'color');
 			
-			// Si nombre y fecha de nacimiento son válidos
-			
-			if(validator.isValid()) {
-				if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0) {
-					
-					$.ajax({
-						type: 'POST',
-						data: $('#id_form').serialize(),
-						url: 'registraMascota',
-						success: function(data) {
-							mostrarMensaje(data.MENSAJE)
-							limpiar();
-							validator.resetForm()
-						},
-						error: function() {
-							mostrarMensaje(MSG_ERROR)
-						}
-					});
-				} else {
-					if(!(selectedEspecie > 0)) {
-						//.invalid-feedback
-						const errorMessage = document.createElement('div');
-						errorMessage.id = 'selectErrorMessage';
-						errorMessage.className = 'invalid-feedback';
-						errorMessage.innerHTML = 'La especie es obligatoria';
-						selectEspecie.after(errorMessage);
+			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
+				$.ajax({
+					type: 'POST',
+					data: $('#id_form').serialize(),
+					url: 'registraMascota',
+					success: function(data) {
+						mostrarMensaje(data.MENSAJE)
+						limpiar();
+						validator.resetForm()
+					},
+					error: function() {
+						mostrarMensaje(MSG_ERROR)
 					}
-				}
+				});
 			}
 		});
-		
+
 		function limpiar() {
 			$('#id_nombre').val('');
 			$('#select_especie')[0].selectedIndex = 0;
@@ -294,6 +302,10 @@
 			$('#id_fecha_nacimiento').val('');
 			$('#id_identificacion').val('');
 			$('#id_sanitaria').val('');
+			selectedEspecie = 0;
+			selectedRaza = 0;
+			selectedColor = 0;
+			selectedSexo = 0;
 		}
 	
 /*		$.ajax({

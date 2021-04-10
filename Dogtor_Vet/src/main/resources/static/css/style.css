@@ -10,11 +10,20 @@
     --accent-color-primary: #506690;
     --accent-color-secondary: #546670;
     --white-color: #FFFFFF;
+    
+    --error-color: #dc3545
 }
 
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
+}
+
+.help-block {
+	width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: var(--error-color) !important;
 }
 
 /* Hardcode Bootstrap */
