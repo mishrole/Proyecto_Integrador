@@ -155,6 +155,9 @@
 	<script type="text/javascript">
 		
 	$(document).ready(function() {
+		
+		const btnRegister = $('#registrar_producto');
+		
 		const editor = new Simditor({
 		  textarea: $('#id_descripcion_html')
 		  //optional options
@@ -194,6 +197,20 @@
 				option.value = value.codigo_proveedor;
 				option.text = value.nombre_proveedor;
 				selectProveedor.append(option);
+			});
+		});
+		
+		btnRegister.click(function() {
+			$.ajax({
+				type: 'POST',
+				data: $('#id_form').serialize(),
+				url: 'registraProducto',
+				success: function(data) {
+					mostrarMensaje(data.MENSAJE)
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR)
+				}
 			});
 		});
 		

@@ -1,3 +1,5 @@
+USE PI_DOGTOR;
+
 INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Administrador');
 INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Especialista');
 INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Vendedor');
