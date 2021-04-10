@@ -1,0 +1,169 @@
+package com.veterinaria.entity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb__producto")
+public class Producto {
+
+	@Column(name = "codigo_producto")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int codigo_producto;
+
+	@Column(name = "nombre_producto")
+	private String nombre_producto;
+	
+	@Column(name = "descripcion_simple_producto")
+	private String descripcion_simple_producto;
+	
+	@Column(name = "descripcion_html_producto")
+	private String descripcion_html_producto;
+	
+	@Column(name = "precio_producto")
+	private double precio_producto;
+	
+	@Column(name = "stock_producto")
+	private int stock_producto;
+	
+	@Column(name = "pedido_producto")
+	private int pedido_producto;
+	
+	@Column(name = "serie_producto")
+	private String serie_producto;
+	
+	@Column(name = "foto1_producto")
+	private String foto1_producto;
+	
+	@Column(name = "foto2_producto")
+	private String foto2_producto;
+	
+	@Column(name = "foto3_producto")
+	private String foto3_producto;
+	
+	@Column(name = "codigo_marca")
+	private int codigo_marca;
+	
+	@Column(name = "codigo_categoria_producto")
+	private int codigo_categoria_producto;
+	
+	@Column(name = "codigo_proveedor")
+	private int codigo_proveedor;
+
+	public int getCodigo_producto() {
+		return codigo_producto;
+	}
+
+	public void setCodigo_producto(int codigo_producto) {
+		this.codigo_producto = codigo_producto;
+	}
+
+	public String getNombre_producto() {
+		return nombre_producto;
+	}
+
+	public void setNombre_producto(String nombre_producto) {
+		this.nombre_producto = nombre_producto;
+	}
+
+	public String getDescripcion_simple_producto() {
+		return descripcion_simple_producto;
+	}
+
+	public void setDescripcion_simple_producto(String descripcion_simple_producto) {
+		this.descripcion_simple_producto = descripcion_simple_producto;
+	}
+
+	public String getDescripcion_html_producto() {
+		return descripcion_html_producto;
+	}
+
+	public void setDescripcion_html_producto(String descripcion_html_producto) {
+		this.descripcion_html_producto = descripcion_html_producto;
+	}
+
+	public double getPrecio_producto() {
+		return precio_producto;
+	}
+
+	public void setPrecio_producto(double precio_producto) {
+		this.precio_producto = precio_producto;
+	}
+
+	public int getStock_producto() {
+		return stock_producto;
+	}
+
+	public void setStock_producto(int stock_producto) {
+		this.stock_producto = stock_producto;
+	}
+
+	public int getPedido_producto() {
+		return pedido_producto;
+	}
+
+	public void setPedido_producto(int pedido_producto) {
+		this.pedido_producto = pedido_producto;
+	}
+
+	public String getSerie_producto() {
+		return serie_producto;
+	}
+
+	public void setSerie_producto(String serie_producto) {
+		this.serie_producto = serie_producto;
+	}
+
+	public String getFoto1_producto() {
+		return foto1_producto;
+	}
+
+	public void setFoto1_producto(String foto1_producto) {
+		this.foto1_producto = foto1_producto;
+	}
+
+	public String getFoto2_producto() {
+		return foto2_producto;
+	}
+
+	public void setFoto2_producto(String foto2_producto) {
+		this.foto2_producto = foto2_producto;
+	}
+
+	public String getFoto3_producto() {
+		return foto3_producto;
+	}
+
+	public void setFoto3_producto(String foto3_producto) {
+		this.foto3_producto = foto3_producto;
+	}
+
+	public int getCodigo_marca() {
+		return codigo_marca;
+	}
+
+	public void setCodigo_marca(int codigo_marca) {
+		this.codigo_marca = codigo_marca;
+	}
+
+	public int getCodigo_categoria_producto() {
+		return codigo_categoria_producto;
+	}
+
+	public void setCodigo_categoria_producto(int codigo_categoria_producto) {
+		this.codigo_categoria_producto = codigo_categoria_producto;
+	}
+
+	public int getCodigo_proveedor() {
+		return codigo_proveedor;
+	}
+
+	public void setCodigo_proveedor(int codigo_proveedor) {
+		this.codigo_proveedor = codigo_proveedor;
+	}
+}

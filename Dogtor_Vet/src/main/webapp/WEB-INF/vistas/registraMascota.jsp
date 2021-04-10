@@ -165,6 +165,8 @@
 			});
 		});
 		
+		// Crear e insertar mensaje de error para Selects
+		
 		function createErrorMessage (element, message, name) {
 			
 			if($('#'+name+'ErrorMessage').length < 1) {
@@ -176,6 +178,8 @@
 			}
 			
 		}
+		
+		// Validar si el Select no tiene una opción esperada
 		
 		function validateSelect (element, selectedIndex, name) {
 			console.log(selectedIndex)
@@ -190,6 +194,8 @@
 		}
 		
 		var selectedColor, selectedSexo, selectedRaza, selectedEspecie;
+		
+		// Validar selects cuando cambie el option
 		
 		selectColor.change(function(e) {
 			selectedColor = e.target.selectedIndex;
@@ -209,7 +215,6 @@
 		// Get Raza en función a la especie
 		
 		selectEspecie.change(function(e) {
-			//console.log(e.target.options[e.target.selectedIndex].text); // Selected Value
 			selectedEspecie = e.target.selectedIndex;
 			
 			$.getJSON('listaRaza', {"especie":selectedEspecie}, function(data) {
@@ -218,7 +223,6 @@
 				
 				if($('#select_raza > option').hasClass("option__raza")) {
 					$("#select_raza > option.option__raza").remove();
-					//$("#select_raza")[0].selectedIndex = 0;
 					selectedRaza = 0;
 				}
 				
@@ -230,6 +234,8 @@
 					selectRaza.append(option);
 				});
 			});
+			
+			// Validar selects de Especie y Raza
 			
 			validateSelect(selectEspecie, selectedEspecie, 'especie');
 			validateSelect(selectRaza, selectedRaza, 'raza');
@@ -266,11 +272,14 @@
 				}
 			}
 		});
+		
+		// Registrar mascota
 	
 		btnRegister.click(function() {
 			var validator = $('#id_form').data('bootstrapValidator');
 			validator.validate();
 			
+			// Validar selects
 			validateSelect(selectEspecie, selectedEspecie, 'especie');
 			validateSelect(selectRaza, selectedRaza, 'raza');
 			validateSelect(selectSexo, selectedSexo, 'sexo');
@@ -308,29 +317,10 @@
 			selectedSexo = 0;
 		}
 	
-/*		$.ajax({
-			type: 'POST',
-			data: $('#id_form').serialize(),
-			url: 'registraUsuario',
-			success: function(data) {
-				mostrarMensaje(data.MENSAJE)
-				limpiar();
-				validator.resetForm()
-			},
-			error: function() {
-				mostrarMensaje(MSG_ERROR)
-			}
-		});*/
 	});
-		
-
 	
 	</script>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
