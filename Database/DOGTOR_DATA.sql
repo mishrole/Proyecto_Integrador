@@ -1,9 +1,10 @@
 USE PI_DOGTOR;
 
 INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Administrador');
-INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Especialista');
-INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Vendedor');
 INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Usuario');
+INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Especialista'); /* Médico veterinario, peluquero, etc*/
+INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Vendedor');
+INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES ('Repartidor');
 
 INSERT INTO tb_usuario(CODIGO_USUARIO, EMAIL_USUARIO, CONTRASENA_USUARIO, NOMBRE_USUARIO, APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO) 
 VALUES (null, 'mitrodle@gmail.com', '123', 'Mitchell', 'Admin', '1997-03-25');
@@ -11,7 +12,7 @@ INSERT INTO tb_usuario(CODIGO_USUARIO, EMAIL_USUARIO, CONTRASENA_USUARIO, NOMBRE
 VALUES (null, 'mishrole@gmail.com', '123', 'Mitchell', 'Usuario', '1997-03-25');
 
 INSERT INTO TB_DETALLE_USUARIO_ROL VALUES (1, 1);
-INSERT INTO TB_DETALLE_USUARIO_ROL VALUES (2, 4);
+INSERT INTO TB_DETALLE_USUARIO_ROL VALUES (2, 2);
 
 INSERT INTO tb_color_mascota(NOMBRE_COLOR_MASCOTA) VALUES ("Blanco y Negro");
 INSERT INTO tb_color_mascota(NOMBRE_COLOR_MASCOTA) VALUES ("Blanco y Gris");
