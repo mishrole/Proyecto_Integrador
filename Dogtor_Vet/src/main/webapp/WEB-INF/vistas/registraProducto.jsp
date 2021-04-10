@@ -12,7 +12,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
-	<script type="text/javascript" src="js/createSelectError.js"></script>
+	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	
 	<title>Registra Producto</title>
@@ -167,6 +167,7 @@
 		const selectMarca = $('#select_marca');
 		const selectCategoriaProducto = $('#select_categoria_producto');
 		const selectProveedor = $('#select_proveedor');
+		const textareaSimple = $('#id_descripcion_simple');
 		
 		// Get Marca
 		
@@ -201,7 +202,7 @@
 			});
 		});
 		
-		var selectedMarca, selectedCategoriaProducto, selectedProveedor;
+		var selectedMarca, selectedCategoriaProducto, selectedProveedor, countTextareaSimple;
 		
 		// Validar selects cuando cambie el option
 		
@@ -218,6 +219,13 @@
 		selectProveedor.change(function(e) {
 			selectedProveedor = e.target.selectedIndex;
 			validateSelect(selectProveedor, selectedProveedor, 'proveedor');
+		});
+		
+		// Validar textarea simple
+		
+		textareaSimple.on('keyup', function(e) {
+			countTextareaSimple = textareaSimple.val().trim().length;
+			validateTextarea(textareaSimple, countTextareaSimple, 'textareaSimple');
 		});
 		
 		
@@ -246,7 +254,7 @@
 					selector: '#id_serie',
 					validators : {
 						notEmpty: {
-							message: '* Este campo es obligatorio'
+							message: '* Obligatorio'
 						},
 					}
 				},
@@ -254,7 +262,7 @@
 					selector: '#id_precio',
 					validators : {
 						notEmpty: {
-							message: 'El precio es obligatorio'
+							message: '* Obligatorio'
 						},
 						regexp: {
 							regexp: /^(\d+)(\.\d{1,2})?$/,
@@ -266,7 +274,7 @@
 					selector: '#id_stock',
 					validators : {
 						notEmpty: {
-							message: 'El stock es obligatorio'
+							message: '* Obligatorio'
 						},
 						regexp: {
 							regexp: /^([1-9][0-9]+|[0-9])$/,
@@ -278,7 +286,7 @@
 					selector: '#id_pedido',
 					validators : {
 						notEmpty: {
-							message: 'El pedido es obligatorio'
+							message: '* Obligatorio'
 						},
 						regexp: {
 							regexp: /^([1-9][0-9]+|[0-9])$/,
@@ -286,14 +294,6 @@
 						}
 					}
 				},
-				detalle_simple: {
-					selector: '#id_descripcion_simple',
-					validator: {
-						notEmpty: {
-							message: '* Este campo es obligatorio'
-						}, 
-					}
-				}
 			}
 		});
 		
@@ -309,7 +309,10 @@
 			validateSelect(selectCategoriaProducto, selectedCategoriaProducto, 'categoria');
 			validateSelect(selectProveedor, selectedProveedor, 'proveedor');
 			
-			if(selectedMarca > 0 && selectedCategoriaProducto > 0 && selectedProveedor > 0 && validator.isValid()) {
+			// Validar textarea simple
+			validateTextarea(textareaSimple, countTextareaSimple, 'textareaSimple');
+			
+			if(selectedMarca > 0 && selectedCategoriaProducto > 0 && selectedProveedor > 0 && countTextareaSimple >= 3 && countTextareaSimple <= 100 && validator.isValid()) {
 				$.ajax({
 					type: 'POST',
 					data: $('#id_form').serialize(),
@@ -337,9 +340,13 @@
 			$('#id_pedido').val('');
 			$('#id_descripcion_simple').val('');
 			$('#descripcion_html_producto').val('');
+			
+			// Reset de variables contadoras
+			
 			selectedMarca = 0;
 			selectedCategoriaProducto = 0;
 			selectedProveedor = 0;
+			countTextareaSimple = 0;
 		}
 	});
 	

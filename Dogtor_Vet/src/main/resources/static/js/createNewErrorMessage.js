@@ -1,5 +1,5 @@
 
-// Crear e insertar mensaje de error para Selects
+// Crear e insertar mensaje de error después del elemento indicado
 
 function createErrorMessage (element, message, name) {
 	
@@ -16,7 +16,6 @@ function createErrorMessage (element, message, name) {
 // Validar si el Select no tiene una opción esperada
 
 function validateSelect (element, selectedIndex, name) {
-	console.log(selectedIndex)
 	
 	if(selectedIndex === 0 || selectedIndex === undefined) {
 		createErrorMessage(element, '* Este campo es obligatorio', name);
@@ -25,4 +24,19 @@ function validateSelect (element, selectedIndex, name) {
 			$('#'+name+'ErrorMessage').remove();
 		}
 	}
+}
+
+// Validar si el Textarea no contiene un mínimo de 3 caracteres
+
+function validateTextarea (element, count, name) {
+	
+	if(!(count >= 3)) {
+		createErrorMessage(element, '* Este campo es obligatorio', name);
+	} else if(count > 100) {
+		$('#'+name+'ErrorMessage').remove();
+		createErrorMessage(element, '* Maximo 100 caracteres', name);
+	} else {
+		$('#'+name+'ErrorMessage').remove();
+	}
+
 }
