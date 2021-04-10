@@ -3,16 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/createSelectError.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	
 	<title>Registra Producto</title>
 </head>
@@ -200,27 +201,151 @@
 			});
 		});
 		
-		btnRegister.click(function() {
-			$.ajax({
-				type: 'POST',
-				data: $('#id_form').serialize(),
-				url: 'registraProducto',
-				success: function(data) {
-					mostrarMensaje(data.MENSAJE)
-				},
-				error: function() {
-					mostrarMensaje(MSG_ERROR)
-				}
-			});
+		var selectedMarca, selectedCategoriaProducto, selectedProveedor;
+		
+		// Validar selects cuando cambie el option
+		
+		selectMarca.change(function(e) {
+			selectedMarca = e.target.selectedIndex;
+			validateSelect(selectMarca, selectedMarca, 'marca');
 		});
 		
+		selectCategoriaProducto.change(function(e) {
+			selectedCategoriaProducto = e.target.selectedIndex;
+			validateSelect(selectCategoriaProducto, selectedCategoriaProducto, 'categoria');
+		});
+		
+		selectProveedor.change(function(e) {
+			selectedProveedor = e.target.selectedIndex;
+			validateSelect(selectProveedor, selectedProveedor, 'proveedor');
+		});
+		
+		
+		$('#id_form').bootstrapValidator({
+			message: 'El valor no es válido',
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				nombre_producto: {
+					selector: '#id_nombre',
+					validators : {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				serie_producto: {
+					selector: '#id_serie',
+					validators : {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				precio_producto: {
+					selector: '#id_precio',
+					validators : {
+						notEmpty: {
+							message: 'El precio es obligatorio'
+						},
+						regexp: {
+							regexp: /^(\d+)(\.\d{1,2})?$/,
+							message: 'El precio debe ser decimal'
+						}
+					}
+				},
+				stock_producto: {
+					selector: '#id_stock',
+					validators : {
+						notEmpty: {
+							message: 'El stock es obligatorio'
+						},
+						regexp: {
+							regexp: /^([1-9][0-9]+|[0-9])$/,
+							message: 'El stock es entero'
+						}
+					}
+				},
+				pedido_producto: {
+					selector: '#id_pedido',
+					validators : {
+						notEmpty: {
+							message: 'El pedido es obligatorio'
+						},
+						regexp: {
+							regexp: /^([1-9][0-9]+|[0-9])$/,
+							message: 'El pedido es entero'
+						}
+					}
+				},
+				detalle_simple: {
+					selector: '#id_descripcion_simple',
+					validator: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						}, 
+					}
+				}
+			}
+		});
+		
+		// Registrar producto
+		
+		btnRegister.click(function() {
+			
+			var validator = $('#id_form').data('bootstrapValidator');
+			validator.validate();
+			
+			// Validar selects
+			validateSelect(selectMarca, selectedMarca, 'marca');
+			validateSelect(selectCategoriaProducto, selectedCategoriaProducto, 'categoria');
+			validateSelect(selectProveedor, selectedProveedor, 'proveedor');
+			
+			if(selectedMarca > 0 && selectedCategoriaProducto > 0 && selectedProveedor > 0 && validator.isValid()) {
+				$.ajax({
+					type: 'POST',
+					data: $('#id_form').serialize(),
+					url: 'registraProducto',
+					success: function(data) {
+						mostrarMensaje(data.MENSAJE)
+						limpiar();
+						validator.resetForm()
+					},
+					error: function() {
+						mostrarMensaje(MSG_ERROR)
+					}
+				});
+			}
+		});
+		
+		function limpiar() {
+			$('#id_nombre').val('');
+			$('#id_serie').val('');
+			$('#select_marca')[0].selectedIndex = 0;
+			$('#select_categoria_producto')[0].selectedIndex = 0;
+			$('#select_proveedor')[0].selectedIndex = 0;
+			$('#id_precio').val('');
+			$('#id_stock').val('');
+			$('#id_pedido').val('');
+			$('#id_descripcion_simple').val('');
+			$('#descripcion_html_producto').val('');
+			selectedMarca = 0;
+			selectedCategoriaProducto = 0;
+			selectedProveedor = 0;
+		}
 	});
 	
 	</script>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-
-	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/module.js"></script>
 	<script type="text/javascript" src="js/hotkeys.js"></script>
 	<script type="text/javascript" src="js/uploader.js"></script>

@@ -12,7 +12,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
-	
+	<script type="text/javascript" src="js/createSelectError.js"></script>
 	<title>Registra Mascota</title>
 </head>
 <body>
@@ -165,33 +165,6 @@
 			});
 		});
 		
-		// Crear e insertar mensaje de error para Selects
-		
-		function createErrorMessage (element, message, name) {
-			
-			if($('#'+name+'ErrorMessage').length < 1) {
-				const errorMessage = document.createElement('div');
-				errorMessage.className = 'invalid-feedback d-block';
-				errorMessage.id = name + 'ErrorMessage';
-				errorMessage.innerHTML = message;
-				element.parent().after(errorMessage);
-			}
-			
-		}
-		
-		// Validar si el Select no tiene una opción esperada
-		
-		function validateSelect (element, selectedIndex, name) {
-			console.log(selectedIndex)
-			
-			if(selectedIndex === 0 || selectedIndex === undefined) {
-				createErrorMessage(element, '* Este campo es obligatorio', name);
-			} else {
-				if(selectedIndex > 0) {
-					$('#'+name+'ErrorMessage').remove();
-				}
-			}
-		}
 		
 		var selectedColor, selectedSexo, selectedRaza, selectedEspecie;
 		
