@@ -54,3 +54,9 @@ INSERT INTO tb_categoria_producto(NOMBRE_CATEGORIA_PRODUCTO) VALUES('Antipulgas'
 INSERT INTO tb_proveedor(NOMBRE_PROVEEDOR) VALUES('Proveedor con nombre social súper largo A S.A.C.');
 INSERT INTO tb_proveedor(NOMBRE_PROVEEDOR) VALUES('Proveedor con nombre social súper largo B S.A.C.');
 INSERT INTO tb_proveedor(NOMBRE_PROVEEDOR) VALUES('Proveedor con nombre social súper largo C S.A.C.');
+
+INSERT INTO tb_tipo_servicio(NOMBRE_TIPO_SERVICIO) VALUES('Consulta veterinaria');
+INSERT INTO tb_tipo_servicio(NOMBRE_TIPO_SERVICIO) VALUES('Baño');
+INSERT INTO tb_tipo_servicio(NOMBRE_TIPO_SERVICIO) VALUES('Vacunación');
+INSERT INTO tb_tipo_servicio(NOMBRE_TIPO_SERVICIO) VALUES('Desparasitación');
+
