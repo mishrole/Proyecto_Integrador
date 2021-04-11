@@ -19,7 +19,8 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-textarea#id_descripcion_simple {
+textarea#id_descripcion_simple,
+textarea#id_descripcion {
 	min-height: 100px !important;
 }
 
