@@ -44,10 +44,9 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 justify-content-center align-items-center d-flex">
-                <main class="col-10 col-md-8 main-form-producto">
+                <main class="col-10 col-md-8">
                     <form id="id_form">
                       <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Registro de Servicio</b></h1>
-                      <input type="text" id="id_propietario" name="codigo_propietario" value="1" class="d-none">
                     
                     <div class="form-group row">
                     	<div class="col-12 col-md-8 mb-3">
@@ -84,7 +83,7 @@
                     	</div>
                     	<div class="col-12 col-md-4 mb-3">
 	                      	<div class="form-floating">
-	                      		<input type="text" class="form-control" id="id_fecha" name="fecha_servicio" autocomplete="on" >
+	                      		<input type="date" class="form-control" id="id_fecha" name="fecha_servicio" autocomplete="on" >
 	                      		<label for="id_fecha">Fechas</label>
 	                      </div>
                       	</div>
@@ -124,9 +123,8 @@
 	$(document).ready(function() {
 		
 		const btnRegister = $('#registrar_Servicio');
-		
 		const selectTipoServicio = $('#select_tipo_servicio');
-		
+		const textareaDescripcion = $('#id_descripcion');
 		
 		// Get Tipo de Servicio
 		
@@ -139,7 +137,7 @@
 			});
 		});
 		
-		var selectedTipoServicio;
+		var selectedTipoServicio, countTextareaDescripcion;
 		
 		// Validar select cuando cambie el option
 		
@@ -150,7 +148,10 @@
 		
 		// Validar textarea
 		
-		
+		textareaDescripcion.on('keyup', function(e) {
+			countTextareaDescripcion = textareaDescripcion.val().trim().length;
+			validateTextarea(textareaDescripcion, countTextareaDescripcion, 'textareaDescripcion');
+		});
 		
 		
 	});

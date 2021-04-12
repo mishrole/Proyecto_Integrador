@@ -44,7 +44,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 justify-content-center align-items-center d-flex">
-                <main class="col-10 col-md-6 form-signin">
+                <main class="col-10 col-md-6">
                     <form id="id_form">
                       <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Crea una cuenta</b></h1>
                     
