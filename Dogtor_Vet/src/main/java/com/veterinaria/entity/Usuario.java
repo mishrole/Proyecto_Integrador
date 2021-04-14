@@ -40,8 +40,8 @@ public class Usuario {
 	@Column(name = "direccion_usuario")
 	private String direccion_usuario;
 	
-	@Column(name = "referencia_pedido")
-	private String referencia_pedido;
+	@Column(name = "referencia_usuario")
+	private String referencia_usuario;
 	
 	@Column(name = "telefono_usuario")
 	private String telefono_usuario;
@@ -121,12 +121,12 @@ public class Usuario {
 		this.direccion_usuario = direccion_usuario;
 	}
 
-	public String getReferencia_pedido() {
-		return referencia_pedido;
+	public String getReferencia_usuario() {
+		return referencia_usuario;
 	}
 
-	public void setReferencia_pedido(String referencia_pedido) {
-		this.referencia_pedido = referencia_pedido;
+	public void setReferencia_usuario(String referencia_usuario) {
+		this.referencia_usuario = referencia_usuario;
 	}
 
 	public String getTelefono_usuario() {
