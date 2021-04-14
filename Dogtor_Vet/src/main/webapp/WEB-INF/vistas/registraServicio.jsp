@@ -15,7 +15,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light-custom">
     <div class="container">
-        <a class="navbar-brand text-primary-color" href="./"><img src="../../images/logo.png" alt="Logo dogtor" width="250"></a>
+        <a class="navbar-brand text-primary-color" href="./"><img src="../../images/logo.png" alt="Logo dogtor" width="200"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,61 +41,89 @@
     </div>
   </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 justify-content-center align-items-center d-flex">
                 <main class="col-10 col-md-8">
                     <form id="id_form">
                       <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Registro de Servicio</b></h1>
+                      
+                      <div class="form-group row">
+					  	<div class="col-12 col-md-6 mb-3">
+					  		<div class="form-floating">
+		                      	<select class="form-select" id="select_tipo_servicio" name="codigo_tipo_servicio" aria-label="Default select example">
+								  <option selected value="0">Seleccione Tipo</option>
+								</select>
+								<label for="select_tipo_servicio">Tipo de Servicio</label>
+                      		</div>
+					  	</div>
+					  	<div class="col-12 col-md-6 mb-3">
+					  		<div class="form-floating">
+		                      	<select class="form-select" id="select_especialidad" name="codigo_especialidad" aria-label="Default select example">
+								  <option selected value="0">Seleccione Especialidad</option>
+								</select>
+								<label for="select_especialidad">Especialidad</label>
+                      		</div>
+					  	</div>
+					  </div>
+					  
+					  <div class="form-group row">
+					  	<div class="col-12 col-md-6 mb-3">
+					  		<div class="form-floating">
+		                      	<select class="form-select" id="select_especialista" name="codigo_especialista" aria-label="Default select example">
+								  <option selected value="0">Seleccione Especialista</option>
+								</select>
+								<label for="select_especialista">Especialista</label>
+                      		</div>
+					  	</div>
+					  	<div class="col-12 col-md-6 mb-3">
+					  		<div class="form-floating">
+		                      	<select class="form-select" id="select_dia_semana" name="codigo_dia_semana" aria-label="Default select example">
+								  <option selected value="0">Seleccione Día</option>
+								</select>
+								<label for="select_dia_semana">Día de la Semana</label>
+                      		</div>
+					  	</div>
+					  </div>
+					  
+					  <div class="form-group row">
+                    	<div class="col-12 col-md-6 mb-3">
+                    		 <div class="form-floating">
+		                      <input type="time" class="form-control" value="00:00" id="id_turno_inicio" name="inicio_turno_servicio" autocomplete="on" >
+		                      <label for="id_turno_inicio">Inicio de Turno</label>
+                      		</div>
+                    	</div>
+                    	<div class="col-12 col-md-6 mb-3">
+	                      	<div class="form-floating">
+	                      		<input type="time" class="form-control" value="00:00" id="id_turno_fin" name="fin_turno_servicio" autocomplete="on" >
+	                      		<label for="id_turno_fin">Fin de Turno</label>
+	                      </div>
+                      	</div>
+                    </div>
                     
                     <div class="form-group row">
-                    	<div class="col-12 col-md-8 mb-3">
+                    	<div class="col-12 col-md-6 mb-3">
                     		 <div class="form-floating">
 		                      <input type="text" class="form-control" id="id_nombre" name="nombre_servicio" autocomplete="on" >
 		                      <label for="id_nombre">Nombre</label>
                       		</div>
                     	</div>
-                    	<div class="col-12 col-md-4 mb-3">
+                    	<div class="col-12 col-md-3 mb-3">
 	                      	<div class="form-floating">
 	                      		<input type="text" class="form-control" id="id_precio" name="precio_servicio" autocomplete="on" >
 	                      		<label for="id_precio">Precio</label>
 	                      </div>
                       	</div>
-                    </div>
-                    
-                    <div class="form-group row">
-					  	<div class="col-12 mb-3">
-					  		<div class="form-floating">
-		                      	<select class="form-select" id="select_tipo_servicio" name="codigo_tipo_servicio" aria-label="Default select example">
-								  <option selected value="0">Seleccione Tipo</option>
-								</select>
-								<label for="select_tipo_servicio">Tipo</label>
-                      		</div>
-					  	</div>
-					  </div>
-                    
-                    <div class="form-group row">
-                    	<div class="col-12 col-md-4 mb-3">
+                    	<div class="col-12 col-md-3 mb-4">
                     		 <div class="form-floating">
-		                      <input type="text" class="form-control" id="id_horario" name="horario_servicio" autocomplete="on" >
-		                      <label for="id_horario">Horario</label>
+		                      <input type="text" class="form-control" id="id_limite" name="limite_diario_servicio" autocomplete="on" >
+		                      <label for="limite_diario_servicio">Límite diario</label>
                       		</div>
                     	</div>
-                    	<div class="col-12 col-md-4 mb-3">
-	                      	<div class="form-floating">
-	                      		<input type="date" class="form-control" id="id_fecha" name="fecha_servicio" autocomplete="on" >
-	                      		<label for="id_fecha">Fechas</label>
-	                      </div>
-                      	</div>
-                      	<div class="col-12 col-md-4 mb-3">
-	                      	<div class="form-floating">
-	                      		<input type="text" class="form-control" id="id_limite" name="limite_servicio" autocomplete="on" >
-	                      		<label for="id_limite">Límite diario</label>
-	                      </div>
-                      	</div>
                     </div>
-			
-                     <div class="form-group row">
+
+                    
+                    <div class="form-group row">
                 		<div class="col 12 mb-3">
                 			<div class="form-floating">
                 				<textarea class="form-control" id="id_descripcion" name="descripcion_servicio" rows="5"></textarea>
@@ -124,11 +152,13 @@
 		
 		const btnRegister = $('#registrar_Servicio');
 		const selectTipoServicio = $('#select_tipo_servicio');
+		const selectEspecialista = $('#select_especialista');
+		const selectEspecialidad = $('#select_especialidad');
 		const textareaDescripcion = $('#id_descripcion');
 		
 		// Get Tipo de Servicio
 		
-		$.getJSON('listaServicio', function(data) {
+		$.getJSON('listaTipoServicio', function(data) {
 			$.each( data, function (index, value) {
 				let option = document.createElement('option');
 				option.value = value.codigo_tipo_servicio;
@@ -137,13 +167,40 @@
 			});
 		});
 		
-		var selectedTipoServicio, countTextareaDescripcion;
+		// Get Especialidad
+		
+		$.getJSON('listaEspecialidad', function(data) {
+			$.each( data, function(index, value) {
+				let option = document.createElement('option');
+				option.value = value.codigo_especialidad;
+				option.text = value.nombre_especialidad;
+				selectEspecialidad.append(option);
+			});
+		})
+		
+		// Get Especialidad
+		
+		$.getJSON('listaEspecialista', function(data) {
+			$.each( data, function(index, value) {
+				let option = document.createElement('option');
+				option.value = value.codigo_especialista;
+				option.text = value.nombre_especialista;
+				selectEspecialista.append(option);
+			});
+		})
+		
+		var selectedTipoServicio, selectedEspecialidad, selectedEspecialista, countTextareaDescripcion;
 		
 		// Validar select cuando cambie el option
 		
 		selectTipoServicio.change(function(e) {
 			selectedTipoServicio = e.target.selectedIndex;
 			validateSelect(selectTipoServicio, selectedTipoServicio, 'tipo');
+		});
+		
+		selectEspecialidad.change(function(e) {
+			selectedEspecialidad = e.target.selectedIndex;
+			validateSelect(selectEspecialidad, selectedEspecialidad, 'especialidad');
 		});
 		
 		// Validar textarea
