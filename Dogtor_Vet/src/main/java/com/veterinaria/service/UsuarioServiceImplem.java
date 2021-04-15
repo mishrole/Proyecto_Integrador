@@ -19,9 +19,4 @@ public class UsuarioServiceImplem implements UsuarioService {
 		return repository.save(objUsuario);
 	}
 
-/*	@Override
-	public List<Usuario> listaUsuarioPorEmailYContrasena(String param_email, String param_contrasena) {
-		return repository.listaUsuarioPorEmailyContrasena(param_email +  "%", param_contrasena + "%");
-	}
-*/
 }

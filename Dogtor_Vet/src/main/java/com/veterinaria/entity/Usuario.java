@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +16,7 @@ public class Usuario {
 	@Column(name = "codigo_usuario")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_usuario;
+	private Integer codigo_usuario;
 	
 	@Column(name = "email_usuario")
 	private String email_usuario;
@@ -48,12 +50,16 @@ public class Usuario {
 	
 	@Column(name = "codigo_distrito")
 	private String codigo_distrito;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_distrito", insertable = false, updatable = false, nullable = false)
+	private Distrito distrito;
 
-	public int getCodigoUsuario() {
+	public Integer getCodigo_usuario() {
 		return codigo_usuario;
 	}
 
-	public void setCodigoUsuario(int codigo_usuario) {
+	public void setCodigo_usuario(Integer codigo_usuario) {
 		this.codigo_usuario = codigo_usuario;
 	}
 
@@ -144,5 +150,13 @@ public class Usuario {
 	public void setCodigo_distrito(String codigo_distrito) {
 		this.codigo_distrito = codigo_distrito;
 	}
-	
+
+	public Distrito getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
+	}
+
 }

@@ -7,17 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.veterinaria.entity.Raza;
-import com.veterinaria.service.RazaService;
+import com.veterinaria.entity.Distrito;
+import com.veterinaria.service.DistritoService;
 
 @Controller
-public class RazaController {
+public class DistritoController {
 	
-	@Autowired RazaService service;
+	@Autowired
+	private DistritoService service;
 	
-	@RequestMapping("listaRaza")
+	@RequestMapping("/listaDistrito")
 	@ResponseBody
-	public List<Raza> listaRaza(Long especie) {
-		return service.listaRaza(especie);
+	public List<Distrito> listaDistrito() {
+		return service.listaDistrito();
 	}
 }

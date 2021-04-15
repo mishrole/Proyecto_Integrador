@@ -35,7 +35,7 @@
                 </li>
             </ul>
             <div class="d-flex">
-            	<a class="btn btn-primary btn-singin" href="">Iniciar Sesión</a>
+            	<a class="btn btn-primary btn-singin" href="verLogin">Iniciar Sesión</a>
         	</div>
         </div>
     </div>

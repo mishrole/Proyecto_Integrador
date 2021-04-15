@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	
-	<title>Registra Usuario</title>
+	<title>Inicia Sesión</title>
 </head>
 <body>
 
@@ -46,20 +46,8 @@
             <div class="col-sm-12 justify-content-center align-items-center d-flex">
                 <main class="col-10 col-md-6">
                     <form id="id_form">
-                      <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Crea una cuenta</b></h1>
+                      <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Inicia Sesión</b></h1>
                     
-                   	  <div class="form-group form-floating mb-3">
-	                      <input type="text" class="form-control" id="id_nombre" name="nombre_usuario" placeholder="John" autocomplete="on" >
-	                      <label for="id_nombre">Nombre</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="text" class="form-control" id="id_apellido" name="apellido_usuario" placeholder="Doe" autocomplete="on">
-                        <label for="id_apellido">Apellidos</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_usuario" autocomplete="on">
-                        <label for="id_fecha_nacimiento">Fecha de nacimiento</label>
-                      </div>
                       <div class="form-group form-floating mb-3">
                         <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on">
                         <label for="id_email">Correo electrónico</label>
@@ -68,13 +56,9 @@
                         <input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on">
                         <label for="id_contrasena">Contraseña</label>
                       </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="password" class="form-control" id="id_validar_contrasena" placeholder="Password" autocomplete="off">
-                        <label for="id_validar_contrasena">Verificar contraseña</label>
-                      </div>
 
-                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_usuario">Registrar</button>
-                      <p class="text-center mt-3">¿Tienes una cuenta? <a href="">Inicia Sesión</a></p>
+                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="iniciar_sesion">Iniciar Sesión</button>
+                      <p class="text-center mt-3">¿Todavía no tienes una cuenta? <a href="verRegistraUsuario">Regístrate</a></p>
                     </form>
                   </main>
             </div>
@@ -91,7 +75,7 @@
 		
 	$(document).ready(function() {
 		
-		const btnRegister = $('#registrar_usuario');
+		const btnRegister = $('#iniciar_sesion');
 		
 		$('#id_form').bootstrapValidator({
 			message: 'El valor no es válido',
@@ -101,45 +85,11 @@
 				validating: 'glyphicon glyphicon-refresh'
 			},
 			fields: {
-				nombre_usuario: {
-					selector: '#id_nombre',
-					validators : {
-						notEmpty: {
-							message: 'El nombre es obligatorio'
-						},
-						stringLength: {
-							min: 3,
-							max: 40,
-							message: 'El nombre debe contener entre 3 a 40 caracteres'
-						},
-					}
-				},
-				apellido_usuario: {
-					selector: '#id_apellido',
-					validators : {
-						notEmpty: {
-							message: 'El apellido es obligatorio'
-						},
-						stringLength: {
-							min: 3,
-							max: 40,
-							message: 'El apellido debe contener entre 3 a 40 caracteres'
-						},
-					}
-				},
 				email_usuario: {
 					selector: '#id_email',
 					validators: {
 						notEmpty: {
 							message: 'El correo electrónico es obligatorio'
-						}
-					}
-				},
-				fecha_nacimiento_usuario: {
-					selector: '#id_fecha_nacimiento',
-					validators: {
-						notEmpty: {
-							message: 'La fecha de nacimiento es obligatoria'
 						}
 					}
 				},
@@ -150,64 +100,26 @@
 							message: 'La contraseña es obligatoria'
 						}
 					}
-				},
-				val_contrasena_usuario: {
-					selector: '#id_validar_contrasena',
-					validators: {
-						notEmpty: {
-							message: 'La validación de contraseña es obligatoria'
-						}
-					}
 				}
-				
 			}
 		});
 		
+		const inputEmail = $('#id_email');
 		const inputPassword = $('#id_contrasena');
-		const inputPasswordValidate = $('#id_validar_contrasena');
 		
-		const passwordDoesntMatch = document.createElement('span');
-		passwordDoesntMatch.id = 'validatePasswordMessage';
-		
-		$('#registrar_usuario').click(function() {
-			
-			if($('#validatePasswordMessage')) {
-				$('#validatePasswordMessage').remove()
-			}
-			
+		btnRegister.click(function() {
 			var validator = $('#id_form').data('bootstrapValidator');
 			validator.validate();
 			
 			if(validator.isValid()) {
-				if(inputPassword.val() === inputPasswordValidate.val()) {
-					
-					$.ajax({
-						type: 'POST',
-						data: $('#id_form').serialize(),
-						url: 'registraUsuario',
-						success: function(data) {
-							mostrarMensaje(data.MENSAJE)
-							limpiar();
-							validator.resetForm()
-						},
-						error: function() {
-							mostrarMensaje(MSG_ERROR)
-						}
-					});
-				} else {
-					passwordDoesntMatch.innerHTML = 'Las contraseñas deben coincidir';
-					inputPasswordValidate.after(passwordDoesntMatch);
-				}
+				alert("Form validado")
 			}
 		});
 		
+		
 		function limpiar() {
-			$('#id_nombre').val('');
-			$('#id_apellido').val('');
 			$('#id_email').val('');
-			$('#id_fecha_nacimiento').val('');
 			$('#id_contrasena').val('');
-			$('#id_validar_contrasena').val('');
 		}
 	});
 	

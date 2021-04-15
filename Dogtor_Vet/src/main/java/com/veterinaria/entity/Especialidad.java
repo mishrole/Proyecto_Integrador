@@ -14,16 +14,16 @@ public class Especialidad {
 	@Column(name = "codigo_especialidad")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_especialidad;
+	private Integer codigo_especialidad;
 
 	@Column(name = "nombre_especialidad")
 	private String nombre_especialidad;
 
-	public int getCodigo_especialidad() {
+	public Integer getCodigo_especialidad() {
 		return codigo_especialidad;
 	}
 
-	public void setCodigo_especialidad(int codigo_especialidad) {
+	public void setCodigo_especialidad(Integer codigo_especialidad) {
 		this.codigo_especialidad = codigo_especialidad;
 	}
 

@@ -14,16 +14,16 @@ public class Especie {
 	@Column(name = "codigo_especie_mascota")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_especie_mascota;
+	private Integer codigo_especie_mascota;
 
 	@Column(name = "nombre_especie_mascota")
 	private String nombre_especie_mascota;
 
-	public int getCodigo_especie_mascota() {
+	public Integer getCodigo_especie_mascota() {
 		return codigo_especie_mascota;
 	}
 
-	public void setCodigo_especie_mascota(int codigo_especie_mascota) {
+	public void setCodigo_especie_mascota(Integer codigo_especie_mascota) {
 		this.codigo_especie_mascota = codigo_especie_mascota;
 	}
 

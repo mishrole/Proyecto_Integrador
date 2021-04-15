@@ -14,16 +14,16 @@ public class Proveedor {
 	@Column(name = "codigo_proveedor")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_proveedor;
+	private Integer codigo_proveedor;
 
 	@Column(name = "nombre_proveedor")
 	private String nombre_proveedor;
 
-	public int getCodigo_proveedor() {
+	public Integer getCodigo_proveedor() {
 		return codigo_proveedor;
 	}
 
-	public void setCodigo_proveedor(int codigo_proveedor) {
+	public void setCodigo_proveedor(Integer codigo_proveedor) {
 		this.codigo_proveedor = codigo_proveedor;
 	}
 

@@ -14,10 +14,10 @@ public class Mascota {
 	@Column(name = "codigo_mascota")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_mascota;
+	private Integer codigo_mascota;
 
 	@Column(name = "codigo_propietario")
-	private String codigo_propietario;
+	private Integer codigo_propietario;
 	
 	@Column(name = "nombre_mascota")
 	private String nombre_mascota;
@@ -26,16 +26,16 @@ public class Mascota {
 	private String foto_mascota;
 	
 	@Column(name = "codigo_raza_mascota")
-	private String codigo_raza_mascota;
+	private Integer codigo_raza_mascota;
 	
 	@Column(name = "codigo_sexo_mascota")
-	private String codigo_sexo_mascota;
+	private Integer codigo_sexo_mascota;
 	
 	@Column(name = "codigo_especie_mascota")
-	private String codigo_especie_mascota;
+	private Integer codigo_especie_mascota;
 	
 	@Column(name = "codigo_color_mascota")
-	private String codigo_color_mascota;
+	private Integer codigo_color_mascota;
 	
 	@Column(name = "fecha_nacimiento_mascota")
 	private String fecha_nacimiento_mascota;
@@ -46,19 +46,19 @@ public class Mascota {
 	@Column(name = "codigo_cartilla_sanitaria")
 	private String codigo_cartilla_sanitaria;
 
-	public int getCodigo_mascota() {
+	public Integer getCodigo_mascota() {
 		return codigo_mascota;
 	}
 
-	public void setCodigo_mascota(int codigo_mascota) {
+	public void setCodigo_mascota(Integer codigo_mascota) {
 		this.codigo_mascota = codigo_mascota;
 	}
 
-	public String getCodigo_propietario() {
+	public Integer getCodigo_propietario() {
 		return codigo_propietario;
 	}
 
-	public void setCodigo_propietario(String codigo_propietario) {
+	public void setCodigo_propietario(Integer codigo_propietario) {
 		this.codigo_propietario = codigo_propietario;
 	}
 
@@ -70,35 +70,35 @@ public class Mascota {
 		this.nombre_mascota = nombre_mascota;
 	}
 
-	public String getCodigo_raza_mascota() {
+	public Integer getCodigo_raza_mascota() {
 		return codigo_raza_mascota;
 	}
 
-	public void setCodigo_raza_mascota(String codigo_raza_mascota) {
+	public void setCodigo_raza_mascota(Integer codigo_raza_mascota) {
 		this.codigo_raza_mascota = codigo_raza_mascota;
 	}
 
-	public String getCodigo_sexo_mascota() {
+	public Integer getCodigo_sexo_mascota() {
 		return codigo_sexo_mascota;
 	}
 
-	public void setCodigo_sexo_mascota(String codigo_sexo_mascota) {
+	public void setCodigo_sexo_mascota(Integer codigo_sexo_mascota) {
 		this.codigo_sexo_mascota = codigo_sexo_mascota;
 	}
 
-	public String getCodigo_especie_mascota() {
+	public Integer getCodigo_especie_mascota() {
 		return codigo_especie_mascota;
 	}
 
-	public void setCodigo_especie_mascota(String codigo_especie_mascota) {
+	public void setCodigo_especie_mascota(Integer codigo_especie_mascota) {
 		this.codigo_especie_mascota = codigo_especie_mascota;
 	}
 
-	public String getCodigo_color_mascota() {
+	public Integer getCodigo_color_mascota() {
 		return codigo_color_mascota;
 	}
 
-	public void setCodigo_color_mascota(String codigo_color_mascota) {
+	public void setCodigo_color_mascota(Integer codigo_color_mascota) {
 		this.codigo_color_mascota = codigo_color_mascota;
 	}
 

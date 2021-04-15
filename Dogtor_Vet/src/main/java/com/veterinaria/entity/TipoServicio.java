@@ -14,16 +14,16 @@ public class TipoServicio {
 	@Column(name = "codigo_tipo_servicio")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_tipo_servicio;
+	private Integer codigo_tipo_servicio;
 	
 	@Column (name = "nombre_tipo_servicio")
 	private String nombre_tipo_servicio;
 
-	public int getCodigo_tipo_servicio() {
+	public Integer getCodigo_tipo_servicio() {
 		return codigo_tipo_servicio;
 	}
 
-	public void setCodigo_tipo_servicio(int codigo_tipo_servicio) {
+	public void setCodigo_tipo_servicio(Integer codigo_tipo_servicio) {
 		this.codigo_tipo_servicio = codigo_tipo_servicio;
 	}
 

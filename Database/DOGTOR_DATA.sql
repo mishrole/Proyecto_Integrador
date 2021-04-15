@@ -53,3 +53,6 @@ INSERT INTO tb_tipo_servicio(NOMBRE_TIPO_SERVICIO) VALUES
 
 INSERT INTO TB_ESTADO_CITA(NOMBRE_ESTADO_CITA) VALUES
 ('Pendiente'), ('Atendida'), ('Cancelada');
+
+INSERT INTO TB_DISTRITO(NOMBRE_DISTRITO) VALUES
+('Independencia'), ('Comas'), ('San Martín de Porres');

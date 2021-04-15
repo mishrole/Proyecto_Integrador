@@ -14,16 +14,16 @@ public class CategoriaProducto {
 	@Column(name = "codigo_categoria_producto")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_categoria_producto;
+	private Integer codigo_categoria_producto;
 
 	@Column(name = "nombre_categoria_producto")
 	private String nombre_categoria_producto;
 
-	public int getCodigo_categoria_producto() {
+	public Integer getCodigo_categoria_producto() {
 		return codigo_categoria_producto;
 	}
 
-	public void setCodigo_categoria_producto(int codigo_categoria_producto) {
+	public void setCodigo_categoria_producto(Integer codigo_categoria_producto) {
 		this.codigo_categoria_producto = codigo_categoria_producto;
 	}
 

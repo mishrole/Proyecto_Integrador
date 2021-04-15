@@ -6,8 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.veterinaria.entity.Usuario;
+import com.veterinaria.entity.Rol;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
+public interface RolRepository extends JpaRepository<Rol, Integer>{
+	
+	@Query("Select r from Rol r")
+	public abstract List<Rol> listaRol();
 	
 }

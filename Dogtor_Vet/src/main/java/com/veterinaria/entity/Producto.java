@@ -14,7 +14,7 @@ public class Producto {
 	@Column(name = "codigo_producto")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_producto;
+	private Integer codigo_producto;
 
 	@Column(name = "nombre_producto")
 	private String nombre_producto;
@@ -26,13 +26,13 @@ public class Producto {
 	private String descripcion_html_producto;
 	
 	@Column(name = "precio_producto")
-	private double precio_producto;
+	private Double precio_producto;
 	
 	@Column(name = "stock_producto")
-	private int stock_producto;
+	private Integer stock_producto;
 	
 	@Column(name = "pedido_producto")
-	private int pedido_producto;
+	private Integer pedido_producto;
 	
 	@Column(name = "serie_producto")
 	private String serie_producto;
@@ -47,19 +47,19 @@ public class Producto {
 	private String foto3_producto;
 	
 	@Column(name = "codigo_marca")
-	private int codigo_marca;
+	private Integer codigo_marca;
 	
 	@Column(name = "codigo_categoria_producto")
-	private int codigo_categoria_producto;
+	private Integer codigo_categoria_producto;
 	
 	@Column(name = "codigo_proveedor")
-	private int codigo_proveedor;
+	private Integer codigo_proveedor;
 
-	public int getCodigo_producto() {
+	public Integer getCodigo_producto() {
 		return codigo_producto;
 	}
 
-	public void setCodigo_producto(int codigo_producto) {
+	public void setCodigo_producto(Integer codigo_producto) {
 		this.codigo_producto = codigo_producto;
 	}
 
@@ -87,27 +87,27 @@ public class Producto {
 		this.descripcion_html_producto = descripcion_html_producto;
 	}
 
-	public double getPrecio_producto() {
+	public Double getPrecio_producto() {
 		return precio_producto;
 	}
 
-	public void setPrecio_producto(double precio_producto) {
+	public void setPrecio_producto(Double precio_producto) {
 		this.precio_producto = precio_producto;
 	}
 
-	public int getStock_producto() {
+	public Integer getStock_producto() {
 		return stock_producto;
 	}
 
-	public void setStock_producto(int stock_producto) {
+	public void setStock_producto(Integer stock_producto) {
 		this.stock_producto = stock_producto;
 	}
 
-	public int getPedido_producto() {
+	public Integer getPedido_producto() {
 		return pedido_producto;
 	}
 
-	public void setPedido_producto(int pedido_producto) {
+	public void setPedido_producto(Integer pedido_producto) {
 		this.pedido_producto = pedido_producto;
 	}
 
@@ -143,27 +143,27 @@ public class Producto {
 		this.foto3_producto = foto3_producto;
 	}
 
-	public int getCodigo_marca() {
+	public Integer getCodigo_marca() {
 		return codigo_marca;
 	}
 
-	public void setCodigo_marca(int codigo_marca) {
+	public void setCodigo_marca(Integer codigo_marca) {
 		this.codigo_marca = codigo_marca;
 	}
 
-	public int getCodigo_categoria_producto() {
+	public Integer getCodigo_categoria_producto() {
 		return codigo_categoria_producto;
 	}
 
-	public void setCodigo_categoria_producto(int codigo_categoria_producto) {
+	public void setCodigo_categoria_producto(Integer codigo_categoria_producto) {
 		this.codigo_categoria_producto = codigo_categoria_producto;
 	}
 
-	public int getCodigo_proveedor() {
+	public Integer getCodigo_proveedor() {
 		return codigo_proveedor;
 	}
 
-	public void setCodigo_proveedor(int codigo_proveedor) {
+	public void setCodigo_proveedor(Integer codigo_proveedor) {
 		this.codigo_proveedor = codigo_proveedor;
 	}
 }

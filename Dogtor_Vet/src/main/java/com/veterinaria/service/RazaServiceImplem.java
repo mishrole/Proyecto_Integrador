@@ -15,7 +15,7 @@ public class RazaServiceImplem implements RazaService {
 	private RazaRepository repository;
 	
 	@Override
-	public List<Raza> listaRaza(int especie) {
+	public List<Raza> listaRaza(Long especie) {
 		return repository.listaRaza(especie);
 	}
 

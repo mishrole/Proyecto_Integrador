@@ -14,19 +14,19 @@ public class Raza {
 	@Column(name = "codigo_raza_mascota")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int codigo_raza_mascota;
+	private Integer codigo_raza_mascota;
 
 	@Column(name = "nombre_raza_mascota")
 	private String nombre_raza_mascota;
 	
 	@Column(name = "codigo_especie_mascota")
-	private int codigo_especie_mascota;
+	private Integer codigo_especie_mascota;
 
-	public int getCodigo_raza_mascota() {
+	public Integer getCodigo_raza_mascota() {
 		return codigo_raza_mascota;
 	}
 
-	public void setCodigo_raza_mascota(int codigo_raza_mascota) {
+	public void setCodigo_raza_mascota(Integer codigo_raza_mascota) {
 		this.codigo_raza_mascota = codigo_raza_mascota;
 	}
 
@@ -38,11 +38,11 @@ public class Raza {
 		this.nombre_raza_mascota = nombre_raza_mascota;
 	}
 
-	public int getCodigo_especie_mascota() {
+	public Integer getCodigo_especie_mascota() {
 		return codigo_especie_mascota;
 	}
 
-	public void setCodigo_especie_mascota(int codigo_especie_mascota) {
+	public void setCodigo_especie_mascota(Integer codigo_especie_mascota) {
 		this.codigo_especie_mascota = codigo_especie_mascota;
 	}
 	

@@ -1,6 +1,7 @@
 package com.veterinaria.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import com.veterinaria.service.UsuarioService;
 public class UsuarioController {
 	
 	@Autowired
-	private UsuarioService service;
+	private UsuarioService usuarioService;
 	
 	@RequestMapping("/verRegistraUsuario")
 	public String verRegistra() {
@@ -27,7 +28,7 @@ public class UsuarioController {
 	public Map<String, Object> registra(Usuario objUsuario) {
 		
 		Map<String, Object> salida = new HashMap<>();
-		Usuario objSalida = service.insertaUsuario(objUsuario);
+		Usuario objSalida = usuarioService.insertaUsuario(objUsuario);
 		
 		if (objSalida == null) {
 			salida.put("MENSAJE", "El registro no pudo ser completado");
@@ -37,4 +38,5 @@ public class UsuarioController {
 		
 		return salida;
 	}
+	
 }
