@@ -35,86 +35,174 @@
                 </li>
             </ul>
             <div class="d-flex">
-            	<a class="btn btn-primary btn-singin" href="login">Iniciar Sesión</a>
+            	<a class="btn btn-primary btn-singin" href="login">Cerrar Sesión</a>
         	</div>
         </div>
     </div>
   </nav>
 
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12 justify-content-center align-items-center d-flex">
-                <main class="col-10 col-md-8">
-                    <form id="id_form">
-                      <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Registro de Mascota</b></h1>
-                      <input type="text" id="id_propietario" name="codigo_propietario" value="1" class="d-none">
-                    
-                   	  <div class="form-group form-floating mb-3">
-	                      <input type="text" class="form-control" id="id_nombre" name="nombre_mascota" placeholder="John" autocomplete="on" >
-	                      <label for="id_nombre">Nombre</label>
-                      </div>
-                      <div class="form-group row">
-					  	<div class="col-12 col-md-6 mb-3">
-					  		<div class="form-floating">
-		                      	<select class="form-select" id="select_especie" name="codigo_especie_mascota" aria-label="Default select example">
-								  <option selected value="0">Seleccione Especie</option>
-								</select>
-								<label for="select_especie">Especie</label>
-                      		</div>
-					  	</div>
-					  	<div class="col-12 col-md-6 mb-3">
-						  	<div class="form-floating">
-		                      	<select class="form-select" id="select_raza" name="codigo_raza_mascota" aria-label="Default select example">
-								  <option selected value="0">Seleccione Raza</option>
-								</select>
-								<label for="select_raza">Raza</label>
-	                      </div>
-					  	</div>
-					  </div>
-                      <div class="form-group row">
-                      	<div class="col-12 col-md-6 mb-3">
-	                      	<div class="form-floating">
-		                      	<select class="form-select" id="select_color" name="codigo_color_mascota" aria-label="Default select example">
-								  <option selected value="0">Seleccione Color</option>
-								</select>
-								<label for="select_color">Color</label>
-	                      </div>
-                      	</div>
-                      	<div class="col-12 col-md-6 mb-3">
-	                      	<div class="form-floating">
-		                      	<select class="form-select" id="select_sexo" name="codigo_sexo_mascota" aria-label="Default select example">
-								  <option selected value="0">Seleccione Sexo</option>
-								</select>
-								<label for="select_sexo">Sexo</label>
-	                      </div>
-                      	</div>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_mascota" autocomplete="on">
-                        <label for="id_fecha_nacimiento">Fecha de nacimiento</label>
-                      </div>
-					  <div class="form-group row">
-					  	<div class="col-12 col-md-6 mb-3">
-						  	<div class="form-floating">
-					  			<input type="text" class="form-control" id="id_identificacion" name="codigo_identificacion_mascota" autocomplete="on" >
-	                   			<label for="id_identificación"># Identificación</label>
-					  		</div>
-					  	</div>
-					  	<div class="col-12 col-md-6 mb-3">
-						  	<div class="col form-floating">
-					  			<input type="text" class="form-control" id="id_sanitaria" name="codigo_cartilla_sanitaria" autocomplete="on" >
-	                    		<label for="id_sanitaria"># Cartilla Sanitaria</label>
-					  		</div>
-					  	</div>
-				  		
-				  		
-	                    
-                      </div>
-                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_mascota">Registrar</button>
-                    </form>
-                  </main>
-            </div>
-        </div>
+    	<div class="row">
+    		<div class="col-12" >
+    		
+    			<div class="row mt-3 mb-3">
+    				<div class="col-12">
+	    				<div class="col-10 col-md-2">
+							<button type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota" class='w-100 btn btn-primary btn-generic'>Nueva Mascota</button>
+						</div>
+    				</div>
+    			</div>
+    		
+				<form id="id_form_elimina" action="eliminaMascota">
+					<input type="hidden" id="id_elimina" name="codigo_mascota_elimina">
+				</form>
+		     
+				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
+					<div class="col-10 col-md-6" >
+						<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_mascota" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
+					</div>
+					<div class="col-10 col-md-2" >
+						<button type="button" class="w-100 btn btn-primary" id="filtra_mascota">Filtrar Mascotas</button>
+					</div>
+				</div>
+					
+				<div class="row mt-3 mb-3" > 
+					<div class="col-12" >
+						<div class="content table-responsive" >
+						
+							<table id="id_table" class="table table-borderless" >
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Propietario</th>
+										<th>Nombre</th>
+										<th>Foto</th>
+										<th>Raza</th>
+										<th>Sexo</th>
+										<th>Especie</th>
+										<th>Color</th>
+										<th>Fecha Nacimiento</th>
+										<th>ID GPS</th>
+										<th>Id Sanitario</th>
+										<th>Actualiza </th>
+										<th>Elimina </th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>	
+							
+						</div>	
+					</div>
+				</div>
+		  </div>
+    	</div>
+    	
+    	<div class="modal fade" id="id_modal_RegistraMascota">
+    		<div class="modal-dialog">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<div class="col-12 justify-content-center align-items-center d-flex">
+    						<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Registro de Mascota</b></h1>
+    					</div>
+    				</div>
+    				<div class="modal-body">
+    					<div class="container">
+    						 <div class="row mt-2">
+					            <div class="col-12 justify-content-center align-items-center d-flex">
+					                <main class="col-12 col-md-10">
+					                    <form id="id_form_registra">
+					                      
+					                      <input type="text" id="id_propietario" name="codigo_propietario" value="1" class="d-none">
+					                    
+					                   	  <div class="form-group form-floating mb-3">
+						                      <input type="text" class="form-control" id="id_nombre" name="nombre_mascota" placeholder="John" autocomplete="on" >
+						                      <label for="id_nombre">Nombre</label>
+					                      </div>
+					                      <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+										  		<div class="form-floating">
+							                      	<select class="form-select" id="select_especie" name="codigo_especie_mascota" aria-label="Default select example">
+													  <option selected value="0">Seleccione Especie</option>
+													</select>
+													<label for="select_especie">Especie</label>
+					                      		</div>
+										  	</div>
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+							                      	<select class="form-select" id="select_raza" name="codigo_raza_mascota" aria-label="Default select example">
+													  <option selected value="0">Seleccione Raza</option>
+													</select>
+													<label for="select_raza">Raza</label>
+						                      </div>
+										  	</div>
+										  </div>
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_color" name="codigo_color_mascota" aria-label="Default select example">
+													  <option selected value="0">Seleccione Color</option>
+													</select>
+													<label for="select_color">Color</label>
+						                      </div>
+					                      	</div>
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_sexo" name="codigo_sexo_mascota" aria-label="Default select example">
+													  <option selected value="0">Seleccione Sexo</option>
+													</select>
+													<label for="select_sexo">Sexo</label>
+						                      </div>
+					                      	</div>
+					                      </div>
+					                      <div class="form-group form-floating mb-3">
+					                        <input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_mascota" autocomplete="on">
+					                        <label for="id_fecha_nacimiento">Fecha de nacimiento</label>
+					                      </div>
+										  <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+										  			<input type="text" class="form-control" id="id_identificacion" name="codigo_identificacion_mascota" autocomplete="on" >
+						                   			<label for="id_identificación"># Identificación</label>
+										  		</div>
+										  	</div>
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="col form-floating">
+										  			<input type="text" class="form-control" id="id_sanitaria" name="codigo_cartilla_sanitaria" autocomplete="on" >
+						                    		<label for="id_sanitaria"># Cartilla Sanitaria</label>
+										  		</div>
+										  	</div>
+					                      </div>
+					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_mascota">Registrar</button>
+					                    </form>
+					                  </main>
+					            </div>
+					        </div>
+    					</div>
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    	
+    	<div class="modal fade" id="id_modal_ActualizaMascota">
+    		<div class="modal-dialog">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<h5 class="modal-title">Actualiza mascota</h5>
+    				</div>
+    				<div class="modal-body">
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+
+    <!-- 
+        -->
     </div>
 	
 	<script type="text/javascript" src="js/jquery.min.js"></script>
@@ -125,13 +213,102 @@
 	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
 	
 	<script type="text/javascript">
+		
+		function agregarGrilla(lista) {
+			 $('#id_table').DataTable().clear();
+			 $('#id_table').DataTable().destroy();
+			 $('#id_table').DataTable({
+					data: lista,
+					searching: false,
+					ordering: true,
+					processing: true,
+					pageLength: 5,
+					lengthChange: false,
+					columns:[
+						{data: "codigo_mascota"},
+						{data: "codigo_propietario"},
+						{data: "nombre_mascota"},
+						{data: "foto_mascota"},
+						{data: "codigo_raza_mascota"},
+						{data: "codigo_sexo_mascota"},
+						{data: "codigo_especie_mascota"},
+						{data: "codigo_color_mascota"},
+						{data: "fecha_nacimiento_mascota"},
+						{data: "codigo_identificacion_mascota"},
+						{data: "codigo_cartilla_sanitaria"},
+						{data: function(row, type, val, meta){
+							var salida='<button type="button" class="btn btn-info btn-sm" onclick="editar(\''+row.codigo_mascota + '\',\'' + row.nombre_mascota +'\',\'' + row.fecha_nacimiento_mascota  + '\',\'' + row.codigo_raza_mascota + '\',\'' + row.codigo_especie_mascota + '\')">Editar</button>';
+							return salida;
+						},className:'text-center'},	
+						{data: function(row, type, val, meta){
+						    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_mascota + '\')">Eliminar</button>';
+							return salida;
+						},className:'text-center'},													
+					]                                     
+			    });
+			}
+		
+		function eliminar(codigo_mascota) {
+			mostrarMensajeConfirmacion(MSG_ELIMINAR, accioneliminar, null, codigo_mascota);
+		}
+		
+		function accionEliminar(codigo_mascota) {
+			$('#id_elimina').val(codigo_mascota);
+			$.ajax({
+				type: "POST",
+				url: "eliminaMascota",
+				data: $('#id_form_elimina').serialize(),
+				success: function(data) {
+					agregarGrilla(data.lista);
+					mostrarMensaje(data.MENSAJE);
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR);
+				}
+			})
+		}
+		
+		function editar(codigo_mascota, codigo_propietario, nombre_mascota) {
+			$('#id_editar_ID').val(codigo_mascota);
+			$('#id_editar_propietarioID').val(codigo_propietario);
+			$('#id_editar_nombreMascota').val(nombre_mascota);
+			$('#id_modal_ActualizaMascota').modal("show");
+		}
+	
 		$(document).ready(function() {
+		
+		// Selects	
 		
 		const selectEspecie = $('#select_especie');
 		const selectColor = $('#select_color');
 		const selectSexo = $('#select_sexo');
 		const selectRaza = $('#select_raza');
+		
+		// Botones
+		
 		const btnRegister = $('#registrar_mascota');
+		const btnFilter = $('#filtra_mascota');
+		const btnModalRegister = $('#id_btnModal_RegistraMascota');
+		
+		// Modals
+		
+		const modalRegister = $('#id_modal_RegistraMascota');
+		
+		// Abrir Modal con Click
+		
+		btnModalRegister.click(function() {
+			modalRegister.modal("show");
+		});
+		
+		// Filtrar Mascota por Nombre
+		
+		btnFilter.click(function() {
+			const filterText = $('#id_nombre_filtro').val();
+			
+			$.getJSON("listaMascotaPorNombre", {"nombre_mascota": filterText}, function(lista) {
+				agregarGrilla(lista);
+			});
+		});
 		
 		// Get Especie
 		
@@ -215,7 +392,7 @@
 			validateSelect(selectRaza, selectedRaza, 'raza');
 		});
 		
-		$('#id_form').bootstrapValidator({
+		$('#id_form_registra').bootstrapValidator({
 			message: 'El valor no es válido',
 			feedbackIcons: {
 				valid: 'glyphicon glyphicon-ok',
@@ -250,7 +427,7 @@
 		// Registrar mascota
 	
 		btnRegister.click(function() {
-			var validator = $('#id_form').data('bootstrapValidator');
+			var validator = $('#id_form_registra').data('bootstrapValidator');
 			validator.validate();
 			
 			// Validar selects
@@ -262,7 +439,7 @@
 			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form').serialize(),
+					data: $('#id_form_registra').serialize(),
 					url: 'registraMascota',
 					success: function(data) {
 						mostrarMensaje(data.MENSAJE)

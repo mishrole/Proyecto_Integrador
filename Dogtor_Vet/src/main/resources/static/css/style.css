@@ -37,7 +37,7 @@ main {
 
 /* Hardcode Bootstrap */
 
-#id_form > h1 {
+h1 {
 	color: var( --primary-color );
 }
 
