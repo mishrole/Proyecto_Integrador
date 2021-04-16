@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	
-	<title>Registra Mascota</title>
+	<title>CRUD Mascota</title>
 </head>
 <body>
 
@@ -22,13 +22,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="/">Inicio</a>
+                    <a class="nav-link link-menu text-secondary-color" href="/">Web</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Nosotros</a>
+                    <a class="nav-link link-menu text-secondary-color" href="/homeAdministrador">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Servicios</a>
+                    <a class="nav-link link-menu text-secondary-color" href="/crudMascota">Mascota</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link-menu text-secondary-color" href="">Tienda</a>

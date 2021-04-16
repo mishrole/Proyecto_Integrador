@@ -19,9 +19,9 @@ public class MascotaController {
 	@Autowired
 	private MascotaService service;
 	
-	@RequestMapping("/verRegistraMascota")
+	@RequestMapping("/verMascota")
 	public String verRegistra() {
-		return "registraMascota";
+		return "crudMascota";
 	}
 	
 	@RequestMapping("/listaMascotaPorNombre")
