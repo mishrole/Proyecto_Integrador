@@ -25,8 +25,9 @@ public class MascotaController {
 	}
 	
 	@RequestMapping("/listaMascotaPorNombre")
+	@ResponseBody
 	public List<Mascota> listaMascotaPorNombre(String nombre_mascota) {
-		return service.listaMascotaPorNombre(nombre_mascota.trim() + "%");
+		return service.listaMascotaPorNombre(nombre_mascota.trim());
 	}
 	
 	@RequestMapping("/registraMascota")

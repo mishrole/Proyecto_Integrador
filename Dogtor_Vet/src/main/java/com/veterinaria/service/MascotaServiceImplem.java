@@ -22,7 +22,7 @@ public class MascotaServiceImplem implements MascotaService {
 
 	@Override
 	public List<Mascota> listaMascotaPorNombre(String nombre_mascota) {
-		return repository.listaMascotaPorNombre(nombre_mascota);
+		return repository.listaMascotaPorNombre(nombre_mascota+"%");
 	}
 
 	@Override
