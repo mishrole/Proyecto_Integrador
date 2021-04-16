@@ -54,7 +54,7 @@
     			</div>
     		
 				<form id="id_form_elimina" action="eliminaMascota">
-					<input type="hidden" id="id_elimina" name="codigo_mascota_elimina">
+					<input type="hidden" id="id_elimina" name="codigo_mascota">
 				</form>
 		     
 				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
@@ -251,11 +251,13 @@
 			}
 		
 		function eliminar(codigo_mascota) {
-			mostrarMensajeConfirmacion(MSG_ELIMINAR, accioneliminar, null, codigo_mascota);
+			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_mascota);
+			console.log("Código mascota en eliminar "+ codigo_mascota);
 		}
 		
 		function accionEliminar(codigo_mascota) {
 			$('#id_elimina').val(codigo_mascota);
+			console.log("Código mascota en accionEliminar "+ codigo_mascota);
 			$.ajax({
 				type: "POST",
 				url: "eliminaMascota",
