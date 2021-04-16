@@ -288,7 +288,9 @@
 	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
 	
 	<script type="text/javascript">
-		
+	
+	var selectedColorActualiza, selectedSexoActualiza, selectedRazaActualiza, selectedEspecieActualiza;
+	
 	function agregarGrilla(lista) {
 		 $('#id_table').DataTable().clear();
 		 $('#id_table').DataTable().destroy();
@@ -312,7 +314,7 @@
 					{data: "codigo_identificacion_mascota"},
 					{data: "codigo_cartilla_sanitaria"},
 					{data: function(row, type, val, meta){
-						var salida='<button type="button" class="btn btn-info btn-sm" onclick="editar(\'' + row.codigo_mascota +
+						var salida='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaMascota" onclick="editar(\'' + row.codigo_mascota +
 								'\',\'' + row.codigo_propietario +
 								'\',\'' + row.nombre_mascota +
 								'\',\'' + row.foto_mascota +
@@ -358,11 +360,19 @@
 		
 		function editar(codigo_mascota, codigo_propietario, nombre_mascota, foto_mascota, codigo_raza_mascota, codigo_sexo_mascota,
 		codigo_especie_mascota, codigo_color_mascota, fecha_nacimiento_mascota, codigo_identificacion_mascota, codigo_cartilla_sanitaria) {
+				
+			selectedColorActualiza = codigo_color_mascota;
+			selectedSexoActualiza = codigo_sexo_mascota;
+			selectedRazaActualiza = codigo_raza_mascota;
+			selectedEspecieActualiza = codigo_especie_mascota;
+			
+			console.log(selectedEspecieActualiza);
+			console.log(selectedRazaActualiza);
+			
 			$('#id_mascota_actualiza').val(codigo_mascota);
 			$('#id_propietario_actualiza').val(codigo_propietario);
 			$('#id_nombre_actualiza').val(nombre_mascota);
 			$('#id_foto_actualiza').val(foto_mascota);
-			$('#select_raza_actualiza').val(codigo_raza_mascota);
 			$('#select_sexo_actualiza').val(codigo_sexo_mascota);
 			$('#select_especie_actualiza').val(codigo_especie_mascota);
 			$('#select_color_actualiza').val(codigo_color_mascota);
@@ -370,10 +380,24 @@
 			$('#id_identificacion_actualiza').val(codigo_identificacion_mascota);
 			$('#id_sanitaria_actualiza').val(codigo_cartilla_sanitaria);
 			
+			$.getJSON('listaRaza', {"especie":codigo_especie_mascota}, function(data) {
+				$("#select_raza_actualiza > option.option__raza").remove();
+				
+				$.each( data, function( index, value) {
+					let option = document.createElement('option');
+					option.value = value.codigo_raza_mascota;
+					option.text = value.nombre_raza_mascota;
+					option.className = "option__raza";
+					$('#select_raza_actualiza').append(option);
+				});
+				
+				$('#select_raza_actualiza').val(codigo_raza_mascota);
+			});
+			
 			$('#id_modal_ActualizaMascota').modal("show");
 		}
-	
-		$(document).ready(function() {
+		
+	$(document).ready(function() {
 		
 		// Selects	
 		
@@ -481,8 +505,6 @@
 			validateSelect(selectRaza, selectedRaza, 'raza');
 		});
 		
-		var selectedColorActualiza, selectedSexoActualiza, selectedRazaActualiza, selectedEspecieActualiza;
-		
 		// Validar selects cuando cambie el option en Actualizar
 		
 		selectColorActualiza.change(function(e) {
@@ -528,8 +550,8 @@
 			validateSelect(selectEspecie, selectedEspecie, 'especie');
 			validateSelect(selectRaza, selectedRaza, 'raza');
 		});
-		
-		// Get Raza en función a la especie Actualiza
+
+		// Get Raza en función a la especie Actualiza (On change)
 		
 		selectEspecieActualiza.change(function(e) {
 			selectedEspecieActualiza = e.target.selectedIndex;
