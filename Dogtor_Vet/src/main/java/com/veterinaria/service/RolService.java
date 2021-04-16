@@ -6,4 +6,5 @@ import com.veterinaria.entity.Rol;
 
 public interface RolService {
 	public abstract List<Rol> listaRol();
+	public abstract List<Rol> listaRolPorUsuario(Integer codigo_usuario);
 }

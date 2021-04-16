@@ -17,7 +17,7 @@ public class RazaController {
 	
 	@RequestMapping("listaRaza")
 	@ResponseBody
-	public List<Raza> listaRaza(Long especie) {
+	public List<Raza> listaRaza(Integer especie) {
 		return service.listaRaza(especie);
 	}
 }

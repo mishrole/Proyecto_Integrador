@@ -16,10 +16,16 @@ public class RolController {
 	@Autowired
 	private RolService service;
 	
-	@RequestMapping("listaRol")
+	@RequestMapping("/listaRol")
 	@ResponseBody
 	public List<Rol> listaRol() {
 		return service.listaRol();
+	}
+	
+	@RequestMapping("listaRolPorUsuario")
+	@ResponseBody
+	public List<Rol> listaRolPorUsuario(Integer codigo_usuario) {
+		return service.listaRolPorUsuario(codigo_usuario);
 	}
 	
 }

@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	
-	<title>Inicia Sesión</title>
+	<title>Home Cliente</title>
 </head>
 <body>
 
@@ -35,7 +35,7 @@
                 </li>
             </ul>
             <div class="d-flex">
-            	<a class="btn btn-primary btn-singin" href="login">Iniciar Sesión</a>
+            	<a class="btn btn-primary btn-singin" href="login">Cerrar Sesión</a>
         	</div>
         </div>
     </div>
@@ -43,25 +43,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 justify-content-center align-items-center d-flex">
-                <main class="col-10 col-md-6">
-                    <form id="id_form">
-                      <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Inicia Sesión</b></h1>
-                    
-                      <div class="form-group form-floating mb-3">
-                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on">
-                        <label for="id_email">Correo electrónico</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on">
-                        <label for="id_contrasena">Contraseña</label>
-                      </div>
-
-                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="iniciar_sesion">Iniciar Sesión</button>
-                      <p class="text-center mt-3">¿Todavía no tienes una cuenta? <a href="verRegistraUsuario">Regístrate</a></p>
-                    </form>
-                  </main>
-            </div>
+            <h1>Home Cliente</h1>
         </div>
     </div>
 	
@@ -75,55 +57,6 @@
 		
 	$(document).ready(function() {
 		
-		const btnRegister = $('#iniciar_sesion');
-		
-		$('#id_form').bootstrapValidator({
-			message: 'El valor no es válido',
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
-			fields: {
-				email_usuario: {
-					selector: '#id_email',
-					validators: {
-						notEmpty: {
-							message: 'El correo electrónico es obligatorio'
-						}
-					}
-				},
-				contrasena_usuario: {
-					selector: '#id_contrasena',
-					validators: {
-						notEmpty: {
-							message: 'La contraseña es obligatoria'
-						}
-					}
-				}
-			}
-		});
-		
-		btnRegister.click(function() {
-			const inputEmail = $('#id_email').val();
-			const inputPassword = $('#id_contrasena').val();
-			
-			var validator = $('#id_form').data('bootstrapValidator');
-			validator.validate();
-			
-			if(validator.isValid()) {
-				
-				$.getJSON('listaUsuarioPorEmailYContrasena', {'email_usuario':inputEmail , 'contrasena_usuario':inputPassword}, function(data) {
-					
-				});
-			}
-		});
-		
-		
-		function limpiar() {
-			$('#id_email').val('');
-			$('#id_contrasena').val('');
-		}
 	});
 	
 	</script>

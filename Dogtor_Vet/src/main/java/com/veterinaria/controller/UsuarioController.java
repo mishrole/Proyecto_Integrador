@@ -39,4 +39,10 @@ public class UsuarioController {
 		return salida;
 	}
 	
+	@RequestMapping("/listaUsuarioPorEmailYContrasena")
+	@ResponseBody
+	public List<Usuario> listaUsuarioPorEmailYContrasena(String email_usuario, String contrasena_usuario) {
+		return usuarioService.listausuarioPorEmailYContrasena(email_usuario, contrasena_usuario);
+	}
+	
 }

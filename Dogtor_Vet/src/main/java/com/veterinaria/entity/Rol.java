@@ -14,16 +14,16 @@ public class Rol {
 	@Column(name = "codigo_rol_usuario")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo_rol_usuario;
+	private Integer codigo_rol_usuario;
 	
 	@Column(name = "nombre_rol_usuario")
 	private String nombre_rol_usuario;
 
-	public Long getCodigo_rol_usuario() {
+	public Integer getCodigo_rol_usuario() {
 		return codigo_rol_usuario;
 	}
 
-	public void setCodigo_rol_usuario(Long codigo_rol_usuario) {
+	public void setCodigo_rol_usuario(Integer codigo_rol_usuario) {
 		this.codigo_rol_usuario = codigo_rol_usuario;
 	}
 

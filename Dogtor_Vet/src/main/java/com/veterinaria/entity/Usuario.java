@@ -18,7 +18,7 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codigo_usuario;
 	
-	@Column(name = "email_usuario")
+	@Column(name = "email_usuario", unique = true)
 	private String email_usuario;
 	
 	@Column(name = "contrasena_usuario")
