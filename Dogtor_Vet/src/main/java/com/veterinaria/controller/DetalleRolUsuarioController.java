@@ -12,7 +12,6 @@ import com.veterinaria.entity.DetalleRolUsuarioPK;
 import com.veterinaria.entity.Rol;
 import com.veterinaria.service.DetalleRolUsuarioService;
 import com.veterinaria.service.RolService;
-import com.veterinaria.service.UsuarioService;
 
 @Controller
 public class DetalleRolUsuarioController {
@@ -22,25 +21,6 @@ public class DetalleRolUsuarioController {
 	
 	@Autowired
 	private DetalleRolUsuarioService detalleRolUsuarioService;
-	/*
-	@Autowired
-	private UsuarioService usuarioService;
-	
-	@Autowired
-	private DetalleRolUsuario detalleUsuarioRolService;
-	
-	@RequestMapping("/listaRol")
-	@ResponseBody
-	public List<Rol> listaRol() {
-		return rolService.listaRol();
-	}
-	
-	@RequestMapping("/listaRolPorUsuario")
-	@ResponseBody
-	public List<Rol> listaRolPorUsuario(Integer codigo_usuario) {
-		return rolService.listaRolPorUsuario(codigo_usuario);
-	}
-	*/
 	
 	@RequestMapping("/registraDetalleRolUsuario")
 	@ResponseBody

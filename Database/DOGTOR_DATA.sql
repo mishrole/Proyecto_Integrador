@@ -2,12 +2,12 @@ USE PI_DOGTOR;
 
 /* Especialista es médico, peluquero, etc */
 INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES 
-('Administrador'),('Usuario'), ('Especialista'), ('Vendedor'), ('Repartidor');
+('Administrador'),('Cliente'), ('Especialista'), ('Vendedor'), ('Repartidor');
 
 INSERT INTO tb_usuario(CODIGO_USUARIO, EMAIL_USUARIO, CONTRASENA_USUARIO,
 NOMBRE_USUARIO, APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO) VALUES 
-(null, 'mitrodle@gmail.com', '123', 'Mitchell', 'Admin', '1997-03-25'),
-(null, 'mishrole@gmail.com', '123', 'Mitchell', 'Usuario', '1997-03-25');
+(null, 'admin@gmail.com', '123', 'Usuario', 'Admin', '1997-03-25'),
+(null, 'cliente@gmail.com', '123', 'Usuario', 'Cliente', '1997-03-25');
 
 INSERT INTO TB_DETALLE_USUARIO_ROL VALUES 
 (1, 1), (2, 2);
@@ -52,7 +52,7 @@ INSERT INTO tb_tipo_servicio(NOMBRE_TIPO_SERVICIO) VALUES
 ('Consulta Veterinaria'),('Aseo'),('Laboratorio');
 
 INSERT INTO TB_ESTADO_CITA(NOMBRE_ESTADO_CITA) VALUES
-('Pendiente'), ('Atendida'), ('Cancelada');
+('Pendiente'), ('En curso'), ('Atendida'), ('Cancelada');
 
 INSERT INTO TB_DISTRITO(NOMBRE_DISTRITO) VALUES
 ('Independencia'), ('Comas'), ('San Martín de Porres');

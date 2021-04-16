@@ -22,7 +22,7 @@ public class RolController {
 		return service.listaRol();
 	}
 	
-	@RequestMapping("listaRolPorUsuario")
+	@RequestMapping("/listaRolPorUsuario")
 	@ResponseBody
 	public List<Rol> listaRolPorUsuario(Integer codigo_usuario) {
 		return service.listaRolPorUsuario(codigo_usuario);

@@ -22,4 +22,14 @@ public class AccesoController {
 	public String verLogin() {
 		return "iniciaSesion";
 	}
+	
+	@RequestMapping("/homeCliente")
+	public String verHomeCliente() {
+		return "homeCliente";
+	}
+	
+	@RequestMapping("/homeAdministrador")
+	public String verHomeAdministrador() {
+		return "homeAdministrador";
+	}
 }

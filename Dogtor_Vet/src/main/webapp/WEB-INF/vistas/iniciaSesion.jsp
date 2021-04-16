@@ -22,7 +22,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Inicio</a>
+                    <a class="nav-link link-menu text-secondary-color" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link link-menu text-secondary-color" href="">Nosotros</a>
@@ -104,6 +104,10 @@
 			}
 		});
 		
+		/* IMPORTANTE: Esto es momentáneo hasta que aprendamos a usar Spring Security 
+		     _________________________ESTO NO ES SEGURO___________________________
+		*/
+		
 		btnRegister.click(function() {
 			const inputEmail = $('#id_email').val();
 			const inputPassword = $('#id_contrasena').val();
@@ -111,10 +115,34 @@
 			var validator = $('#id_form').data('bootstrapValidator');
 			validator.validate();
 			
+			// Si los inputs Email y Contraseña pasan la validación
 			if(validator.isValid()) {
-				
-				$.getJSON('listaUsuarioPorEmailYContrasena', {'email_usuario':inputEmail , 'contrasena_usuario':inputPassword}, function(data) {
-					
+				// Select de Usuario en función a Email y Contraseña del Form
+				$.getJSON('listaUsuarioPorEmailYContrasena', {'email_usuario':inputEmail , 'contrasena_usuario':inputPassword},
+				function(dataUsuario) {
+					if(dataUsuario.length > 0) {
+						// Del array de Usuario que retorna requiero la primera coincidencia
+						// Nota: Email es UNIQUE
+						const codigoUsuario = dataUsuario[0].codigo_usuario; // Obtengo el código de ese usuario
+						
+						// Select a la tabla compuesta Detalle Usuario Rol usando el código de usuario del Select anterior
+						$.getJSON('listaRolPorUsuario', {'codigo_usuario':codigoUsuario}, function(dataRolUsuario) {
+							// Del array de Detalle que retorna requiero la primera coincidencia
+							const nombreRolUsuario = dataRolUsuario[0].nombre_rol_usuario;
+							
+							// Si el nombre del rol que encontró al buscar por ese usuario es Admin
+							if(nombreRolUsuario === 'Administrador') {
+								// Paso al home de administrador, está mappeado por AccesoController
+								window.location.href = "/homeAdministrador";
+							} else if (nombreRolUsuario === 'Cliente') {
+								// Si no entró en el if anterior, entonces pasa de frente al home de cliente
+								window.location.href = "/homeCliente";	
+							}
+						});
+						
+					} else {
+						console.error('No existe el usuario y / o la contraseña es inválida');
+					}
 				});
 			}
 		});
