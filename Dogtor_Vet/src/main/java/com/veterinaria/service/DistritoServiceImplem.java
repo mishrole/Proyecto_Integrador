@@ -16,6 +16,6 @@ public class DistritoServiceImplem implements DistritoService {
 
 	@Override
 	public List<Distrito> listaDistrito() {
-		return repository.listaDistrito();
+		return repository.findAll();
 	}
 }

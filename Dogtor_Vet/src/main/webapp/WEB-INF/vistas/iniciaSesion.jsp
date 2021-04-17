@@ -58,7 +58,7 @@
                       </div>
 
                       <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="iniciar_sesion">Iniciar Sesión</button>
-                      <p class="text-center mt-3">¿Todavía no tienes una cuenta? <a href="verRegistraUsuario">Regístrate</a></p>
+                      <p class="text-center mt-3">¿Todavía no tienes una cuenta? <a href="nuevaCuenta">Regístrate</a></p>
                     </form>
                   </main>
             </div>

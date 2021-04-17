@@ -74,7 +74,7 @@
                       </div>
 
                       <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_usuario">Registrar</button>
-                      <p class="text-center mt-3">¿Tienes una cuenta? <a href="">Inicia Sesión</a></p>
+                      <p class="text-center mt-3">¿Tienes una cuenta? <a href="login">Inicia Sesión</a></p>
                     </form>
                   </main>
             </div>
@@ -184,7 +184,7 @@
 					$.ajax({
 						type: 'POST',
 						data: $('#id_form').serialize(),
-						url: 'registraUsuario',
+						url: 'registraCliente',
 						success: function(data) {
 							mostrarMensaje(data.MENSAJE)
 							limpiar();

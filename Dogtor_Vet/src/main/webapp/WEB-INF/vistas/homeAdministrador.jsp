@@ -22,16 +22,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="/">Inicio</a>
+                    <a class="nav-link link-menu text-secondary-color" href="/">Web</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Nosotros</a>
+                    <a class="nav-link link-menu text-secondary-color" href="homeAdministrador">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Servicios</a>
+                    <a class="nav-link link-menu text-secondary-color" href="crudMascota">Mascota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Tienda</a>
+                    <a class="nav-link link-menu text-secondary-color" href="crudUsuario">Usuario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-menu text-secondary-color" href="crudProducto">Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-menu text-secondary-color" href="crudServicio">Servicio</a>
                 </li>
             </ul>
             <div class="d-flex">
