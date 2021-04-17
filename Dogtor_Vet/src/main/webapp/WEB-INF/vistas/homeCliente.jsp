@@ -356,6 +356,18 @@
 		const mascotasContainer = $("#mascotas_container");
 		const codigoPropietario = $("#id_propietario").val();
 		
+		function calcularEdad(fechaString) {
+		    var hoy = new Date();
+		    var fechaNacimiento = new Date(fechaString);
+		    var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+		    var m = hoy.getMonth() - fechaNacimiento.getMonth();
+		    if (m < 0 || (m === 0 && hoy.getDate() < fechaNacimiento.getDate())) 
+		    {
+		    	edad--;
+		    }
+		    return edad;
+		}
+		
 		function generarListaMascotas() {
 			$.getJSON("listaMascotaPorPropietario", {"codigo_propietario": codigoPropietario}, function(lista) {
 				console.log(lista);
@@ -375,12 +387,15 @@
 					cardBody.className = "card-body";
 					
 					const cardBodyTitle = document.createElement('h5');
-					cardBodyTitle.className = "card-title bold";
+					cardBodyTitle.className = "card-title bold text-center";
 					cardBodyTitle.innerHTML = value.nombre_mascota;
 					
 					const cardBodyText = document.createElement('p');
-					cardBodyText.className = "card-text";
-					cardBodyText.innerHTML = value.fecha_nacimiento_mascota;
+					cardBodyText.className = "card-text text-center";
+					
+					const edadActual = calcularEdad(value.fecha_nacimiento_mascota) + " años";
+					
+					cardBodyText.innerHTML = edadActual;
 					
 					const cardFooter = document.createElement('div');
 					cardFooter.className = "card-footer text-center";
