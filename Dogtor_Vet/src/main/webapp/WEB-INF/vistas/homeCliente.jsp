@@ -371,7 +371,7 @@
 		function generarListaMascotas() {
 			$.getJSON("listaMascotaPorPropietario", {"codigo_propietario": codigoPropietario}, function(lista) {
 				console.log(lista);
-				$.each( lista, function(index, value) {
+				$.each( lista, function(index, mascota) {
 					const divContainer = document.createElement('div');
 					divContainer.className = "col-12 col-md-3";
 					
@@ -388,12 +388,12 @@
 					
 					const cardBodyTitle = document.createElement('h5');
 					cardBodyTitle.className = "card-title bold text-center";
-					cardBodyTitle.innerHTML = value.nombre_mascota;
+					cardBodyTitle.innerHTML = mascota.nombre_mascota;
 					
 					const cardBodyText = document.createElement('p');
 					cardBodyText.className = "card-text text-center";
 					
-					const edadActual = calcularEdad(value.fecha_nacimiento_mascota) + " años";
+					const edadActual = calcularEdad(mascota.fecha_nacimiento_mascota) + " años";
 					
 					cardBodyText.innerHTML = edadActual;
 					
@@ -411,12 +411,16 @@
 					btnCita.className = "btn btn-primary btn-generic";
 					btnCita.innerHTML = "Agendar Cita"
 					
+					// Input invisible con el código de la mascota
+					const inputCodigoMascota = document.createElement('input');
+					inputCodigoMascota.innerHTML = mascota.codigo_mascota;
+					inputCodigoMascota.className = "d-none";
 					
 					// Anidar elementos creados para formar Card de Mascota
 					
 					cardBody.append(cardBodyTitle, cardBodyText);
 					
-					cardFooterContent.append(btnHistorial, btnCita);
+					cardFooterContent.append(inputCodigoMascota, btnHistorial, btnCita);
 					cardFooter.append(cardFooterContent);
 					
 					cardPet.append(imgPet, cardBody, cardFooter);

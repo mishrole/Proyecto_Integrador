@@ -80,6 +80,11 @@
             </div>
         </div>
     </div>
+    
+    <form id="id_form_rol">
+    	<input type="text" id="id_codigo_usuario" class="d-none" name="codigo_usuario">
+    	<input type="text" id="id_rol_usuario" class="d-none" name="codigo_rol_usuario" value="2">
+    </form>
 	
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<!-- JavaScript Bundle with Popper -->
@@ -186,14 +191,26 @@
 						data: $('#id_form').serialize(),
 						url: 'registraCliente',
 						success: function(data) {
-							mostrarMensaje(data.MENSAJE)
-							limpiar();
-							validator.resetForm()
+							$('#id_codigo_usuario').val(data.COD_USER);
+							$.ajax({
+								type: 'POST',
+								data: $('#id_form_rol').serialize(),
+								url: 'registraDetalleRolUsuario',
+								success: function(dataRol) {
+									mostrarMensaje(data.MENSAJE)
+									limpiar();
+									validator.resetForm()
+								},
+								error: function() {
+									mostrarMensaje(MSG_ERROR)
+								}
+							});
 						},
 						error: function() {
 							mostrarMensaje(MSG_ERROR)
 						}
 					});
+					
 				} else {
 					passwordDoesntMatch.innerHTML = 'Las contraseñas deben coincidir';
 					inputPasswordValidate.after(passwordDoesntMatch);

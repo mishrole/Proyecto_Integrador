@@ -37,6 +37,7 @@ public class UsuarioController {
 			salida.put("MENSAJE", "El registro no pudo ser completado");
 		} else {
 			salida.put("MENSAJE", "¡Registro exitoso!");
+			salida.put("COD_USER", objSalida.getCodigo_usuario());
 		}
 		
 		return salida;
