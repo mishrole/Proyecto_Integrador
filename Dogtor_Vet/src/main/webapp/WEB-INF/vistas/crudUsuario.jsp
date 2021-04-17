@@ -28,16 +28,16 @@
                     <a class="nav-link link-menu text-secondary-color" href="homeAdministrador">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudMascota">Mascota</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verMascota">Mascota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudUsuario">Usuario</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verUsuario">Usuario</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudProducto">Producto</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verProducto">Producto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudServicio">Servicio</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verServicio">Servicio</a>
                 </li>
             </ul>
             <div class="d-flex">
@@ -122,7 +122,7 @@
 					                    <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="form-floating">
-										  			<input type="text" class="form-control" id="id_email" name="email_usuario" autocomplete="on" >
+										  			<input type="email" class="form-control" id="id_email" name="email_usuario" autocomplete="on" >
 						                   			<label for="id_email">Email</label>
 										  		</div>
 										  	</div>
@@ -231,12 +231,12 @@
 					                <main class="col-12 col-md-10">
 					                    <form id="id_form_actualiza">
 					                    
-					                      <input type="text" id="id_usuario_actualiza" name="codigo_usuario" class="">
+					                      <input type="text" id="id_usuario_actualiza" name="codigo_usuario" class="d-none">
 					                      
 					                      <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="form-floating">
-										  			<input type="text" class="form-control" id="id_email_actualiza" name="email_usuario" autocomplete="on" >
+										  			<input type="email" class="form-control" id="id_email_actualiza" name="email_usuario" autocomplete="on" >
 						                   			<label for="id_email_actualiza">Email</label>
 										  		</div>
 										  	</div>
@@ -511,7 +511,7 @@
 				validating: 'glyphicon glyphicon-refresh'
 			},
 			fields: {
-				nombre_mascota: {
+				nombre_usuario: {
 					selector: '#id_nombre',
 					validators: {
 						notEmpty: {
@@ -524,8 +524,37 @@
 						},
 					}
 				},
-				fecha_nacimiento_mascota: {
+				apellido_usuario: {
+					selector: '#id_apellido',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				fecha_nacimiento_usuario: {
 					selector: '#id_fecha_nacimiento',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						}
+					}
+				},
+				email_usuario: {
+					selector: '#id_email',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						}
+					}
+				},
+				contrasena_usuario: {
+					selector: '#id_contrasena',
 					validators: {
 						notEmpty: {
 							message: '* Este campo es obligatorio'
@@ -543,7 +572,7 @@
 				validating: 'glyphicon glyphicon-refresh'
 			},
 			fields: {
-				nombre_mascota: {
+				nombre_usuario: {
 					selector: '#id_nombre_actualiza',
 					validators: {
 						notEmpty: {
@@ -556,8 +585,37 @@
 						},
 					}
 				},
-				fecha_nacimiento_mascota: {
+				apellido_usuario: {
+					selector: '#id_apellido_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				fecha_nacimiento_usuario: {
 					selector: '#id_fecha_nacimiento_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						}
+					}
+				},
+				email_usuario: {
+					selector: '#id_email_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						}
+					}
+				},
+				contrasena_usuario: {
+					selector: '#id_contrasena_actualiza',
 					validators: {
 						notEmpty: {
 							message: '* Este campo es obligatorio'

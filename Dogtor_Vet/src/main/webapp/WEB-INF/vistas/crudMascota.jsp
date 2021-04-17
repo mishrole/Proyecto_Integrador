@@ -28,16 +28,16 @@
                     <a class="nav-link link-menu text-secondary-color" href="homeAdministrador">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudMascota">Mascota</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verMascota">Mascota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudUsuario">Usuario</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verUsuario">Usuario</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudProducto">Producto</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verProducto">Producto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudServicio">Servicio</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verServicio">Servicio</a>
                 </li>
             </ul>
             <div class="d-flex">

@@ -28,16 +28,16 @@
                     <a class="nav-link link-menu text-secondary-color" href="homeAdministrador">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudMascota">Mascota</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verMascota">Mascota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudUsuario">Usuario</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verUsuario">Usuario</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudProducto">Producto</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verProducto">Producto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="crudServicio">Servicio</a>
+                    <a class="nav-link link-menu text-secondary-color" href="verServicio">Servicio</a>
                 </li>
             </ul>
             <div class="d-flex">
@@ -49,7 +49,21 @@
 
     <div class="container">
         <div class="row">
-            <h1>Home Administrador</h1>
+            <h3 class="text-principal-color mb-3 mt-3">Bienvenido Administrador</h3>
+            <div class="col-12 d-flex justify-content-center align-items-center mt-3 mb-3">
+            	<div class="col-12 col-md-3">
+            		<a class="btn btn-primary" href="verUsuario">Mantenimiento de Usuario</a>
+            	</div>
+            	<div class="col-12 col-md-3">
+            		<a class="btn btn-primary" href="verMascota">Mantenimiento de Mascota</a>
+            	</div>
+            	<div class="col-12 col-md-3">
+            		<a class="btn btn-primary disabled" href="verServicio">Mantenimiento de Servicio</a>
+            	</div>
+            	<div class="col-12 col-md-3">
+            		<a class="btn btn-primary disabled" href="verProducto">Mantenimiento de Producto</a>
+            	</div>
+            </div>
         </div>
     </div>
 	

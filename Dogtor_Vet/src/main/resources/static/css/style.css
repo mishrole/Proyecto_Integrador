@@ -37,7 +37,8 @@ main {
 
 /* Hardcode Bootstrap */
 
-h1 {
+h1,
+.text-principal-color {
 	color: var( --primary-color );
 }
 
