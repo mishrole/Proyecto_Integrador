@@ -30,6 +30,12 @@ public class MascotaController {
 		return service.listaMascotaPorNombre(nombre_mascota.trim());
 	}
 	
+	@RequestMapping("/listaMascotaPorPropietario")
+	@ResponseBody
+	public List<Mascota> listaMascotaPorPropietario(Integer codigo_propietario) {
+		return service.listaMascotaPorPropietario(codigo_propietario);
+	}
+	
 	@RequestMapping("/registraMascota")
 	@ResponseBody
 	public Map<String, Object> registra(Mascota objMascota) {

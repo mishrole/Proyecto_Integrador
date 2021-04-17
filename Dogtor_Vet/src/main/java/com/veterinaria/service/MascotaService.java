@@ -11,4 +11,5 @@ public interface MascotaService {
 	public abstract Mascota insertaMascota(Mascota objMascota);
 	public abstract void eliminaMascota(Integer codigo_mascota);
 	public abstract Optional<Mascota> obtienePorId(Integer codigo_mascota);
+	public abstract List<Mascota> listaMascotaPorPropietario(Integer codigo_propietario);
 }

@@ -39,5 +39,10 @@ public class MascotaServiceImplem implements MascotaService {
 	public Optional<Mascota> obtienePorId(Integer codigo_mascota) {
 		return repository.findById(codigo_mascota);
 	}
+
+	@Override
+	public List<Mascota> listaMascotaPorPropietario(Integer codigo_propietario) {
+		return repository.listaMascotaPorPropietario(codigo_propietario);
+	}
 	
 }

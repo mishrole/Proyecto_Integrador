@@ -12,4 +12,7 @@ public interface MascotaRepository extends JpaRepository<Mascota, Integer>{
 	
 	@Query("Select m from Mascota m where m.nombre_mascota like :param_mascota")
 	public abstract List<Mascota> listaMascotaPorNombre(@Param("param_mascota") String nombre_mascota);
+	
+	@Query("Select m from Mascota m where m.codigo_propietario like :param_propietario")
+	public abstract List<Mascota> listaMascotaPorPropietario(@Param("param_propietario") Integer codigo_propietario);
 }

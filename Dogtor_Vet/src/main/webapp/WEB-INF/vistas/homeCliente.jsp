@@ -45,12 +45,28 @@
         <div class="row">
             <h4 class="text-principal-color mb-3 mt-3">Mis mascotas</h4>
             <div class="col-12 d-flex justify-content-end align-items-center mt-3 mb-3">
-            	<div class="col-md-3">
+            	<div class="col-12 col-md-2">
             		<button type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota" class='w-100 btn btn-primary btn-generic'>Nueva Mascota</button>
             	</div>
             </div>
-            <div class="col-12 d-flex justify-content-center align-items-center mt-3 mb-3">
-            	
+            <div class="d-flex justify-content-center align-items-center mt-3 mb-3" id="mascotas_container">
+			<!--             	
+            	<div class="col-12 col-md-4">
+	            	<div class="card pet__card h-100">
+		              	<img src="../../images/pet.jpg" class="card-img-top" alt="Dog">
+		              	<div class="card-body">
+			                <h5 class="card-title bold">Tobby</h5>
+			                <p class="card-text">Edad: 5 años</p>
+		              	</div>
+		              	<div class="card-footer text-center">
+			                <small class="text-muted text-center">
+			                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalHistorial" class="btn btn-secondary">Ver historial</button>
+			                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalCita" class="btn btn-primary btn-generic">Agendar cita</button>
+			                </small>
+						</div>
+	            	</div>
+            	</div>
+            	 -->
             </div>
         </div>
         
@@ -173,7 +189,6 @@
 		// Modals
 		
 		const modalRegister = $('#id_modal_RegistraMascota');
-		
 		
 		// Abrir Modal con Click
 		
@@ -337,6 +352,67 @@
 				});
 			}
 		});
+		
+		const mascotasContainer = $("#mascotas_container");
+		const codigoPropietario = $("#id_propietario").val();
+		
+		function generarListaMascotas() {
+			$.getJSON("listaMascotaPorPropietario", {"codigo_propietario": codigoPropietario}, function(lista) {
+				console.log(lista);
+				$.each( lista, function(index, value) {
+					const divContainer = document.createElement('div');
+					divContainer.className = "col-12 col-md-3";
+					
+					const cardPet = document.createElement('div');
+					cardPet.className = "card pet__card h-100";
+					
+					const imgPet = document.createElement('img');
+					imgPet.src = "../../images/pet.jpg";
+					imgPet.className = "card-img-top";
+					imgPet.alt = "Dog";
+					
+					const cardBody = document.createElement('div');
+					cardBody.className = "card-body";
+					
+					const cardBodyTitle = document.createElement('h5');
+					cardBodyTitle.className = "card-title bold";
+					cardBodyTitle.innerHTML = value.nombre_mascota;
+					
+					const cardBodyText = document.createElement('p');
+					cardBodyText.className = "card-text";
+					cardBodyText.innerHTML = value.fecha_nacimiento_mascota;
+					
+					const cardFooter = document.createElement('div');
+					cardFooter.className = "card-footer text-center";
+					
+					const cardFooterContent = document.createElement('small');
+					cardFooterContent.className = "text-muted text-center";
+					
+					const btnHistorial = document.createElement('button');
+					btnHistorial.className = "btn btn-secondary";
+					btnHistorial.innerHTML = "Ver Historial"
+					
+					const btnCita = document.createElement('button');
+					btnCita.className = "btn btn-primary btn-generic";
+					btnCita.innerHTML = "Agendar Cita"
+					
+					
+					// Anidar elementos creados para formar Card de Mascota
+					
+					cardBody.append(cardBodyTitle, cardBodyText);
+					
+					cardFooterContent.append(btnHistorial, btnCita);
+					cardFooter.append(cardFooterContent);
+					
+					cardPet.append(imgPet, cardBody, cardFooter);
+					
+					divContainer.append(cardPet);
+					mascotasContainer.append(divContainer);
+				});
+			});
+		}
+		
+		generarListaMascotas();
 		
 		function limpiar() {
 			$('#id_nombre').val('');
