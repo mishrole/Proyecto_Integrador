@@ -70,6 +70,10 @@
             </div>
         </div>
         
+        <div class="row">
+        	<h4 class="text-principal-color mb-3 mt-3">Mis Citas</h4>
+        </div>
+        
         <div class="modal fade" id="id_modal_RegistraMascota">
     		<div class="modal-dialog">
     			<div class="modal-content">

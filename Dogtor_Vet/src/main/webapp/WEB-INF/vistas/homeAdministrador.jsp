@@ -61,7 +61,7 @@
             		<a class="btn btn-primary disabled" href="verServicio">Mantenimiento de Servicio</a>
             	</div>
             	<div class="col-12 col-md-3">
-            		<a class="btn btn-primary disabled" href="verProducto">Mantenimiento de Producto</a>
+            		<a class="btn btn-primary" href="verProducto">Mantenimiento de Producto</a>
             	</div>
             </div>
         </div>
