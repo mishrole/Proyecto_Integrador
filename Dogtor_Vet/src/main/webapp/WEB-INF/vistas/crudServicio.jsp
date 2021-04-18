@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	
+	<title>CRUD Servicio</title>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light-custom">
+    <div class="container">
+        <a class="navbar-brand text-primary-color" href="./"><img src="../../images/logo.png" alt="Logo dogtor" width="200"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link link-menu text-secondary-color" href="/">Web</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-menu text-secondary-color" href="homeAdministrador">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-menu text-secondary-color" href="verMascota">Mascota</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-menu text-secondary-color" href="verUsuario">Usuario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-menu text-secondary-color" href="verProducto">Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link link-menu text-secondary-color" href="verServicio">Servicio</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+            	<a class="btn btn-primary btn-singin" href="login">Cerrar Sesión</a>
+        	</div>
+        </div>
+    </div>
+  </nav>
+
+    <div class="container">
+    	<div class="row">
+    		<div class="col-12" >
+    		
+    			<div class="row mt-3 mb-3">
+    				<div class="col-12">
+	    				<div class="col-10 col-md-2">
+							<button type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraMascota" class='w-100 btn btn-primary btn-generic'>Nuevo Servicio</button>
+						</div>
+    				</div>
+    			</div>
+    		
+				<form id="id_form_elimina" action="eliminaServicio">
+					<input type="hidden" id="id_elimina" name="codigo_servicio">
+				</form>
+		     
+				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
+					<div class="col-10 col-md-6" >
+						<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_servicio" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
+					</div>
+					<div class="col-10 col-md-2" >
+						<button type="button" class="w-100 btn btn-primary" id="filtra_servicio">Filtrar Servicios</button>
+					</div>
+				</div>
+					
+				<div class="row mt-3 mb-3" > 
+					<div class="col-12" >
+						<div class="content table-responsive" >
+						
+							<table id="id_table" class="table table-borderless" >
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Tipo</th>
+										<th>Especialidad</th>
+										<th>Especialista</th>
+										<th>Día Semana</th>
+										<th>Hora Inicio</th>
+										<th>Hora Fin</th>
+										<th>Nombre</th>
+										<th>Descripción</th>
+										<th>Precio</th>
+										<th>Límite</th>
+										<th>Actualiza</th>
+										<th>Elimina</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>	
+							
+						</div>	
+					</div>
+				</div>
+		  </div>
+    	</div>
+    	
+    	<div class="modal fade" id="id_modal_RegistraServicio">
+    		<div class="modal-dialog">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<div class="col-12 justify-content-center align-items-center d-flex">
+    						<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Registro de Servicio</b></h1>
+    					</div>
+    				</div>
+    				<div class="modal-body">
+    					<div class="container">
+    						 <div class="row mt-2">
+					            <div class="col-12 justify-content-center align-items-center d-flex">
+					                <main class="col-12 col-md-10">
+					                    <form id="id_form_registra">
+					                      
+					                      <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+										  			<input type="text" class="form-control" id="id_nombre" name="nombre_servicio" autocomplete="on">
+					                        		<label for="nombre_servicio">Nombre</label>
+										  		</div>
+										  	</div>
+										  	<div class="col-12 col-md-3 mb-3">
+											  	<div class="col form-floating">
+										  			<input type="text" class="form-control" id="id_precio" name="precio_servicio" autocomplete="on" >
+						                   			<label for="id_precio">Precio</label>
+										  		</div>
+										  	</div>
+										  	<div class="col-12 col-md-3 mb-3">
+											  	<div class="col form-floating">
+										  			<input type="text" class="form-control" id="id_limite" name="limite_diario_servicio" autocomplete="on" >
+						                   			<label for="id_limite">Límite</label>
+										  		</div>
+										  	</div>
+					                      </div>
+					                      
+					                      <div class="form-group form-floating mb-3">
+						                      <input type="text" class="form-control" id="id_descripcion" name="descripcion_servicio" placeholder="John" autocomplete="on" >
+						                      <label for="id_descripcion">Descripción</label>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+										  		<div class="form-floating">
+							                      	<select class="form-select" id="select_tipo_servicio" name="codigo_tipo_servicio" aria-label="Default select example">
+													  <option selected value="0">Seleccione Tipo</option>
+													</select>
+													<label for="select_tipo_servicio">Tipo</label>
+					                      		</div>
+										  	</div>
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+							                      	<select class="form-select" id="select_especialidad" name="codigo_especialidad" aria-label="Default select example">
+													  <option selected value="0">Seleccione Especialidad</option>
+													</select>
+													<label for="select_especialidad">Especialidad</label>
+						                      </div>
+										  	</div>
+										  </div>
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_especialista" name="codigo_especialista" aria-label="Default select example">
+													  <option selected value="0">Seleccione Especialista</option>
+													</select>
+													<label for="select_especialista">Especialista</label>
+						                      </div>
+					                      	</div>
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_codigo_dia" name="codigo_dia_semana" aria-label="Default select example">
+													  <option selected value="0">Seleccione Día</option>
+													</select>
+													<label for="select_codigo_dia">Día</label>
+						                      </div>
+					                      	</div>
+					                      </div>
+					                      
+										  <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+										  			<input type="time" class="form-control" id="id_inicio_turno" name="inicio_turno_servicio" autocomplete="on">
+					                        		<label for="id_inicio_turno">Inicio de turno</label>
+										  		</div>
+										  	</div>
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="col form-floating">
+										  			<input type="time" class="form-control" id="id_fin_turno" name="fin_turno_servicio" autocomplete="on" >
+						                   			<label for="id_fin_turno">Fin de turno</label>
+										  		</div>
+										  	</div>
+					                      </div>
+					                      
+					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_servicio">Registrar</button>
+					                    </form>
+					                  </main>
+					            </div>
+					        </div>
+    					</div>
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    	
+    	<div class="modal fade" id="id_modal_ActualizaMascota">
+    		<div class="modal-dialog">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<div class="col-12 justify-content-center align-items-center d-flex">
+    						<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Actualizar Servicio</b></h1>
+    					</div>
+    				</div>
+    				<div class="modal-body">
+    					<div class="container">
+    						 <div class="row mt-2">
+					            <div class="col-12 justify-content-center align-items-center d-flex">
+					                <main class="col-12 col-md-10">
+					                    <form id="id_form_actualiza">
+					                      
+					                      <input type="text" id="id_servicio_actualiza" name="codigo_servicio" class="d-none">
+					                    
+					                   	  <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+										  			<input type="time" class="form-control" id="id_nombre_actualiza" name="nombre_servicio" autocomplete="on">
+					                        		<label for="id_nombre_actualiza">Nombre</label>
+										  		</div>
+										  	</div>
+										  	<div class="col-12 col-md-4 mb-3">
+											  	<div class="col form-floating">
+										  			<input type="time" class="form-control" id="id_precio_actualiza" name="precio_servicio" autocomplete="on" >
+						                   			<label for="id_precio_actualiza">Precio</label>
+										  		</div>
+										  	</div>
+										  	<div class="col-12 col-md-4 mb-3">
+											  	<div class="col form-floating">
+										  			<input type="time" class="form-control" id="id_limite_actualiza" name="limite_diario_servicio" autocomplete="on" >
+						                   			<label for="id_limite_actualiza">Límite</label>
+										  		</div>
+										  	</div>
+					                      </div>
+					                      
+					                      <div class="form-group form-floating mb-3">
+						                      <input type="text" class="form-control" id="id_descripcion_actualiza" name="descripcion_servicio" placeholder="John" autocomplete="on" >
+						                      <label for="id_descripcion_actualiza">Descripción</label>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+										  		<div class="form-floating">
+							                      	<select class="form-select" id="select_tipo_servicio_actualiza" name="codigo_tipo_servicio" aria-label="Default select example">
+													  <option selected value="0">Seleccione Tipo</option>
+													</select>
+													<label for="select_tipo_servicio_actualiza">Tipo</label>
+					                      		</div>
+										  	</div>
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+							                      	<select class="form-select" id="select_especialidad_actualiza" name="codigo_especialidad" aria-label="Default select example">
+													  <option selected value="0">Seleccione Especialidad</option>
+													</select>
+													<label for="select_especialidad_actualiza">Especialidad</label>
+						                      </div>
+										  	</div>
+										  </div>
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_especialista_actualiza" name="codigo_especialista" aria-label="Default select example">
+													  <option selected value="0">Seleccione Especialista</option>
+													</select>
+													<label for="select_especialista_actualiza">Especialista</label>
+						                      </div>
+					                      	</div>
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_codigo_dia_actualiza" name="codigo_dia_semana" aria-label="Default select example">
+													  <option selected value="0">Seleccione Día</option>
+													</select>
+													<label for="select_codigo_dia_actualiza">Día</label>
+						                      </div>
+					                      	</div>
+					                      </div>
+					                      
+										  <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+										  			<input type="time" class="form-control" id="id_inicio_turno_actualiza" name="inicio_turno_servicio" autocomplete="on">
+					                        		<label for="id_inicio_turno_actualiza">Inicio de turno</label>
+										  		</div>
+										  	</div>
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="col form-floating">
+										  			<input type="time" class="form-control" id="id_fin_turno_actualiza" name="fin_turno_servicio" autocomplete="on" >
+						                   			<label for="id_fin_turno_actualiza">Fin de turno</label>
+										  		</div>
+										  	</div>
+					                      </div>
+					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="actualizar_servicio">Actualizar</button>
+					                    </form>
+					                  </main>
+					            </div>
+					        </div>
+    					</div>
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
+	
+	<script type="text/javascript">
+	
+	var selectedTipoServicioActualiza, selectedEspecialidadActualiza, selectedEspecialistaActualiza, selectedDiaSemanaActualiza;
+	
+	function agregarGrilla(lista) {
+		 $('#id_table').DataTable().clear();
+		 $('#id_table').DataTable().destroy();
+		 $('#id_table').DataTable({
+				data: lista,
+				searching: false,
+				ordering: true,
+				processing: true,
+				pageLength: 5,
+				lengthChange: false,
+				columns:[
+					{data: "codigo_servicio"},
+					{data: "codigo_tipo_servicio"},
+					{data: "codigo_especialidad"},
+					{data: "codigo_especialista"},
+					{data: "codigo_dia_semana"},
+					{data: "inicio_turno_servicio"},
+					{data: "fin_turno_servicio"},
+					{data: "nombre_servicio"},
+					{data: "descripcion_servicio"},
+					{data: "precio_servicio"},
+					{data: "limite_diario_servicio"},
+					{data: function(row, type, val, meta){
+						var salida='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaServicio" onclick="editar(\'' + row.codigo_servicio +
+								'\',\'' + row.codigo_tipo_servicio +
+								'\',\'' + row.codigo_especialidad +
+								'\',\'' + row.codigo_especialista +
+								'\',\'' + row.codigo_dia_semana +
+								'\',\'' + row.inicio_turno_servicio +
+								'\',\'' + row.fin_turno_servicio +
+								'\',\'' + row.nombre_servicio +
+								'\',\'' + row.descripcion_servicio  +
+								'\',\'' + row.precio_servicio +
+								'\',\'' + row.limite_diario_servicio +
+								'\')">Editar</button>';
+						return salida;
+					},className:'text-center'},	
+					{data: function(row, type, val, meta){
+					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_servicio + '\')">Eliminar</button>';
+						return salida;
+					},className:'text-center'},													
+				]                                     
+		    });
+		}
+		
+		function eliminar(codigo_servicio) {
+			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_servicio);
+			console.log("Código servicio en eliminar "+ codigo_servicio);
+		}
+		
+		function accionEliminar(codigo_servicio) {
+			$('#id_elimina').val(codigo_servicio);
+			console.log("Código servicio en accionEliminar "+ codigo_servicio);
+			$.ajax({
+				type: "POST",
+				url: "eliminaServicio",
+				data: $('#id_form_elimina').serialize(),
+				success: function(data) {
+					agregarGrilla(data.lista);
+					mostrarMensaje(data.MENSAJE);
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR);
+				}
+			})
+		}
+		
+		function editar(codigo_servicio, codigo_tipo_servicio, codigo_especialidad, codigo_especialista, codigo_dia_semana, inicio_turno_servicio,
+		fin_turno_servicio, nombre_servicio, descripcion_servicio, precio_servicio, limite_diario_servicio) {
+			
+			selectedTipoServicioActualiza = codigo_tipo_servicio;
+			selectedEspecialidadActualiza = codigo_especialidad;
+			selectedEspecialistaActualiza = codigo_especialista;
+			selectedDiaSemanaActualiza = codigo_dia_semana;
+			
+			$('#id_mascota_actualiza').val(codigo_mascota);
+			$('#id_propietario_actualiza').val(codigo_propietario);
+			$('#id_nombre_actualiza').val(nombre_mascota);
+			$('#id_foto_actualiza').val(foto_mascota);
+			$('#select_sexo_actualiza').val(codigo_sexo_mascota);
+			$('#select_especie_actualiza').val(codigo_especie_mascota);
+			$('#select_color_actualiza').val(codigo_color_mascota);
+			$('#id_fecha_nacimiento_actualiza').val(fecha_nacimiento_mascota);
+			$('#id_identificacion_actualiza').val(codigo_identificacion_mascota);
+			$('#id_sanitaria_actualiza').val(codigo_cartilla_sanitaria);
+			
+			$.getJSON('listaRaza', {"especie":codigo_especie_mascota}, function(data) {
+				$("#select_raza_actualiza > option.option__raza").remove();
+				
+				$.each( data, function( index, value) {
+					let option = document.createElement('option');
+					option.value = value.codigo_raza_mascota;
+					option.text = value.nombre_raza_mascota;
+					option.className = "option__raza";
+					$('#select_raza_actualiza').append(option);
+				});
+				
+				$('#select_raza_actualiza').val(codigo_raza_mascota);
+			});
+			
+			$('#id_modal_ActualizaMascota').modal("show");
+		}
+		
+	$(document).ready(function() {
+		
+		// Selects	
+		
+		const selectTipoServicio = $('#select_tipo_servicio');
+		const selectEspecialidad = $('#select_especialidad');
+		const selectEspecialista = $('#select_especialista');
+		const selectCodigoDia = $('#select_codigo_dia');
+		
+		const selectTipoServicioActualiza = $('#select_tipo_servicio_actualiza');
+		const selectEspecialidadActualiza = $('#select_especialidad_actualiza');
+		const selectEspecialistaActualiza = $('select_especialista_actualiza');
+		const selectCodigoDiaActualiza = $('#select_codigo_dia_actualiza');
+		
+		// Botones
+		
+		const btnRegister = $('#registrar_servicio');
+		const btnUpdate = $('#actualizar_servicio');
+		const btnFilter = $('#filtra_servicio');
+		const btnModalRegister = $('#id_btnModal_RegistraServicio');
+		
+		// Modals
+		
+		const modalRegister = $('#id_modal_RegistraServicio');
+		
+		// Abrir Modal con Click
+		
+		btnModalRegister.click(function() {
+			modalRegister.modal("show");
+		});
+		
+		// Filtrar Mascota por Nombre
+		
+		btnFilter.click(function() {
+			const filterText = $('#id_nombre_filtro').val();
+			
+			$.getJSON("listaServicioPorNombre", {"nombre_servicio": filterText}, function(lista) {
+				agregarGrilla(lista);
+			});
+		});
+		
+		// Get Tipo Servicio
+		
+		function generarSelectTipoServicio(idSelectTipoServicio) {
+			$.getJSON('listaTipoServicio', function(data) {
+				$.each( data, function( index, value ) {
+					let option = document.createElement('option');
+					option.value = value.codigo_tipo_servicio;
+					option.text = value.nombre_tipo_servicio;
+					idSelectTipoServicio.append(option);
+				});
+			});
+		}
+		
+		generarSelectTipoServicio(selectTipoServicio);
+		generarSelectTipoServicio(selectTipoServicioActualiza);
+		
+		// Get Especialidad
+		
+		function generarSelectEspecialidad(idSelectEspecialidad) {
+			$.getJSON('listaEspecialidad', function(data) {
+				$.each( data, function(index, value) {
+					let option = document.createElement('option');
+					option.value = value.codigo_especialidad;
+					option.text = value.nombre_especialidad;
+					idSelectEspecialidad.append(option);
+				});
+			})
+		}
+		
+		generarSelectEspecialidad(selectEspecialidad);
+		generarSelectEspecialidad(selectEspecialidadActualiza);
+		
+		// Get Especialista ---- FALTA SELECT DE USUARIO + ROL
+		
+		function generarSelectEspecialista(idSelectEspecialista) {
+			$.getJSON('listaEspecialidad', function(data) {
+				$.each( data, function(index, value) {
+					let option = document.createElement('option');
+					option.value = value.codigo_especialidad;
+					option.text = value.nombre_especialidad;
+					idSelectEspecialista.append(option);
+				});
+			})
+		}
+		
+		generarSelectEspecialista(selectEspecialista);
+		generarSelectEspecialista(selectEspecialistaActualiza);
+		
+		function generarSelectCodigoDia(idSelectDia) {
+			$.getJSON('listaEspecialidad', function(data) {
+				$.each( data, function(index, value) {
+					let option = document.createElement('option');
+					option.value = value.codigo_especialidad;
+					option.text = value.nombre_especialidad;
+					idSelectDia.append(option);
+				});
+			})
+		}
+		
+		generarSelectCodigoDia(selectCodigoDia);
+		generarSelectCodigoDia(selectCodigoDiaActualiza);
+		
+		var selectedTipoServicio, selectedEspecialidad, selectedEspecialista, selectedDiaSemana;
+		
+		// Validar selects cuando cambie el option en Registrar
+		
+		selectTipoServicio.change(function(e) {
+			selectedTipoServicio = e.target.selectedIndex;
+			validateSelect(selectTipoServicio, selectedTipoServicio, 'tipo');
+		});
+
+		selectEspecialidad.change(function(e) {
+			selectedEspecialidad = e.target.selectedIndex;
+			validateSelect(selectEspecialidad, selectedEspecialidad, 'especialidad');
+		});
+		
+		selectEspecialista.change(function(e) {
+			selectedEspecialista = e.target.selectedIndex;
+			validateSelect(selectEspecialista, selectedEspecialista, 'dia');
+		});
+		
+		selectCodigoDia.change(function(e) {
+			selectedCodigoDia = e.target.selectedIndex;
+			validateSelect(selectCodigoDia, selectedCodigoDia, 'dia');
+		});
+		
+		// Validar selects cuando cambie el option en Actualizar
+		
+		selectTipoServicioActualiza.change(function(e) {
+			selectedTipoServicioActualiza = e.target.selectedIndex;
+			validateSelect(selectTipoServicioActualiza, selectedTipoServicioActualiza, 'tipo');
+		});
+
+		selectEspecialidadActualiza.change(function(e) {
+			selectedEspecialidadActualiza = e.target.selectedIndex;
+			validateSelect(selectEspecialidadActualiza, selectedEspecialidadActualiza, 'especialidad');
+		});
+		
+		selectEspecialistaActualiza.change(function(e) {
+			selectedEspecialistaActualiza = e.target.selectedIndex;
+			validateSelect(selectEspecialistaActualiza, selectedEspecialistaActualiza, 'especialista');
+		});
+		
+		selectCodigoDiaActualiza.change(function(e) {
+			selectedCodigoDiaActualiza = e.target.selectedIndex;
+			validateSelect(selectCodigoDiaActualiza, selectedCodigoDiaActualiza, 'dia');
+		});
+		
+		$('#id_form_registra').bootstrapValidator({
+			message: 'El valor no es válido',
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				nombre_mascota: {
+					selector: '#id_nombre',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+			}
+		});
+		
+		$('#id_form_actualiza').bootstrapValidator({
+			message: 'El valor no es válido',
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				nombre_mascota: {
+					selector: '#id_nombre_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+			}
+		});
+		
+		// Registrar mascota
+	
+		btnRegister.click(function() {
+			var validator = $('#id_form_registra').data('bootstrapValidator');
+			validator.validate();
+			
+			// Validar selects
+			validateSelect(selectTipoServicio, selectedTipoServicio, 'tipo');
+			validateSelect(selectEspecialidad, selectedEspecialidad, 'especialidad');
+			validateSelect(selectEspecialistaActualiza, selectedEspecialista, 'especialista');
+			validateSelect(selectCodigoDiaActualiza, selectedCodigoDia, 'dia');
+			
+			if(selectedTipoServicio > 0 && selectedEspecialidad > 0 && selectedEspecialista > 0 && selectedCodigoDia > 0 && validator.isValid()) {
+				$.ajax({
+					type: 'POST',
+					data: $('#id_form_registra').serialize(),
+					url: 'registraServicio',
+					success: function(data) {
+						agregarGrilla(data.lista);
+						$('#id_modal_RegistraMascota').modal("hide");
+						mostrarMensaje(data.MENSAJE)
+						//limpiar();
+						validator.resetForm()
+					},
+					error: function() {
+						mostrarMensaje(MSG_ERROR)
+					}
+				});
+			}
+		});
+		
+		// Actualizar mascota
+		
+		btnUpdate.click(function() {
+			var validator = $('#id_form_actualiza').data('bootstrapValidator');
+			validator.validate();
+			
+			// Validar selects
+			validateSelect(selectEspecieActualiza, selectedEspecieActualiza, 'especie');
+			validateSelect(selectRazaActualiza, selectedRazaActualiza, 'raza');
+			validateSelect(selectSexoActualiza, selectedSexoActualiza, 'sexo');
+			validateSelect(selectColorActualiza, selectedColorActualiza, 'color');
+			
+			if(selectedEspecieActualiza > 0 && selectedColorActualiza > 0 && selectedSexoActualiza > 0 && selectedRazaActualiza > 0 && validator.isValid()) {
+				$.ajax({
+					type: 'POST',
+					data: $('#id_form_actualiza').serialize(),
+					url: 'actualizaMascota',
+					success: function(data) {
+						agregarGrilla(data.lista);
+						$('#id_modal_ActualizaMascota').modal("hide");
+						mostrarMensaje(data.MENSAJE)
+						limpiarActualiza();
+						validator.resetForm()
+					},
+					error: function() {
+						mostrarMensaje(MSG_ERROR)
+					}
+				});
+			}
+		});
+
+		function limpiar() {
+			$('#id_nombre').val('');
+			$('#select_especie')[0].selectedIndex = 0;
+			$('#select_raza')[0].selectedIndex = 0;
+			$('#select_color')[0].selectedIndex = 0;
+			$('#select_sexo')[0].selectedIndex = 0;
+			$('#id_fecha_nacimiento').val('');
+			$('#id_identificacion').val('');
+			$('#id_sanitaria').val('');
+			selectedEspecie = 0;
+			selectedRaza = 0;
+			selectedColor = 0;
+			selectedSexo = 0;
+		}
+		
+		function limpiarActualiza() {
+			$('#id_mascota_actualiza').val('');
+			$('#id_propietario_actualiza').val('');
+			$('#id_nombre_actualiza').val('');
+			$('#id_foto_actualiza').val('');
+			$('#select_raza_actualiza')[0].selectedIndex = 0;
+			$('#select_sexo_actualiza')[0].selectedIndex = 0;
+			$('#select_especie_actualiza')[0].selectedIndex = 0;
+			$('#select_color_actualiza')[0].selectedIndex = 0;
+			$('#id_fecha_nacimiento_actualiza').val('');
+			$('#id_identificacion_actualiza').val('');
+			$('#id_sanitaria_actualiza').val('');
+			selectedEspecieActualiza = 0;
+			selectedRazaActualiza  = 0;
+			selectedColorActualiza  = 0;
+			selectedSexoActualiza  = 0;
+		}
+	
+	});
+	
+	
+	</script>
+</body>
+</html>

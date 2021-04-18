@@ -141,9 +141,11 @@
 						});
 						
 					} else {
-						console.error('No existe el usuario y / o la contraseña es inválida');
+						mostrarMensaje(MSG_ERROR)
 					}
 				});
+			} else {
+				mostrarMensaje(MSG_ERROR)
 			}
 		});
 		
