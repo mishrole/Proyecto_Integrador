@@ -26,6 +26,7 @@
 
     <div class="container">
         <div class="row">
+        	<h5 class="text-principal-color mb-3 mt-3">Hola ${sessionScope.objUsuario.nombre_usuario} ${sessionScope.objUsuario.apellido_usuario}</h5>
             <h4 class="text-principal-color mb-3 mt-3">Mis mascotas</h4>
             <div class="col-12 d-flex justify-content-end align-items-center mt-3 mb-3">
             	<div class="col-12 col-md-2">
@@ -55,7 +56,7 @@
 					                <main class="col-12 col-md-10">
 					                    <form id="id_form_registra">
 					                      
-					                      <input type="text" id="id_propietario" name="codigo_propietario" value="1" class="d-none">
+					                      <input type="text" id="id_propietario" name="codigo_propietario" value="${sessionScope.objUsuario.codigo_usuario}" class="d-none">
 					                    
 					                   	  <div class="form-group form-floating mb-3">
 						                      <input type="text" class="form-control" id="id_nombre" name="nombre_mascota" placeholder="John" autocomplete="on" >
@@ -342,71 +343,88 @@
 		function generarListaMascotas() {
 			$.getJSON("listaMascotaPorPropietario", {"codigo_propietario": codigoPropietario}, function(lista) {
 				console.log(lista);
-				$.each( lista, function(index, mascota) {
+				
+				if(lista.length > 0) {
+					$.each( lista, function(index, mascota) {
+						const divContainer = document.createElement('div');
+						divContainer.className = "col-6 col-md-3 mb-2 mt-2";
+						
+						const cardPet = document.createElement('div');
+						cardPet.className = "card pet__card h-100";
+						
+						const imgPet = document.createElement('img');
+						imgPet.src = "../../images/pet.jpg";
+						imgPet.className = "card-img-top";
+						imgPet.alt = "Dog";
+						
+						const cardBody = document.createElement('div');
+						cardBody.className = "card-body";
+						
+						const cardBodyTitle = document.createElement('h5');
+						cardBodyTitle.className = "card-title bold text-center";
+						cardBodyTitle.innerHTML = mascota.nombre_mascota;
+						
+						const cardBodyText = document.createElement('p');
+						cardBodyText.className = "card-text text-center";
+						
+						const edadCalculada = calcularEdad(mascota.fecha_nacimiento_mascota);
+						
+						let edadActual;
+						
+						if(edadCalculada == 1) {
+							edadActual = edadCalculada + " año";
+						} else {
+							edadActual = edadCalculada + " años";
+						}	
+						
+						cardBodyText.innerHTML = edadActual;
+						
+						const cardFooter = document.createElement('div');
+						cardFooter.className = "card-footer text-center";
+						
+						const cardFooterContent = document.createElement('small');
+						cardFooterContent.className = "text-muted text-center d-lg-flex justify-content-lg-between";
+						
+						const btnHistorial = document.createElement('button');
+						btnHistorial.className = "btn btn-secondary col-12 col-lg-6";
+						btnHistorial.innerHTML = "Historial"
+						
+						const btnCita = document.createElement('button');
+						btnCita.className = "btn btn-primary btn-generic col-12 col-lg-6";
+						btnCita.innerHTML = "Cita"
+						
+						// Input invisible con el código de la mascota
+						const inputCodigoMascota = document.createElement('input');
+						inputCodigoMascota.innerHTML = mascota.codigo_mascota;
+						inputCodigoMascota.className = "d-none";
+						
+						// Anidar elementos creados para formar Card de Mascota
+						
+						cardBody.append(cardBodyTitle, cardBodyText);
+						
+						cardFooterContent.append(inputCodigoMascota, btnHistorial, btnCita);
+						cardFooter.append(cardFooterContent);
+						
+						cardPet.append(imgPet, cardBody, cardFooter);
+						
+						divContainer.append(cardPet);
+						mascotasContainer.append(divContainer);
+					});
+					
+				} else {
 					const divContainer = document.createElement('div');
-					divContainer.className = "col-6 col-md-3 mb-2 mt-2";
+					divContainer.className = "col-12 mb-2 mt-2";
 					
-					const cardPet = document.createElement('div');
-					cardPet.className = "card pet__card h-100";
+					const title = document.createElement('h4');
+					title.className = "text-center";
+					title.innerHTML = "Todavía no tienes mascotas registradas";
 					
-					const imgPet = document.createElement('img');
-					imgPet.src = "../../images/pet.jpg";
-					imgPet.className = "card-img-top";
-					imgPet.alt = "Dog";
-					
-					const cardBody = document.createElement('div');
-					cardBody.className = "card-body";
-					
-					const cardBodyTitle = document.createElement('h5');
-					cardBodyTitle.className = "card-title bold text-center";
-					cardBodyTitle.innerHTML = mascota.nombre_mascota;
-					
-					const cardBodyText = document.createElement('p');
-					cardBodyText.className = "card-text text-center";
-					
-					const edadCalculada = calcularEdad(mascota.fecha_nacimiento_mascota);
-					
-					let edadActual;
-					
-					if(edadCalculada == 1) {
-						edadActual = edadCalculada + " año";
-					} else {
-						edadActual = edadCalculada + " años";
-					}	
-					
-					cardBodyText.innerHTML = edadActual;
-					
-					const cardFooter = document.createElement('div');
-					cardFooter.className = "card-footer text-center";
-					
-					const cardFooterContent = document.createElement('small');
-					cardFooterContent.className = "text-muted text-center d-lg-flex justify-content-lg-between";
-					
-					const btnHistorial = document.createElement('button');
-					btnHistorial.className = "btn btn-secondary col-12 col-lg-6";
-					btnHistorial.innerHTML = "Historial"
-					
-					const btnCita = document.createElement('button');
-					btnCita.className = "btn btn-primary btn-generic col-12 col-lg-6";
-					btnCita.innerHTML = "Cita"
-					
-					// Input invisible con el código de la mascota
-					const inputCodigoMascota = document.createElement('input');
-					inputCodigoMascota.innerHTML = mascota.codigo_mascota;
-					inputCodigoMascota.className = "d-none";
-					
-					// Anidar elementos creados para formar Card de Mascota
-					
-					cardBody.append(cardBodyTitle, cardBodyText);
-					
-					cardFooterContent.append(inputCodigoMascota, btnHistorial, btnCita);
-					cardFooter.append(cardFooterContent);
-					
-					cardPet.append(imgPet, cardBody, cardFooter);
-					
-					divContainer.append(cardPet);
+					divContainer.append(title);
 					mascotasContainer.append(divContainer);
-				});
+				}
+				
+				
+				
 			});
 		}
 		
