@@ -32,24 +32,7 @@
             		<button type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota" class='w-100 btn btn-primary btn-generic'>Nueva Mascota</button>
             	</div>
             </div>
-            <div class="d-flex justify-content-center align-items-center mt-3 mb-3" id="mascotas_container">
-			<!--             	
-            	<div class="col-12 col-md-4">
-	            	<div class="card pet__card h-100">
-		              	<img src="../../images/pet.jpg" class="card-img-top" alt="Dog">
-		              	<div class="card-body">
-			                <h5 class="card-title bold">Tobby</h5>
-			                <p class="card-text">Edad: 5 años</p>
-		              	</div>
-		              	<div class="card-footer text-center">
-			                <small class="text-muted text-center">
-			                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalHistorial" class="btn btn-secondary">Ver historial</button>
-			                  <button type="button" data-bs-toggle="modal" data-bs-target="#myModalCita" class="btn btn-primary btn-generic">Agendar cita</button>
-			                </small>
-						</div>
-	            	</div>
-            	</div>
-            	 -->
+            <div class="d-flex flex-wrap justify-content-center align-items-center mt-3 mb-3" id="mascotas_container">
             </div>
         </div>
         
@@ -327,11 +310,12 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraMascota',
 					success: function(data) {
-						//agregarGrilla(data.lista);
 						$('#id_modal_RegistraMascota').modal("hide");
 						mostrarMensaje(data.MENSAJE)
 						limpiar();
 						validator.resetForm()
+						mascotasContainer.empty();
+						generarListaMascotas();
 					},
 					error: function() {
 						mostrarMensaje(MSG_ERROR)
@@ -360,7 +344,7 @@
 				console.log(lista);
 				$.each( lista, function(index, mascota) {
 					const divContainer = document.createElement('div');
-					divContainer.className = "col-12 col-md-3";
+					divContainer.className = "col-6 col-md-3 mb-2 mt-2";
 					
 					const cardPet = document.createElement('div');
 					cardPet.className = "card pet__card h-100";
@@ -380,7 +364,15 @@
 					const cardBodyText = document.createElement('p');
 					cardBodyText.className = "card-text text-center";
 					
-					const edadActual = calcularEdad(mascota.fecha_nacimiento_mascota) + " años";
+					const edadCalculada = calcularEdad(mascota.fecha_nacimiento_mascota);
+					
+					let edadActual;
+					
+					if(edadCalculada == 1) {
+						edadActual = edadCalculada + " año";
+					} else {
+						edadActual = edadCalculada + " años";
+					}	
 					
 					cardBodyText.innerHTML = edadActual;
 					
@@ -388,15 +380,15 @@
 					cardFooter.className = "card-footer text-center";
 					
 					const cardFooterContent = document.createElement('small');
-					cardFooterContent.className = "text-muted text-center";
+					cardFooterContent.className = "text-muted text-center d-lg-flex justify-content-lg-between";
 					
 					const btnHistorial = document.createElement('button');
-					btnHistorial.className = "btn btn-secondary";
-					btnHistorial.innerHTML = "Ver Historial"
+					btnHistorial.className = "btn btn-secondary col-12 col-lg-6";
+					btnHistorial.innerHTML = "Historial"
 					
 					const btnCita = document.createElement('button');
-					btnCita.className = "btn btn-primary btn-generic";
-					btnCita.innerHTML = "Agendar Cita"
+					btnCita.className = "btn btn-primary btn-generic col-12 col-lg-6";
+					btnCita.innerHTML = "Cita"
 					
 					// Input invisible con el código de la mascota
 					const inputCodigoMascota = document.createElement('input');
