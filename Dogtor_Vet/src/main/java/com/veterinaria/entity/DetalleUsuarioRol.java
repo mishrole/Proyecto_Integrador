@@ -8,10 +8,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name = "tb_detalle_usuario_rol")
-public class DetalleRolUsuario {
+public class DetalleUsuarioRol {
 	
 	@EmbeddedId
-	private DetalleRolUsuarioPK idUsuarioRol;
+	private DetalleUsuarioRolPK objDetalleUsuarioRolPK;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_usuario", nullable = false, insertable = false, updatable = false)
@@ -21,12 +21,12 @@ public class DetalleRolUsuario {
 	@JoinColumn(name = "codigo_rol_usuario", nullable = false, insertable = false, updatable = false)
 	private Rol rol;
 	
-	public DetalleRolUsuarioPK getIdUsuarioRol() {
-		return idUsuarioRol;
+	public DetalleUsuarioRolPK getObjDetalleUsuarioRolPK() {
+		return objDetalleUsuarioRolPK;
 	}
 
-	public void setIdUsuarioRol(DetalleRolUsuarioPK idUsuarioRol) {
-		this.idUsuarioRol = idUsuarioRol;
+	public void setObjDetalleUsuarioRolPK(DetalleUsuarioRolPK objDetalleUsuarioRolPK) {
+		this.objDetalleUsuarioRolPK = objDetalleUsuarioRolPK;
 	}
 
 	public Usuario getUsuario() {

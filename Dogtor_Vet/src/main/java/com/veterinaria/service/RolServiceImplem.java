@@ -18,7 +18,8 @@ public class RolServiceImplem implements RolService {
 	public List<Rol> listaRol() {
 		return repository.listaRol();
 	}
-
+	
+	
 	@Override
 	public List<Rol> listaRolPorUsuario(Integer codigo_usuario) {
 		return repository.listaRolPorUsuario(codigo_usuario);

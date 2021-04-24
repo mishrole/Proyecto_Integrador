@@ -4,8 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.veterinaria.entity.Enlace;
+import com.veterinaria.entity.Rol;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.repository.UsuarioRepository;
 
@@ -43,6 +47,26 @@ public class UsuarioServiceImplem implements UsuarioService {
 	@Override
 	public List<Usuario> listaUsuarioPorNombre(String nombre_usuario) {
 		return repository.listaUsuarioPorNombre(nombre_usuario+"%");
+	}
+
+	@Override
+	public Usuario login(Usuario objUsuario) {
+		return repository.login(objUsuario);
+	}
+
+	@Override
+	public List<Enlace> obtenerEnlacesDeUsuario(Integer codigo_usuario) {
+		return repository.obtenerEnlacesDeUsuario(codigo_usuario);
+	}
+
+	@Override
+	public List<Rol> obtenerRolesDeUsuario(Integer codigo_usuario) {
+		return repository.obtenerRolesDeUsuario(codigo_usuario);
+	}
+
+	@Override
+	public Page<Usuario> findAll(Pageable pageable) {
+		return repository.findAll(pageable);
 	}
 
 }

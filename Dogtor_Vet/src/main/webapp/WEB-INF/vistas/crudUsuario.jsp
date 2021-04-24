@@ -1,8 +1,15 @@
+<jsp:include page="validarSesion.jsp" />
 <!DOCTYPE html>
 <html lang="es" >
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Expires" content="-1" />
+	<meta http-equiv="Cache-Control" content="private" />
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	
 	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -13,39 +20,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light-custom">
-    <div class="container">
-        <a class="navbar-brand text-primary-color" href="./"><img src="../../images/logo.png" alt="Logo dogtor" width="200"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="/">Web</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="homeAdministrador">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="verMascota">Mascota</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="verUsuario">Usuario</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="verProducto">Producto</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="verServicio">Servicio</a>
-                </li>
-            </ul>
-            <div class="d-flex">
-            	<a class="btn btn-primary btn-singin" href="login">Cerrar Sesión</a>
-        	</div>
-        </div>
-    </div>
-  </nav>
+   <jsp:include page="header.jsp" />
 
     <div class="container">
     	<div class="row">

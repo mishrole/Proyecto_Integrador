@@ -1,8 +1,16 @@
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="es" >
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Expires" content="-1" />
+	<meta http-equiv="Cache-Control" content="private" />
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	
 	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -13,51 +21,32 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light-custom">
-    <div class="container">
-        <a class="navbar-brand text-primary-color" href="./"><img src="../../images/logo.png" alt="Logo dogtor" width="200"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="/">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link link-menu text-secondary-color" href="">Tienda</a>
-                </li>
-            </ul>
-            <div class="d-flex">
-            	<a class="btn btn-primary btn-singin" href="login">Iniciar Sesión</a>
-        	</div>
-        </div>
-    </div>
-  </nav>
-
+ <jsp:include page="header.jsp" />
+	
+	<c:if test="${requestScope.MENSAJE != null}">
+    	<div class="alert alert-danger fade in" id="success-alert">
+        	<a href="#" class="close" data-dismiss="alert">&times;</a>
+        	<strong>${requestScope.MENSAJE}</strong>
+    	</div>
+    </c:if>
+	
     <div class="container">
         <div class="row">
             <div class="col-sm-12 justify-content-center align-items-center d-flex">
                 <main class="col-10 col-md-6">
-                    <form id="id_form">
+                    <form id="id_form" action="acceder" method="POST">
                       <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Inicia Sesión</b></h1>
                     
                       <div class="form-group form-floating mb-3">
-                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on">
+                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on" value="admin@gmail.com">
                         <label for="id_email">Correo electrónico</label>
                       </div>
                       <div class="form-group form-floating mb-3">
-                        <input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on">
+                        <input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on" value="123">
                         <label for="id_contrasena">Contraseña</label>
                       </div>
 
-                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="iniciar_sesion">Iniciar Sesión</button>
+                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="submit" id="iniciar_sesion">Iniciar Sesión</button>
                       <p class="text-center mt-3">¿Todavía no tienes una cuenta? <a href="nuevaCuenta">Regístrate</a></p>
                     </form>
                   </main>
@@ -74,6 +63,10 @@
 	<script type="text/javascript">
 		
 	$(document).ready(function() {
+		
+		$("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
+		    $("#success-alert").slideUp(500);
+		});
 		
 		const btnRegister = $('#iniciar_sesion');
 		
@@ -107,7 +100,7 @@
 		/* IMPORTANTE: Esto es momentáneo hasta que aprendamos a usar Spring Security 
 		     _________________________ESTO NO ES SEGURO___________________________
 		*/
-		
+		/*
 		btnRegister.click(function() {
 			const inputEmail = $('#id_email').val();
 			const inputPassword = $('#id_contrasena').val();
@@ -148,12 +141,18 @@
 				mostrarMensaje(MSG_ERROR)
 			}
 		});
-		
-		
+		*/
+		/*
+		btnRegister.click(function() {
+			$('#id_form').bootstrapValidator('validate');
+		});
+		*/
+		/*
 		function limpiar() {
 			$('#id_email').val('');
 			$('#id_contrasena').val('');
 		}
+		*/
 	});
 	
 	</script>

@@ -1,13 +1,13 @@
 package com.veterinaria.entity;
 
-import java.util.List;
+//import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,9 +22,10 @@ public class Distrito {
 	@Column(name = "nombre_distrito")
 	private String nombre_distrito;
 	
+	/*
 	@OneToMany(mappedBy = "distrito")
 	private List<Usuario> usuarios;
-
+	 */
 	public Integer getCodigo_distrito() {
 		return codigo_distrito;
 	}

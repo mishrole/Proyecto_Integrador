@@ -13,7 +13,7 @@ public interface RolRepository extends JpaRepository<Rol, Integer>{
 	@Query("Select r from Rol r")
 	public abstract List<Rol> listaRol();
 	
-	@Query("Select r from Rol r, DetalleRolUsuario dru where r.codigo_rol_usuario = dru.rol.codigo_rol_usuario and dru.usuario.codigo_usuario = :param_usuario")
+	@Query("Select r from Rol r, DetalleUsuarioRol dru where r.codigo_rol_usuario = dru.rol.codigo_rol_usuario and dru.usuario.codigo_usuario = :param_usuario")
 	public abstract List<Rol> listaRolPorUsuario(@Param("param_usuario") Integer codigo_usuario);
 	
 }

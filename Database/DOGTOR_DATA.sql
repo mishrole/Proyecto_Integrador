@@ -12,6 +12,16 @@ NOMBRE_USUARIO, APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO) VALUES
 INSERT INTO TB_DETALLE_USUARIO_ROL VALUES 
 (1, 1), (2, 2);
 
+INSERT INTO tb_enlace VALUES
+(null, "Home", "homeAdministrador"),
+(null, "Usuario", "verUsuario"),
+(null, "Producto", "verProducto"),
+(null, "Servicio", "verServicio"),
+(null, "Mascota", "verMascota");
+
+INSERT INTO tb_detalle_rol_enlace VALUES
+(1, 1), (1, 2), (1, 3), (1, 4), (1,5);
+
 INSERT INTO tb_color_mascota(NOMBRE_COLOR_MASCOTA) VALUES 
 ("Blanco y Negro"),("Blanco y Gris"),
 ("Blanco y Crema"),("Blanco"),

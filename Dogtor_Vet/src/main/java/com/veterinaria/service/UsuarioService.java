@@ -1,5 +1,10 @@
 package com.veterinaria.service;
+import com.veterinaria.entity.Enlace;
+import com.veterinaria.entity.Rol;
 import com.veterinaria.entity.Usuario;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,4 +15,9 @@ public interface UsuarioService {
 	public abstract Usuario insertaUsuario(Usuario objUsuario);
 	public abstract List<Usuario> listausuarioPorEmailYContrasena(String email_usuario, String contrasena_usuario);
 	public abstract List<Usuario> listaUsuarioPorNombre(String nombre_usuario);
+	
+	public abstract Usuario login(Usuario objUsuario);
+	public abstract List<Enlace> obtenerEnlacesDeUsuario(Integer codigo_usuario);
+	public abstract List<Rol> obtenerRolesDeUsuario(Integer codigo_usuario);
+	public Page<Usuario> findAll(Pageable pageable);
 }

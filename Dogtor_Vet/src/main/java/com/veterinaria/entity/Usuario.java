@@ -2,12 +2,15 @@ package com.veterinaria.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -49,7 +52,7 @@ public class Usuario {
 	private String telefono_usuario;
 	
 	@Column(name = "codigo_distrito")
-	private String codigo_distrito;
+	private Integer codigo_distrito;
 	
 	@ManyToOne
 	@JoinColumn(name = "codigo_distrito", insertable = false, updatable = false, nullable = false)
@@ -143,11 +146,11 @@ public class Usuario {
 		this.telefono_usuario = telefono_usuario;
 	}
 
-	public String getCodigo_distrito() {
+	public Integer getCodigo_distrito() {
 		return codigo_distrito;
 	}
 
-	public void setCodigo_distrito(String codigo_distrito) {
+	public void setCodigo_distrito(Integer codigo_distrito) {
 		this.codigo_distrito = codigo_distrito;
 	}
 
