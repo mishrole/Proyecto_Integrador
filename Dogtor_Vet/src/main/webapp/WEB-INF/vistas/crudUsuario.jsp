@@ -131,18 +131,30 @@
 					                        		<label for="id_fecha_nacimiento">Fecha de nacimiento</label>
 										  		</div>
 										  	</div>
-										  	<div class="col-12 col-md-3 mb-3">
-											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_dni" name="dni_usuario" autocomplete="on" >
-						                    		<label for="id_dni">DNI</label>
-										  		</div>
+										  	
+										  	<div class="col-12 col-md-6 mb-3">
+										  		<div class="form-floating">
+							                      	<select class="form-select" id="select_rol" name="codigo_rol_usuario" aria-label="Default select example">
+													  <option selected value="0">Seleccione Rol</option>
+													</select>
+													<label for="select_rol">Rol</label>
+					                      		</div>
 										  	</div>
-										  	<div class="col-12 col-md-3 mb-3">
-											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_telefono" name="telefono_usuario" autocomplete="on" >
-						                    		<label for="id_telefono">Teléfono</label>
-										  		</div>
-					                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+						                      <div class="col-12 col-md-6 mb-3">
+												  	<div class="col form-floating">
+											  			<input type="text" class="form-control" id="id_dni" name="dni_usuario" autocomplete="on" >
+							                    		<label for="id_dni">DNI</label>
+											  		</div>
+											  	</div>
+											  	<div class="col-12 col-md-6 mb-3">
+												  	<div class="col form-floating">
+											  			<input type="text" class="form-control" id="id_telefono" name="telefono_usuario" autocomplete="on" >
+							                    		<label for="id_telefono">Teléfono</label>
+											  		</div>
+						                      	</div>
 					                      </div>
 					                      
 					                      <div class="form-group row">
@@ -316,7 +328,7 @@
 	
 	<script type="text/javascript">
 	
-	var selectedColorActualiza, selectedSexoActualiza, selectedRazaActualiza, selectedEspecieActualiza;
+	var selectedDistritoActualiza, selectedRolActualiza;
 	
 	function agregarGrilla(lista) {
 		 $('#id_table').DataTable().clear();
@@ -418,6 +430,9 @@
 		const selectDistrito = $('#select_distrito');
 		const selectDistritoActualiza = $('#select_distrito_actualiza');
 		
+		const selectRol = $('#select_rol');
+		const selectRolActualiza = $('#select_rol_actualiza');
+		
 		// Botones
 		
 		const btnRegister = $('#registrar_usuario');
@@ -445,6 +460,22 @@
 			});
 		});
 		
+		// Get Rol
+		
+		function generarSelectRol(idSelectRol) {
+			$.getJSON('listaRol', function(data) {
+				$.each( data, function( index, value ) {
+					let option = document.createElement('option');
+					option.value = value.codigo_rol_usuario;
+					option.text = value.nombre_rol_usuario;
+					idSelectRol.append(option);
+				});
+			});
+		}
+		
+		generarSelectRol(selectRol);
+		generarSelectRol(selectRolActualiza);
+		
 		// Get Distrito
 		
 		function generarSelectDistrito(idSelectDistrito) {
@@ -461,7 +492,7 @@
 		generarSelectDistrito(selectDistrito);
 		generarSelectDistrito(selectDistritoActualiza);
 		
-		var selectedDistrito;
+		var selectedDistrito, selectedRol;
 		
 		// Validar selects cuando cambie el option en Registrar
 		
@@ -470,13 +501,25 @@
 			validateSelect(selectDistrito, selectedDistrito, 'distrito');
 		});
 		
+		selectRol.change(function(e) {
+			selectedRol= e.target.selectedIndex;
+			validateSelect(selectRol, selectedRol, 'rol');
+		});
+		
+		
 		// Validar selects cuando cambie el option en Actualizar
 		
 		selectDistritoActualiza.change(function(e) {
-			selectedDistritoActualiza = e.target.selectedIndex;
+			selectedRolActualiza = e.target.selectedIndex;
 			validateSelect(selectDistritoActualiza, selectedDistritoActualiza, 'distrito');
 		});
 		
+		selectRolActualiza.change(function(e) {
+			selectedRolActualiza = e.target.selectedIndex;
+			validateSelect(selectRolActualiza, selectedRolActualiza, 'rol');
+		});
+		
+		// Bootstrap validator
 		
 		$('#id_form_registra').bootstrapValidator({
 			message: 'El valor no es válido',
@@ -608,8 +651,9 @@
 			
 			// Validar selects
 			validateSelect(selectDistrito, selectedDistrito, 'distrito');
+			validateSelect(selectRol, selectedRol, 'rol');
 			
-			if(selectedDistrito > 0 && validator.isValid()) {
+			if(selectedDistrito > 0 && selectedRol > 0 && validator.isValid()) {
 				$.ajax({
 					type: 'POST',
 					data: $('#id_form_registra').serialize(),
@@ -618,7 +662,7 @@
 						agregarGrilla(data.lista);
 						$('#id_modal_RegistraUsuario').modal("hide");
 						mostrarMensaje(data.MENSAJE)
-						//limpiar();
+						limpiar();
 						validator.resetForm()
 					},
 					error: function() {
@@ -636,8 +680,9 @@
 			
 			// Validar selects
 			validateSelect(selectDistritoActualiza, selectedDistritoActualiza, 'distrito');
+			validateSelect(selectRolActualiza, selectedRolActualiza, 'rol');
 			
-			if(selectedDistritoActualiza > 0 && validator.isValid()) {
+			if(selectedDistritoActualiza > 0 && selectedRolActualiza && validator.isValid()) {
 				$.ajax({
 					type: 'POST',
 					data: $('#id_form_actualiza').serialize(),
@@ -646,7 +691,7 @@
 						agregarGrilla(data.lista);
 						$('#id_modal_ActualizaUsuario').modal("hide");
 						mostrarMensaje(data.MENSAJE)
-						//limpiarActualiza();
+						limpiarActualiza();
 						validator.resetForm()
 					},
 					error: function() {
