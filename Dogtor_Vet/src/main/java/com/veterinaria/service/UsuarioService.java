@@ -13,6 +13,7 @@ public interface UsuarioService {
 	public abstract void eliminaUsuario(Integer codigo_usuario);
 	public abstract Optional<Usuario> obtieneUsuarioPorId(Integer codigo_usuario);
 	public abstract Usuario insertaUsuario(Usuario objUsuario);
+	
 	public abstract List<Usuario> listausuarioPorEmailYContrasena(String email_usuario, String contrasena_usuario);
 	public abstract List<Usuario> listaUsuarioPorNombre(String nombre_usuario);
 	
@@ -20,4 +21,6 @@ public interface UsuarioService {
 	public abstract List<Enlace> obtenerEnlacesDeUsuario(Integer codigo_usuario);
 	public abstract List<Rol> obtenerRolesDeUsuario(Integer codigo_usuario);
 	public Page<Usuario> findAll(Pageable pageable);
+	
+	public abstract List<Usuario> obtenerUsuarioPorEmail(String email_usuario);
 }

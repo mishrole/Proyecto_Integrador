@@ -165,23 +165,12 @@
 						data: $('#id_form').serialize(),
 						url: 'registraCliente',
 						success: function(data) {
-							$('#id_codigo_usuario').val(data.COD_USER);
-							$.ajax({
-								type: 'POST',
-								data: $('#id_form_rol').serialize(),
-								url: 'registraDetalleRolUsuario',
-								success: function(dataRol) {
-									mostrarMensaje(data.MENSAJE)
-									limpiar();
-									validator.resetForm()
-								},
-								error: function() {
-									mostrarMensaje(MSG_ERROR)
-								}
-							});
+							mostrarMensaje(data.MENSAJE)
+							limpiar();
+							validator.resetForm();
 						},
 						error: function() {
-							mostrarMensaje(MSG_ERROR)
+							mostrarMensaje(MSG_ERROR);
 						}
 					});
 					

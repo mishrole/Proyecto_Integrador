@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row">
             <h3 class="text-principal-color mb-3 mt-3">Bienvenido ${sessionScope.objUsuario.nombre_usuario} ${sessionScope.objUsuario.apellido_usuario}</h3>
-            <div class="col-12 d-flex justify-content-center align-items-center mt-3 mb-3">
+            <div class="col-12 d-md-flex text-center justify-content-center align-items-center mt-3 mb-3">
             	<div class="col-12 col-md-3">
             		<a class="btn btn-primary" href="verUsuario">Mantenimiento de Usuario</a>
             	</div>

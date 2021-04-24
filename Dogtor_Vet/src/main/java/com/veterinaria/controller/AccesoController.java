@@ -42,6 +42,11 @@ public class AccesoController {
 			List<Enlace> menus = service.obtenerEnlacesDeUsuario(usuario.getCodigo_usuario());
 			List<Rol> roles = service.obtenerRolesDeUsuario(usuario.getCodigo_usuario());
 			
+			if(roles.size() < 1 || menus.size() < 1) {
+				request.setAttribute("MENSAJE", "El usuario no ha sido habilitado");
+				return "iniciaSesion";
+			}
+			
 			session.setAttribute("objUsuario", usuario);
 			session.setAttribute("objMenus", menus);
 			session.setAttribute("objRoles", roles);

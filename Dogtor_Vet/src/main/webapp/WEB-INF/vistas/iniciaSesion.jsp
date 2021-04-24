@@ -64,10 +64,10 @@
 		
 	$(document).ready(function() {
 		
-		$("#success-alert").fadeTo(1000, 500).slideUp(500, function(){
-		    $("#success-alert").slideUp(500);
+		$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+		    setTimeout($("#success-alert").slideUp(500), 2000);
 		});
-		
+
 		const btnRegister = $('#iniciar_sesion');
 		
 		$('#id_form').bootstrapValidator({

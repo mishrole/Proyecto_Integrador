@@ -43,4 +43,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
 	public Page<Usuario> findAll(Pageable pageable);
 	
+	@Query("Select u from Usuario u where u.email_usuario = :param_email")
+	public abstract List<Usuario> obtenerUsuarioPorEmail(@Param("param_email") String email_usuario);
+	
 }

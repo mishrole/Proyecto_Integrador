@@ -10,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.veterinaria.entity.DetalleUsuarioRol;
+import com.veterinaria.entity.DetalleUsuarioRolPK;
 import com.veterinaria.entity.Usuario;
+import com.veterinaria.service.DetalleUsuarioRolService;
 import com.veterinaria.service.UsuarioService;
 
 @Controller
@@ -19,6 +22,9 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private DetalleUsuarioRolService detalleUsuarioRolService;
+	
 	/* Nueva cuenta de tipo Cliente */
 	
 	@RequestMapping("/nuevaCuenta")
@@ -26,21 +32,44 @@ public class UsuarioController {
 		return "registraCliente";
 	}
 	
+	/* NOTA: Esto es momentáneo, necesitamos usar @Transaction en el service para hacer rollback si falla el registro */
+	
 	@RequestMapping("/registraCliente")
 	@ResponseBody
 	public Map<String, Object> registra(Usuario objUsuario) {
 		
 		Map<String, Object> salida = new HashMap<>();
-		Usuario objSalida = usuarioService.insertaUsuario(objUsuario);
 		
-		if (objSalida == null) {
-			salida.put("MENSAJE", "El registro no pudo ser completado");
+		List<Usuario> verificarEmail = usuarioService.obtenerUsuarioPorEmail(objUsuario.getEmail_usuario());
+		
+		if(verificarEmail.size() < 1) {
+			Usuario objSalida = usuarioService.insertaUsuario(objUsuario);
+			
+			if (objSalida == null) {
+				salida.put("MENSAJE", "El registro de cliente no pudo ser completado");
+			} else {
+				DetalleUsuarioRolPK objRolUsuarioPK = new DetalleUsuarioRolPK();
+				objRolUsuarioPK.setCodigo_rol_usuario(2); // Rol 2 = Cliente
+				objRolUsuarioPK.setCodigo_usuario(objSalida.getCodigo_usuario());
+				
+				DetalleUsuarioRol objRolUsuario = new DetalleUsuarioRol();
+				objRolUsuario.setObjDetalleUsuarioRolPK(objRolUsuarioPK);
+				
+				DetalleUsuarioRol objDetalleSalida = detalleUsuarioRolService.insertaUsuarioRol(objRolUsuario);
+				
+				if(objDetalleSalida == null) {
+					usuarioService.eliminaUsuario(objSalida.getCodigo_usuario());
+					salida.put("MENSAJE", "La cuenta no pudo ser creada");	
+				} else {
+					salida.put("MENSAJE", "¡Registro exitoso!");
+				}
+			}
 		} else {
-			salida.put("MENSAJE", "¡Registro exitoso!");
-			salida.put("COD_USER", objSalida.getCodigo_usuario());
+			salida.put("MENSAJE", "El email ya se encuentra en uso");
 		}
 		
 		return salida;
+
 	}
 	
 	/* Login de Usuario */
