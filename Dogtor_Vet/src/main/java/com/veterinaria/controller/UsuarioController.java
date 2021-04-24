@@ -66,6 +66,7 @@ public class UsuarioController {
 			}
 		} else {
 			salida.put("MENSAJE", "El email ya se encuentra en uso");
+			salida.put("VALIDACION", "no-reset");
 		}
 		
 		return salida;

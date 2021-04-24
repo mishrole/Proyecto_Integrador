@@ -24,6 +24,10 @@ textarea#id_descripcion {
 	min-height: 100px !important;
 }
 
+.inputErrorMessage {
+	border: 1px solid red !important;
+}
+
 main {
 	margin-bottom: 3rem;
 }

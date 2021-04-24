@@ -65,6 +65,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
 	<script type="text/javascript" src="js/global.js"></script>
+	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
 
 	<script type="text/javascript">
 		
@@ -165,9 +166,15 @@
 						data: $('#id_form').serialize(),
 						url: 'registraCliente',
 						success: function(data) {
-							mostrarMensaje(data.MENSAJE)
-							limpiar();
-							validator.resetForm();
+							if(data.VALIDACION == "no-reset") {
+								createInlineErroMessage($('#id_email'), 'Ingrese un email diferente', 'email');
+								$('#id_email').addClass('inputErrorMessage');
+							} else {
+								limpiar();
+								validator.resetForm();
+							}
+							
+							mostrarMensaje(data.MENSAJE);
 						},
 						error: function() {
 							mostrarMensaje(MSG_ERROR);
@@ -178,6 +185,13 @@
 					passwordDoesntMatch.innerHTML = 'Las contraseñas deben coincidir';
 					inputPasswordValidate.after(passwordDoesntMatch);
 				}
+			}
+		});
+		
+		$('#id_email').keyup(function() {
+			if($('#emailErrorMessage')) {
+				$('#id_email').removeClass('inputErrorMessage');
+				$('#emailErrorMessage').remove();
 			}
 		});
 		
