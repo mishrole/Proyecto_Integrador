@@ -10,8 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.veterinaria.entity.CategoriaProducto;
+import com.veterinaria.entity.Marca;
 import com.veterinaria.entity.Producto;
+import com.veterinaria.entity.Proveedor;
+import com.veterinaria.service.CategoriaProductoService;
+import com.veterinaria.service.MarcaService;
 import com.veterinaria.service.ProductoService;
+import com.veterinaria.service.ProveedorService;
 
 @Controller
 public class ProductoController {
@@ -19,6 +25,18 @@ public class ProductoController {
 	@Autowired
 	private ProductoService service;
 	
+	/*
+	@Autowired
+	private MarcaService marcaService;
+	
+	@Autowired
+	private CategoriaProductoService categoriaService;
+	
+
+	
+	@Autowired
+	private ProveedorService proveedorService;
+	*/
 	@RequestMapping("/verProducto")
 	public String verRegistra() {
 		return "crudProducto";
@@ -29,6 +47,29 @@ public class ProductoController {
 	public List<Producto> listaProductoPorNombre(String nombre_producto) {
 		return service.listaProductoPorNombre(nombre_producto.trim());
 	}
+	/*
+	@RequestMapping("/TraerMarcas")
+	@ResponseBody
+	public List<String> traeMarcaPorNombre() {
+		return marcaService.traeMarcaPorNombre();
+	}
+	
+	
+	@RequestMapping("/listaCategoria")
+	@ResponseBody
+	public List<CategoriaProducto> listaCategoriaProducto() {
+		return categoriaService.listaCategoriaProducto();
+	}
+	
+	
+	
+	@RequestMapping("/listaProveedor")
+	@ResponseBody
+	public List<Proveedor> listaProveedor() {
+		return proveedorService.listaProveedor();
+	}
+	*/
+	
 	/*
 	@RequestMapping("/registraProducto")
 	@ResponseBody
@@ -45,6 +86,8 @@ public class ProductoController {
 		
 		return salida;
 	}*/
+	
+	
 	
 	@RequestMapping("/registraProducto")
 	@ResponseBody

@@ -1,5 +1,6 @@
 package com.veterinaria.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,17 +29,20 @@ public class ServicioController {
 	
 	@RequestMapping("/listaServicioPorNombre")
 	@ResponseBody
-	public List<Servicio> listaServicioPorNombre(String filtro) {
-		return service.listaServicioPorNombreLike(filtro.trim() + "%");
+	public List<Servicio> listaServicioPorNombre(String nombre_servicio) {
+		return service.listaServicioPorNombreLike(nombre_servicio.trim());
 	}
 	
 	@RequestMapping("/registraServicio")
 	@ResponseBody
-	public Map<String, Object> registra(Servicio obj) {
+	public Map<String, Object> registra(Servicio objServicio) {
 		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		objServicio.setInicio_turno_servicio(new Date());
+		objServicio.setFin_turno_servicio(new Date());
 		Servicio objSalida = null;
 		try {
-			objSalida = service.insertaActualizaServicio(obj);
+			objSalida = service.insertaServicio(objServicio);
 			if (objSalida == null) {
 				salida.put("MENSAJE", "El registro no pudo ser completado");
 			} else {
@@ -55,12 +59,12 @@ public class ServicioController {
 	
 	@RequestMapping("/actualizaServicio")
 	@ResponseBody
-	public Map<String, Object> actualiza(Servicio obj) {
+	public Map<String, Object> actualiza(Servicio objServicio) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		try {
-			Optional<Servicio> option = service.obtienePorId(obj.getCodigo_servicio());
+			Optional<Servicio> option = service.obtienePorId(objServicio.getCodigo_servicio());
 			if (option.isPresent()) {
-				Servicio objSalida = service.insertaServicio(obj);
+				Servicio objSalida = service.insertaServicio(objServicio);
 				if (objSalida == null) {
 					salida.put("MENSAJE", "La actualización no pudo ser completada");
 				} else {
@@ -81,12 +85,12 @@ public class ServicioController {
 
 	@RequestMapping("/eliminaServicio")
 	@ResponseBody
-	public Map<String, Object> elimina(int id) {
+	public Map<String, Object> elimina(Integer codigo_servicio) {
 		Map<String, Object> salida = new HashMap<String, Object>();
-		Optional<Servicio> option = service.obtienePorId(id);
+		Optional<Servicio> option = service.obtienePorId(codigo_servicio);
 		try {
 			if (option.isPresent()) {
-				service.eliminaServicio(id);
+				service.eliminaServicio(codigo_servicio);
 				salida.put("MENSAJE", "¡Eliminación exitosa!");
 			} else {
 				salida.put("MENSAJE", "Error, la mascota no existe");

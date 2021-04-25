@@ -18,6 +18,11 @@ public class MarcaServiceImplem implements MarcaService {
 	public List<Marca> listaMarca() {
 		return repository.listaMarca();
 	}
+	/*
+	@Override
+	public List<String> traeMarcaPorNombre() {
+		return repository.traeMarcaPorNombre();
+	}
 	
-	
+	*/
 }

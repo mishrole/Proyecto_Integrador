@@ -6,4 +6,6 @@ import com.veterinaria.entity.Marca;
 
 public interface MarcaService {
 	public abstract List<Marca> listaMarca();
+	
+	/*public abstract List<String> traeMarcaPorNombre();*/
 }

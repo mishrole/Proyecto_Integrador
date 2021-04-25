@@ -26,23 +26,18 @@ public class ServicioServiceImplem implements ServicioService {
 	}
 
 	@Override
-	public Servicio insertaActualizaServicio(Servicio obj) {
-		return repository.save(obj);
-	}
-
-	@Override
 	public Optional<Servicio> obtienePorId(Integer codigo_servicio) {
 		return repository.findById(codigo_servicio);
 	}
 
 	@Override
-	public void eliminaServicio(Integer id) {
-		repository.deleteById(id);
+	public void eliminaServicio(Integer codigo_servicio) {
+		repository.deleteById(codigo_servicio);
 		
 	}
 
 	@Override
-	public List<Servicio> listaServicioPorNombreLike(String filtro) {
-		return repository.listaServicioPorNombreLike(filtro);
+	public List<Servicio> listaServicioPorNombreLike(String nombre_servicio) {
+		return repository.listaServicioPorNombreLike(nombre_servicio+"%");
 	}
 }

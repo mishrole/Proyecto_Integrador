@@ -35,13 +35,15 @@ public class Servicio {
 	private Integer codigo_dia_semana;
 	
 	@Column(name = "inicio_turno_servicio")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
+	//@DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
+	@DateTimeFormat(pattern = "HH:mm")
 	private Date inicio_turno_servicio;
 	
 	@Column(name = "fin_turno_servicio")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
+	//@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
 	private Date fin_turno_servicio;
 	
 	@Column(name = "nombre_servicio")

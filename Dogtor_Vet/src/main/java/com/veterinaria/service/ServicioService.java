@@ -8,8 +8,7 @@ import com.veterinaria.entity.Servicio;
 public interface ServicioService {
 	public abstract Servicio insertaServicio(Servicio objServicio);
 	public abstract List<Servicio> listaServicio();
-	public abstract Servicio insertaActualizaServicio(Servicio obj);
 	public abstract Optional<Servicio> obtienePorId(Integer codigo_servicio);
-	public abstract void eliminaServicio(Integer id);
-	public abstract List<Servicio> listaServicioPorNombreLike(String filtro);
+	public abstract void eliminaServicio(Integer codigo_servicio);
+	public abstract List<Servicio> listaServicioPorNombreLike(String nombre_servicio);
 }

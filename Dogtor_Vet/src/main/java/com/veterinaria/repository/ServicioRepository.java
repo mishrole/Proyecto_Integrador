@@ -10,5 +10,5 @@ import com.veterinaria.entity.Servicio;
 
 public interface ServicioRepository extends JpaRepository<Servicio, Integer> {
 	@Query("Select a from Servicio a where a.nombre_servicio like :fil")
-	public abstract List<Servicio> listaServicioPorNombreLike(@Param("fil") String filtro);
+	public abstract List<Servicio> listaServicioPorNombreLike(@Param("fil") String nombre_servicio);
 }

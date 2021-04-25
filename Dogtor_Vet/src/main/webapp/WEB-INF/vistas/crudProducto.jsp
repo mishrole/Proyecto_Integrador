@@ -143,7 +143,7 @@
                       
 					  	<div class="col-12 col-md-6 mb-3">
 					  		<div class="form-floating">
-		                      	<select class="form-select" id="select_marca" name="codigo_marca" aria-label="Default select example">
+		                      	<select class="form-select" id="select_marca" name="tb_marca.codigo_marca" aria-label="Default select example">
 								  <option selected value="0">Seleccione Marca</option>
 								</select>
 								<label for="select_marca">Marca</label>
@@ -357,6 +357,8 @@
 	<script type="text/javascript">
 	
 	var selectedMarcaActualiza, selectedCategoriaActualiza, selectedProveedorActualiza, countTextareaSimpleActualiza;
+	
+	
 	
 	function agregarGrilla(lista) {
 		 $('#id_table').DataTable().clear();

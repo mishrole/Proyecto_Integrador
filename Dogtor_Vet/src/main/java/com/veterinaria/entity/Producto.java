@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -46,13 +47,13 @@ public class Producto {
 	@Column(name = "foto3_producto")
 	private String foto3_producto;
 	
-	@Column(name = "codigo_marca")
+	@JoinColumn(name = "codigo_marca")
 	private Integer codigo_marca;
 	
-	@Column(name = "codigo_categoria_producto")
+	@JoinColumn(name = "codigo_categoria_producto")
 	private Integer codigo_categoria_producto;
 	
-	@Column(name = "codigo_proveedor")
+	@JoinColumn(name = "codigo_proveedor")
 	private Integer codigo_proveedor;
 
 	public Integer getCodigo_producto() {

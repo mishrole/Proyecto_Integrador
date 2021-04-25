@@ -11,4 +11,9 @@ public interface MarcaRepository extends JpaRepository<Marca, Integer> {
 	
 	@Query("Select m from Marca m")
 	public abstract List<Marca> listaMarca();
+	
+	/*
+	@Query("Select distinct x.NOMBRE_MARCA from tb_marca x")
+	public abstract List<String> traeMarcaPorNombre();
+	*/
 }
