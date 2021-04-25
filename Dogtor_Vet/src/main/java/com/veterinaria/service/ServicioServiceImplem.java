@@ -38,11 +38,10 @@ public class ServicioServiceImplem implements ServicioService {
 	@Override
 	public void eliminaServicio(Integer id) {
 		repository.deleteById(id);
-		
 	}
 
 	@Override
-	public List<Servicio> listaServicioPorNombreLike(String filtro) {
-		return repository.listaServicioPorNombreLike(filtro);
+	public List<Servicio> listaServicioPorNombreLike(String nombre_servicio) {
+		return repository.listaServicioPorNombreLike(nombre_servicio + "%");
 	}
 }

@@ -11,5 +11,5 @@ public interface ServicioService {
 	public abstract Servicio insertaActualizaServicio(Servicio obj);
 	public abstract Optional<Servicio> obtienePorId(Integer codigo_servicio);
 	public abstract void eliminaServicio(Integer id);
-	public abstract List<Servicio> listaServicioPorNombreLike(String filtro);
+	public abstract List<Servicio> listaServicioPorNombreLike(String nombre_servicio);
 }

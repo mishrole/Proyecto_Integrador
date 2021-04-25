@@ -29,7 +29,7 @@
     			<div class="row mt-3 mb-3">
     				<div class="col-12">
 	    				<div class="col-10 col-md-2">
-							<button type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraMascota" class='w-100 btn btn-primary btn-generic'>Nuevo Servicio</button>
+							<button type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio" class='w-100 btn btn-primary btn-generic'>Nuevo Servicio</button>
 						</div>
     				</div>
     			</div>
@@ -148,10 +148,10 @@
 					                      	</div>
 					                      	<div class="col-12 col-md-6 mb-3">
 						                      	<div class="form-floating">
-							                      	<select class="form-select" id="select_codigo_dia" name="codigo_dia_semana" aria-label="Default select example">
+							                      	<select class="form-select" id="select_dia_semana" name="codigo_dia_semana" aria-label="Default select example">
 													  <option selected value="0">Seleccione Día</option>
 													</select>
-													<label for="select_codigo_dia">Día</label>
+													<label for="select_dia_semana">Día</label>
 						                      </div>
 					                      	</div>
 					                      </div>
@@ -185,7 +185,7 @@
     		</div>
     	</div>
     	
-    	<div class="modal fade" id="id_modal_ActualizaMascota">
+    	<div class="modal fade" id="id_modal_ActualizaServicio">
     		<div class="modal-dialog">
     			<div class="modal-content">
     				<div class="modal-header">
@@ -205,19 +205,19 @@
 					                   	  <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="form-floating">
-										  			<input type="time" class="form-control" id="id_nombre_actualiza" name="nombre_servicio" autocomplete="on">
+										  			<input type="text" class="form-control" id="id_nombre_actualiza" name="nombre_servicio" autocomplete="on">
 					                        		<label for="id_nombre_actualiza">Nombre</label>
 										  		</div>
 										  	</div>
 										  	<div class="col-12 col-md-4 mb-3">
 											  	<div class="col form-floating">
-										  			<input type="time" class="form-control" id="id_precio_actualiza" name="precio_servicio" autocomplete="on" >
+										  			<input type="text" class="form-control" id="id_precio_actualiza" name="precio_servicio" autocomplete="on" >
 						                   			<label for="id_precio_actualiza">Precio</label>
 										  		</div>
 										  	</div>
 										  	<div class="col-12 col-md-4 mb-3">
 											  	<div class="col form-floating">
-										  			<input type="time" class="form-control" id="id_limite_actualiza" name="limite_diario_servicio" autocomplete="on" >
+										  			<input type="text" class="form-control" id="id_limite_actualiza" name="limite_diario_servicio" autocomplete="on" >
 						                   			<label for="id_limite_actualiza">Límite</label>
 										  		</div>
 										  	</div>
@@ -257,10 +257,10 @@
 					                      	</div>
 					                      	<div class="col-12 col-md-6 mb-3">
 						                      	<div class="form-floating">
-							                      	<select class="form-select" id="select_codigo_dia_actualiza" name="codigo_dia_semana" aria-label="Default select example">
+							                      	<select class="form-select" id="select_dia_semana_actualiza" name="codigo_dia_semana" aria-label="Default select example">
 													  <option selected value="0">Seleccione Día</option>
 													</select>
-													<label for="select_codigo_dia_actualiza">Día</label>
+													<label for="select_dia_semana_actualiza">Día</label>
 						                      </div>
 					                      	</div>
 					                      </div>
@@ -382,32 +382,19 @@
 			selectedEspecialistaActualiza = codigo_especialista;
 			selectedDiaSemanaActualiza = codigo_dia_semana;
 			
-			$('#id_mascota_actualiza').val(codigo_mascota);
-			$('#id_propietario_actualiza').val(codigo_propietario);
-			$('#id_nombre_actualiza').val(nombre_mascota);
-			$('#id_foto_actualiza').val(foto_mascota);
-			$('#select_sexo_actualiza').val(codigo_sexo_mascota);
-			$('#select_especie_actualiza').val(codigo_especie_mascota);
-			$('#select_color_actualiza').val(codigo_color_mascota);
-			$('#id_fecha_nacimiento_actualiza').val(fecha_nacimiento_mascota);
-			$('#id_identificacion_actualiza').val(codigo_identificacion_mascota);
-			$('#id_sanitaria_actualiza').val(codigo_cartilla_sanitaria);
+			$('#id_servicio_actualiza').val(codigo_servicio);
+			$('#id_nombre_actualiza').val(nombre_servicio);
+			$('#id_precio_actualiza').val(precio_servicio);
+			$('#id_limite_actualiza').val(limite_diario_servicio);
+			$('#id_descripcion_actualiza').val(descripcion_servicio);
+			$('#select_tipo_servicio_actualiza').val(codigo_tipo_servicio);
+			$('#select_especialidad_actualiza').val(codigo_especialidad);
+			$('#select_especialista_actualiza').val(codigo_especialista);
+			$('#select_dia_semana_actualiza').val(codigo_dia_semana);
+			$('#id_inicio_turno_actualiza').val(inicio_turno_servicio);
+			$('#id_fin_turno_actualiza').val(fin_turno_servicio);
 			
-			$.getJSON('listaRaza', {"especie":codigo_especie_mascota}, function(data) {
-				$("#select_raza_actualiza > option.option__raza").remove();
-				
-				$.each( data, function( index, value) {
-					let option = document.createElement('option');
-					option.value = value.codigo_raza_mascota;
-					option.text = value.nombre_raza_mascota;
-					option.className = "option__raza";
-					$('#select_raza_actualiza').append(option);
-				});
-				
-				$('#select_raza_actualiza').val(codigo_raza_mascota);
-			});
-			
-			$('#id_modal_ActualizaMascota').modal("show");
+			$('#id_modal_ActualizaServicio').modal("show");
 		}
 		
 	$(document).ready(function() {
@@ -417,12 +404,12 @@
 		const selectTipoServicio = $('#select_tipo_servicio');
 		const selectEspecialidad = $('#select_especialidad');
 		const selectEspecialista = $('#select_especialista');
-		const selectCodigoDia = $('#select_codigo_dia');
+		const selectDiaSemana = $('#select_dia_semana');
 		
 		const selectTipoServicioActualiza = $('#select_tipo_servicio_actualiza');
 		const selectEspecialidadActualiza = $('#select_especialidad_actualiza');
-		const selectEspecialistaActualiza = $('select_especialista_actualiza');
-		const selectCodigoDiaActualiza = $('#select_codigo_dia_actualiza');
+		const selectEspecialistaActualiza = $('#select_especialista_actualiza');
+		const selectDiaSemanaActualiza = $('#select_dia_semana_actualiza');
 		
 		// Botones
 		
@@ -441,9 +428,10 @@
 			modalRegister.modal("show");
 		});
 		
-		// Filtrar Mascota por Nombre
+		// Filtrar Servicio por Nombre
 		
 		btnFilter.click(function() {
+			alert("Filtro")
 			const filterText = $('#id_nombre_filtro').val();
 			
 			$.getJSON("listaServicioPorNombre", {"nombre_servicio": filterText}, function(lista) {
@@ -499,7 +487,7 @@
 		generarSelectEspecialista(selectEspecialista);
 		generarSelectEspecialista(selectEspecialistaActualiza);
 		
-		function generarSelectCodigoDia(idSelectDia) {
+		function generarSelectDiaSemana(idSelectDia) {
 			$.getJSON('listaEspecialidad', function(data) {
 				$.each( data, function(index, value) {
 					let option = document.createElement('option');
@@ -510,8 +498,8 @@
 			})
 		}
 		
-		generarSelectCodigoDia(selectCodigoDia);
-		generarSelectCodigoDia(selectCodigoDiaActualiza);
+		generarSelectDiaSemana(selectDiaSemana);
+		generarSelectDiaSemana(selectDiaSemanaActualiza);
 		
 		var selectedTipoServicio, selectedEspecialidad, selectedEspecialista, selectedDiaSemana;
 		
@@ -532,9 +520,9 @@
 			validateSelect(selectEspecialista, selectedEspecialista, 'dia');
 		});
 		
-		selectCodigoDia.change(function(e) {
-			selectedCodigoDia = e.target.selectedIndex;
-			validateSelect(selectCodigoDia, selectedCodigoDia, 'dia');
+		selectDiaSemana.change(function(e) {
+			selectedDiaSemana = e.target.selectedIndex;
+			validateSelect(selectDiaSemana, selectedDiaSemana, 'dia');
 		});
 		
 		// Validar selects cuando cambie el option en Actualizar
@@ -554,9 +542,9 @@
 			validateSelect(selectEspecialistaActualiza, selectedEspecialistaActualiza, 'especialista');
 		});
 		
-		selectCodigoDiaActualiza.change(function(e) {
-			selectedCodigoDiaActualiza = e.target.selectedIndex;
-			validateSelect(selectCodigoDiaActualiza, selectedCodigoDiaActualiza, 'dia');
+		selectDiaSemanaActualiza.change(function(e) {
+			selectedDiaSemanaActualiza = e.target.selectedIndex;
+			validateSelect(selectDiaSemanaActualiza, selectedDiaSemanaActualiza, 'dia');
 		});
 		
 		$('#id_form_registra').bootstrapValidator({
@@ -567,7 +555,7 @@
 				validating: 'glyphicon glyphicon-refresh'
 			},
 			fields: {
-				nombre_mascota: {
+				nombre_servicio: {
 					selector: '#id_nombre',
 					validators: {
 						notEmpty: {
@@ -591,7 +579,7 @@
 				validating: 'glyphicon glyphicon-refresh'
 			},
 			fields: {
-				nombre_mascota: {
+				nombre_servicio: {
 					selector: '#id_nombre_actualiza',
 					validators: {
 						notEmpty: {
@@ -617,18 +605,18 @@
 			validateSelect(selectTipoServicio, selectedTipoServicio, 'tipo');
 			validateSelect(selectEspecialidad, selectedEspecialidad, 'especialidad');
 			validateSelect(selectEspecialistaActualiza, selectedEspecialista, 'especialista');
-			validateSelect(selectCodigoDiaActualiza, selectedCodigoDia, 'dia');
+			validateSelect(selectDiaSemanaActualiza, selectedDiaSemana, 'dia');
 			
-			if(selectedTipoServicio > 0 && selectedEspecialidad > 0 && selectedEspecialista > 0 && selectedCodigoDia > 0 && validator.isValid()) {
+			if(selectedTipoServicio > 0 && selectedEspecialidad > 0 && selectedEspecialista > 0 && selectedDiaSemana > 0 && validator.isValid()) {
 				$.ajax({
 					type: 'POST',
 					data: $('#id_form_registra').serialize(),
 					url: 'registraServicio',
 					success: function(data) {
 						agregarGrilla(data.lista);
-						$('#id_modal_RegistraMascota').modal("hide");
+						$('#id_modal_RegistraServicio').modal("hide");
 						mostrarMensaje(data.MENSAJE)
-						//limpiar();
+						limpiar();
 						validator.resetForm()
 					},
 					error: function() {
@@ -645,61 +633,66 @@
 			validator.validate();
 			
 			// Validar selects
-			validateSelect(selectEspecieActualiza, selectedEspecieActualiza, 'especie');
-			validateSelect(selectRazaActualiza, selectedRazaActualiza, 'raza');
-			validateSelect(selectSexoActualiza, selectedSexoActualiza, 'sexo');
-			validateSelect(selectColorActualiza, selectedColorActualiza, 'color');
+			validateSelect(selectTipoServicioActualiza, selectedTipoServicioActualiza, 'tipo');
+			validateSelect(selectEspecialidadActualiza, selectedEspecialidadActualiza, 'especialidad');
+			validateSelect(selectEspecialistaActualiza, selectedEspecialistaActualiza, 'especialista');
+			validateSelect(selectDiaSemanaActualiza, selectedDiaSemanaActualiza, 'dia');
 			
-			if(selectedEspecieActualiza > 0 && selectedColorActualiza > 0 && selectedSexoActualiza > 0 && selectedRazaActualiza > 0 && validator.isValid()) {
+			if(selectedTipoServicioActualiza > 0 && selectedEspecialidadActualiza > 0 && selectedEspecialistaActualiza > 0 && selectedDiaSemanaActualiza > 0 && validator.isValid()) {
 				$.ajax({
 					type: 'POST',
 					data: $('#id_form_actualiza').serialize(),
-					url: 'actualizaMascota',
+					url: 'actualizaServicio',
 					success: function(data) {
 						agregarGrilla(data.lista);
-						$('#id_modal_ActualizaMascota').modal("hide");
+						$('#id_modal_ActualizaServicio').modal("hide");
 						mostrarMensaje(data.MENSAJE)
 						limpiarActualiza();
-						validator.resetForm()
+						validator.resetForm();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
 		});
 
 		function limpiar() {
-			$('#id_nombre').val('');
-			$('#select_especie')[0].selectedIndex = 0;
-			$('#select_raza')[0].selectedIndex = 0;
-			$('#select_color')[0].selectedIndex = 0;
-			$('#select_sexo')[0].selectedIndex = 0;
-			$('#id_fecha_nacimiento').val('');
-			$('#id_identificacion').val('');
-			$('#id_sanitaria').val('');
-			selectedEspecie = 0;
-			selectedRaza = 0;
-			selectedColor = 0;
-			selectedSexo = 0;
+			$('#id_servicio').val("");
+			$('#id_nombre').val("");
+			$('#id_precio').val("");
+			$('#id_limite').val("");
+			$('#id_descripcion').val("");
+			$('#select_tipo_servicio')[0].selectedIndex = 0;
+			$('#select_especialidad')[0].selectedIndex = 0;
+			$('#select_especialista')[0].selectedIndex = 0;
+			$('#select_dia_semana')[0].selectedIndex = 0;
+			$('#id_inicio_turno').val("");
+			$('#id_fin_turno').val("");
+			
+			selectedTipoServicio = 0;
+			selectedEspecialidad = 0;
+			selectedEspecialista = 0;
+			selectedDiaSemana = 0;
 		}
 		
 		function limpiarActualiza() {
-			$('#id_mascota_actualiza').val('');
-			$('#id_propietario_actualiza').val('');
-			$('#id_nombre_actualiza').val('');
-			$('#id_foto_actualiza').val('');
-			$('#select_raza_actualiza')[0].selectedIndex = 0;
-			$('#select_sexo_actualiza')[0].selectedIndex = 0;
-			$('#select_especie_actualiza')[0].selectedIndex = 0;
-			$('#select_color_actualiza')[0].selectedIndex = 0;
-			$('#id_fecha_nacimiento_actualiza').val('');
-			$('#id_identificacion_actualiza').val('');
-			$('#id_sanitaria_actualiza').val('');
-			selectedEspecieActualiza = 0;
-			selectedRazaActualiza  = 0;
-			selectedColorActualiza  = 0;
-			selectedSexoActualiza  = 0;
+			$('#id_servicio_actualiza').val("");
+			$('#id_nombre_actualiza').val("");
+			$('#id_precio_actualiza').val("");
+			$('#id_limite_actualiza').val("");
+			$('#id_descripcion_actualiza').val("");
+			$('#select_tipo_servicio_actualiza')[0].selectedIndex = 0;
+			$('#select_especialidad_actualiza')[0].selectedIndex = 0;
+			$('#select_especialista_actualiza')[0].selectedIndex = 0;
+			$('#select_dia_semana_actualiza')[0].selectedIndex = 0;
+			$('#id_inicio_turno_actualiza').val("");
+			$('#id_fin_turno_actualiza').val("");
+			
+			selectedTipoServicioActualiza = 0;
+			selectedEspecialidadActualiza = 0;
+			selectedEspecialistaActualiza = 0;
+			selectedDiaSemanaActualiza = 0;
 		}
 	
 	});

@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,13 +37,13 @@ public class Servicio {
 	private Integer codigo_dia_semana;
 	
 	@Column(name = "inicio_turno_servicio")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
 	private Date inicio_turno_servicio;
 	
 	@Column(name = "fin_turno_servicio")
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "HH:mm:ss")
+	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(pattern = "HH:mm")
 	private Date fin_turno_servicio;
 	
 	@Column(name = "nombre_servicio")
@@ -55,6 +57,10 @@ public class Servicio {
 
 	@Column(name = "limite_diario_servicio")
 	private Integer limite_diario_servicio;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_especialista", insertable = false, updatable = false, nullable = false)
+	private Usuario usuario;
 
 	public Integer getCodigo_servicio() {
 		return codigo_servicio;
@@ -142,6 +148,14 @@ public class Servicio {
 
 	public void setLimite_diario_servicio(Integer limite_diario_servicio) {
 		this.limite_diario_servicio = limite_diario_servicio;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }
