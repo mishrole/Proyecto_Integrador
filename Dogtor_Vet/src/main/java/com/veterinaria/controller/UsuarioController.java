@@ -94,6 +94,12 @@ public class UsuarioController {
 		return usuarioService.listaUsuarioPorNombre(nombre_usuario.trim());
 	}
 	
+	@RequestMapping("/listaUsuarioPorRol")
+	@ResponseBody
+	public List<Usuario> listaUsuarioPorRol(Integer codigo_rol_usuario) {
+		return usuarioService.listaUsuarioPorRol(codigo_rol_usuario);
+	}
+	
 	@RequestMapping("/registraUsuario")
 	@ResponseBody
 	public Map<String, Object> register(Usuario objUsuario, Integer codigo_rol_usuario) {

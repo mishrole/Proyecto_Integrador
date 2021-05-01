@@ -15,15 +15,15 @@ import com.veterinaria.entity.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
-	@Query("Select u from Usuario u where u.email_usuario like :param_email and u.contrasena_usuario like :param_password")
-	public abstract List<Usuario> listaUsuarioPorEmailYContrasena(@Param("param_email") String email_usuario, @Param("param_password") String contrasena_usuario);
-
+	/* CONSULTA PARA CRUD */
+	
 	@Query("Select u from Usuario u where concat(u.nombre_usuario, ' ', u.apellido_usuario) like :param_usuario")
 	public abstract List<Usuario> listaUsuarioPorNombre(@Param("param_usuario") String nombre_usuario);
 	
-	@Query("Select u from Usuario u where u.codigo_usuario like :param_usuario")
-	public abstract Optional<Usuario> obtieneUsuarioPorId(@Param("param_usuario") Integer codigo_usuario);
-
+	@Query("Select u from Usuario u, DetalleUsuarioRol dur, Rol r where dur.usuario.codigo_usuario = u.codigo_usuario and "+
+	"r.codigo_rol_usuario = dur.rol.codigo_rol_usuario and dur.rol.codigo_rol_usuario = :param_rol")
+	public abstract List<Usuario> listaUsuarioPorRol(@Param("param_rol") Integer codigo_rol_usuario);
+	
 	/* LOGIN DE USUARIO, ROLES, y ENLACES */
 	
 	@Query("Select u from Usuario u where u.email_usuario = :#{#usu.email_usuario} and u.contrasena_usuario = :#{#usu.contrasena_usuario}")
@@ -45,5 +45,14 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
 	@Query("Select u from Usuario u where u.email_usuario = :param_email")
 	public abstract List<Usuario> obtenerUsuarioPorEmail(@Param("param_email") String email_usuario);
+	
+	/* LIMPIAR DESPUÉS */
+	
+	@Query("Select u from Usuario u where u.email_usuario like :param_email and u.contrasena_usuario like :param_password")
+	public abstract List<Usuario> listaUsuarioPorEmailYContrasena(@Param("param_email") String email_usuario, @Param("param_password") String contrasena_usuario);
+	
+	@Query("Select u from Usuario u where u.codigo_usuario like :param_usuario")
+	public abstract Optional<Usuario> obtieneUsuarioPorId(@Param("param_usuario") Integer codigo_usuario);
+
 	
 }
