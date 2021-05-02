@@ -807,6 +807,7 @@
 			// Validar selects
 			validateSelect(selectDistritoActualiza, selectedDistritoActualiza, 'distrito');
 			validateSelect(selectRolActualiza, selectedRolActualiza, 'rol');
+			validateSelect(selectVisibilidadActualiza, selectedVisibilidadActualiza, 'visibilidad');
 			
 			if(selectedDistritoActualiza > 0 && selectedRolActualiza > 0 && selectedVisibilidadActualiza > 0 && validator.isValid()) {
 				$.ajax({
