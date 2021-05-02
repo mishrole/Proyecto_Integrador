@@ -1,5 +1,9 @@
 package com.veterinaria.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,10 +11,18 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.veterinaria.entity.Producto;
+import com.veterinaria.repository.ProductoRepository;
 import com.veterinaria.service.ProductoService;
 
 @Controller
@@ -18,34 +30,23 @@ public class ProductoController {
 	
 	@Autowired
 	private ProductoService service;
+	private ProductoRepository productoRepo;
 	
 	@RequestMapping("/verProducto")
 	public String verRegistra() {
 		return "crudProducto";
 	}
 	
+	
+	
 	@RequestMapping("/listaProductoPorNombre")
 	@ResponseBody
 	public List<Producto> listaProductoPorNombre(String nombre_producto) {
 		return service.listaProductoPorNombre(nombre_producto.trim());
 	}
-	/*
-	@RequestMapping("/registraProducto")
-	@ResponseBody
-	public Map<String, Object> registra(Producto objProducto) {
-		
-		Map<String, Object> salida = new HashMap<>();
-		Producto objSalida = service.insertaProducto(objProducto);
-		
-		if (objSalida == null) {
-			salida.put("MENSAJE", "El registro no pudo ser completado");
-		} else {
-			salida.put("MENSAJE", "¡Registro exitoso!");
-		}
-		
-		return salida;
-	}*/
 	
+	
+	//@RequestParam(name="foto1_producto", required = false) MultipartFile imageFile,
 	@RequestMapping("/registraProducto")
 	@ResponseBody
 	public Map<String, Object> registra(Producto objProducto) {
@@ -53,7 +54,9 @@ public class ProductoController {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		Producto objSalida = null;
 		
+		
 		try {
+			
 			objSalida = service.insertaProducto(objProducto);
 			
 			if(objSalida == null) {
@@ -68,7 +71,6 @@ public class ProductoController {
 			List<Producto> lista = service.listaProducto();
 			salida.put("lista", lista);
 		}
-		
 		return salida;
 		
 	}
@@ -86,6 +88,7 @@ public class ProductoController {
 				
 				if(objSalida == null) {
 					salida.put("MENSAJE", "La actualización no pudo ser completada");
+					
 				} else {
 					salida.put("MENSAJE", "¡Actualización exitosa!");
 				}
@@ -127,4 +130,6 @@ public class ProductoController {
 		
 		return salida;
 	}
+
+	
 }

@@ -36,8 +36,8 @@ public class ServicioServiceImplem implements ServicioService {
 	}
 
 	@Override
-	public void eliminaServicio(Integer id) {
-		repository.deleteById(id);
+	public void eliminaServicio(Integer codigo_servicio) {
+		repository.deleteById(codigo_servicio);
 	}
 
 	@Override

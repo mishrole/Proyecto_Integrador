@@ -474,11 +474,11 @@
 		// Get Especialista ---- FALTA SELECT DE USUARIO + ROL
 		
 		function generarSelectEspecialista(idSelectEspecialista) {
-			$.getJSON('listaEspecialidad', function(data) {
+			$.getJSON('listaUsuarioPorRol',{"codigo_rol_usuario":3}, function(data) {
 				$.each( data, function(index, value) {
 					let option = document.createElement('option');
-					option.value = value.codigo_especialidad;
-					option.text = value.nombre_especialidad;
+					option.value = value.codigo_usuario;
+					option.text = value.nombre_usuario + " " + value.apellido_usuario;
 					idSelectEspecialista.append(option);
 				});
 			})
