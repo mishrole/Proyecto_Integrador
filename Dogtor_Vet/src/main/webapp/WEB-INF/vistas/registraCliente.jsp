@@ -21,31 +21,62 @@
                 <main class="col-10 col-md-6">
                     <form id="id_form">
                       <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Crea una cuenta</b></h1>
-                    
-                   	  <div class="form-group form-floating mb-3">
-	                      <input type="text" class="form-control" id="id_nombre" name="nombre_usuario" placeholder="John" autocomplete="on" >
-	                      <label for="id_nombre">Nombre</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="text" class="form-control" id="id_apellido" name="apellido_usuario" placeholder="Doe" autocomplete="on">
-                        <label for="id_apellido">Apellidos</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_usuario" autocomplete="on">
-                        <label for="id_fecha_nacimiento">Fecha de nacimiento</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on">
-                        <label for="id_email">Correo electrónico</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on">
-                        <label for="id_contrasena">Contraseña</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="password" class="form-control" id="id_validar_contrasena" placeholder="Password" autocomplete="off">
-                        <label for="id_validar_contrasena">Verificar contraseña</label>
-                      </div>
+                    	
+                    	<div class="form-group row">
+						  	<div class="col-12 col-md-6 mb-3">
+							  	<div class="form-floating">
+						  			<input type="text" class="form-control" id="id_nombre" name="nombre_usuario" placeholder="John" autocomplete="on" >
+	                      			<label for="id_nombre">Nombre</label>
+						  		</div>
+						  	</div>
+						  	<div class="col-12 col-md-6 mb-3">
+							  	<div class="col form-floating">
+						  			<input type="text" class="form-control" id="id_apellido" name="apellido_usuario" placeholder="Doe" autocomplete="on">
+                        			<label for="id_apellido">Apellidos</label>
+						  		</div>
+						  	</div>
+	                     </div>
+	                     
+	                     <div class="form-group row">
+						  	<div class="col-12 col-md-6 mb-3">
+							  	<div class="form-floating">
+						  			<input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_usuario" autocomplete="on">
+                        			<label for="id_fecha_nacimiento">Fecha de nacimiento</label>
+						  		</div>
+						  	</div>
+						  	<div class="col-12 col-md-6 mb-3">
+							  	<div class="form-floating">
+			                      	<select class="form-select" id="select_distrito" name="codigo_distrito" aria-label="Default select example">
+									  <option selected value="0">Seleccione Distrito</option>
+									</select>
+									<label for="select_distrito">Distrito</label>
+	                      		</div>
+						  	</div>
+	                     </div>
+	                     
+	                     <div class="form-group row">
+						  	<div class="col-12 col-md-12 mb-3">
+							  	<div class="form-floating">
+						  			<input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on">
+                        			<label for="id_email">Correo electrónico</label>
+						  		</div>
+						  	</div>
+	                     </div>
+	                     
+	                     <div class="form-group row">
+						  	<div class="col-12 col-md-6 mb-3">
+							  	<div class="form-floating">
+						  			<input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on">
+                        			<label for="id_contrasena">Contraseña</label>
+						  		</div>
+						  	</div>
+						  	<div class="col-12 col-md-6 mb-3">
+							  	<div class="col form-floating">
+						  			<input type="password" class="form-control" id="id_validar_contrasena" placeholder="Password" autocomplete="off">
+                        			<label for="id_validar_contrasena">Verificar contraseña</label>
+						  		</div>
+						  	</div>
+	                     </div>
 
                       <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_usuario">Registrar</button>
                       <p class="text-center mt-3">¿Tienes una cuenta? <a href="login">Inicia Sesión</a></p>
@@ -71,7 +102,32 @@
 		
 	$(document).ready(function() {
 		
+		const selectDistrito = $('#select_distrito');
 		const btnRegister = $('#registrar_usuario');
+		
+		// Get Distrito
+		
+		function generarSelectDistrito(idSelectDistrito) {
+			$.getJSON('listaDistrito', function(data) {
+				$.each( data, function( index, value ) {
+					let option = document.createElement('option');
+					option.value = value.codigo_distrito;
+					option.text = value.nombre_distrito;
+					idSelectDistrito.append(option);
+				});
+			});
+		}
+		
+		generarSelectDistrito(selectDistrito);
+		
+		var selectedDistrito;
+		
+		// Validar selects cuando cambie el option en Registrar
+		
+		selectDistrito.change(function(e) {
+			selectedDistrito = e.target.selectedIndex;
+			validateSelect(selectDistrito, selectedDistrito, 'distrito');
+		});
 		
 		$('#id_form').bootstrapValidator({
 			message: 'El valor no es válido',
@@ -151,6 +207,8 @@
 		
 		$('#registrar_usuario').click(function() {
 			
+			validateSelect(selectDistrito, selectedDistrito, 'distrito');
+			
 			if($('#validatePasswordMessage')) {
 				$('#validatePasswordMessage').remove()
 			}
@@ -158,7 +216,7 @@
 			var validator = $('#id_form').data('bootstrapValidator');
 			validator.validate();
 			
-			if(validator.isValid()) {
+			if(selectedDistrito > 0 && validator.isValid()) {
 				if(inputPassword.val() === inputPasswordValidate.val()) {
 					
 					$.ajax({
@@ -202,6 +260,8 @@
 			$('#id_fecha_nacimiento').val('');
 			$('#id_contrasena').val('');
 			$('#id_validar_contrasena').val('');
+			$('#select_distrito')[0].selectedIndex = 0;
+			selectedDistrito = 0;
 		}
 	});
 	

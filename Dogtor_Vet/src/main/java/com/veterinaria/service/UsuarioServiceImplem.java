@@ -7,13 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.veterinaria.entity.DetalleUsuarioRolPK;
 import com.veterinaria.entity.Enlace;
 import com.veterinaria.entity.Rol;
 import com.veterinaria.entity.Usuario;
-import com.veterinaria.repository.DetalleUsuarioRolRepository;
 import com.veterinaria.repository.UsuarioRepository;
 
 @Service
@@ -51,6 +48,11 @@ public class UsuarioServiceImplem implements UsuarioService {
 	public List<Usuario> listaUsuarioPorNombre(String nombre_usuario) {
 		return repository.listaUsuarioPorNombre(nombre_usuario+"%");
 	}
+	
+	@Override
+	public List<Usuario> listaUsuarioPorRol(Integer codigo_rol_usuario) {
+		return repository.listaUsuarioPorRol(codigo_rol_usuario);
+	}
 
 	@Override
 	public Usuario login(Usuario objUsuario) {
@@ -76,5 +78,11 @@ public class UsuarioServiceImplem implements UsuarioService {
 	public List<Usuario> obtenerUsuarioPorEmail(String email_usuario) {
 		return repository.obtenerUsuarioPorEmail(email_usuario);
 	}
+	/*
+	@Override
+	public void actualizaVisibilidadUsuario(Integer codigo_usuario, Integer codigo_visibilidad) {
+		repository.actualizaVisibilidadUsuario(codigo_usuario, codigo_visibilidad);
+	}
+	*/
 
 }

@@ -51,9 +51,16 @@ public class Usuario {
 	@Column(name = "codigo_distrito")
 	private Integer codigo_distrito;
 	
+	@Column(name = "codigo_visibilidad")
+	private Integer codigo_visibilidad;
+	
 	@ManyToOne
 	@JoinColumn(name = "codigo_distrito", insertable = false, updatable = false, nullable = false)
 	private Distrito distrito;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_visibilidad", insertable = false, updatable = false, nullable = false)
+	private Visibilidad visibilidad;
 
 	public Integer getCodigo_usuario() {
 		return codigo_usuario;
@@ -157,6 +164,22 @@ public class Usuario {
 
 	public void setDistrito(Distrito distrito) {
 		this.distrito = distrito;
+	}
+
+	public Integer getCodigo_visibilidad() {
+		return codigo_visibilidad;
+	}
+
+	public void setCodigo_visibilidad(Integer codigo_visibilidad) {
+		this.codigo_visibilidad = codigo_visibilidad;
+	}
+
+	public Visibilidad getVisibilidad() {
+		return visibilidad;
+	}
+
+	public void setVisibilidad(Visibilidad visibilidad) {
+		this.visibilidad = visibilidad;
 	}
 
 }

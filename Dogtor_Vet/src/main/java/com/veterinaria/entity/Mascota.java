@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -45,6 +47,29 @@ public class Mascota {
 	
 	@Column(name = "codigo_cartilla_sanitaria")
 	private String codigo_cartilla_sanitaria;
+	
+	@Column(name = "codigo_visibilidad")
+	private Integer codigo_visibilidad;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_raza_mascota", insertable = false, updatable = false, nullable = false)
+	private Raza raza;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_sexo_mascota", insertable = false, updatable = false, nullable = false)
+	private Sexo sexo;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_especie_mascota", insertable = false, updatable = false, nullable = false)
+	private Especie especie;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_color_mascota", insertable = false, updatable = false, nullable = false)
+	private Color color;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_visibilidad", insertable = false, updatable = false, nullable = false)
+	private Visibilidad visibilidad;
 
 	public Integer getCodigo_mascota() {
 		return codigo_mascota;
@@ -133,4 +158,53 @@ public class Mascota {
 	public void setFoto_mascota(String foto_mascota) {
 		this.foto_mascota = foto_mascota;
 	}
+
+	public Raza getRaza() {
+		return raza;
+	}
+
+	public void setRaza(Raza raza) {
+		this.raza = raza;
+	}
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+
+	public Especie getEspecie() {
+		return especie;
+	}
+
+	public void setEspecie(Especie especie) {
+		this.especie = especie;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Integer getCodigo_visibilidad() {
+		return codigo_visibilidad;
+	}
+
+	public void setCodigo_visibilidad(Integer codigo_visibilidad) {
+		this.codigo_visibilidad = codigo_visibilidad;
+	}
+
+	public Visibilidad getVisibilidad() {
+		return visibilidad;
+	}
+
+	public void setVisibilidad(Visibilidad visibilidad) {
+		this.visibilidad = visibilidad;
+	}
+	
 }

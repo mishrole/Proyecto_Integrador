@@ -25,33 +25,32 @@
     <div class="container">
     	<div class="row">
     		<div class="col-12" >
-    		
     			<div class="row mt-3 mb-3">
-    				<div class="col-12">
-	    				<div class="col-10 col-md-2">
-							<button type="button" data-toggle="modal" id="id_btnModal_RegistraUsuario" data-target="#id_modal_RegistraUsuario" class='w-100 btn btn-primary btn-generic'>Nuevo Usuario</button>
+    				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
+    				    <div class="col-10 col-md-2">
+		    				<div class="col-12">
+								<button type="button" data-toggle="modal" id="id_btnModal_RegistraUsuario" data-target="#id_modal_RegistraUsuario" class='w-100 btn btn-primary btn-generic'>Nuevo Usuario</button>
+							</div>
+    					</div>
+						<div class="col-10 col-md-6" >
+							<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_usuario" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
 						</div>
-    				</div>
+						<div class="col-10 col-md-2" >
+							<button type="button" class="w-100 btn btn-primary" id="filtra_usuario">Filtrar Usuarios</button>
+						</div>
+					</div>
     			</div>
     		
 				<form id="id_form_elimina" action="eliminaUsuario">
-					<input type="hidden" id="id_elimina" name="codigo_usuario">
+					<input type="text" id="id_elimina" name="codigo_usuario" class="d-none">
+					<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
 				</form>
-		     
-				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
-					<div class="col-10 col-md-6" >
-						<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_usuario" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
-					</div>
-					<div class="col-10 col-md-2" >
-						<button type="button" class="w-100 btn btn-primary" id="filtra_usuario">Filtrar Usuarios</button>
-					</div>
-				</div>
 					
 				<div class="row mt-3 mb-3" > 
 					<div class="col-12" >
 						<div class="content table-responsive" >
 						
-							<table id="id_table" class="table table-borderless" >
+							<table id="id_table" class="table table-borderless text-center" >
 								<thead>
 									<tr>
 										<th>ID</th>
@@ -60,12 +59,13 @@
 										<th>Nombre</th>
 										<th>Apellido</th>
 										<th>Nacimiento</th>
-										<th>Género</th>
+										<!-- <th>Género</th>
 										<th>DNI</th>
 										<th>Dirección</th>
 										<th>Referencia</th>
-										<th>Teléfono</th>
+										<th>Teléfono</th> -->
 										<th>Distrito</th>
+										<th>Estado</th>
 										<th>Actualiza</th>
 										<th>Elimina</th>
 									</tr>
@@ -93,6 +93,8 @@
 					            <div class="col-12 justify-content-center align-items-center d-flex">
 					                <main class="col-12 col-md-10">
 					                    <form id="id_form_registra">
+					                    
+					                    <input type="text" id="id_visibilidad" name="codigo_visibilidad" value="1" class="d-none">
 					                    
 					                    <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
@@ -133,12 +135,10 @@
 										  	</div>
 										  	
 										  	<div class="col-12 col-md-6 mb-3">
-										  		<div class="form-floating">
-							                      	<select class="form-select" id="select_rol" name="codigo_rol_usuario" aria-label="Default select example">
-													  <option selected value="0">Seleccione Rol</option>
-													</select>
-													<label for="select_rol">Rol</label>
-					                      		</div>
+												<div class="col form-floating">
+										  			<input type="text" class="form-control" id="id_genero" name="genero_usuario" autocomplete="on" >
+						                    		<label for="id_genero">Género</label>
+										  		</div>
 										  	</div>
 					                      </div>
 					                      
@@ -158,11 +158,13 @@
 					                      </div>
 					                      
 					                      <div class="form-group row">
-										  	<div class="col-12 col-md-6 mb-3">
-												<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_genero" name="genero_usuario" autocomplete="on" >
-						                    		<label for="id_genero">Género</label>
-										  		</div>
+											<div class="col-12 col-md-6 mb-3">
+										  		<div class="form-floating">
+							                      	<select class="form-select" id="select_rol" name="codigo_rol_usuario" aria-label="Default select example">
+													  <option selected value="0">Seleccione Rol</option>
+													</select>
+													<label for="select_rol">Rol</label>
+					                      		</div>
 										  	</div>
 											<div class="col-12 col-md-6 mb-3">
 										  		<div class="form-floating">
@@ -204,7 +206,7 @@
     	</div>
     	
     	<div class="modal fade" id="id_modal_ActualizaUsuario">
-    		<div class="modal-dialog">
+    		<div class="modal-dialog modal-lg">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
@@ -257,28 +259,49 @@
 					                        		<label for="id_fecha_nacimiento_actualiza">Fecha de nacimiento</label>
 										  		</div>
 										  	</div>
-										  	<div class="col-12 col-md-3 mb-3">
-											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_dni_actualiza" name="dni_usuario" autocomplete="on" >
-						                    		<label for="id_dni_actualiza">DNI</label>
-										  		</div>
-										  	</div>
-										  	<div class="col-12 col-md-3 mb-3">
-											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_telefono_actualiza" name="telefono_usuario" autocomplete="on" >
-						                    		<label for="id_telefono_actualiza">Teléfono</label>
-										  		</div>
-					                      	</div>
-					                      </div>
-					                      
-					                      <div class="form-group row">
+										  	
 										  	<div class="col-12 col-md-6 mb-3">
 												<div class="col form-floating">
 										  			<input type="text" class="form-control" id="id_genero_actualiza" name="genero_usuario" autocomplete="on" >
 						                    		<label for="id_genero_actualiza">Género</label>
 										  		</div>
 										  	</div>
-											<div class="col-12 col-md-6 mb-3">
+										  	
+					                      </div>
+					                      
+					                      <div class="form-group row">
+						                      <div class="col-12 col-md-6 mb-3">
+												  	<div class="col form-floating">
+											  			<input type="text" class="form-control" id="id_dni_actualiza" name="dni_usuario" autocomplete="on" >
+							                    		<label for="id_dni_actualiza">DNI</label>
+											  		</div>
+											  	</div>
+											  	<div class="col-12 col-md-6 mb-3">
+												  	<div class="col form-floating">
+											  			<input type="text" class="form-control" id="id_telefono_actualiza" name="telefono_usuario" autocomplete="on" >
+							                    		<label for="id_telefono_actualiza">Teléfono</label>
+											  		</div>
+						                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+										  	<div class="col-12 col-md-4 mb-3">
+										  		<div class="form-floating">
+							                      	<select class="form-select" id="select_rol_actualiza" name="codigo_rol_usuario" aria-label="Default select example">
+													  <option selected value="0">Seleccione Rol</option>
+													</select>
+													<label for="select_rol_actualiza">Rol</label>
+					                      		</div>
+										  	</div>
+										  	<div class="col-12 col-md-4 mb-3">
+										  		<div class="form-floating">
+							                      	<select class="form-select" id="select_visibilidad_actualiza" name="codigo_visibilidad" aria-label="Default select example">
+													  <option selected value="0">Seleccione Estado</option>
+													</select>
+													<label for="select_visibilidad_actualiza">Estado</label>
+					                      		</div>
+										  	</div>
+										  	<div class="col-12 col-md-4 mb-3">
 										  		<div class="form-floating">
 							                      	<select class="form-select" id="select_distrito_actualiza" name="codigo_distrito" aria-label="Default select example">
 													  <option selected value="0">Seleccione Distrito</option>
@@ -302,6 +325,7 @@
 										  		</div>
 										  	</div>
 					                      </div>
+					                      
 					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="actualizar_usuario">Actualizar</button>
 					                    </form>
 					                  </main>
@@ -328,9 +352,10 @@
 	
 	<script type="text/javascript">
 	
-	var selectedDistritoActualiza, selectedRolActualiza;
+	var selectedDistritoActualiza, selectedRolActualiza, selectedVisibilidadActualiza;
 	
 	function agregarGrilla(lista) {
+		console.log(lista)
 		 $('#id_table').DataTable().clear();
 		 $('#id_table').DataTable().destroy();
 		 $('#id_table').DataTable({
@@ -347,12 +372,13 @@
 					{data: "nombre_usuario"},
 					{data: "apellido_usuario"},
 					{data: "fecha_nacimiento_usuario"},
-					{data: "genero_usuario"},
+					/*{data: "genero_usuario"},
 					{data: "dni_usuario"},
 					{data: "direccion_usuario"},
 					{data: "referencia_usuario"},
-					{data: "telefono_usuario"},
-					{data: "codigo_distrito"},
+					{data: "telefono_usuario"},*/
+					{data: "distrito.nombre_distrito"},
+					{data: "visibilidad.nombre_visibilidad"},
 					{data: function(row, type, val, meta){
 						var salida='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaUsuario" onclick="editar(\'' + row.codigo_usuario +
 								'\',\'' + row.email_usuario +
@@ -366,46 +392,116 @@
 								'\',\'' + row.referencia_usuario +
 								'\',\'' + row.telefono_usuario +
 								'\',\'' + row.codigo_distrito +
+								'\',\'' + row.codigo_visibilidad +
 								'\')">Editar</button>';
 						return salida;
 					},className:'text-center'},	
-					{data: function(row, type, val, meta){
+					/*{data: function(row, type, val, meta){
 					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_usuario + '\')">Eliminar</button>';
 						return salida;
-					},className:'text-center'},													
+					},className:'text-center'},*/
+					{data: function(row, type, val, meta) {
+						
+						let salida = '';
+						
+						if(row.codigo_visibilidad === 1) {
+							salida = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')">Ocultar</button>';
+						} else {
+							salida = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')">Mostrar</button>';
+						}
+				    	
+						return salida;
+					},className:'text-center'},
 				]                                     
 		    });
 		}
-		
-		function eliminar(codigo_usuario) {
-			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_usuario);
-			console.log("Código usuario en eliminar "+ codigo_usuario);
+	
+		function cambiarVisibilidad(codigo_usuario, codigo_visibilidad) {
+			mostrarMensajeConfirmacion("¿Desea modificar la visibilidad del registro?", accionVisibilidad, null, {codigo_usuario, codigo_visibilidad});
 		}
 		
-		function accionEliminar(codigo_usuario) {
-			$('#id_elimina').val(codigo_usuario);
-			console.log("Código usuario en accionEliminar "+ codigo_usuario);
+		function accionVisibilidad(data) {
+
+			$('#id_elimina').val(data.codigo_usuario);
+			
+			let nuevoEstado;
+			
+			if(data.codigo_visibilidad === "1") {
+				nuevoEstado = 2;
+			} else if(data.codigo_visibilidad === "2") {
+				nuevoEstado = 1;
+			}
+			
+			console.log("Visibilidad: " + data.codigo_visibilidad, "Usuario: " + data.codigo_usuario)
+			
+			$('#id_visibilidad_elimina').val(nuevoEstado);
+			
+			console.log("Nuevo estado: " + nuevoEstado)
+			
 			$.ajax({
 				type: "POST",
-				url: "eliminaUsuario",
+				url: "actualizaVisibilidadUsuario",
 				data: $('#id_form_elimina').serialize(),
 				success: function(data) {
-					agregarGrilla(data.lista);
+					$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": ""}, function(lista) {
+						agregarGrilla(lista);
+					});
+					
+					console.log(data)
+					// NO tiene distrito
+					//agregarGrilla(data.lista);
 					mostrarMensaje(data.MENSAJE);
 				},
 				error: function() {
 					mostrarMensaje(MSG_ERROR);
 				}
-			})
+			});
 		}
+		
+		/*
+		function eliminar(codigo_usuario) {
+			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_usuario);
+			//console.log("Código usuario en eliminar "+ codigo_usuario);
+		}
+		
+		
+		function accionEliminar(codigo_usuario) {
+			$('#id_elimina').val(codigo_usuario);
+			
+			//console.log("Código usuario en accionEliminar "+ codigo_usuario);
+			$.ajax({
+				type: "POST",
+				url: "eliminaUsuario",
+				data: $('#id_form_elimina').serialize(),
+				success: function(data) {
+					$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": ""}, function(lista) {
+						agregarGrilla(lista);
+					});
+					// NO tiene distrito
+					//agregarGrilla(data.lista);
+					mostrarMensaje(data.MENSAJE);
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR);
+				}
+			});
+			
+		}
+		*/
 		
 		function editar(codigo_usuario, email_usuario, contrasena_usuario,
 		nombre_usuario, apellido_usuario, fecha_nacimiento_usuario,
 		genero_usuario, dni_usuario, direccion_usuario, referencia_usuario,
-		telefono_usuario, codigo_distrito) {
+		telefono_usuario, codigo_distrito, codigo_visibilidad) {
 				
 			selectedDistritoActualiza = codigo_distrito;
-			console.log(codigo_usuario);
+			selectedVisibilidadActualiza = codigo_visibilidad;
+			//console.log(codigo_usuario);
+			
+			$.getJSON("listaRolPorUsuario", {"codigo_usuario": codigo_usuario}, function(lista) {
+				$('#select_rol_actualiza').val(lista[0].codigo_rol_usuario);
+				selectedRolActualiza = lista[0].codigo_rol_usuario;
+			});
 			
 			$('#id_usuario_actualiza').val(codigo_usuario);
 			$('#id_email_actualiza').val(email_usuario);
@@ -419,11 +515,21 @@
 			$('#id_referencia_actualiza').val(referencia_usuario);
 			$('#id_telefono_actualiza').val(telefono_usuario);
 			$('#select_distrito_actualiza').val(codigo_distrito);
+			$('#select_visibilidad_actualiza').val(codigo_visibilidad);
 			
 			$('#id_modal_ActualizaUsuario').modal("show");
 		}
 		
 	$(document).ready(function() {
+		
+		function listarUsuariosDatatable(nombre) {
+			$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": nombre}, function(lista) {
+				agregarGrilla(lista);
+			});
+		}
+		
+		// Mostrar usuarios al cargar la página
+		listarUsuariosDatatable("");
 		
 		// Selects	
 		
@@ -432,6 +538,8 @@
 		
 		const selectRol = $('#select_rol');
 		const selectRolActualiza = $('#select_rol_actualiza');
+		
+		const selectVisibilidadActualiza = $('#select_visibilidad_actualiza');
 		
 		// Botones
 		
@@ -450,14 +558,11 @@
 			modalRegister.modal("show");
 		});
 		
-		// Filtrar Mascota por Nombre
+		// Filtrar Usuario por Nombre
 		
 		btnFilter.click(function() {
 			const filterText = $('#id_nombre_filtro').val();
-			
-			$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": filterText}, function(lista) {
-				agregarGrilla(lista);
-			});
+			listarUsuariosDatatable(filterText);
 		});
 		
 		// Get Rol
@@ -492,6 +597,21 @@
 		generarSelectDistrito(selectDistrito);
 		generarSelectDistrito(selectDistritoActualiza);
 		
+		// Get Visibilidad
+		
+		function generarSelectVisibilidad(idSelectVisibilidad) {
+			$.getJSON('listaVisibilidad', function(data) {
+				$.each( data, function( index, value ) {
+					let option = document.createElement('option');
+					option.value = value.codigo_visibilidad;
+					option.text = value.nombre_visibilidad;
+					idSelectVisibilidad.append(option);
+				});
+			});
+		}
+		
+		generarSelectVisibilidad(selectVisibilidadActualiza);
+		
 		var selectedDistrito, selectedRol;
 		
 		// Validar selects cuando cambie el option en Registrar
@@ -506,7 +626,6 @@
 			validateSelect(selectRol, selectedRol, 'rol');
 		});
 		
-		
 		// Validar selects cuando cambie el option en Actualizar
 		
 		selectDistritoActualiza.change(function(e) {
@@ -517,6 +636,11 @@
 		selectRolActualiza.change(function(e) {
 			selectedRolActualiza = e.target.selectedIndex;
 			validateSelect(selectRolActualiza, selectedRolActualiza, 'rol');
+		});
+		
+		selectVisibilidadActualiza.change(function(e) {
+			selectedVisibilidadActualiza = e.target.selectedIndex;
+			validateSelect(selectVisibilidadActualiza, selectedVisibilidadActualiza, 'visibilidad');
 		});
 		
 		// Bootstrap validator
@@ -659,7 +783,9 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraUsuario',
 					success: function(data) {
-						agregarGrilla(data.lista);
+						listarUsuariosDatatable("");
+						//agregarGrilla(data.lista);
+						//console.log(data.lista)
 						$('#id_modal_RegistraUsuario').modal("hide");
 						mostrarMensaje(data.MENSAJE)
 						limpiar();
@@ -681,57 +807,68 @@
 			// Validar selects
 			validateSelect(selectDistritoActualiza, selectedDistritoActualiza, 'distrito');
 			validateSelect(selectRolActualiza, selectedRolActualiza, 'rol');
+			validateSelect(selectVisibilidadActualiza, selectedVisibilidadActualiza, 'visibilidad');
 			
-			if(selectedDistritoActualiza > 0 && selectedRolActualiza && validator.isValid()) {
+			if(selectedDistritoActualiza > 0 && selectedRolActualiza > 0 && selectedVisibilidadActualiza > 0 && validator.isValid()) {
 				$.ajax({
 					type: 'POST',
 					data: $('#id_form_actualiza').serialize(),
 					url: 'actualizaUsuario',
 					success: function(data) {
-						agregarGrilla(data.lista);
+
+						listarUsuariosDatatable("");
+						/* [BUG]: Data de actualizar no trae distrito */
+						
+						//agregarGrilla(data.lista);
+						//console.log(data.lista);
 						$('#id_modal_ActualizaUsuario').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						mostrarMensaje(data.MENSAJE);
 						limpiarActualiza();
-						validator.resetForm()
+						validator.resetForm();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
 		});
 
 		function limpiar() {
+			$('#id_usuario').val('');
+			$('#id_email').val('');
+			$('#id_contrasena').val('');
 			$('#id_nombre').val('');
-			$('#select_especie')[0].selectedIndex = 0;
-			$('#select_raza')[0].selectedIndex = 0;
-			$('#select_color')[0].selectedIndex = 0;
-			$('#select_sexo')[0].selectedIndex = 0;
+			$('#id_apellido').val('');
 			$('#id_fecha_nacimiento').val('');
-			$('#id_identificacion').val('');
-			$('#id_sanitaria').val('');
-			selectedEspecie = 0;
-			selectedRaza = 0;
-			selectedColor = 0;
-			selectedSexo = 0;
+			$('#id_genero').val('');
+			$('#id_dni').val('');
+			$('#id_direccion').val('');
+			$('#id_referencia').val('');
+			$('#id_telefono').val('');
+			$('#select_distrito')[0].selectedIndex = 0;
+			$('#select_rol')[0].selectedIndex = 0;
+			selectedDistrito = 0;
+			selectedRol = 0;
 		}
 		
 		function limpiarActualiza() {
-			$('#id_mascota_actualiza').val('');
-			$('#id_propietario_actualiza').val('');
+			$('#id_usuario_actualiza').val('');
+			$('#id_email_actualiza').val('');
+			$('#id_contrasena_actualiza').val('');
 			$('#id_nombre_actualiza').val('');
-			$('#id_foto_actualiza').val('');
-			$('#select_raza_actualiza')[0].selectedIndex = 0;
-			$('#select_sexo_actualiza')[0].selectedIndex = 0;
-			$('#select_especie_actualiza')[0].selectedIndex = 0;
-			$('#select_color_actualiza')[0].selectedIndex = 0;
+			$('#id_apellido_actualiza').val('');
 			$('#id_fecha_nacimiento_actualiza').val('');
-			$('#id_identificacion_actualiza').val('');
-			$('#id_sanitaria_actualiza').val('');
-			selectedEspecieActualiza = 0;
-			selectedRazaActualiza  = 0;
-			selectedColorActualiza  = 0;
-			selectedSexoActualiza  = 0;
+			$('#id_genero_actualiza').val('');
+			$('#id_dni_actualiza').val('');
+			$('#id_direccion_actualiza').val('');
+			$('#id_referencia_actualiza').val('');
+			$('#id_telefono_actualiza').val('');
+			$('#select_distrito_actualiza')[0].selectedIndex = 0;
+			$('#select_rol_actualiza')[0].selectedIndex = 0;
+			$('#select_visibilidad_actualiza')[0].selectedIndex = 0;
+			selectedDistritoActualiza = 0;
+			selectedRolActualiza = 0;
+			selectedVisibilidadActualiza = 0;
 		}
 	
 	});

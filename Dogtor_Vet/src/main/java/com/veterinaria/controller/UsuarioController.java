@@ -43,6 +43,7 @@ public class UsuarioController {
 		List<Usuario> verificarEmail = usuarioService.obtenerUsuarioPorEmail(objUsuario.getEmail_usuario());
 		
 		if(verificarEmail.size() < 1) {
+			objUsuario.setCodigo_visibilidad(1); // Visibilidad 1 = Visible
 			Usuario objSalida = usuarioService.insertaUsuario(objUsuario);
 			
 			if (objSalida == null) {
@@ -92,6 +93,12 @@ public class UsuarioController {
 	@ResponseBody
 	public List<Usuario> listaUsuarioPorNombre(String nombre_usuario) {
 		return usuarioService.listaUsuarioPorNombre(nombre_usuario.trim());
+	}
+	
+	@RequestMapping("/listaUsuarioPorRol")
+	@ResponseBody
+	public List<Usuario> listaUsuarioPorRol(Integer codigo_rol_usuario) {
+		return usuarioService.listaUsuarioPorRol(codigo_rol_usuario);
 	}
 	
 	@RequestMapping("/registraUsuario")
@@ -148,7 +155,7 @@ public class UsuarioController {
 	
 	@RequestMapping("/actualizaUsuario")
 	@ResponseBody
-	public Map<String, Object> actualiza(Usuario objUsuario) {
+	public Map<String, Object> actualiza(Usuario objUsuario, Integer codigo_rol_usuario) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
 		try {
@@ -160,6 +167,28 @@ public class UsuarioController {
 				if(objSalida == null) {
 					salida.put("MENSAJE", "La actualización no pudo ser completada");
 				} else {
+					
+					try {
+						DetalleUsuarioRolPK objRolUsuarioPK = new DetalleUsuarioRolPK();
+						objRolUsuarioPK.setCodigo_rol_usuario(codigo_rol_usuario);
+						objRolUsuarioPK.setCodigo_usuario(objSalida.getCodigo_usuario());
+						
+						DetalleUsuarioRol objRolUsuario = new DetalleUsuarioRol();
+						objRolUsuario.setObjDetalleUsuarioRolPK(objRolUsuarioPK);
+						
+						DetalleUsuarioRol objDetalleSalida = detalleUsuarioRolService.insertaUsuarioRol(objRolUsuario);
+
+						if(objDetalleSalida == null) {
+							usuarioService.eliminaUsuario(objSalida.getCodigo_usuario());
+							salida.put("MENSAJE", "La cuenta no pudo ser creada");	
+						} else {
+							salida.put("MENSAJE", "¡Registro exitoso!");
+						}
+					} catch (Exception e) {
+						salida.put("MENSAJE", "La actualización no pudo ser completada");
+					}
+					
+					
 					salida.put("MENSAJE", "¡Actualización exitosa!");
 				}
 			} else {
@@ -176,6 +205,41 @@ public class UsuarioController {
 		return salida;
 	}
 	
+	@RequestMapping("/actualizaVisibilidadUsuario")
+	@ResponseBody
+	public Map<String,Object> actualizaVisibilidadUsuario(Integer codigo_usuario, Integer codigo_visibilidad) {
+		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		Optional<Usuario> option = usuarioService.obtieneUsuarioPorId(codigo_usuario);
+		
+		try {
+			if(option.isPresent()) {
+				option.ifPresent((Usuario result) -> {
+					result.setCodigo_visibilidad(codigo_visibilidad);
+					Usuario usuarioSalida = usuarioService.insertaUsuario(result);
+					
+					if(usuarioSalida != null) {
+						salida.put("MENSAJE", "El estado del usuario ha sido modificado");
+					}
+					
+				});
+				
+			} else {
+				salida.put("MENSAJE", "Error, el usuario no existe");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			salida.put("MENSAJE", "Error, la visibilidad no pudo ser actualizada");
+		} finally {
+			List<Usuario> lista = usuarioService.listaUsuario();
+			salida.put("lista", lista);
+		}
+		
+		return salida;
+	}
+	
+	
+	/*
 	@RequestMapping("/eliminaUsuario")
 	@ResponseBody
 	public Map<String, Object> elimina(Integer codigo_usuario) {
@@ -185,6 +249,13 @@ public class UsuarioController {
 		
 		try {
 			if(option.isPresent()) {
+				try {
+					detalleUsuarioRolService.eliminaUsuarioRol(codigo_usuario);
+				} catch (Exception e) {
+					e.printStackTrace();
+					salida.put("MENSAJE", "Error, el usuario no pudo ser eliminado");
+				}
+				
 				usuarioService.eliminaUsuario(codigo_usuario);
 				salida.put("MENSAJE", "¡Eliminación exitosa!");
 			} else {
@@ -200,5 +271,6 @@ public class UsuarioController {
 		
 		return salida;
 	}
+	*/
 	
 }

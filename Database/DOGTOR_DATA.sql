@@ -1,13 +1,19 @@
 USE PI_DOGTOR;
 
+INSERT INTO tb_visibilidad(NOMBRE_VISIBILIDAD) VALUES
+('Visible'),('Invisible');
+
+INSERT INTO TB_DISTRITO(NOMBRE_DISTRITO) VALUES
+('Independencia'), ('Comas'), ('San Martín de Porres');
+
 /* Especialista es médico, peluquero, etc */
 INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES 
 ('Administrador'),('Cliente'), ('Especialista'), ('Vendedor'), ('Repartidor');
 
 INSERT INTO tb_usuario(CODIGO_USUARIO, EMAIL_USUARIO, CONTRASENA_USUARIO,
-NOMBRE_USUARIO, APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO) VALUES 
-(null, 'admin@gmail.com', '123', 'Usuario', 'Admin', '1997-03-25'),
-(null, 'cliente@gmail.com', '123', 'Usuario', 'Cliente', '1997-03-25');
+NOMBRE_USUARIO, APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO, CODIGO_DISTRITO, CODIGO_VISIBILIDAD) VALUES 
+(null, 'admin@gmail.com', '123', 'Usuario', 'Admin', '1997-03-25', 1, 1),
+(null, 'cliente@gmail.com', '123', 'Usuario', 'Cliente', '1997-03-25', 1, 1);
 
 INSERT INTO TB_DETALLE_USUARIO_ROL VALUES 
 (1, 1), (2, 2);
@@ -64,6 +70,3 @@ INSERT INTO tb_tipo_servicio(NOMBRE_TIPO_SERVICIO) VALUES
 
 INSERT INTO TB_ESTADO_CITA(NOMBRE_ESTADO_CITA) VALUES
 ('Pendiente'), ('En curso'), ('Atendida'), ('Cancelada');
-
-INSERT INTO TB_DISTRITO(NOMBRE_DISTRITO) VALUES
-('Independencia'), ('Comas'), ('San Martín de Porres');

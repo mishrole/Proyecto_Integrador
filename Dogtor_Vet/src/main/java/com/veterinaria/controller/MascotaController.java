@@ -44,6 +44,7 @@ public class MascotaController {
 		Mascota objSalida = null;
 		
 		try {
+			objMascota.setCodigo_visibilidad(1); // Visibilidad 1 = Visible
 			objSalida = service.insertaMascota(objMascota);
 			
 			if(objSalida == null) {
@@ -91,7 +92,40 @@ public class MascotaController {
 		
 		return salida;
 	}
-
+	
+	@RequestMapping("/actualizaVisibilidadMascota")
+	@ResponseBody
+	public Map<String, Object> actualizaVisibilidadMascota(Integer codigo_mascota, Integer codigo_visibilidad) {
+		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		Optional<Mascota> option = service.obtienePorId(codigo_mascota);
+		
+		try {
+			if(option.isPresent()) {
+				option.ifPresent((Mascota result) -> {
+					result.setCodigo_visibilidad(codigo_visibilidad);
+					
+					Mascota mascotaSalida = service.insertaMascota(result);
+					
+					if(mascotaSalida != null) {
+						salida.put("MENSAJE", "El estado de la mascota ha sido modificado");
+					}
+				});
+			} else {
+				salida.put("MENSAJE", "Error, la mascota no existe");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			salida.put("MENSAJE", "Error, la visibilidad no pudo ser actualizada");
+		} finally {
+			List<Mascota> lista = service.listaMascota();
+			salida.put("lista", lista);
+		}
+		
+		return salida;
+	}
+	
+	/*
 	@RequestMapping("/eliminaMascota")
 	@ResponseBody
 	public Map<String, Object> elimina(Integer codigo_mascota) {
@@ -116,4 +150,5 @@ public class MascotaController {
 		
 		return salida;
 	}
+	*/
 }
