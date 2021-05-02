@@ -11,4 +11,6 @@ import com.veterinaria.entity.Producto;
 public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 	@Query("Select m from Producto m where m.nombre_producto like :param_producto")
 	public abstract List<Producto> listaProductoPorNombre(@Param("param_producto") String nombre_producto);
+	
+	
 }

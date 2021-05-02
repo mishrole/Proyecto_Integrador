@@ -1,10 +1,17 @@
 package com.veterinaria.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.veterinaria.entity.Producto;
 import com.veterinaria.repository.ProductoRepository;
@@ -14,7 +21,7 @@ public class ProductoServiceImplem implements ProductoService {
 	
 	@Autowired
 	private ProductoRepository repository;
-
+	
 	@Override
 	public Producto insertaProducto(Producto objProducto) {
 		return repository.save(objProducto);
@@ -40,6 +47,5 @@ public class ProductoServiceImplem implements ProductoService {
 	public Optional<Producto> obtienePorId(Integer codigo_producto) {
 		return repository.findById(codigo_producto);
 	}
-	
 	
 }

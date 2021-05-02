@@ -1,15 +1,18 @@
 package com.veterinaria.entity;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_producto")
-public class Producto {
+public class Producto{
 
 	@Column(name = "codigo_producto")
 	@Id
@@ -54,6 +57,22 @@ public class Producto {
 	
 	@Column(name = "codigo_proveedor")
 	private Integer codigo_proveedor;
+	
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_marca", insertable = false, updatable = false, nullable = false)
+	private Marca marca;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_categoria_producto", insertable = false, updatable = false, nullable = false)
+	private CategoriaProducto categoria;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_proveedor", insertable = false, updatable = false, nullable = false)
+	private Proveedor proveedor;
+
+	
+	
 
 	public Integer getCodigo_producto() {
 		return codigo_producto;
@@ -166,4 +185,31 @@ public class Producto {
 	public void setCodigo_proveedor(Integer codigo_proveedor) {
 		this.codigo_proveedor = codigo_proveedor;
 	}
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+	public CategoriaProducto getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaProducto categoria) {
+		this.categoria = categoria;
+	}
+
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
+	}
+	
+	
+	
 }

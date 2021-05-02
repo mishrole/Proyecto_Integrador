@@ -117,11 +117,12 @@ public class ServicioController {
 	
 	
 	// Solo registrar
-	
+	/*
 	@RequestMapping("/verRegistraServicio")
 	public String verRegistraServicio() {
 		return "registraServicio";
 	}
+	*/
 	
 	/*
 	

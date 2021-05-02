@@ -23,6 +23,12 @@
 <body>
 
    <jsp:include page="header.jsp" />
+   
+   <div class="row-justify-content-center">
+   		<div class="cold-md-4 mt-5">
+   			<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+   		</div>
+   </div>
 
     <div class="container">
     	<div class="row">
@@ -84,6 +90,7 @@
     	</div>
     	
     	<div class="modal fade" id="id_modal_RegistraProducto">
+    		
     		<div class="modal-dialog">
     			<div class="modal-content">
     				<div class="modal-header">
@@ -96,7 +103,7 @@
     						 <div class="row mt-2">
 					            <div class="col-12 justify-content-center align-items-center d-flex">
 					                <main class="col-12 col-md-10">
-					                    <form id="id_form_registra">
+					                    <form id="id_form_registra" method="post" encytype="multipart/form-data">
 					                  
 					                    
 					                  <div class="form-group row">
@@ -158,6 +165,9 @@
 	                      		<label for="id_stock">Stock</label>
 	                      </div>
                       	</div>
+                 	
+                  
+                      	
                       	<div class="col-12 col-md-4 mb-3">
 	                      	<div class="form-floating">
 	                      		<input type="text" class="form-control" id="id_pedido" name="pedido_producto" autocomplete="on" >
@@ -182,8 +192,15 @@
                       		</div>
                       	</div>
                       </div>
+                      
+	                       <div class="form-group row" >
+		                     		 <label class="col-md-2" for="id_foto1">Foto 1</label>
+		                      		<input type="file" class="m-2" id="id_foto1" name="foto1_producto">
+	                      </div>
+                      
 					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_producto">Registrar</button>
 					                    </form>
+					               
 					                  </main>
 					            </div>
 					        </div>
@@ -355,9 +372,9 @@
 					{data: "foto1_producto"},
 					{data: "foto2_producto"},
 					{data: "foto3_producto"},
-					{data: "codigo_marca"},
-					{data: "codigo_categoria_producto"},
-					{data: "codigo_proveedor"},
+					{data: "marca.nombre_marca"},
+					{data: "categoria.nombre_categoria_producto"},
+					{data: "proveedor.nombre_proveedor"},
 					{data: function(row, type, val, meta){
 						var salida='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaProducto" onclick="editar(\'' + row.codigo_producto +
 								

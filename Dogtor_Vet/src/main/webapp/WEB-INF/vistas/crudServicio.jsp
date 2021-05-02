@@ -28,7 +28,7 @@
     		
     			<div class="row mt-3 mb-3">
     				<div class="col-12">
-	    				<div class="col-10 col-md-2">
+	    				<div class="col-10 col-md-2">Unable
 							<button type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio" class='w-100 btn btn-primary btn-generic'>Nuevo Servicio</button>
 						</div>
     				</div>
