@@ -351,6 +351,7 @@
 	var selectedMarcaActualiza, selectedCategoriaActualiza, selectedProveedorActualiza, countTextareaSimpleActualiza;
 	
 	function agregarGrilla(lista) {
+		console.log(lista);
 		 $('#id_table').DataTable().clear();
 		 $('#id_table').DataTable().destroy();
 		 $('#id_table').DataTable({
@@ -455,6 +456,13 @@
 		
 	$(document).ready(function() {
 		
+		function listarProductosDatatable(nombre) {
+            $.getJSON("listaProductoPorNombre", {"nombre_producto": nombre}, function(lista) {
+                agregarGrilla(lista);
+            });
+        }
+		
+		listarProductosDatatable("");
 		
 		
 		// Selects	
@@ -498,10 +506,7 @@
 		
 		btnFilter.click(function() {
 			const filterText = $('#id_nombre_filtro').val();
-			
-			$.getJSON("listaProductoPorNombre", {"nombre_producto": filterText}, function(lista) {
-				agregarGrilla(lista);
-			});
+			listarProductosDatatable(filterText);
 		});
 		
 		// Get Marca
@@ -763,7 +768,8 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraProducto',
 					success: function(data) {
-						agregarGrilla(data.lista);
+						//agregarGrilla(data.lista);
+						listarProductosDatatable("");
 						$('#id_modal_RegistraProducto').modal("hide");
 						mostrarMensaje(data.MENSAJE)
 						limpiar();
@@ -796,7 +802,8 @@
 					data: $('#id_form_actualiza').serialize(),
 					url: 'actualizaProducto',
 					success: function(data) {
-						agregarGrilla(data.lista);
+						//agregarGrilla(data.lista);
+						listarProductosDatatable("");
 						$('#id_modal_ActualizaProducto').modal("hide");
 						mostrarMensaje(data.MENSAJE)
 						limpiarActualiza();

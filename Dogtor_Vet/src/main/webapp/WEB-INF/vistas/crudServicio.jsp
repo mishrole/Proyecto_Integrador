@@ -28,7 +28,7 @@
     		
     			<div class="row mt-3 mb-3">
     				<div class="col-12">
-	    				<div class="col-10 col-md-2">Unable
+	    				<div class="col-10 col-md-2">
 							<button type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio" class='w-100 btn btn-primary btn-generic'>Nuevo Servicio</button>
 						</div>
     				</div>
@@ -474,11 +474,11 @@
 		// Get Especialista ---- FALTA SELECT DE USUARIO + ROL
 		
 		function generarSelectEspecialista(idSelectEspecialista) {
-			$.getJSON('listaEspecialidad', function(data) {
+			$.getJSON('listaUsuarioPorRol',{"codigo_rol_usuario":3}, function(data) {
 				$.each( data, function(index, value) {
 					let option = document.createElement('option');
-					option.value = value.codigo_especialidad;
-					option.text = value.nombre_especialidad;
+					option.value = value.codigo_usuario;
+					option.text = value.nombre_usuario + " " + value.apellido_usuario;
 					idSelectEspecialista.append(option);
 				});
 			})
