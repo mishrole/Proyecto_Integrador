@@ -26,13 +26,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	"r.codigo_rol_usuario = dur.rol.codigo_rol_usuario and dur.rol.codigo_rol_usuario = :param_rol")
 	public abstract List<Usuario> listaUsuarioPorRol(@Param("param_rol") Integer codigo_rol_usuario);
 	
-	/*
-	@Transactional
-	@Modifying
-	@Query("Update Usuario u set u.codigo_visibilidad = :param_visibilidad where u.codigo_usuario = :param_usuario")
-	public void actualizaVisibilidadUsuario(@Param("param_visibilidad") Integer codigo_visibilidad, @Param("param_usuario") Integer codigo_usuario);
-	*/
-	
 	/* LOGIN DE USUARIO, ROLES, y ENLACES */
 	
 	@Query("Select u from Usuario u where u.email_usuario = :#{#usu.email_usuario} and u.contrasena_usuario = :#{#usu.contrasena_usuario}")
@@ -53,14 +46,22 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	@Query("Select u from Usuario u where u.email_usuario = :param_email")
 	public abstract List<Usuario> obtenerUsuarioPorEmail(@Param("param_email") String email_usuario);
 	
+	@Query("Select u from Usuario u where u.codigo_usuario like :param_usuario")
+	public abstract Optional<Usuario> obtieneUsuarioPorId(@Param("param_usuario") Integer codigo_usuario);
+	
 	/* LIMPIAR DESPUÉS */
 	
 	@Query("Select u from Usuario u where u.email_usuario like :param_email and u.contrasena_usuario like :param_password")
 	public abstract List<Usuario> listaUsuarioPorEmailYContrasena(@Param("param_email") String email_usuario, @Param("param_password") String contrasena_usuario);
 	
-	@Query("Select u from Usuario u where u.codigo_usuario like :param_usuario")
-	public abstract Optional<Usuario> obtieneUsuarioPorId(@Param("param_usuario") Integer codigo_usuario);
-
 	public Page<Usuario> findAll(Pageable pageable);
+	
+	/*
+	@Transactional
+	@Modifying
+	@Query("Update Usuario u set u.codigo_visibilidad = :param_visibilidad where u.codigo_usuario = :param_usuario")
+	public void actualizaVisibilidadUsuario(@Param("param_visibilidad") Integer codigo_visibilidad, @Param("param_usuario") Integer codigo_usuario);
+	*/
+	
 	
 }
