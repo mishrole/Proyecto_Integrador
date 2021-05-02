@@ -43,6 +43,7 @@ public class UsuarioController {
 		List<Usuario> verificarEmail = usuarioService.obtenerUsuarioPorEmail(objUsuario.getEmail_usuario());
 		
 		if(verificarEmail.size() < 1) {
+			objUsuario.setCodigo_visibilidad(1); // Visibilidad 1 = Visible
 			Usuario objSalida = usuarioService.insertaUsuario(objUsuario);
 			
 			if (objSalida == null) {
