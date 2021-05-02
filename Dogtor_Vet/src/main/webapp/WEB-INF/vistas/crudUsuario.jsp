@@ -564,7 +564,7 @@
 		
 		btnFilter.click(function() {
 			const filterText = $('#id_nombre_filtro').val();
-			listarUsuarios(filterText);
+			listarUsuariosDatatable(filterText);
 		});
 		
 		// Get Rol
