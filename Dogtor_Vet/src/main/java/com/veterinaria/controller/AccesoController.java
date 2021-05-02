@@ -36,9 +36,15 @@ public class AccesoController {
 		Usuario usuario = service.login(objUsuario);
 		
 		if(usuario == null) {
-			request.setAttribute("MENSAJE", "El usuario no existe");
+			request.setAttribute("MENSAJE", "El usuario y/o contraseña son incorrectos");
 			return "iniciaSesion";
 		} else {
+			
+			if(usuario.getCodigo_visibilidad() != 1) {
+				request.setAttribute("MENSAJE", "El usuario se encuentra deshabilitado");
+				return "iniciaSesion";
+			}
+			
 			List<Enlace> menus = service.obtenerEnlacesDeUsuario(usuario.getCodigo_usuario());
 			List<Rol> roles = service.obtenerRolesDeUsuario(usuario.getCodigo_usuario());
 			
