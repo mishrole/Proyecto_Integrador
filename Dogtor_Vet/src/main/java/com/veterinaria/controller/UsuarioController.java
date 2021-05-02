@@ -204,6 +204,41 @@ public class UsuarioController {
 		return salida;
 	}
 	
+	@RequestMapping("/actualizaVisibilidadUsuario")
+	@ResponseBody
+	public Map<String,Object> actualizaVisibilidadUsuario(Integer codigo_usuario, Integer codigo_visibilidad) {
+		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		Optional<Usuario> option = usuarioService.obtieneUsuarioPorId(codigo_usuario);
+		
+		try {
+			if(option.isPresent()) {
+				option.ifPresent((Usuario result) -> {
+					result.setCodigo_visibilidad(codigo_visibilidad);
+					Usuario usuarioSalida = usuarioService.insertaUsuario(result);
+					
+					if(usuarioSalida != null) {
+						salida.put("MENSAJE", "El estado del usuario ha sido modificado");
+					}
+					
+				});
+				
+			} else {
+				salida.put("MENSAJE", "Error, el usuario no existe");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			salida.put("MENSAJE", "Error, la visibilidad no pudo ser actualizada");
+		} finally {
+			List<Usuario> lista = usuarioService.listaUsuario();
+			salida.put("lista", lista);
+		}
+		
+		return salida;
+	}
+	
+	
+	/*
 	@RequestMapping("/eliminaUsuario")
 	@ResponseBody
 	public Map<String, Object> elimina(Integer codigo_usuario) {
@@ -213,6 +248,13 @@ public class UsuarioController {
 		
 		try {
 			if(option.isPresent()) {
+				try {
+					detalleUsuarioRolService.eliminaUsuarioRol(codigo_usuario);
+				} catch (Exception e) {
+					e.printStackTrace();
+					salida.put("MENSAJE", "Error, el usuario no pudo ser eliminado");
+				}
+				
 				usuarioService.eliminaUsuario(codigo_usuario);
 				salida.put("MENSAJE", "¡Eliminación exitosa!");
 			} else {
@@ -228,5 +270,6 @@ public class UsuarioController {
 		
 		return salida;
 	}
+	*/
 	
 }

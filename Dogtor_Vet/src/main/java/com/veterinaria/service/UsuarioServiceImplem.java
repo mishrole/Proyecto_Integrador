@@ -78,5 +78,11 @@ public class UsuarioServiceImplem implements UsuarioService {
 	public List<Usuario> obtenerUsuarioPorEmail(String email_usuario) {
 		return repository.obtenerUsuarioPorEmail(email_usuario);
 	}
+	/*
+	@Override
+	public void actualizaVisibilidadUsuario(Integer codigo_usuario, Integer codigo_visibilidad) {
+		repository.actualizaVisibilidadUsuario(codigo_usuario, codigo_visibilidad);
+	}
+	*/
 
 }

@@ -38,15 +38,8 @@ public class DetalleUsuarioRolController {
 	
 	@RequestMapping("/eliminaDetalleUsuarioRol")
 	@ResponseBody
-	public List<Rol> eliminaDetalleUsuarioRol(Integer codigo_rol_usuario, Integer codigo_usuario) {
-		DetalleUsuarioRolPK objRolUsuarioPK = new DetalleUsuarioRolPK();
-		objRolUsuarioPK.setCodigo_rol_usuario(codigo_rol_usuario);
-		objRolUsuarioPK.setCodigo_usuario(codigo_usuario);
-		
-		DetalleUsuarioRol objRolUsuario = new DetalleUsuarioRol();
-		objRolUsuario.setObjDetalleUsuarioRolPK(objRolUsuarioPK);
-		
-		detalleUsuarioRolService.eliminaUsuarioRol(objRolUsuario);
+	public List<Rol> eliminaDetalleUsuarioRol(Integer codigo_usuario) {		
+		detalleUsuarioRolService.eliminaUsuarioRol(codigo_usuario);
 		return rolService.listaRolPorUsuario(codigo_usuario);
 	}
 	

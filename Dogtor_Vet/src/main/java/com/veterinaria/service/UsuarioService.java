@@ -14,6 +14,8 @@ public interface UsuarioService {
 	public abstract Optional<Usuario> obtieneUsuarioPorId(Integer codigo_usuario);
 	public abstract Usuario insertaUsuario(Usuario objUsuario);
 	
+	//public abstract void actualizaVisibilidadUsuario(Integer codigo_usuario, Integer codigo_visibilidad);
+	
 	public abstract List<Usuario> listaUsuarioPorNombre(String nombre_usuario);
 	public abstract List<Usuario> listaUsuarioPorRol(Integer codigo_rol_usuario);
 	

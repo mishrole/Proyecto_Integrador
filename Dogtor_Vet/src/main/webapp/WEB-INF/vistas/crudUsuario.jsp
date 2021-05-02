@@ -35,7 +35,8 @@
     			</div>
     		
 				<form id="id_form_elimina" action="eliminaUsuario">
-					<input type="hidden" id="id_elimina" name="codigo_usuario">
+					<input type="text" id="id_elimina" name="codigo_usuario" class="d-none">
+					<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
 				</form>
 		     
 				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
@@ -397,35 +398,98 @@
 								'\')">Editar</button>';
 						return salida;
 					},className:'text-center'},	
-					{data: function(row, type, val, meta){
+					/*{data: function(row, type, val, meta){
 					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_usuario + '\')">Eliminar</button>';
 						return salida;
-					},className:'text-center'},													
+					},className:'text-center'},*/
+					{data: function(row, type, val, meta) {
+						
+						let salida = '';
+						
+						if(row.codigo_visibilidad === 1) {
+							salida = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')">Ocultar</button>';
+						} else {
+							salida = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')">Mostrar</button>';
+						}
+				    	
+						return salida;
+					},className:'text-center'},
 				]                                     
 		    });
 		}
-		
-		function eliminar(codigo_usuario) {
-			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_usuario);
-			console.log("Código usuario en eliminar "+ codigo_usuario);
+	
+		function cambiarVisibilidad(codigo_usuario, codigo_visibilidad) {
+			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionVisibilidad, null, {codigo_usuario, codigo_visibilidad});
 		}
 		
-		function accionEliminar(codigo_usuario) {
-			$('#id_elimina').val(codigo_usuario);
-			console.log("Código usuario en accionEliminar "+ codigo_usuario);
+		function accionVisibilidad(data) {
+
+			$('#id_elimina').val(data.codigo_usuario);
+			
+			let nuevoEstado;
+			
+			if(data.codigo_visibilidad === "1") {
+				nuevoEstado = 2;
+			} else if(data.codigo_visibilidad === "2") {
+				nuevoEstado = 1;
+			}
+			
+			console.log("Visibilidad: " + data.codigo_visibilidad, "Usuario: " + data.codigo_usuario)
+			
+			$('#id_visibilidad_elimina').val(nuevoEstado);
+			
+			console.log("Nuevo estado: " + nuevoEstado)
+			
 			$.ajax({
 				type: "POST",
-				url: "eliminaUsuario",
+				url: "actualizaVisibilidadUsuario",
 				data: $('#id_form_elimina').serialize(),
 				success: function(data) {
-					agregarGrilla(data.lista);
+					$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": ""}, function(lista) {
+						agregarGrilla(lista);
+					});
+					
+					console.log(data)
+					// NO tiene distrito
+					//agregarGrilla(data.lista);
 					mostrarMensaje(data.MENSAJE);
 				},
 				error: function() {
 					mostrarMensaje(MSG_ERROR);
 				}
-			})
+			});
 		}
+		
+		/*
+		function eliminar(codigo_usuario) {
+			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_usuario);
+			//console.log("Código usuario en eliminar "+ codigo_usuario);
+		}
+		
+		
+		function accionEliminar(codigo_usuario) {
+			$('#id_elimina').val(codigo_usuario);
+			
+			//console.log("Código usuario en accionEliminar "+ codigo_usuario);
+			$.ajax({
+				type: "POST",
+				url: "eliminaUsuario",
+				data: $('#id_form_elimina').serialize(),
+				success: function(data) {
+					$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": ""}, function(lista) {
+						agregarGrilla(lista);
+					});
+					// NO tiene distrito
+					//agregarGrilla(data.lista);
+					mostrarMensaje(data.MENSAJE);
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR);
+				}
+			});
+			
+		}
+		*/
 		
 		function editar(codigo_usuario, email_usuario, contrasena_usuario,
 		nombre_usuario, apellido_usuario, fecha_nacimiento_usuario,
