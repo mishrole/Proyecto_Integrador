@@ -22,10 +22,6 @@ public class Distrito {
 	@Column(name = "nombre_distrito")
 	private String nombre_distrito;
 	
-	/*
-	@OneToMany(mappedBy = "distrito")
-	private List<Usuario> usuarios;
-	 */
 	public Integer getCodigo_distrito() {
 		return codigo_distrito;
 	}

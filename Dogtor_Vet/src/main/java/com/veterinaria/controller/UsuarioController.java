@@ -154,7 +154,7 @@ public class UsuarioController {
 	
 	@RequestMapping("/actualizaUsuario")
 	@ResponseBody
-	public Map<String, Object> actualiza(Usuario objUsuario) {
+	public Map<String, Object> actualiza(Usuario objUsuario, Integer codigo_rol_usuario) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
 		try {
@@ -166,6 +166,28 @@ public class UsuarioController {
 				if(objSalida == null) {
 					salida.put("MENSAJE", "La actualización no pudo ser completada");
 				} else {
+					
+					try {
+						DetalleUsuarioRolPK objRolUsuarioPK = new DetalleUsuarioRolPK();
+						objRolUsuarioPK.setCodigo_rol_usuario(codigo_rol_usuario);
+						objRolUsuarioPK.setCodigo_usuario(objSalida.getCodigo_usuario());
+						
+						DetalleUsuarioRol objRolUsuario = new DetalleUsuarioRol();
+						objRolUsuario.setObjDetalleUsuarioRolPK(objRolUsuarioPK);
+						
+						DetalleUsuarioRol objDetalleSalida = detalleUsuarioRolService.insertaUsuarioRol(objRolUsuario);
+
+						if(objDetalleSalida == null) {
+							usuarioService.eliminaUsuario(objSalida.getCodigo_usuario());
+							salida.put("MENSAJE", "La cuenta no pudo ser creada");	
+						} else {
+							salida.put("MENSAJE", "¡Registro exitoso!");
+						}
+					} catch (Exception e) {
+						salida.put("MENSAJE", "La actualización no pudo ser completada");
+					}
+					
+					
 					salida.put("MENSAJE", "¡Actualización exitosa!");
 				}
 			} else {
