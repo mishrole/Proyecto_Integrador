@@ -431,7 +431,6 @@
 		// Filtrar Servicio por Nombre
 		
 		btnFilter.click(function() {
-			alert("Filtro")
 			const filterText = $('#id_nombre_filtro').val();
 			
 			$.getJSON("listaServicioPorNombre", {"nombre_servicio": filterText}, function(lista) {
