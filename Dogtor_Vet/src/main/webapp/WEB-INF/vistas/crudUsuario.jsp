@@ -417,7 +417,7 @@
 		}
 	
 		function cambiarVisibilidad(codigo_usuario, codigo_visibilidad) {
-			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionVisibilidad, null, {codigo_usuario, codigo_visibilidad});
+			mostrarMensajeConfirmacion("¿Desea modificar la visibilidad del registro?", accionVisibilidad, null, {codigo_usuario, codigo_visibilidad});
 		}
 		
 		function accionVisibilidad(data) {
