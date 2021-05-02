@@ -25,28 +25,26 @@
     <div class="container">
     	<div class="row">
     		<div class="col-12" >
-    		
     			<div class="row mt-3 mb-3">
-    				<div class="col-12">
-	    				<div class="col-10 col-md-2">
-							<button type="button" data-toggle="modal" id="id_btnModal_RegistraUsuario" data-target="#id_modal_RegistraUsuario" class='w-100 btn btn-primary btn-generic'>Nuevo Usuario</button>
+    				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
+    				    <div class="col-10 col-md-2">
+		    				<div class="col-12">
+								<button type="button" data-toggle="modal" id="id_btnModal_RegistraUsuario" data-target="#id_modal_RegistraUsuario" class='w-100 btn btn-primary btn-generic'>Nuevo Usuario</button>
+							</div>
+    					</div>
+						<div class="col-10 col-md-6" >
+							<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_usuario" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
 						</div>
-    				</div>
+						<div class="col-10 col-md-2" >
+							<button type="button" class="w-100 btn btn-primary" id="filtra_usuario">Filtrar Usuarios</button>
+						</div>
+					</div>
     			</div>
     		
 				<form id="id_form_elimina" action="eliminaUsuario">
 					<input type="text" id="id_elimina" name="codigo_usuario" class="d-none">
 					<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
 				</form>
-		     
-				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
-					<div class="col-10 col-md-6" >
-						<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_usuario" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
-					</div>
-					<div class="col-10 col-md-2" >
-						<button type="button" class="w-100 btn btn-primary" id="filtra_usuario">Filtrar Usuarios</button>
-					</div>
-				</div>
 					
 				<div class="row mt-3 mb-3" > 
 					<div class="col-12" >
