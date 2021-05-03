@@ -25,28 +25,26 @@
     <div class="container">
     	<div class="row">
     		<div class="col-12" >
-    		
     			<div class="row mt-3 mb-3">
-    				<div class="col-12">
-	    				<div class="col-10 col-md-2">
-							<button type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio" class='w-100 btn btn-primary btn-generic'>Nuevo Servicio</button>
+	    			<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
+						<div class="col-10 col-md-2">
+		    				<div class="col-12">
+								<button type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio" class='w-100 btn btn-primary btn-generic'>Nuevo Servicio</button>
+							</div>
+    					</div>
+						<div class="col-10 col-md-6" >
+							<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_servicio" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
 						</div>
-    				</div>
+						<div class="col-10 col-md-2" >
+							<button type="button" class="w-100 btn btn-primary" id="filtra_servicio">Filtrar Servicios</button>
+						</div>
+					</div>
     			</div>
     		
 				<form id="id_form_elimina" action="eliminaServicio">
 					<input type="hidden" id="id_elimina" name="codigo_servicio">
 				</form>
-		     
-				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
-					<div class="col-10 col-md-6" >
-						<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_servicio" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
-					</div>
-					<div class="col-10 col-md-2" >
-						<button type="button" class="w-100 btn btn-primary" id="filtra_servicio">Filtrar Servicios</button>
-					</div>
-				</div>
-					
+
 				<div class="row mt-3 mb-3" > 
 					<div class="col-12" >
 						<div class="content table-responsive" >
