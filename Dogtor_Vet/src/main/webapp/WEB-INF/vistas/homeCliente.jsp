@@ -58,10 +58,19 @@
 					                      
 					                      <input type="text" id="id_propietario" name="codigo_propietario" value="${sessionScope.objUsuario.codigo_usuario}" class="d-none">
 					                    
-					                   	  <div class="form-group form-floating mb-3">
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto" name="foto_mascota" />
+					                      		</div>
+					                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group form-floating mb-3">
 						                      <input type="text" class="form-control" id="id_nombre" name="nombre_mascota" placeholder="John" autocomplete="on" >
 						                      <label for="id_nombre">Nombre</label>
 					                      </div>
+					                      
 					                      <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 										  		<div class="form-floating">
@@ -306,6 +315,7 @@
 			validateSelect(selectColor, selectedColor, 'color');
 			
 			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
+				/*
 				$.ajax({
 					type: 'POST',
 					data: $('#id_form_registra').serialize(),
@@ -320,6 +330,33 @@
 					},
 					error: function() {
 						mostrarMensaje(MSG_ERROR)
+					}
+				});*/
+				
+				var form = $("#id_form_registra").serialize();
+				var data = new FormData($("#id_form_registra")[0]);
+				
+				$.ajax({
+					type: 'POST',
+					data: data,
+					enctype: 'multipart/form-data',
+					url: '/registraMascotaConFoto',
+					processData: false,
+					contentType: false,
+					cache: false,
+					success: function(data, statusText, xhr) {
+						if(xhr.status == "200") {
+							$('#id_modal_RegistraMascota').modal("hide");
+							mostrarMensaje(data.MENSAJE);
+							limpiar();
+							validator.resetForm();
+							mascotasContainer.empty();
+							generarListaMascotas();
+							console.log($('#id_form_registra').serialize());
+						}
+					},
+					error: function() {
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
