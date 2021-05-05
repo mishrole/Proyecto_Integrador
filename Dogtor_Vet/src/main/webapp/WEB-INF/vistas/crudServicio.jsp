@@ -319,10 +319,10 @@
 				lengthChange: false,
 				columns:[
 					{data: "codigo_servicio"},
-					{data: "codigo_tipo_servicio"},
-					{data: "codigo_especialidad"},
-					{data: "codigo_especialista"},
-					{data: "codigo_dia_semana"},
+					{data: "tiposervicio.nombre_tipo_servicio"},
+					{data: "especialidad.nombre_especialidad"},
+					{data: "usuario.nombre_usuario"},
+					{data: "diasemana.nombre_dia_semana"},
 					{data: "inicio_turno_servicio"},
 					{data: "fin_turno_servicio"},
 					{data: "nombre_servicio"},
@@ -399,6 +399,15 @@
 		
 	$(document).ready(function() {
 		
+		function listarServiciosDatatable(nombre) {
+            $.getJSON("listaServicioPorNombre", {"nombre_servicio": nombre}, function(lista) {
+                agregarGrilla(lista);
+            });
+        }
+		
+		listarServiciosDatatable("");
+		
+		
 		// Selects	
 		
 		const selectTipoServicio = $('#select_tipo_servicio');
@@ -429,14 +438,12 @@
 		});
 		
 		// Filtrar Servicio por Nombre
-		
+	
 		btnFilter.click(function() {
-			alert("Filtro")
 			const filterText = $('#id_nombre_filtro').val();
+			listarServiciosDatatable(filterText);
 			
-			$.getJSON("listaServicioPorNombre", {"nombre_servicio": filterText}, function(lista) {
-				agregarGrilla(lista);
-			});
+		
 		});
 		
 		// Get Tipo Servicio
@@ -488,11 +495,11 @@
 		generarSelectEspecialista(selectEspecialistaActualiza);
 		
 		function generarSelectDiaSemana(idSelectDia) {
-			$.getJSON('listaEspecialidad', function(data) {
+			$.getJSON('listaDiaSemana', function(data) {
 				$.each( data, function(index, value) {
 					let option = document.createElement('option');
-					option.value = value.codigo_especialidad;
-					option.text = value.nombre_especialidad;
+					option.value = value.codigo_dia_semana;
+					option.text = value.nombre_dia_semana;
 					idSelectDia.append(option);
 				});
 			})
@@ -613,7 +620,8 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraServicio',
 					success: function(data) {
-						agregarGrilla(data.lista);
+						//agregarGrilla(data.lista);
+						listarServiciosDatatable("");
 						$('#id_modal_RegistraServicio').modal("hide");
 						mostrarMensaje(data.MENSAJE)
 						limpiar();
@@ -644,7 +652,8 @@
 					data: $('#id_form_actualiza').serialize(),
 					url: 'actualizaServicio',
 					success: function(data) {
-						agregarGrilla(data.lista);
+						//agregarGrilla(data.lista);
+						listarServiciosDatatable("");
 						$('#id_modal_ActualizaServicio').modal("hide");
 						mostrarMensaje(data.MENSAJE)
 						limpiarActualiza();

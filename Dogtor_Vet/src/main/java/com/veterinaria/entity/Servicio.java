@@ -61,7 +61,21 @@ public class Servicio {
 	@ManyToOne
 	@JoinColumn(name = "codigo_especialista", insertable = false, updatable = false, nullable = false)
 	private Usuario usuario;
-
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_tipo_servicio", insertable = false, updatable = false, nullable = false)
+	private TipoServicio tiposervicio;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_especialidad", insertable = false, updatable = false, nullable = false)
+	private Especialidad especialidad;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_dia_semana", insertable = false, updatable = false, nullable = false)
+	private DiaSemana diasemana;
+	
+	
 	public Integer getCodigo_servicio() {
 		return codigo_servicio;
 	}
@@ -158,4 +172,30 @@ public class Servicio {
 		this.usuario = usuario;
 	}
 
+	public TipoServicio getTiposervicio() {
+		return tiposervicio;
+	}
+
+	public void setTiposervicio(TipoServicio tiposervicio) {
+		this.tiposervicio = tiposervicio;
+	}
+
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	public DiaSemana getDiasemana() {
+		return diasemana;
+	}
+
+	public void setDiasemana(DiaSemana diasemana) {
+		this.diasemana = diasemana;
+	}
+
+	
+	
 }

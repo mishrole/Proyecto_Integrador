@@ -12,3 +12,4 @@ public interface ServicioRepository extends JpaRepository<Servicio, Integer> {
 	@Query("Select s from Servicio s where s.nombre_servicio like :fil")
 	public abstract List<Servicio> listaServicioPorNombreLike(@Param("fil") String nombre_servicio);
 }
+
