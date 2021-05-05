@@ -146,6 +146,11 @@ h2.fc-toolbar-title {
 
 /* Home Admin */
 
+.pet__admin--mini {
+	width: 30px;
+	height: 30px;
+}
+
 .icon__home__admin > i {
     border: none;
     color: var(--white-color);
@@ -173,6 +178,13 @@ h2.fc-toolbar-title {
 .maintenance__services > h5,
 .maintenance__products > h5 { 
     color: var(--secondary-color);
+}
+
+/* Home Cliente */
+
+.pet__card--cover {
+	height: 300px;
+    object-fit: cover;
 }
 
 

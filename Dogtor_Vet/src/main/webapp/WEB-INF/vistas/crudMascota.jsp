@@ -306,7 +306,18 @@
 					{data: "codigo_mascota"},
 					{data: "codigo_propietario"},
 					{data: "nombre_mascota"},
-					{data: "foto_mascota"},
+					{data: function(row, type, val, meta) {
+						
+						var salida = "";
+						
+						if(row.foto_mascota.length > 0) {
+							 salida = "<img src='data:image/png;base64," +row.foto_mascota+ "' class='pet__admin--mini' alt='Pet image'>";
+						} else {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						}
+						
+						return salida;
+					}, className: 'text-center'},
 					/*{data: "codigo_raza_mascota"},
 					{data: "codigo_sexo_mascota"},
 					{data: "codigo_especie_mascota"},

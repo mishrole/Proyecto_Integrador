@@ -3,7 +3,9 @@ package com.veterinaria.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +27,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.veterinaria.entity.Mascota;
 import com.veterinaria.service.MascotaService;
 
+import org.springframework.util.StringUtils;
+
 @Controller
 public class MascotaController {
 	
@@ -33,6 +37,82 @@ public class MascotaController {
 	
 	@Autowired
 	private MascotaService service;
+	
+	@PostMapping("/registraMascotaConFoto")
+	public @ResponseBody Map<String, Object> registraMascotaConFoto(@RequestParam(value = "codigo_propietario") Integer codigoPropietario,
+			@RequestParam(value = "nombre_mascota") String nombreMascota, @RequestParam(value = "codigo_especie_mascota") Integer especieMascota,
+			@RequestParam(value = "codigo_raza_mascota") Integer razaMascota, @RequestParam(value = "codigo_color_mascota") Integer colorMascota,
+			@RequestParam(value = "codigo_sexo_mascota") Integer sexoMascota, @RequestParam(value = "fecha_nacimiento_mascota") String nacimientoMascota,
+			@RequestParam(value = "codigo_identificacion_mascota", required = false) String identificacionMascota,
+			@RequestParam(value = "codigo_cartilla_sanitaria", required = false) String cartillaMascota,
+			Model model, HttpServletRequest request, final @RequestParam(value = "foto_mascota") MultipartFile file) {
+		
+		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		Mascota mascota = new Mascota();
+		
+		try {
+			String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
+			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+			String filePath = Paths.get(uploadDirectory, fileName).toString();
+			
+			try {
+				
+				File dir = new File(uploadDirectory);
+				if(!dir.exists()) {
+					dir.mkdirs();
+				}
+				
+				// Setear archivo
+				byte[] imageData = file.getBytes();
+				//mascota.setFoto_mascota(Base64.getEncoder().encode(file.getBytes()));
+				mascota.setFoto_mascota(imageData);
+				
+				// Guardar localmente
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+				stream.write(file.getBytes());
+				stream.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				salida.put("MENSAJE", "El archivo no pudo ser procesado");
+			}
+			
+			mascota.setCodigo_mascota(null);
+			mascota.setCodigo_propietario(codigoPropietario);
+			mascota.setNombre_mascota(nombreMascota);
+			mascota.setCodigo_raza_mascota(razaMascota);
+			mascota.setCodigo_especie_mascota(especieMascota);
+			mascota.setCodigo_color_mascota(colorMascota);
+			mascota.setCodigo_sexo_mascota(sexoMascota);
+			mascota.setFecha_nacimiento_mascota(nacimientoMascota);
+			mascota.setCodigo_identificacion_mascota(identificacionMascota);
+			mascota.setCodigo_cartilla_sanitaria(cartillaMascota);
+			mascota.setCodigo_visibilidad(1);
+			
+			Mascota objSalida = service.insertaMascota(mascota);
+			
+			if(objSalida == null) {
+				salida.put("MENSAJE", "El registro no pudo ser completado");
+			} else {
+				
+				if(fileName == null || fileName.contains("..")) {
+					salida.put("MENSAJE", "El registro se completó sin la imagen");
+				} else {
+					salida.put("MENSAJE", "¡Registro exitoso!");
+				}
+
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			salida.put("MENSAJE", "El registro no pudo ser completado");
+		}
+		
+		return salida;
+		
+	}
+	
+	/*
 	
 	@PostMapping("/registraMascotaConFoto")
 	public @ResponseBody ResponseEntity<?> createMascota(@RequestParam(value = "codigo_propietario") Integer codigoPropietario,
@@ -92,6 +172,8 @@ public class MascotaController {
 			return new ResponseEntity<>(""+codigoPropietario, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	*/
 	
 	@RequestMapping("/verMascota")
 	public String verRegistra() {
