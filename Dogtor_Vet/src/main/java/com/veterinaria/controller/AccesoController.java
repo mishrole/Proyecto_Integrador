@@ -56,6 +56,7 @@ public class AccesoController {
 			session.setAttribute("objUsuario", usuario);
 			session.setAttribute("objMenus", menus);
 			session.setAttribute("objRoles", roles);
+			session.setAttribute("currentRol", roles.get(0).getNombre_rol_usuario());
 			
 			String homeRol = "";
 			

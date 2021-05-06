@@ -1,6 +1,7 @@
 :root {
     --primary-color: #6C63FF;
-    --primary-color-light: #A491FF;
+    --primary-color-light: #a491ff;
+    --primary-color-medium: #877bfb;
     --primary-color-dark: #2838cb;
 
     --secondary-color: #455A64;
@@ -9,11 +10,11 @@
 
     --accent-color-primary: #506690;
     --accent-color-secondary: #546670;
-    --white-color: #FFFFFF;
-    
-    --error-color: #dc3545
-}
 
+    --white-color: #FFFFFF;
+    --error-color: #dc3545;
+    --dark-color: #3f3d56;
+}
 
 body {
     font-family: 'Noto Sans KR', sans-serif;
@@ -32,6 +33,10 @@ main {
 	margin-bottom: 3rem;
 }
 
+.header__navbar__container {
+    height: 100px;
+}
+
 .help-block {
 	width: 100%;
     margin-top: .25rem;
@@ -39,24 +44,40 @@ main {
     color: var(--error-color) !important;
 }
 
-/* Hardcode Bootstrap */
-
 h1,
 .text-principal-color {
 	color: var( --primary-color );
 }
 
+.text-primary-color-dark {
+    color: var( --primary-color-dark);
+}
+
+.text-dark-color {
+    color: var(--dark-color);
+}
+
 /*.form-floating>.form-select {
 	padding-top: 0.75rem !important;
 }*/
+
+.btn-primary {
+    border-color: var(--primary-color) !important;
+}
 	
 .bg-light-custom {
     background-color: var( --white-color ) !important;
     color: var( --accent-color ) !important;
 }
 
+.bg-clean {
+    background-image: linear-gradient(to bottom,#f9fbfd 0,#fff 100%);
+}
+
 .btn-primary.btn-singin {
-    background-color: var( --primary-color );
+    color: var(--primary-color);
+    background-color: var(--white-color);
+    border-color: var(--primary-color);
     padding: 0.8rem 1rem;
 }
 
@@ -67,6 +88,7 @@ h1,
 
 .btn-primary.btn-generic {
     background-color: var( --primary-color );
+    padding: 0.6rem 1rem;
 }
 
 .nav-link.link-menu:hover, .nav-link.link-menu:active {
@@ -78,7 +100,12 @@ h1,
 }
 
 .text-secondary-color {
-    color: var( --accent-color-secondary ) !important;
+    /*color: var( --accent-color-secondary ) !important;*/
+    color: var( --secondary-color) !important;
+}
+
+.bg-primary-color {
+    background-color: var(--primary-color) !important;
 }
 
 .bg-secondary-color {
@@ -87,6 +114,14 @@ h1,
 
 .text-action-color {
     color: var( --primary-color-dark ) !important;
+}
+
+.fw-500 {
+    font-weight: 500 !important;
+}
+
+.fw-400 {
+    font-weight: 400 !important;
 }
 
 li.nav-item {
@@ -118,7 +153,7 @@ h2.fc-toolbar-title {
     font-size: 1.3rem !important;
 }
 
-/*  */
+/* Home (General) */
 
 .hero__container {
     display: flex;
@@ -144,7 +179,23 @@ h2.fc-toolbar-title {
     color: var(--secondary-color-dark) !important;
 }
 
-/* Home Admin */
+.services__image__container {
+    width: 80px;
+}
+
+.beneficios__title {
+    margin-bottom: 0;
+}
+
+.specialist__profile__image:hover {
+    cursor: pointer;
+}
+
+.transform-horizontal {
+    transform: scaleX(-1);
+}
+
+/* Home (Admin) */
 
 .pet__admin--mini {
 	width: 30px;
@@ -180,7 +231,7 @@ h2.fc-toolbar-title {
     color: var(--secondary-color);
 }
 
-/* Home Cliente */
+/* Home (Client) */
 
 .pet__card--cover {
 	height: 300px;
@@ -215,3 +266,34 @@ h2.fc-toolbar-title {
         font-size: 2.5rem;
     }
 }
+
+.pulse {
+    animation: pulse 2.8s infinite;
+}
+
+
+@-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(40, 56, 203, 0.4);
+    }
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(40, 56, 203, 0);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(40, 56, 203, 0);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(40, 56, 203, 0.4);
+      box-shadow: 0 0 0 0 rgba(40, 56, 203, 0.4);
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(40, 56, 203, 0);
+        box-shadow: 0 0 0 10px rgba(40, 56, 203, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(40, 56, 203, 0);
+        box-shadow: 0 0 0 0 rgba(40, 56, 203, 0);
+    }
+  }

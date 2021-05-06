@@ -23,36 +23,39 @@
 
  <jsp:include page="header.jsp" />
 	
-	<c:if test="${requestScope.MENSAJE != null}">
-    	<div class="alert alert-danger fade in" id="success-alert">
-        	<a href="#" class="close" data-dismiss="alert">&times;</a>
-        	<strong>${requestScope.MENSAJE}</strong>
-    	</div>
-    </c:if>
+	<section id="login" class="mt-5 d-flex align-items-center justify-content-center mx-auto text-center">  	
+    	 <div class="container mt-5">
+	        <div class="row">
+        		<c:if test="${requestScope.MENSAJE != null}">
+			    	<div class="alert alert-danger fade in" id="success-alert">
+			        	<a href="#" class="close" data-dismiss="alert">&times;</a>
+			        	<strong>${requestScope.MENSAJE}</strong>
+			    	</div>
+		    	</c:if>
+	            <div class="col-12 justify-content-center align-items-center d-flex">
+	                <main class="col-10 col-md-6">
+	                    <form id="id_form" action="acceder" method="POST">
+	                      <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Inicia Sesión</b></h1>
+	                    
+	                      <div class="form-group form-floating mb-3">
+	                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on" value="admin@gmail.com">
+	                        <label for="id_email">Correo electrónico</label>
+	                      </div>
+	                      <div class="form-group form-floating mb-3">
+	                        <input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on" value="123">
+	                        <label for="id_contrasena">Contraseña</label>
+	                      </div>
 	
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 justify-content-center align-items-center d-flex">
-                <main class="col-10 col-md-6">
-                    <form id="id_form" action="acceder" method="POST">
-                      <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Inicia Sesión</b></h1>
-                    
-                      <div class="form-group form-floating mb-3">
-                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on" value="admin@gmail.com">
-                        <label for="id_email">Correo electrónico</label>
-                      </div>
-                      <div class="form-group form-floating mb-3">
-                        <input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on" value="123">
-                        <label for="id_contrasena">Contraseña</label>
-                      </div>
-
-                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="submit" id="iniciar_sesion">Iniciar Sesión</button>
-                      <p class="text-center mt-3">¿Todavía no tienes una cuenta? <a href="nuevaCuenta">Regístrate</a></p>
-                    </form>
-                  </main>
-            </div>
-        </div>
-    </div>
+	                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="submit" id="iniciar_sesion">Iniciar Sesión</button>
+	                      <p class="text-center mt-3">¿Todavía no tienes una cuenta? <a href="nuevaCuenta">Regístrate</a></p>
+	                    </form>
+	                  </main>
+	            </div>
+	        </div>
+    	</div>
+	
+	</section>
+   
 	
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<!-- JavaScript Bundle with Popper -->
