@@ -88,7 +88,6 @@ h1,
 
 .btn-primary.btn-generic {
     background-color: var( --primary-color );
-    padding: 0.6rem 1rem;
 }
 
 .nav-link.link-menu:hover, .nav-link.link-menu:active {

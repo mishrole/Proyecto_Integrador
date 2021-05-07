@@ -27,8 +27,8 @@
     		<div class="col-12" >
     		
     			<div class="row mt-3 mb-3">
-	    			<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
-						<div class="col-10 col-md-2">
+	    			<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex mx-auto">
+						<div class="col-10 col-md-3">
 		    				<div class="col-12">
 								<button type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota" class='w-100 btn btn-primary btn-generic'>Nueva Mascota</button>
 							</div>
@@ -36,7 +36,7 @@
 						<div class="col-10 col-md-6" >
 							<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_mascota" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
 						</div>
-						<div class="col-10 col-md-2" >
+						<div class="col-10 col-md-3" >
 							<button type="button" class="w-100 btn btn-primary" id="filtra_mascota">Filtrar Mascotas</button>
 						</div>
 					</div>
@@ -50,9 +50,9 @@
 		     
 				<div class="row mt-3 mb-3" > 
 					<div class="col-12" >
-						<div class="content table-responsive" >
+						<div class="content table-responsive-lg">
 						
-							<table id="id_table" class="table table-borderless text-center" >
+							<table id="id_table" class="table table-borderless text-center no-footer dataTable">
 								<thead>
 									<tr>
 										<th>ID</th>
@@ -66,9 +66,9 @@
 										<!-- <th>Nacimiento</th>
 										<th>Rastreo</th>
 										<th>Sanitario</th> -->
-										<th>Visibilidad</th>
-										<th>Actualiza</th>
-										<th>Elimina</th>
+										<th>Estado</th>
+										<th>Opciones</th>
+										<!--<th></th> -->
 									</tr>
 								</thead>
 								<tbody></tbody>
@@ -351,8 +351,8 @@
 					/*{data: "fecha_nacimiento_mascota"},
 					{data: "codigo_identificacion_mascota"},
 					{data: "codigo_cartilla_sanitaria"},*/
-					{data: function(row, type, val, meta){
-						var salida='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaMascota" onclick="editar(\'' + row.codigo_mascota +
+					{data: function(row, type, val, meta) {
+						var btnActualizar='<button type="button" class="btn btn-info btn-sm mx-1 btnModal_ActualizaMascota" onclick="editar(\'' + row.codigo_mascota +
 								'\',\'' + row.codigo_propietario +
 								'\',\'' + row.nombre_mascota +
 								'\',\'' + row.foto_mascota +
@@ -365,26 +365,21 @@
 								'\',\'' + row.codigo_cartilla_sanitaria +
 								'\',\'' + row.codigo_visibilidad +
 								'\')">Editar</button>';
-						return salida;
-					},className:'text-center'},	
-					/*{data: function(row, type, val, meta){
-					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_mascota + '\')">Eliminar</button>';
-						return salida;
-					},className:'text-center'},		*/
-					{data: function(row, type, val, meta) {
 						
-						let salida = '';
+						let btnMostrarOcultar = '';
 						
 						if(row.codigo_visibilidad === 1) {
-							salida = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')">Ocultar</button>';
+							btnMostrarOcultar = '<button type="button" class="btn btn-warning btn-sm mx-1" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')">Ocultar</button>';
 						} else {
-							salida = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')">Mostrar</button>';
+							btnMostrarOcultar = '<button type="button" class="btn btn-warning btn-sm mx-1" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')">Mostrar</button>';
 						}
-				    	
-						return salida;
-					},className:'text-center'},
+						
+						return btnActualizar + btnMostrarOcultar;
+					},className:'text-center mx-auto'},
 				]                                     
 		    });
+		 
+			$('#id_table').DataTable().columns.adjust().draw();
 		}
 	
 		function cambiarVisibilidad(codigo_mascota, codigo_visibilidad) {
@@ -458,7 +453,7 @@
 			
 			$('#id_mascota_actualiza').val(codigo_mascota);
 			$('#id_propietario_actualiza').val(codigo_propietario);
-			console.log(foto_mascota);
+			//console.log(foto_mascota);
 			$('#id_nombre_actualiza').val(nombre_mascota);
 			//$('#id_foto_actualiza').val(foto_mascota);
 			$('#select_sexo_actualiza').val(codigo_sexo_mascota);
@@ -491,7 +486,7 @@
 		function listarMascotasDatatable(nombre) {
 			$.getJSON("listaMascotaPorNombre", {"nombre_mascota": nombre}, function(lista) {
 				agregarGrilla(lista);
-				console.log(lista);
+				//console.table(lista);
 			});
 		}
 		
@@ -800,6 +795,7 @@
 					}
 				});
 			}
+			
 		});
 		
 		// Actualizar mascota
@@ -824,7 +820,7 @@
 				$.ajax({
 					type: 'POST',
 					data: data,
-					url: 'actualizaMascotaConFoto',
+					url: '/actualizaMascotaConFoto',
 					enctype: 'multipart/form-data',
 					processData: false,
 					contentType: false,
@@ -833,12 +829,12 @@
 						listarMascotasDatatable("");
 						//agregarGrilla(data.lista);
 						$('#id_modal_ActualizaMascota').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						mostrarMensaje(data.MENSAJE);
 						limpiarActualiza();
-						validator.resetForm()
+						validator.resetForm();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
