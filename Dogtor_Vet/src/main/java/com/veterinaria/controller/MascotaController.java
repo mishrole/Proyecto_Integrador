@@ -3,9 +3,9 @@ package com.veterinaria.controller;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
+//import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Base64;
+//import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -112,68 +112,90 @@ public class MascotaController {
 		
 	}
 	
-	/*
-	
-	@PostMapping("/registraMascotaConFoto")
-	public @ResponseBody ResponseEntity<?> createMascota(@RequestParam(value = "codigo_propietario") Integer codigoPropietario,
-	@RequestParam(value = "nombre_mascota") String nombreMascota, @RequestParam(value = "codigo_especie_mascota") Integer especieMascota,
-	@RequestParam(value = "codigo_raza_mascota") Integer razaMascota, @RequestParam(value = "codigo_color_mascota") Integer colorMascota,
-	@RequestParam(value = "codigo_sexo_mascota") Integer sexoMascota, @RequestParam(value = "fecha_nacimiento_mascota") String nacimientoMascota,
-	@RequestParam(value = "codigo_identificacion_mascota", required = false) String identificacionMascota,
-	@RequestParam(value = "codigo_cartilla_sanitaria", required = false) String cartillaMascota,
-	Model model, HttpServletRequest request, final @RequestParam(value = "foto_mascota") MultipartFile file) {
-
-		try {
-			String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
-			String fileName = file.getOriginalFilename();
-			String filePath = Paths.get(uploadDirectory, fileName).toString();
-			
-			if(fileName == null || fileName.contains("..")) {
-				model.addAttribute("invalid", "¡Oops! El archivo contiene un path inválido \" + filename");
-				return new ResponseEntity<>("¡Oops! El nombre del archivo contiene un path inválido" +  fileName, HttpStatus.BAD_REQUEST);
-			}
-			
-			String[] nombres = nombreMascota.split(",");
-			
-			try {
-				File dir = new File(uploadDirectory);
-				if(!dir.exists()) {
-					dir.mkdirs();
-				}
+	@PostMapping("/actualizaMascotaConFoto")
+	public @ResponseBody Map<String, Object> actualizaMascotaConFoto(@RequestParam(value = "codigo_mascota") Integer codigoMascota, @RequestParam(value = "codigo_propietario", required = false) Integer codigoPropietario,
+			@RequestParam(value = "nombre_mascota") String nombreMascota, @RequestParam(value = "codigo_especie_mascota") Integer especieMascota,
+			@RequestParam(value = "codigo_raza_mascota") Integer razaMascota, @RequestParam(value = "codigo_color_mascota") Integer colorMascota,
+			@RequestParam(value = "codigo_sexo_mascota") Integer sexoMascota, @RequestParam(value = "fecha_nacimiento_mascota") String nacimientoMascota,
+			@RequestParam(value = "codigo_identificacion_mascota", required = false) String identificacionMascota,
+			@RequestParam(value = "codigo_cartilla_sanitaria", required = false) String cartillaMascota, @RequestParam(value = "codigo_visibilidad") Integer codigoVisibilidad,
+			Model model, HttpServletRequest request, final @RequestParam(value = "foto_mascota") MultipartFile file) {
 				
-				// Guardar localmente
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-				stream.write(file.getBytes());
-				stream.close();
-			} catch (Exception e) {
-				e.printStackTrace();
+		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		try {
+			Optional<Mascota> option = service.obtienePorId(codigoMascota);
+			
+			if(option.isPresent()) {
+				option.ifPresent((Mascota result) -> {
+					
+					result.setNombre_mascota(nombreMascota);
+					result.setFecha_nacimiento_mascota(nacimientoMascota);
+					result.setCodigo_especie_mascota(especieMascota);
+					result.setCodigo_raza_mascota(razaMascota);
+					result.setCodigo_color_mascota(colorMascota);
+					result.setCodigo_sexo_mascota(sexoMascota);
+					result.setCodigo_visibilidad(codigoVisibilidad);
+					result.setCodigo_cartilla_sanitaria(cartillaMascota);
+					result.setCodigo_identificacion_mascota(identificacionMascota);
+					
+					try {
+						String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
+						String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+						String filePath = Paths.get(uploadDirectory, fileName).toString();
+						
+						try {
+							File dir = new File(uploadDirectory);
+							if(!dir.exists()) {
+								dir.mkdirs();
+							}
+							
+							// Setear archivo
+							byte[] imageData = file.getBytes();
+							//mascota.setFoto_mascota(Base64.getEncoder().encode(file.getBytes()));
+							
+							if(file.getBytes() != null && file.getSize() > 0 && imageData.length > 0) {
+								result.setFoto_mascota(imageData);
+							}
+							
+							// Guardar localmente
+							BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
+							stream.write(file.getBytes());
+							stream.close();
+						} catch (Exception e) {
+							e.printStackTrace();
+							salida.put("MENSAJE", "El archivo no es válido");
+						}
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+						salida.put("MENSAJE", "El archivo no pudo ser procesado");
+					} finally {
+						Mascota objSalida = service.insertaMascota(result);
+						
+						if(objSalida == null) {
+							salida.put("MENSAJE", "La actualización no pudo ser completada");
+						} else {
+							if(objSalida.getFoto_mascota() == null) {
+								salida.put("MENSAJE", "La foto no pudo ser actualizada");
+							} else {
+								salida.put("MENSAJE", "¡Actualización exitosa!");
+							}
+						}
+					}
+				});
+
+			} else {
+				salida.put("MENSAJE", "Error, la mascota no existe");
 			}
 			
-			byte[] imageData = file.getBytes();
-			
-			Mascota mascota = new Mascota();
-			mascota.setCodigo_mascota(null);
-			mascota.setCodigo_propietario(codigoPropietario);
-			mascota.setNombre_mascota(nombres[0]);
-			mascota.setFoto_mascota(imageData);
-			mascota.setCodigo_raza_mascota(razaMascota);
-			mascota.setCodigo_especie_mascota(especieMascota);
-			mascota.setCodigo_color_mascota(colorMascota);
-			mascota.setCodigo_sexo_mascota(sexoMascota);
-			mascota.setFecha_nacimiento_mascota(nacimientoMascota);
-			mascota.setCodigo_identificacion_mascota(identificacionMascota);
-			mascota.setCodigo_cartilla_sanitaria(cartillaMascota);
-			mascota.setCodigo_visibilidad(1);
-			
-			service.insertaMascota(mascota);
-			return new ResponseEntity<>("Producto guardado con archivo - " + fileName, HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(""+codigoPropietario, HttpStatus.BAD_REQUEST);
+			salida.put("MENSAJE", "La actualización no pudo ser completada");
 		}
+		
+		return salida;
+		
 	}
-	
-	*/
 	
 	@RequestMapping("/verMascota")
 	public String verRegistra() {

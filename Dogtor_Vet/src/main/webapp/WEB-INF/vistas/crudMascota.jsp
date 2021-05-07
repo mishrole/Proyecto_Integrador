@@ -97,10 +97,23 @@
 					                    <input type="text" id="id_propietario" name="codigo_propietario" value="${sessionScope.objUsuario.codigo_usuario}" class="d-none">
 					                    <input type="text" id="id_visibilidad" name="codigo_visibilidad" value="1" class="d-none">
 					                    
-					                   	  <div class="form-group form-floating mb-3">
-						                      <input type="text" class="form-control" id="id_nombre" name="nombre_mascota" placeholder="John" autocomplete="on" >
-						                      <label for="id_nombre">Nombre</label>
+					                    <div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto" name="foto_mascota" />
+					                      		</div>
+					                      	</div>
 					                      </div>
+					                      
+					                     <div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="text" class="form-control" id="id_nombre" name="nombre_mascota" placeholder="John" autocomplete="on" >
+						                      		<label for="id_nombre">Nombre</label>
+					                      		</div>
+					                      	</div>
+					                      </div>
+
 					                      <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 										  		<div class="form-floating">
@@ -186,8 +199,15 @@
 					                      
 					                      <input type="text" id="id_propietario_actualiza" name="codigo_propietario" class="d-none">
 					                      <input type="text" id="id_mascota_actualiza" name="codigo_mascota" class="d-none">
-					                      <input type="text" id="id_foto_actualiza" name="foto_mascota" class="d-none">
-											
+					                      
+										<div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto_actualiza" name="foto_mascota" />
+					                      		</div>
+					                      	</div>
+					                      </div>
+					                      
 											<div class="form-group row">
 												<div class="col-12 col-md-8 mb-3">
 							                      <div class="form-floating">
@@ -309,8 +329,9 @@
 					{data: function(row, type, val, meta) {
 						
 						var salida = "";
-						
-						if(row.foto_mascota.length > 0) {
+						if(row.foto_mascota == null) {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						} else if(row.foto_mascota.length > 0) {
 							 salida = "<img src='data:image/png;base64," +row.foto_mascota+ "' class='pet__admin--mini' alt='Pet image'>";
 						} else {
 							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
@@ -437,8 +458,9 @@
 			
 			$('#id_mascota_actualiza').val(codigo_mascota);
 			$('#id_propietario_actualiza').val(codigo_propietario);
+			console.log(foto_mascota);
 			$('#id_nombre_actualiza').val(nombre_mascota);
-			$('#id_foto_actualiza').val(foto_mascota);
+			//$('#id_foto_actualiza').val(foto_mascota);
 			$('#select_sexo_actualiza').val(codigo_sexo_mascota);
 			$('#select_especie_actualiza').val(codigo_especie_mascota);
 			$('#select_color_actualiza').val(codigo_color_mascota);
@@ -753,10 +775,18 @@
 			validateSelect(selectColor, selectedColor, 'color');
 			
 			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
+				
+				var form = $("#id_form_registra").serialize();
+				var data = new FormData($("#id_form_registra")[0]);
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_registra').serialize(),
-					url: 'registraMascota',
+					data: data,
+					enctype: 'multipart/form-data',
+					url: '/registraMascotaConFoto',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
 						listarMascotasDatatable("");
 						//agregarGrilla(data.lista);
@@ -787,10 +817,18 @@
 			validateSelect(selectVisibilidadActualiza, selectedVisibilidadActualiza, 'visibilidad');
 			
 			if(selectedEspecieActualiza > 0 && selectedColorActualiza > 0 && selectedSexoActualiza > 0 && selectedRazaActualiza > 0 && selectedVisibilidadActualiza > 0 && validator.isValid()) {
+				
+				var form = $("#id_form_actualiza").serialize();
+				var data = new FormData($("#id_form_actualiza")[0]);
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_actualiza').serialize(),
-					url: 'actualizaMascota',
+					data: data,
+					url: 'actualizaMascotaConFoto',
+					enctype: 'multipart/form-data',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
 						listarMascotasDatatable("");
 						//agregarGrilla(data.lista);
@@ -808,6 +846,7 @@
 
 		function limpiar() {
 			$('#id_nombre').val('');
+			$('#id_foto').val('');
 			$('#select_especie')[0].selectedIndex = 0;
 			$('#select_raza')[0].selectedIndex = 0;
 			$('#select_color')[0].selectedIndex = 0;
