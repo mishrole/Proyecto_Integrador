@@ -17,44 +17,41 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	
-	
 	<title>CRUD Producto</title>
 </head>
 <body>
 
    <jsp:include page="header.jsp" />
-   
+<!--    
    <div class="row-justify-content-center">
    		<div class="cold-md-4 mt-5">
    			<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
    		</div>
    </div>
-
+ -->
     <div class="container">
     	<div class="row">
     		<div class="col-12" >
-    		
     			<div class="row mt-3 mb-3">
-    				<div class="col-12">
-	    				<div class="col-10 col-md-2">
-							<button type="button" data-toggle="modal" id="id_btnModal_RegistraProducto" data-target="#id_modal_RegistraProducto" class='w-100 btn btn-primary btn-generic'>Nueva Producto</button>
+	    			<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
+						<div class="col-10 col-md-2">
+		    				<div class="col-12">
+								<button type="button" data-toggle="modal" id="id_btnModal_RegistraProducto" data-target="#id_modal_RegistraProducto" class='w-100 btn btn-primary btn-generic'>Nueva Producto</button>
+							</div>
+    					</div>
+						<div class="col-10 col-md-6" >
+							<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_producto" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
 						</div>
-    				</div>
+						<div class="col-10 col-md-2" >
+							<button type="button" class="w-100 btn btn-primary" id="filtra_producto">Filtrar Productos</button>
+						</div>
+					</div>
     			</div>
     		
 				<form id="id_form_elimina" action="eliminaProducto">
 					<input type="hidden" id="id_elimina" name="codigo_producto">
 				</form>
-		     
-				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
-					<div class="col-10 col-md-6" >
-						<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_producto" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
-					</div>
-					<div class="col-10 col-md-2" >
-						<button type="button" class="w-100 btn btn-primary" id="filtra_producto">Filtrar Productos</button>
-					</div>
-				</div>
-					
+
 				<div class="row mt-3 mb-3" > 
 					<div class="col-12" >
 						<div class="content table-responsive" >
@@ -64,17 +61,17 @@
 									<tr>
 										<th>ID</th>
 										<th>Nombre</th>
-										<th>Descripccion</th>
-										<th>Descripccion HTML</th>
+										<th>Descripción</th>
+										<th>Descripción HTML</th>
 										<th>Precio</th>
 										<th>Stock</th>
 										<th>Pedido</th>
 										<th>Serie</th>
-										<th>foto1</th>
-										<th>foto2</th>
-										<th>foto3</th>
+										<th>Foto1</th>
+										<th>Foto2</th>
+										<th>Foto3</th>
 										<th>Marca</th>
-										<th>Categoria</th>
+										<th>Categoría</th>
 										<th>Proveedor</th>
 										<th>Actualiza</th>
 										<th>Elimina</th>
@@ -90,8 +87,7 @@
     	</div>
     	
     	<div class="modal fade" id="id_modal_RegistraProducto">
-    		
-    		<div class="modal-dialog">
+    		<div class="modal-dialog modal-lg">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
@@ -103,118 +99,125 @@
     						 <div class="row mt-2">
 					            <div class="col-12 justify-content-center align-items-center d-flex">
 					                <main class="col-12 col-md-10">
-					                    <form id="id_form_registra" method="post" encytype="multipart/form-data">
-					                  
-					                    
-					                  <div class="form-group row">
-                    	<div class="col-12 col-md-8 mb-3">
-                    		 <div class="form-floating">
-		                      <input type="text" class="form-control" id="id_nombre" name="nombre_producto" autocomplete="on" >
-		                      <label for="id_nombre">Nombre</label>
-                      		</div>
-                    	</div>
-                    	<div class="col-12 col-md-4 mb-3">
-	                      	<div class="form-floating">
-	                      		<input type="text" class="form-control" id="id_serie" name="serie_producto" autocomplete="on" >
-	                      		<label for="id_serie">Serie</label>
-	                      </div>
-                      	</div>
-                    </div>
-                    
-                      <div class="form-group row">
+					                    <form id="id_form_registra" method="post" enctype="multipart/form-data">
+							            	<div class="form-group row">
+						                    	<div class="col-12 col-md-8 mb-3">
+						                    		 <div class="form-floating">
+								                      <input type="text" class="form-control" id="id_nombre" name="nombre_producto" autocomplete="on" >
+								                      <label for="id_nombre">Nombre</label>
+						                      		</div>
+						                    	</div>
+						                    	<div class="col-12 col-md-4 mb-3">
+							                      	<div class="form-floating">
+							                      		<input type="text" class="form-control" id="id_serie" name="serie_producto" autocomplete="on" >
+							                      		<label for="id_serie">Serie</label>
+							                      </div>
+						                      	</div>
+						                    </div>
+						                    
+					                      	<div class="form-group row">
+											  	<div class="col-12 col-md-6 mb-3">
+											  		<div class="form-floating">
+								                      	<select class="form-select" id="select_marca" name="codigo_marca" aria-label="Default select example">
+														  <option selected value="0">Seleccione Marca</option>
+														</select>
+														<label for="select_marca">Marca</label>
+						                      		</div>
+											  	</div>
+											  	<div class="col-12 col-md-6 mb-3">
+												  	<div class="form-floating">
+								                      	<select class="form-select" id="select_categoria_producto" name="codigo_categoria_producto" aria-label="Default select example">
+														  <option selected value="0">Seleccione Categoría</option>
+														</select>
+														<label for="select_categoria_producto">Categoría</label>
+							                      </div>
+											  	</div>
+										  	</div>
+										  
+											 <div class="form-group row">
+						  					  	<div class="col-12 mb-3">
+							                      	<div class="form-floating">
+								                      	<select class="form-select" id="select_proveedor" name="codigo_proveedor" aria-label="Default select example">
+														  <option selected value="0">Seleccione Proveedor</option>
+														</select>
+														<label for="select_proveedor">Proveedor</label>
+							                      </div>
+						                      	</div>
+											 </div>
+										  
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-4 mb-3">
+						                      	<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_precio" name="precio_producto" autocomplete="on" >
+						                      		<label for="id_precio">Precio</label>
+						                      </div>
+					                      	</div>
+					                      	<div class="col-12 col-md-4 mb-3">
+						                      	<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_stock" name="stock_producto" autocomplete="on" >
+						                      		<label for="id_stock">Stock</label>
+						                      </div>
+					                      	</div>
+		
+					                      	<div class="col-12 col-md-4 mb-3">
+						                      	<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_pedido" name="pedido_producto" autocomplete="on" >
+						                      		<label for="id_pedido">En Pedido</label>
+						                      </div>
+					                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+												<textarea class="form-control" id="id_descripcion_simple" name="descripcion_simple_producto" rows="5"></textarea>
+												<label for="id_descripcion_simple" class="form-label">Descripción Simple</label>
+					                      		</div>
+					                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			 <textarea id="id_descripcion_html" class="form-control" name="descripcion_html_producto">Escribe una descripción HTML</textarea>
+					                      		</div>
+					                      	</div>
+					                      </div>
+					                      
+					                       <div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto1" name="foto1_producto" />
+					                      		</div>
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto2" name="foto2_producto" />
+					                      		</div>
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto3" name="foto3_producto" />
+					                      		</div>
+					                      	</div>
+					                      </div>
+		                     
                       
-					  	<div class="col-12 col-md-6 mb-3">
-					  		<div class="form-floating">
-		                      	<select class="form-select" id="select_marca" name="codigo_marca" aria-label="Default select example">
-								  <option selected value="0">Seleccione Marca</option>
-								</select>
-								<label for="select_marca">Marca</label>
-                      		</div>
-					  	</div>
-					  	<div class="col-12 col-md-6 mb-3">
-						  	<div class="form-floating">
-		                      	<select class="form-select" id="select_categoria_producto" name="codigo_categoria_producto" aria-label="Default select example">
-								  <option selected value="0">Seleccione Categoría</option>
-								</select>
-								<label for="select_categoria_producto">Categoría</label>
-	                      </div>
-					  	</div>
-					  </div>
-					  
-					  <div class="form-group row">
-  					  	<div class="col-12 mb-3">
-	                      	<div class="form-floating">
-		                      	<select class="form-select" id="select_proveedor" name="codigo_proveedor" aria-label="Default select example">
-								  <option selected value="0">Seleccione Proveedor</option>
-								</select>
-								<label for="select_proveedor">Proveedor</label>
-	                      </div>
-                      	</div>
-					  </div>
-					  
-                      <div class="form-group row">
-                      	<div class="col-12 col-md-4 mb-3">
-	                      	<div class="form-floating">
-	                      		<input type="text" class="form-control" id="id_precio" name="precio_producto" autocomplete="on" >
-	                      		<label for="id_precio">Precio</label>
-	                      </div>
-                      	</div>
-                      	<div class="col-12 col-md-4 mb-3">
-	                      	<div class="form-floating">
-	                      		<input type="text" class="form-control" id="id_stock" name="stock_producto" autocomplete="on" >
-	                      		<label for="id_stock">Stock</label>
-	                      </div>
-                      	</div>
-                 	
-                  
-                      	
-                      	<div class="col-12 col-md-4 mb-3">
-	                      	<div class="form-floating">
-	                      		<input type="text" class="form-control" id="id_pedido" name="pedido_producto" autocomplete="on" >
-	                      		<label for="id_pedido">En Pedido</label>
-	                      </div>
-                      	</div>
-                      </div>
-                      
-                      <div class="form-group row">
-                      	<div class="col-12 mb-3">
-                      		<div class="form-floating">
-							<textarea class="form-control" id="id_descripcion_simple" name="descripcion_simple_producto" rows="5"></textarea>
-							<label for="id_descripcion_simple" class="form-label">Descripción Simple</label>
-                      		</div>
-                      	</div>
-                      </div>
-                      
-                      <div class="form-group row">
-                      	<div class="col-12 mb-3">
-                      		<div class="form-floating">
-                      			 <textarea id="id_descripcion_html" class="form-control" name="descripcion_html_producto">Escribe una descripción HTML</textarea>
-                      		</div>
-                      	</div>
-                      </div>
-                      
-	                       <div class="form-group row" >
-		                     		 <label class="col-md-2" for="id_foto1">Foto 1</label>
-		                      		<input type="file" class="m-2" id="id_foto1" name="foto1_producto">
-	                      </div>
-                      
-					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_producto">Registrar</button>
+					               			<button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_producto">Registrar</button>
 					                    </form>
 					               
-					                  </main>
+					            	</main>
 					            </div>
 					        </div>
     					</div>
     				</div>
+    				
     				<div class="modal-footer">
     					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
     				</div>
+    				
     			</div>
     		</div>
     	</div>
     	
     	<div class="modal fade" id="id_modal_ActualizaProducto">
-    		<div class="modal-dialog">
+    		<div class="modal-dialog modal-lg">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
@@ -227,12 +230,11 @@
 					            <div class="col-12 justify-content-center align-items-center d-flex">
 					                <main class="col-12 col-md-10">
 					                    <form id="id_form_actualiza">
-					                      
 					                    
 					                      <input type="text" id="id_producto_actualiza" name="codigo_producto" class="d-none">
-					                      <input type="text" id="id_foto1_actualiza" name="foto1_producto" class="d-none">
-					                      <input type="text" id="id_foto2_actualiza" name="foto2_producto" class="d-none">
-					                      <input type="text" id="id_foto3_actualiza" name="foto3_producto" class="d-none">
+					                      <!--<input type="text" id="id_foto1_actualiza" name="foto1_producto" class="d-none"> -->
+					                       <!--<input type="text" id="id_foto2_actualiza" name="foto2_producto" class="d-none">-->
+					                      <!-- <input type="text" id="id_foto3_actualiza" name="foto3_producto" class="d-none">-->
 					                    
 					            <div class="form-group row">
                     	<div class="col-12 col-md-8 mb-3">
@@ -300,8 +302,7 @@
 	                      </div>
                       	</div>
                       </div>
-                      
-                     
+
                       <div class="form-group row">
                       	<div class="col-12 mb-3">
                       		<div class="form-floating">
@@ -318,6 +319,21 @@
                       		</div>
                       	</div>
                       </div>
+                      
+                       <div class="form-group row">
+					        <div class="col-12 mb-3">
+					             <div class="form-floating">
+					                      <input type="file" class="form-control" id="id_foto1_actualiza" name="foto1_producto" />
+					             </div>
+					             <div class="form-floating">
+					                      <input type="file" class="form-control" id="id_foto2_actualiza" name="foto2_producto" />
+					              </div>
+					              <div class="form-floating">
+					                      <input type="file" class="form-control" id="id_foto3_actualiza" name="foto3_producto" />
+					              </div>
+					         </div>
+					    </div>
+                      
 					    <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="actualizar_producto">Actualizar</button>
 					     </form>
 					      </main>
@@ -370,9 +386,49 @@
 					{data: "stock_producto"},
 					{data: "pedido_producto"},
 					{data: "serie_producto"},
-					{data: "foto1_producto"},
-					{data: "foto2_producto"},
-					{data: "foto3_producto"},
+					{data: function(row, type, val, meta) {
+						
+						var salida = "";
+						if(row.foto1_producto == null) {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						} else if(row.foto1_producto.length > 0) {
+							 salida = "<img src='data:image/png;base64," +row.foto1_producto+ "' class='pet__admin--mini' alt='Pet image'>";
+						} else {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						}
+						
+						return salida;
+					}, className: 'text-center'},
+						
+						{data: function(row, type, val, meta) {
+						
+						var salida = "";
+						if(row.foto2_producto == null) {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						} else if(row.foto2_producto.length > 0) {
+							 salida = "<img src='data:image/png;base64," +row.foto2_producto+ "' class='pet__admin--mini' alt='Pet image'>";
+						} else {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						}
+						
+						return salida;
+						}, className: 'text-center'},
+					
+					
+						{data: function(row, type, val, meta) {
+						
+						var salida = "";
+						if(row.foto3_producto == null) {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						} else if(row.foto3_producto.length > 0) {
+							 salida = "<img src='data:image/png;base64," +row.foto3_producto+ "' class='pet__admin--mini' alt='Pet image'>";
+						} else {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						}
+						
+						return salida;
+						}, className: 'text-center'},
+
 					{data: "marca.nombre_marca"},
 					{data: "categoria.nombre_categoria_producto"},
 					{data: "proveedor.nombre_proveedor"},
@@ -422,7 +478,7 @@
 				error: function() {
 					mostrarMensaje(MSG_ERROR);
 				}
-			})
+			});
 		}
 		
 		function editar(codigo_producto, nombre_producto, descripcion_simple_producto, descripcion_html_producto, precio_producto, stock_producto,
@@ -432,25 +488,25 @@
 			selectedCategoriaActualiza = codigo_categoria_producto;
 			selectedProveedorActualiza = codigo_proveedor;
 			countTextareaSimpleActualiza=descripcion_simple_producto;
-		
-			
-			
+			console.log(descripcion_html_producto)
 			$('#id_producto_actualiza').val(codigo_producto);
 			$('#id_nombre_actualiza').val(nombre_producto);
 			$('#id_descripcion_simple_actualiza').val(descripcion_simple_producto);
-			$('#id_descripcion_html_actualiza').val(descripcion_html_producto);
+			//$('#id_descripcion_html_actualiza').append(descripcion_html_producto);
+			$('.simditor-body').empty();
+			$('.simditor-body').append(descripcion_html_producto);
+			
 			$('#id_precio_actualiza').val(precio_producto);
 			$('#id_stock_actualiza').val(stock_producto);
 			$('#id_pedido_actualiza').val(pedido_producto);
 			$('#id_serie_actualiza').val(serie_producto);
-			$('#id_foto1_actualiza').val(foto1_producto);
-			$('#id_foto2_actualiza').val(foto2_producto);
-			$('#id_foto3_actualiza').val(foto3_producto);
+			$('#id_foto1_actualiza').val("");
+			$('#id_foto2_actualiza').val("");
+			$('#id_foto3_actualiza').val("");
 			$('#select_marca_actualiza').val(codigo_marca);
 			$('#select_categoria_producto_actualiza').val(codigo_categoria_producto);
 			$('#select_proveedor_actualiza').val(codigo_proveedor);
-			
-			
+
 			$('#id_modal_ActualizaProducto').modal("show");
 		}
 		
@@ -464,7 +520,6 @@
 		
 		listarProductosDatatable("");
 		
-		
 		// Selects	
 		
 		const selectMarca = $('#select_marca');
@@ -472,12 +527,10 @@
 		const selectProveedor = $('#select_proveedor');
 		const textareaSimple = $('#id_descripcion_simple');
 		
-		
 		const selectMarcaActualiza = $('#select_marca_actualiza');
 		const selectCategoriaActualiza = $('#select_categoria_producto_actualiza');
 		const selectProveedorActualiza = $('#select_proveedor_actualiza');
 		const textareaSimpleActualiza = $('#id_descripcion_simple_actualiza');
-		
 		
 		// Botones
 		
@@ -486,10 +539,15 @@
 		const btnFilter = $('#filtra_producto');
 		const btnModalRegister = $('#id_btnModal_RegistraProducto');
 		
+		const editorRegistra = new Simditor(
+		{
+			textarea: $('#id_descripcion_html')
+			//optional options
+		});
 		
-		const editor = new Simditor({
-		textarea: $('#id_descripcion_html')
-		//optional options
+		const editorActualiza = new Simditor({
+			textarea: $('#id_descripcion_html_actualiza')
+			//optional options
 		});
 		
 		// Modals
@@ -605,10 +663,6 @@
 			validateTextarea(textareaSimpleActualiza, countTextareaSimpleActualiza, 'textareaSimple');
 		});
 		
-		
-		
-		
-		
 		$('#id_form_registra').bootstrapValidator({
 			message: 'El valor no es válido',
 			feedbackIcons: {
@@ -676,8 +730,7 @@
 				},
 			}
 		});
-		
-		
+
 		$('#id_form_actualiza').bootstrapValidator({
 			message: 'El valor no es válido',
 			feedbackIcons: {
@@ -759,24 +812,30 @@
 			
 			// Validar textarea simple
 			validateTextarea(textareaSimple, countTextareaSimple, 'textareaSimple');
-				
-			
 			
 			if(selectedMarca > 0 && selectedCategoria > 0 && selectedProveedor > 0 && countTextareaSimple >= 3 && countTextareaSimple <= 100 && validator.isValid()) {
+				
+				var form = $("#id_form_registra").serialize();
+				var data = new FormData($("#id_form_registra")[0]);
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_registra').serialize(),
-					url: 'registraProducto',
+					data: data,
+					enctype: 'multipart/form-data',
+					url: '/registraProductoConFoto',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
 						//agregarGrilla(data.lista);
 						listarProductosDatatable("");
 						$('#id_modal_RegistraProducto').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						mostrarMensaje(data.MENSAJE);
 						limpiar();
-						validator.resetForm()
+						validator.resetForm();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
@@ -797,20 +856,29 @@
 			//validateTextarea(textareaSimpleActualiza, countTextareaSimpleActualiza, 'textareaSimple');
 			
 			if(selectedMarcaActualiza > 0 && selectedCategoriaActualiza > 0 && selectedProveedorActualiza > 0 && validator.isValid()) {
+				
+				var form = $("#id_form_actualiza").serialize();
+				var data = new FormData($("#id_form_actualiza")[0]);
+				
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_actualiza').serialize(),
-					url: 'actualizaProducto',
+					data: data,
+					url: 'actualizaProductoConFoto',
+					enctype: 'multipart/form-data',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
 						//agregarGrilla(data.lista);
 						listarProductosDatatable("");
 						$('#id_modal_ActualizaProducto').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						mostrarMensaje(data.MENSAJE);
 						limpiarActualiza();
-						validator.resetForm()
+						validator.resetForm();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
@@ -827,6 +895,9 @@
 			$('#id_pedido').val('');
 			$('#id_descripcion_simple').val('');
 			$('#id_descripcion_html').val('');
+			$('#id_foto1').val('');
+			$('#id_foto2').val('');
+			$('#id_foto3').val('');
 			selectedMarca = 0;
 			selectedCategoria = 0;
 			selectedProveedor = 0;
@@ -848,6 +919,9 @@
 			$('#select_marca_actualiza')[0].selectedIndex = 0;
 			$('#select_categoria_producto_actualiza')[0].selectedIndex = 0;
 			$('#select_proveedor_actualiza')[0].selectedIndex = 0;
+			$('#id_foto1_actualiza').val('');
+			$('#id_foto2_actualiza').val('');
+			$('#id_foto3_actualiza').val('');
 			selectedMarcaActualiza = 0;
 			selectedCategoriaActualiza  = 0;
 			selectedProveedorActualiza  = 0;
