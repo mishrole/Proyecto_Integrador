@@ -183,10 +183,19 @@
 	<script type="text/javascript">
 		
 	$(document).ready(function() {
+		
+		// Efecto de scroll en el menú
+    	$('.scroll').on('click', function(e) {
+    		e.preventDefault();
+    		$('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top - 100}, 400, 'linear');
+    	});
+    	
+		// Activar los popover de especialistas
 		var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
         var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
             return new bootstrap.Popover(popoverTriggerEl)
         });
+        
 	});
 	
 	</script>

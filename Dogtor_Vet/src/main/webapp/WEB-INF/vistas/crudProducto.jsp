@@ -34,7 +34,7 @@
     		<div class="col-12" >
     			<div class="row mt-3 mb-3">
 	    			<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
-						<div class="col-10 col-md-2">
+						<div class="col-10 col-md-3">
 		    				<div class="col-12">
 								<button type="button" data-toggle="modal" id="id_btnModal_RegistraProducto" data-target="#id_modal_RegistraProducto" class='w-100 btn btn-primary btn-generic'>Nueva Producto</button>
 							</div>
@@ -42,7 +42,7 @@
 						<div class="col-10 col-md-6" >
 							<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_producto" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
 						</div>
-						<div class="col-10 col-md-2" >
+						<div class="col-10 col-md-3" >
 							<button type="button" class="w-100 btn btn-primary" id="filtra_producto">Filtrar Productos</button>
 						</div>
 					</div>
@@ -54,27 +54,27 @@
 
 				<div class="row mt-3 mb-3" > 
 					<div class="col-12" >
-						<div class="content table-responsive" >
+						<div class="content table-responsive-lg" >
 						
-							<table id="id_table" class="table table-borderless" >
+							<table id="id_table" class="table table-borderless text-center no-footer dataTable">
 								<thead>
 									<tr>
 										<th>ID</th>
 										<th>Nombre</th>
 										<th>Descripción</th>
-										<th>Descripción HTML</th>
+										<!-- <th>Descrip HTML</th> -->
 										<th>Precio</th>
 										<th>Stock</th>
-										<th>Pedido</th>
+										<!-- <th>Pedido</th> -->
 										<th>Serie</th>
-										<th>Foto1</th>
-										<th>Foto2</th>
-										<th>Foto3</th>
+										<!-- <th>Foto1</th> -->
+										<!--<th>Foto2</th> -->
+										<!--<th>Foto3</th> -->
 										<th>Marca</th>
 										<th>Categoría</th>
 										<th>Proveedor</th>
-										<th>Actualiza</th>
-										<th>Elimina</th>
+										<th>Opciones</th>
+										<!-- <th>Elimina</th> -->
 									</tr>
 								</thead>
 								<tbody></tbody>
@@ -356,20 +356,19 @@
 					{data: "codigo_producto"},
 					{data: "nombre_producto"},
 					{data: "descripcion_simple_producto"},
-					{data: "descripcion_html_producto"},
+					//{data: "descripcion_html_producto"},
 					{data: "precio_producto"},
 					{data: "stock_producto"},
-					{data: "pedido_producto"},
+					//{data: "pedido_producto"},
 					{data: "serie_producto"},
-					{data: "foto1_producto"},
-					{data: "foto2_producto"},
-					{data: "foto3_producto"},
+					//{data: "foto1_producto"},
+					//{data: "foto2_producto"},
+					//{data: "foto3_producto"},
 					{data: "marca.nombre_marca"},
 					{data: "categoria.nombre_categoria_producto"},
 					{data: "proveedor.nombre_proveedor"},
 					{data: function(row, type, val, meta){
-						var salida='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaProducto" onclick="editar(\'' + row.codigo_producto +
-								
+						var btnActualizarProducto ='<button type="button" class="btn btn-info btn-sm mx-1 btnModal_ActualizaProducto" onclick="editar(\'' + row.codigo_producto +
 								'\',\'' + row.nombre_producto +
 								'\',\'' + row.descripcion_simple_producto +
 								'\',\'' + row.descripcion_html_producto +
@@ -383,15 +382,16 @@
 								'\',\'' + row.codigo_marca +
 								'\',\'' + row.codigo_categoria_producto +
 								'\',\'' + row.codigo_proveedor +
-								'\')">Editar</button>';
-						return salida;
-					},className:'text-center'},	
-					{data: function(row, type, val, meta){
-					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_producto + '\')">Eliminar</button>';
-						return salida;
-					},className:'text-center'},													
+								'\')"><img src="../../images/edit.svg" alt="Editar"></button>';
+								
+						var btnEliminarProducto ='<button type="button" class="btn btn-danger btn-sm mx-1" onclick="eliminar(\'' + row.codigo_producto + '\')"><img src="../../images/trash.svg" alt="Eliminar"></button>';
+
+						return btnActualizarProducto + btnEliminarProducto;
+					},className:'text-center mx-auto'},												
 				]                                     
 		    });
+		 
+		 	$('#id_table').DataTable().columns.adjust().draw();
 		}
 		
 		function eliminar(codigo_producto) {

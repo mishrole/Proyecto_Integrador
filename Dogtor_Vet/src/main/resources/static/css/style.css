@@ -14,6 +14,25 @@
     --white-color: #FFFFFF;
     --error-color: #dc3545;
     --dark-color: #3f3d56;
+    
+    --warning-color: #FFC43D;
+    --info-color: #43BCCD;
+    --danger-color: #DA3E52;
+}
+
+.btn-info {
+	background-color: var(--info-color) !important;
+    border-color: var(--info-color) !important;
+}
+
+.btn-warning {
+	background-color: var(--warning-color) !important;
+    border-color: var(--warning-color) !important;
+}
+
+.btn-danger {
+	background-color: var(--danger-color) !important;
+    border-color: var(--danger-color) !important;
 }
 
 body {

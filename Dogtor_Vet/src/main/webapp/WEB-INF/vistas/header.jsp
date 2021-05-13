@@ -24,16 +24,16 @@
             	
             	<c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/'}">
             		<li class="nav-item">
-                        <a class="nav-link link-menu text-secondary-color" href="#hero">Inicio</a>
+                        <a class="nav-link link-menu text-secondary-color scroll" href="#hero">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-menu text-secondary-color" href="#specialties">Especialidades</a>
+                        <a class="nav-link link-menu text-secondary-color scroll" href="#specialties">Especialidades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-menu text-secondary-color" href="#specialists">Especialistas</a>
+                        <a class="nav-link link-menu text-secondary-color scroll" href="#specialists">Especialistas</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-menu text-secondary-color" href="#benefits">Beneficios</a>
+                        <a class="nav-link link-menu text-secondary-color scroll" href="#benefits">Beneficios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link link-menu text-secondary-color" href="tienda">Tienda</a>

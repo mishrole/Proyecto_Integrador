@@ -364,14 +364,14 @@
 								'\',\'' + row.codigo_identificacion_mascota +
 								'\',\'' + row.codigo_cartilla_sanitaria +
 								'\',\'' + row.codigo_visibilidad +
-								'\')">Editar</button>';
+								'\')"><img src="../../images/edit.svg" alt="Editar"></button>';
 						
 						let btnMostrarOcultar = '';
 						
 						if(row.codigo_visibilidad === 1) {
-							btnMostrarOcultar = '<button type="button" class="btn btn-warning btn-sm mx-1" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')">Ocultar</button>';
+							btnMostrarOcultar = '<button type="button" class="btn btn-warning btn-sm mx-1" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')"><img src="../../images/eye-off.svg" alt="Ocultar"></button>';
 						} else {
-							btnMostrarOcultar = '<button type="button" class="btn btn-warning btn-sm mx-1" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')">Mostrar</button>';
+							btnMostrarOcultar = '<button type="button" class="btn btn-warning btn-sm mx-1" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')"><img src="../../images/eye-on.svg" alt="Mostrar"></button>';
 						}
 						
 						return btnActualizar + btnMostrarOcultar;
