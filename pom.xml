@@ -11,7 +11,7 @@
 	<groupId>com.inicio</groupId>
 	<artifactId>Dogtor_Vet</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>Dogtor_Vet</name>
 	<description>E-commerce para Veterinaria, utilizando Spring Boot, Angular, y MySQL</description>
 	<properties>
