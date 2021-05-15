@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.veterinaria.entity.DetalleUsuarioRol;
 import com.veterinaria.entity.DetalleUsuarioRolPK;
+import com.veterinaria.entity.Rol;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.DetalleUsuarioRolService;
+import com.veterinaria.service.RolService;
 import com.veterinaria.service.UsuarioService;
 
 @Controller
@@ -24,6 +26,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private DetalleUsuarioRolService detalleUsuarioRolService;
+	
+	@Autowired
+	private RolService rolService;
 	
 	/* Nueva cuenta de tipo Cliente */
 	
@@ -238,8 +243,6 @@ public class UsuarioController {
 		return salida;
 	}
 	
-	
-	/*
 	@RequestMapping("/eliminaUsuario")
 	@ResponseBody
 	public Map<String, Object> elimina(Integer codigo_usuario) {
@@ -250,13 +253,28 @@ public class UsuarioController {
 		try {
 			if(option.isPresent()) {
 				try {
-					detalleUsuarioRolService.eliminaUsuarioRol(codigo_usuario);
+					List<Rol> roles = usuarioService.obtenerRolesDeUsuario(codigo_usuario);
+					DetalleUsuarioRolPK objRolUsuarioPK = new DetalleUsuarioRolPK();
+					objRolUsuarioPK.setCodigo_rol_usuario(roles.get(0).getCodigo_rol_usuario());
+					objRolUsuarioPK.setCodigo_usuario(codigo_usuario);
+					
+					DetalleUsuarioRol objRolUsuario = new DetalleUsuarioRol();
+					objRolUsuario.setObjDetalleUsuarioRolPK(objRolUsuarioPK);
+										
+					detalleUsuarioRolService.eliminaUsuarioRol(objRolUsuario);
+					
+					try {
+						usuarioService.eliminaUsuario(codigo_usuario);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					salida.put("MENSAJE", "Error, el usuario no pudo ser eliminado");
 				}
 				
-				usuarioService.eliminaUsuario(codigo_usuario);
 				salida.put("MENSAJE", "¡Eliminación exitosa!");
 			} else {
 				salida.put("MENSAJE", "Error, el usuario no existe");
@@ -271,6 +289,5 @@ public class UsuarioController {
 		
 		return salida;
 	}
-	*/
 	
 }

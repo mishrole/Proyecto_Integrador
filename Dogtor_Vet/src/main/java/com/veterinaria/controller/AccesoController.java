@@ -21,6 +21,11 @@ public class AccesoController {
 	@Autowired
 	private UsuarioService service;
 	
+	@RequestMapping("/test")
+	public String verTest() {
+		return "test";
+	}
+	
 	@RequestMapping("/")
 	public String verInicio() {
 		return "inicio";
