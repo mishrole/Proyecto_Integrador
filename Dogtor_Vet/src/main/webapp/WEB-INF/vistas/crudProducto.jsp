@@ -62,19 +62,16 @@
 										<th>ID</th>
 										<th>Nombre</th>
 										<th>Descripción</th>
-										<!-- <th>Descrip HTML</th> -->
 										<th>Precio</th>
 										<th>Stock</th>
-										<!-- <th>Pedido</th> -->
 										<th>Serie</th>
-										<!-- <th>Foto1</th> -->
-										<!--<th>Foto2</th> -->
-										<!--<th>Foto3</th> -->
+										<th>Foto1</th>
+										<th>Foto2</th>
+										<th>Foto3</th>
 										<th>Marca</th>
 										<th>Categoría</th>
 										<th>Proveedor</th>
 										<th>Opciones</th>
-										<!-- <th>Elimina</th> -->
 									</tr>
 								</thead>
 								<tbody></tbody>
@@ -170,8 +167,8 @@
 					                      <div class="form-group row">
 					                      	<div class="col-12 mb-3">
 					                      		<div class="form-floating">
-												<textarea class="form-control" id="id_descripcion_simple" name="descripcion_simple_producto" rows="5"></textarea>
-												<label for="id_descripcion_simple" class="form-label">Descripción Simple</label>
+													<textarea class="form-control" id="id_descripcion_simple" name="descripcion_simple_producto" rows="5"></textarea>
+													<label for="id_descripcion_simple" class="form-label">Descripción Simple</label>
 					                      		</div>
 					                      	</div>
 					                      </div>
@@ -185,8 +182,17 @@
 					                      </div>
 		                      
 			                       			<div class="form-group row" >
-					                     		<label class="col-md-2" for="id_foto1">Foto 1</label>
-					                      		<input type="file" class="m-2" id="id_foto1" name="foto1_producto">
+					                     		<div class="col-12 mb-3">
+					                     			<div class="form-floating">
+					                      				<input type="file" class="form-control" id="id_foto1" name="foto1_producto">
+					                     			</div>
+					                     			<div class="form-floating">
+					                      				<input type="file" class="form-control" id="id_foto2" name="foto2_producto">
+					                     			</div>
+					                     			<div class="form-floating">
+					                      				<input type="file" class="form-control" id="id_foto3" name="foto3_producto">
+					                     			</div>
+					                     		</div>
 			                     			 </div>
                       
 					               			<button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_producto">Registrar</button>
@@ -222,9 +228,6 @@
 					                    <form id="id_form_actualiza">
 					                    
 					                      <input type="text" id="id_producto_actualiza" name="codigo_producto" class="d-none">
-					                      <input type="text" id="id_foto1_actualiza" name="foto1_producto" class="d-none">
-					                      <input type="text" id="id_foto2_actualiza" name="foto2_producto" class="d-none">
-					                      <input type="text" id="id_foto3_actualiza" name="foto3_producto" class="d-none">
 					                    
 					            <div class="form-group row">
                     	<div class="col-12 col-md-8 mb-3">
@@ -309,6 +312,21 @@
                       		</div>
                       	</div>
                       </div>
+                      
+                      <div class="form-group row">
+                      	<div class="col-12 mb-3">
+                      		<div class="form-floating">
+								<input type="file" class="form-control" id="id_foto1_actualiza" name="foto1_producto" />
+			             	</div>
+			             	<div class="form-floating">
+								<input type="file" class="form-control" id="id_foto2_actualiza" name="foto2_producto" />
+			              	</div>
+			              	<div class="form-floating">
+			                	<input type="file" class="form-control" id="id_foto3_actualiza" name="foto3_producto" />
+			              	</div>
+                      	</div>
+                      </div>
+                      
 					    <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="actualizar_producto">Actualizar</button>
 					     </form>
 					      </main>
@@ -356,14 +374,47 @@
 					{data: "codigo_producto"},
 					{data: "nombre_producto"},
 					{data: "descripcion_simple_producto"},
-					//{data: "descripcion_html_producto"},
 					{data: "precio_producto"},
 					{data: "stock_producto"},
-					//{data: "pedido_producto"},
 					{data: "serie_producto"},
-					//{data: "foto1_producto"},
-					//{data: "foto2_producto"},
-					//{data: "foto3_producto"},
+					{data: function(row, type, val, meta) {
+						var salida = "";
+						if(row.foto1_producto == null) {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						} else if(row.foto1_producto.length > 0) {
+							 salida = "<img src='data:image/png;base64," +row.foto1_producto+ "' class='pet__admin--mini' alt='Pet image'>";
+						} else {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						}
+						
+						return salida;
+					}, className: 'text-center'},
+					{data: function(row, type, val, meta) {
+						
+						var salida = "";
+						if(row.foto2_producto == null) {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						} else if(row.foto2_producto.length > 0) {
+							 salida = "<img src='data:image/png;base64," +row.foto2_producto+ "' class='pet__admin--mini' alt='Pet image'>";
+						} else {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						}
+						
+						return salida;
+					}, className: 'text-center'},
+					{data: function(row, type, val, meta) {
+						
+						var salida = "";
+						if(row.foto3_producto == null) {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						} else if(row.foto3_producto.length > 0) {
+							 salida = "<img src='data:image/png;base64," +row.foto3_producto+ "' class='pet__admin--mini' alt='Pet image'>";
+						} else {
+							salida = "<img src='../../images/noimage.png' class='pet__admin--mini' alt='Pet image'>";
+						}
+						
+						return salida;
+					}, className: 'text-center'},
 					{data: "marca.nombre_marca"},
 					{data: "categoria.nombre_categoria_producto"},
 					{data: "proveedor.nombre_proveedor"},
@@ -423,11 +474,11 @@
 			selectedCategoriaActualiza = codigo_categoria_producto;
 			selectedProveedorActualiza = codigo_proveedor;
 			countTextareaSimpleActualiza=descripcion_simple_producto;
-			console.log(descripcion_html_producto)
+			
 			$('#id_producto_actualiza').val(codigo_producto);
 			$('#id_nombre_actualiza').val(nombre_producto);
 			$('#id_descripcion_simple_actualiza').val(descripcion_simple_producto);
-			//$('#id_descripcion_html_actualiza').append(descripcion_html_producto);
+			
 			$('.simditor-body').empty();
 			$('.simditor-body').append(descripcion_html_producto);
 			
@@ -435,9 +486,9 @@
 			$('#id_stock_actualiza').val(stock_producto);
 			$('#id_pedido_actualiza').val(pedido_producto);
 			$('#id_serie_actualiza').val(serie_producto);
-			$('#id_foto1_actualiza').val(foto1_producto);
-			$('#id_foto2_actualiza').val(foto2_producto);
-			$('#id_foto3_actualiza').val(foto3_producto);
+			$('#id_foto1_actualiza').val('');
+			$('#id_foto2_actualiza').val('');
+			$('#id_foto3_actualiza').val('');
 			$('#select_marca_actualiza').val(codigo_marca);
 			$('#select_categoria_producto_actualiza').val(codigo_categoria_producto);
 			$('#select_proveedor_actualiza').val(codigo_proveedor);
@@ -749,10 +800,18 @@
 			validateTextarea(textareaSimple, countTextareaSimple, 'textareaSimple');
 			
 			if(selectedMarca > 0 && selectedCategoria > 0 && selectedProveedor > 0 && countTextareaSimple >= 3 && countTextareaSimple <= 100 && validator.isValid()) {
+				
+				var form = $("#id_form_registra").serialize();
+				var data = new FormData($("#id_form_registra")[0]);
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_registra').serialize(),
-					url: 'registraProducto',
+					data: data,
+					enctype: 'multipart/form-data',
+					url: '/registraProductoConFoto',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
 						//agregarGrilla(data.lista);
 						listarProductosDatatable("");
@@ -783,10 +842,18 @@
 			//validateTextarea(textareaSimpleActualiza, countTextareaSimpleActualiza, 'textareaSimple');
 			
 			if(selectedMarcaActualiza > 0 && selectedCategoriaActualiza > 0 && selectedProveedorActualiza > 0 && validator.isValid()) {
+				
+				var form = $("#id_form_actualiza").serialize();
+				var data = new FormData($("#id_form_actualiza")[0]);
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_actualiza').serialize(),
-					url: 'actualizaProducto',
+					data: data,
+					url: 'actualizaProductoConFoto',
+					enctype: 'multipart/form-data',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
 						//agregarGrilla(data.lista);
 						listarProductosDatatable("");
@@ -813,6 +880,9 @@
 			$('#id_pedido').val('');
 			$('#id_descripcion_simple').val('');
 			$('#id_descripcion_html').val('');
+			$('#id_foto1').val('');
+			$('#id_foto2').val('');
+			$('#id_foto3').val('');
 			selectedMarca = 0;
 			selectedCategoria = 0;
 			selectedProveedor = 0;

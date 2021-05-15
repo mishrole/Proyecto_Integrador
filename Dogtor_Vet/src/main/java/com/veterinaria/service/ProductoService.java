@@ -3,8 +3,6 @@ package com.veterinaria.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.veterinaria.entity.Producto;
 
 public interface ProductoService {

@@ -317,10 +317,10 @@
 				lengthChange: false,
 				columns:[
 					{data: "codigo_servicio"},
-					{data: "codigo_tipo_servicio"},
-					{data: "codigo_especialidad"},
-					{data: "codigo_especialista"},
-					{data: "codigo_dia_semana"},
+					{data: "tiposervicio.nombre_tipo_servicio"},
+					{data: "especialidad.nombre_especialidad"},
+					{data: "usuario.nombre_usuario"},
+					{data: "diasemana.nombre_dia_semana"},
 					{data: "inicio_turno_servicio"},
 					{data: "fin_turno_servicio"},
 					{data: "nombre_servicio"},
@@ -397,6 +397,14 @@
 		
 	$(document).ready(function() {
 		
+		function listarServiciosDatatable(nombre) {
+            $.getJSON("listaServicioPorNombre", {"nombre_servicio": nombre}, function(lista) {
+                agregarGrilla(lista);
+            });
+        }
+		
+		listarServiciosDatatable("");
+		
 		// Selects	
 		
 		const selectTipoServicio = $('#select_tipo_servicio');
@@ -430,10 +438,7 @@
 		
 		btnFilter.click(function() {
 			const filterText = $('#id_nombre_filtro').val();
-			
-			$.getJSON("listaServicioPorNombre", {"nombre_servicio": filterText}, function(lista) {
-				agregarGrilla(lista);
-			});
+			listarServiciosDatatable(filterText);
 		});
 		
 		// Get Tipo Servicio
@@ -468,8 +473,6 @@
 		generarSelectEspecialidad(selectEspecialidad);
 		generarSelectEspecialidad(selectEspecialidadActualiza);
 		
-		// Get Especialista ---- FALTA SELECT DE USUARIO + ROL
-		
 		function generarSelectEspecialista(idSelectEspecialista) {
 			$.getJSON('listaUsuarioPorRol',{"codigo_rol_usuario":3}, function(data) {
 				$.each( data, function(index, value) {
@@ -485,11 +488,11 @@
 		generarSelectEspecialista(selectEspecialistaActualiza);
 		
 		function generarSelectDiaSemana(idSelectDia) {
-			$.getJSON('listaEspecialidad', function(data) {
+			$.getJSON('listaDiaSemana', function(data) {
 				$.each( data, function(index, value) {
 					let option = document.createElement('option');
-					option.value = value.codigo_especialidad;
-					option.text = value.nombre_especialidad;
+					option.value = value.codigo_dia_semana;
+					option.text = value.nombre_dia_semana;
 					idSelectDia.append(option);
 				});
 			})
@@ -610,14 +613,15 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraServicio',
 					success: function(data) {
-						agregarGrilla(data.lista);
+						//agregarGrilla(data.lista);
+						listarServiciosDatatable("");
 						$('#id_modal_RegistraServicio').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						mostrarMensaje(data.MENSAJE);
 						limpiar();
-						validator.resetForm()
+						validator.resetForm();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
@@ -641,9 +645,10 @@
 					data: $('#id_form_actualiza').serialize(),
 					url: 'actualizaServicio',
 					success: function(data) {
-						agregarGrilla(data.lista);
+						//agregarGrilla(data.lista);
+						listarServiciosDatatable("");
 						$('#id_modal_ActualizaServicio').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						mostrarMensaje(data.MENSAJE);
 						limpiarActualiza();
 						validator.resetForm();
 					},

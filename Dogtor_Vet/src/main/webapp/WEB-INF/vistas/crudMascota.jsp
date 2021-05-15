@@ -339,18 +339,11 @@
 						
 						return salida;
 					}, className: 'text-center'},
-					/*{data: "codigo_raza_mascota"},
-					{data: "codigo_sexo_mascota"},
-					{data: "codigo_especie_mascota"},
-					{data: "codigo_color_mascota"},*/
 					{data: "raza.nombre_raza_mascota"},
 					{data: "sexo.nombre_sexo_mascota"},
 					{data: "especie.nombre_especie_mascota"},
 					{data: "color.nombre_color_mascota"},
 					{data: "visibilidad.nombre_visibilidad"},
-					/*{data: "fecha_nacimiento_mascota"},
-					{data: "codigo_identificacion_mascota"},
-					{data: "codigo_cartilla_sanitaria"},*/
 					{data: function(row, type, val, meta) {
 						var btnActualizar='<button type="button" class="btn btn-info btn-sm mx-1 btnModal_ActualizaMascota" onclick="editar(\'' + row.codigo_mascota +
 								'\',\'' + row.codigo_propietario +
