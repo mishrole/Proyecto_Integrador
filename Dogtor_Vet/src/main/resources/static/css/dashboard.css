@@ -385,6 +385,10 @@ textarea#id_descripcion {
     color: var(--background-light-white) !important;
 }
 
+.title__color--dark {
+    color: var(--background-light-white) !important;
+}
+
 /* Button */
 
 .btn {

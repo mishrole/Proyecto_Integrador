@@ -12,7 +12,7 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	
 	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/dashboard.css"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -21,7 +21,7 @@
 </head>
 <body>
 
- <jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
 	
 	<section id="login" class="mt-5 d-flex align-items-center justify-content-center mx-auto text-center">  	
     	 <div class="container mt-5">
@@ -35,7 +35,7 @@
 	            <div class="col-12 justify-content-center align-items-center d-flex">
 	                <main class="col-10 col-md-6">
 	                    <form id="id_form" action="acceder" method="POST">
-	                      <h1 class="h3 mb-4 mt-4 fw-normal text-center"><b>Inicia Sesión</b></h1>
+	                      <h1 class="h3 mb-4 mt-4 text-center title__color font__semibold">Inicia Sesión</h1>
 	                    
 	                      <div class="form-group form-floating mb-3">
 	                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on" value="admin@gmail.com">
@@ -46,8 +46,8 @@
 	                        <label for="id_contrasena">Contraseña</label>
 	                      </div>
 	
-	                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="submit" id="iniciar_sesion">Iniciar Sesión</button>
-	                      <p class="text-center mt-3">¿Todavía no tienes una cuenta? <a href="nuevaCuenta">Regístrate</a></p>
+	                      <button class="w-100 btn btn-lg btn__primary" type="submit" id="iniciar_sesion">Ingresar</button>
+	                      <p class="text-center mt-3 font__regular title__color">¿Todavía no tienes una cuenta? <a href="nuevaCuenta" class="primary__color">Regístrate</a></p>
 	                    </form>
 	                  </main>
 	            </div>

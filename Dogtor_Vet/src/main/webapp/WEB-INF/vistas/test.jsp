@@ -22,148 +22,14 @@
 
     <main id="dashboard">
         <div class="container-fluid align-items-stretch">
-
-            <!-- Menu content on XS, SM, and MD -->
-            <nav class="menu__sidebar collapse navbar-collapse d-lg-none" id="navbarNav">
-                <div class="container-fluid mt-5">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+		
+		<!-- Header on XS, SM, and MD -->
+		<jsp:include page="header.jsp" />
             
             <div class="row">
-                <!-- Menu on XS, SM, and MD -->
-                <nav class="d-lg-none navbar navbar-expand-lg navbar-light fixed-top background__dark">
-                    <div class="container-fluid">
-                        <a class="font__max primary__color link__light font__bolder" href="./">Dogtor</a>
-                        <button id="menuHamburger" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                            <span id="menuIconBtn"><i data-feather="menu"></i></span>
-                        </button>
-                    </div>
-                </nav>
-
+                
                 <!-- Menu on LG and XXL -->
-                <nav id="menuSidebarLarge" class="d-none col-md-2 dashboard__menu menu__transition d-lg-flex flex-column justify-content-between align-items-center">
-
-                    <div class="menu__fixed fixed-top menu__transition">
-                        <div class="menu__header d-flex justify-content-between">
-                            <a class="font__max primary__color link__light font__bolder" href="./">
-                                <div class="chevron__marker d-flex justify-content-lg-start justify-content-center">
-                                    <!-- <p class="d-block d-lg-none font__max">
-                                        D
-                                    </p> -->
-                                    <p class="d-none d-lg-block">
-                                        Dogtor
-                                    </p>
-                                </div>
-                            </a>
-
-                            <button class="btn" id="menuChevron" aria-label="Toggle side menu">
-                                <i class="primary__color" data-feather="chevrons-left"></i>
-                            </button>
-                            <div></div>
-                        </div>
-
-                        <div class="menu__body d-flex flex-column my-5 pe-lg-4 menu__transition">
-                            <ul class="menu__body__list">
-    
-                                <li class="d-flex flex-row row mb-3">
-                                    <a class="background__title link__light" href="/">
-                                        <div class="marker d-flex justify-content-lg-start justify-content-center">
-                                            <p class="d-block pe-lg-3">
-                                                <i data-feather="grid"></i>
-                                            </p>
-                                            <p class="d-none d-lg-block">Inicio</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="d-flex flex-row row mb-3">
-                                    <a class="background__title link__light" href="/">
-                                        <div class="marker d-flex justify-content-lg-start justify-content-center">
-                                            <p class="d-block pe-lg-3">
-                                                <i data-feather="dollar-sign"></i>
-                                            </p>
-                                            <p class="d-none d-lg-block">Ventas</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="d-flex flex-row row mb-3">
-                                    <a class="background__title link__light" href="/">
-                                        <div class="marker d-flex justify-content-lg-start justify-content-center">
-                                            <p class="d-block pe-lg-3">
-                                                <i data-feather="shopping-bag"></i>
-                                            </p>
-                                            <p class="d-none d-lg-block">Producto</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="d-flex flex-row row mb-3">
-                                    <a class="background__title link__light" href="/">
-                                        <div class="marker d-flex justify-content-lg-start justify-content-center">
-                                            <p class="d-block pe-lg-3">
-                                                <i data-feather="package"></i>
-                                            </p>
-                                            <p class="d-none d-lg-block">Pedidos</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="d-flex flex-row row mb-3">
-                                    <a class="background__title link__light" href="/">
-                                        <div class="marker d-flex justify-content-lg-start justify-content-center">
-                                            <p class="d-block pe-lg-3">
-                                                <i data-feather="zap"></i>
-                                            </p>
-                                            <p class="d-none d-lg-block">Servicios</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="d-flex flex-row row mb-3">
-                                    <a class="background__title link__light" href="/">
-                                        <div class="marker d-flex justify-content-lg-start justify-content-center">
-                                            <p class="d-block pe-lg-3">
-                                                <i data-feather="calendar"></i>
-                                            </p>
-                                            <p class="d-none d-lg-block">Citas</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="d-flex flex-row row mb-3">
-                                    <a class="background__title link__light" href="/">
-                                        <div class="marker active d-flex justify-content-lg-start justify-content-center">
-                                            <p class="d-block pe-lg-3">
-                                                <i data-feather="users"></i>
-                                            </p>
-                                            <p class="d-none d-lg-block">Usuarios</p>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="d-flex flex-row row mb-3">
-                                    <a class="background__title link__light" href="/">
-                                        <div class="marker d-flex justify-content-lg-start justify-content-center">
-                                            <p class="d-block pe-lg-3">
-                                                <i data-feather="settings"></i>
-                                            </p>
-                                            <p class="d-none d-lg-block">Config</p>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </nav>
+                <jsp:include page="menu.jsp" />
                 
                 <!-- Dashboard Content -->
                 <div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-1 mt-5 menu__transition mx-auto">
@@ -588,7 +454,7 @@
 						
 				    	
 						return btnEditar + btnVisibilidad + btnEliminar;
-					},className:'text-center mx-auto d-flex justify-content-center'},	
+					},className:'text-center mx-auto'},	
 					/*{data: function(row, type, val, meta){
 					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_usuario + '\')">Eliminar</button>';
 						return salida;
