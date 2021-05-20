@@ -55,7 +55,7 @@
 
 <c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/login' || requestScope['javax.servlet.forward.servlet_path'] == '/nuevaCuenta' || requestScope['javax.servlet.forward.servlet_path'] == '/logout'}">
 	<!-- Sign In & Register -->
-    <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top py-3">
         <div class="container">
             <a class="primary__color font__bolder font__max link__light" href="./">Dogtor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

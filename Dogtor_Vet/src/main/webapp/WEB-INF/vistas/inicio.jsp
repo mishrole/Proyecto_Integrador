@@ -197,7 +197,7 @@
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-center">
                     <div class="d-flex col-12 mx-auto">
-                        <img src="./images/landing/benefits.svg" widht="300" height="300" class="d-block w-100" alt="Beneficios">
+                        <img src="./images/landing/benefits.svg" width="300" height="300" class="d-block w-100" alt="Beneficios">
                     </div>
                 </div>
             </div>
@@ -243,7 +243,7 @@
             // Activar popovers de Especialistas
             var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
             var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-                return new bootstrap.Popover(popoverTriggerEl)
+                return new bootstrap.Popover(popoverTriggerEl);
             });
         });
 
