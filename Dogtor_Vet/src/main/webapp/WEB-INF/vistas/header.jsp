@@ -4,9 +4,7 @@
 	<!-- Landing Menu -->
     <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="./">
-                <p class="primary__color font__bolder font__max">Dogtor</p>
-            </a>
+            <a class="primary__color font__bolder font__max link__light" href="./">Dogtor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -59,9 +57,7 @@
 	<!-- Sign In & Register -->
     <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="./">
-                <p class="primary__color font__bolder font__max">Dogtor</p>
-            </a>
+            <a class="primary__color font__bolder font__max link__light" href="./">Dogtor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

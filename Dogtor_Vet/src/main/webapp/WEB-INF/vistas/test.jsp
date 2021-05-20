@@ -80,7 +80,7 @@
                         <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
                                 <div class="card__light">
-                                    <div class="card__light__header d-flex justify-content-between">
+                                    <div class="card__light__header d-flex justify-content-between my-3">
                                         <p class="font__subtitle title__color font__semibold">Lista de Usuarios</p>
                                         <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraUsuario" data-target="#id_modal_RegistraUsuario">
                                         	<i data-feather="plus"></i>

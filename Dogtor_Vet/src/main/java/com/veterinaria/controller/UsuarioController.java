@@ -27,9 +27,6 @@ public class UsuarioController {
 	@Autowired
 	private DetalleUsuarioRolService detalleUsuarioRolService;
 	
-	@Autowired
-	private RolService rolService;
-	
 	/* Nueva cuenta de tipo Cliente */
 	
 	@RequestMapping("/nuevaCuenta")
@@ -151,7 +148,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			salida.put("MENSAJE", "El registro no pudo ser completado");
 		} finally {
-			List<Usuario> lista = usuarioService.listaUsuario();
+			List<Usuario> lista = usuarioService.listaUsuarioPorNombre("");
 			salida.put("lista", lista);
 		}
 		
@@ -203,7 +200,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			salida.put("MENSAJE", "La actualización no pudo ser completada");
 		} finally {
-			List<Usuario> lista = usuarioService.listaUsuario();
+			List<Usuario> lista = usuarioService.listaUsuarioPorNombre("");
 			salida.put("lista", lista);
 		}
 		
@@ -236,7 +233,7 @@ public class UsuarioController {
 			e.printStackTrace();
 			salida.put("MENSAJE", "Error, la visibilidad no pudo ser actualizada");
 		} finally {
-			List<Usuario> lista = usuarioService.listaUsuario();
+			List<Usuario> lista = usuarioService.listaUsuarioPorNombre("");
 			salida.put("lista", lista);
 		}
 		
@@ -283,7 +280,7 @@ public class UsuarioController {
 			e.printStackTrace();
 			salida.put("MENSAJE", "Error, el usuario no pudo ser eliminado");
 		} finally {
-			List<Usuario> lista = usuarioService.listaUsuario();
+			List<Usuario> lista = usuarioService.listaUsuarioPorNombre("");
 			salida.put("lista", lista);
 		}
 		
