@@ -6,10 +6,8 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.veterinaria.entity.Enlace;
 import com.veterinaria.entity.Rol;
@@ -19,7 +17,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
 	/* CONSULTA PARA CRUD */
 	
-	@Query("Select u from Usuario u where concat(u.nombre_usuario, ' ', u.apellido_usuario) like :param_usuario")
+	@Query("Select u from Usuario u, Distrito d, Visibilidad v where d.codigo_distrito = u.distrito.codigo_distrito and v.codigo_visibilidad = u.visibilidad.codigo_visibilidad and concat(u.nombre_usuario, ' ', u.apellido_usuario) like :param_usuario")
 	public abstract List<Usuario> listaUsuarioPorNombre(@Param("param_usuario") String nombre_usuario);
 
 	@Query("Select u from Usuario u, DetalleUsuarioRol dur, Rol r where dur.usuario.codigo_usuario = u.codigo_usuario and "+

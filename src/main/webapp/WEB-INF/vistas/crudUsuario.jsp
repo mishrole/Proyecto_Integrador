@@ -1,6 +1,6 @@
 <jsp:include page="validarSesion.jsp" />
 <!DOCTYPE html>
-<html lang="es" >
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,75 +11,100 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	
 	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/dashboard.css"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	
-	<title>CRUD Usuario</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<title>Usuario | Dogtor</title>
 </head>
-<body>
+<body class="background__light__gray">
 
-   <jsp:include page="header.jsp" />
-
-    <div class="container">
-    	<div class="row">
-    		<div class="col-12" >
-    			<div class="row mt-3 mb-3">
-    				<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
-    				    <div class="col-10 col-md-2">
-		    				<div class="col-12">
-								<button type="button" data-toggle="modal" id="id_btnModal_RegistraUsuario" data-target="#id_modal_RegistraUsuario" class='w-100 btn btn-primary btn-generic'>Nuevo Usuario</button>
-							</div>
-    					</div>
-						<div class="col-10 col-md-6" >
-							<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_usuario" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
-						</div>
-						<div class="col-10 col-md-2" >
-							<button type="button" class="w-100 btn btn-primary" id="filtra_usuario">Filtrar Usuarios</button>
-						</div>
-					</div>
-    			</div>
-    		
-				<form id="id_form_elimina" action="eliminaUsuario">
-					<input type="text" id="id_elimina" name="codigo_usuario" class="d-none">
-					<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
-				</form>
-					
-				<div class="row mt-3 mb-3" > 
-					<div class="col-12" >
-						<div class="content table-responsive" >
-						
-							<table id="id_table" class="table table-borderless text-center" >
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Email</th>
-										<th>Contraseña</th>
-										<th>Nombre</th>
-										<th>Apellido</th>
-										<th>Nacimiento</th>
-										<!-- <th>Género</th>
-										<th>DNI</th>
-										<th>Dirección</th>
-										<th>Referencia</th>
-										<th>Teléfono</th> -->
-										<th>Distrito</th>
-										<th>Estado</th>
-										<th>Actualiza</th>
-										<th>Elimina</th>
-									</tr>
-								</thead>
-								<tbody></tbody>
-							</table>	
-							
-						</div>	
-					</div>
-				</div>
-		  </div>
-    	</div>
-    	
-    	<div class="modal fade" id="id_modal_RegistraUsuario">
+    <main id="dashboard">
+        <div class="container-fluid align-items-stretch">
+		
+		<!-- Header on XS, SM, and MD -->
+		<jsp:include page="header.jsp" />
+            
+            <div class="row">
+                
+                <!-- Menu on LG and XXL -->
+                <jsp:include page="menu.jsp" />
+                
+                <!-- Dashboard Content -->
+                <div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-1 mt-5 menu__transition mx-auto">
+                    <div class="content__body background__light__white menu__transition">
+                        <div class="row justify-content-center">
+                            <div class="content__body__title col-4">
+                                <p class="font__title title__color font__semibold">Usuario</p>
+                            </div>
+                            <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
+                                <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
+                                    <input type="text" name="filtro_nombre_usuario" id="id_nombre_filtro" class="input__search title__color" placeholder="Buscar...">
+                                    <i data-feather="search" class="icon__light"></i>
+                                </div>
+                                <div class="options__filter d-none d-lg-flex mx-2">
+                                    <select name="select_time" id="id_select_time" class="select__time form-select">
+                                        <option value="0">Este mes</option>
+                                    </select>
+                                </div>
+                                <div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
+                                    <i data-feather="message-square"></i>
+                                </div>
+                                <div id="btnProfile" class="options__profile mx-2">
+                                    <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
+                                </div>
+                        </div>
+                        <div class="content__alert row">
+                            <div class="col-12 mt-4 mb-2">
+                                <div class="card__light">
+                                    <div class="card__light__header d-flex justify-content-between my-3">
+                                        <p class="font__subtitle title__color font__semibold">Lista de Usuarios</p>
+                                        <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraUsuario" data-target="#id_modal_RegistraUsuario">
+                                        	<i data-feather="plus"></i>
+                                        	Nuevo
+                                        </button>
+                                        
+                                    </div>
+                                    <div class="card__light__body row">
+                                    	<form id="id_form_elimina" action="eliminaUsuario">
+											<input type="text" id="id_elimina" name="codigo_usuario" class="d-none">
+											<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
+										</form>
+                                        <div class="col-12 table-responsive">
+                                            <table id="id_table" class="font__min display responsive no-footer text-center table table-borderless dataTable">
+                                                <thead class="background__title">
+                                                    <tr>
+                                                        <th>ID</th>
+														<th>Email</th>
+														<th>Contraseña</th>
+														<th>Nombre</th>
+														<th>Apellido</th>
+														<th>Nacimiento</th>
+														<th>Distrito</th>
+														<th>Estado</th>
+														<th>Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            	</div>
+            </div>
+        </div>
+    </main>
+    
+   	<div class="container-fluid">
+   		<div class="modal fade p-0" id="id_modal_RegistraUsuario">
     		<div class="modal-dialog modal-lg">
     			<div class="modal-content">
     				<div class="modal-header">
@@ -191,7 +216,7 @@
 										  		</div>
 										  	</div>
 					                      </div>
-					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_usuario">Registrar</button>
+					                      <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="registrar_usuario">Registrar</button>
 					                    </form>
 					                  </main>
 					            </div>
@@ -326,7 +351,7 @@
 										  	</div>
 					                      </div>
 					                      
-					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="actualizar_usuario">Actualizar</button>
+					                      <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="actualizar_usuario">Actualizar</button>
 					                    </form>
 					                  </main>
 					            </div>
@@ -339,23 +364,27 @@
     			</div>
     		</div>
     	</div>
-    </div>
-	
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+   	</div>
+
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Custom JS -->
+    <script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
-	
+	<script type="text/javascript" src="js/menuDashboard.js"></script>
+
 	<script type="text/javascript">
-	
+
+    // Load icons
+    feather.replace();
+
 	var selectedDistritoActualiza, selectedRolActualiza, selectedVisibilidadActualiza;
 	
 	function agregarGrilla(lista) {
-		console.log(lista)
 		 $('#id_table').DataTable().clear();
 		 $('#id_table').DataTable().destroy();
 		 $('#id_table').DataTable({
@@ -363,8 +392,9 @@
 				searching: false,
 				ordering: true,
 				processing: true,
-				pageLength: 5,
+				pageLength: 6,
 				lengthChange: false,
+				responsive: true,
 				columns:[
 					{data: "codigo_usuario"},
 					{data: "email_usuario"},
@@ -372,15 +402,10 @@
 					{data: "nombre_usuario"},
 					{data: "apellido_usuario"},
 					{data: "fecha_nacimiento_usuario"},
-					/*{data: "genero_usuario"},
-					{data: "dni_usuario"},
-					{data: "direccion_usuario"},
-					{data: "referencia_usuario"},
-					{data: "telefono_usuario"},*/
 					{data: "distrito.nombre_distrito"},
 					{data: "visibilidad.nombre_visibilidad"},
 					{data: function(row, type, val, meta){
-						var salida='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaUsuario" onclick="editar(\'' + row.codigo_usuario +
+						var btnEditar ='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaUsuario" onclick="editar(\'' + row.codigo_usuario +
 								'\',\'' + row.email_usuario +
 								'\',\'' + row.contrasena_usuario +
 								'\',\'' + row.nombre_usuario +
@@ -393,29 +418,36 @@
 								'\',\'' + row.telefono_usuario +
 								'\',\'' + row.codigo_distrito +
 								'\',\'' + row.codigo_visibilidad +
-								'\')">Editar</button>';
-						return salida;
-					},className:'text-center'},	
-					/*{data: function(row, type, val, meta){
-					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_usuario + '\')">Eliminar</button>';
-						return salida;
-					},className:'text-center'},*/
-					{data: function(row, type, val, meta) {
-						
-						let salida = '';
+								'\')"><i data-feather="edit-2"></i></button>';
+								
+						let btnVisibilidad = '';
 						
 						if(row.codigo_visibilidad === 1) {
-							salida = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')">Ocultar</button>';
+						    btnVisibilidad = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')"><i data-feather="eye-off"></i></button>';
 						} else {
-							salida = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')">Mostrar</button>';
+						    btnVisibilidad = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')"><i data-feather="eye"></i></button>';
 						}
+						
+						let btnEliminar = '<button type="button" class="btn btn-danger btn-sm" onclick="eliminar(\'' + row.codigo_usuario + '\')"><i data-feather="trash"></i></button>';
+						
 				    	
-						return salida;
-					},className:'text-center'},
+						return btnEditar + btnVisibilidad + btnEliminar;
+					},className:'text-center mx-auto d-flex justify-content-center'},	
 				]                                     
 		    });
+		 	
+		 	// Reload icons
+		    feather.replace();
+		 	
+		    $('#id_table').DataTable().columns.adjust().draw();
 		}
 	
+	    function listarUsuariosDatatable(nombre) {
+			$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": nombre}, function(lista) {
+				agregarGrilla(lista);
+			});
+		}
+		
 		function cambiarVisibilidad(codigo_usuario, codigo_visibilidad) {
 			mostrarMensajeConfirmacion("¿Desea modificar la visibilidad del registro?", accionVisibilidad, null, {codigo_usuario, codigo_visibilidad});
 		}
@@ -432,24 +464,15 @@
 				nuevoEstado = 1;
 			}
 			
-			console.log("Visibilidad: " + data.codigo_visibilidad, "Usuario: " + data.codigo_usuario)
-			
 			$('#id_visibilidad_elimina').val(nuevoEstado);
-			
-			console.log("Nuevo estado: " + nuevoEstado)
 			
 			$.ajax({
 				type: "POST",
 				url: "actualizaVisibilidadUsuario",
 				data: $('#id_form_elimina').serialize(),
 				success: function(data) {
-					$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": ""}, function(lista) {
-						agregarGrilla(lista);
-					});
-					
-					console.log(data)
-					// NO tiene distrito
 					//agregarGrilla(data.lista);
+					listarUsuariosDatatable("");
 					mostrarMensaje(data.MENSAJE);
 				},
 				error: function() {
@@ -458,27 +481,20 @@
 			});
 		}
 		
-		/*
 		function eliminar(codigo_usuario) {
 			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_usuario);
-			//console.log("Código usuario en eliminar "+ codigo_usuario);
 		}
-		
 		
 		function accionEliminar(codigo_usuario) {
 			$('#id_elimina').val(codigo_usuario);
 			
-			//console.log("Código usuario en accionEliminar "+ codigo_usuario);
 			$.ajax({
 				type: "POST",
 				url: "eliminaUsuario",
 				data: $('#id_form_elimina').serialize(),
 				success: function(data) {
-					$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": ""}, function(lista) {
-						agregarGrilla(lista);
-					});
-					// NO tiene distrito
 					//agregarGrilla(data.lista);
+					listarUsuariosDatatable("");
 					mostrarMensaje(data.MENSAJE);
 				},
 				error: function() {
@@ -487,7 +503,6 @@
 			});
 			
 		}
-		*/
 		
 		function editar(codigo_usuario, email_usuario, contrasena_usuario,
 		nombre_usuario, apellido_usuario, fecha_nacimiento_usuario,
@@ -496,7 +511,6 @@
 				
 			selectedDistritoActualiza = codigo_distrito;
 			selectedVisibilidadActualiza = codigo_visibilidad;
-			//console.log(codigo_usuario);
 			
 			$.getJSON("listaRolPorUsuario", {"codigo_usuario": codigo_usuario}, function(lista) {
 				$('#select_rol_actualiza').val(lista[0].codigo_rol_usuario);
@@ -521,12 +535,6 @@
 		}
 		
 	$(document).ready(function() {
-		
-		function listarUsuariosDatatable(nombre) {
-			$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": nombre}, function(lista) {
-				agregarGrilla(lista);
-			});
-		}
 		
 		// Mostrar usuarios al cargar la página
 		listarUsuariosDatatable("");
@@ -560,9 +568,10 @@
 		
 		// Filtrar Usuario por Nombre
 		
-		btnFilter.click(function() {
-			const filterText = $('#id_nombre_filtro').val();
-			listarUsuariosDatatable(filterText);
+		$('#id_nombre_filtro').keydown(function(e) {
+		    if(e.key === 'Enter' || e.keyCode === 13) {
+		        listarUsuariosDatatable($('#id_nombre_filtro').val());
+		    }
 		});
 		
 		// Get Rol
@@ -783,16 +792,15 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraUsuario',
 					success: function(data) {
-						listarUsuariosDatatable("");
 						//agregarGrilla(data.lista);
-						//console.log(data.lista)
+						listarUsuariosDatatable("");
 						$('#id_modal_RegistraUsuario').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						mostrarMensaje(data.MENSAJE);
 						limpiar();
-						validator.resetForm()
+						validator.resetForm();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
@@ -815,12 +823,8 @@
 					data: $('#id_form_actualiza').serialize(),
 					url: 'actualizaUsuario',
 					success: function(data) {
-
+						//agregarGrilla(lista);
 						listarUsuariosDatatable("");
-						/* [BUG]: Data de actualizar no trae distrito */
-						
-						//agregarGrilla(data.lista);
-						//console.log(data.lista);
 						$('#id_modal_ActualizaUsuario').modal("hide");
 						mostrarMensaje(data.MENSAJE);
 						limpiarActualiza();
@@ -870,10 +874,8 @@
 			selectedRolActualiza = 0;
 			selectedVisibilidadActualiza = 0;
 		}
-	
-	});
-	
-	
+
+    });
 	</script>
 </body>
 </html>

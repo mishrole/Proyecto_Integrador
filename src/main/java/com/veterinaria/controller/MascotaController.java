@@ -234,7 +234,7 @@ public class MascotaController {
 		} catch (Exception e) {
 			salida.put("MENSAJE", "El registro no pudo ser completado");
 		} finally {
-			List<Mascota> lista = service.listaMascota();
+			List<Mascota> lista = service.listaMascotaPorNombre("");
 			salida.put("lista", lista);
 		}
 		
@@ -264,7 +264,7 @@ public class MascotaController {
 		} catch (Exception e) {
 			salida.put("MENSAJE", "La actualización no pudo ser completada");
 		} finally {
-			List<Mascota> lista = service.listaMascota();
+			List<Mascota> lista = service.listaMascotaPorNombre("");
 			salida.put("lista", lista);
 		}
 		
@@ -296,14 +296,14 @@ public class MascotaController {
 			e.printStackTrace();
 			salida.put("MENSAJE", "Error, la visibilidad no pudo ser actualizada");
 		} finally {
-			List<Mascota> lista = service.listaMascota();
+			List<Mascota> lista = service.listaMascotaPorNombre("");
 			salida.put("lista", lista);
 		}
 		
 		return salida;
 	}
 	
-	/*
+
 	@RequestMapping("/eliminaMascota")
 	@ResponseBody
 	public Map<String, Object> elimina(Integer codigo_mascota) {
@@ -322,11 +322,11 @@ public class MascotaController {
 			e.printStackTrace();
 			salida.put("MENSAJE", "Error, la mascota no pudo ser eliminada");
 		} finally {
-			List<Mascota> lista = service.listaMascota();
+			List<Mascota> lista = service.listaMascotaPorNombre("");
 			salida.put("lista", lista);
 		}
 		
 		return salida;
 	}
-	*/
+
 }
