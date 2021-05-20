@@ -11,9 +11,6 @@
            <div class="menu__header d-flex justify-content-between">
                <a class="font__max primary__color link__light font__bolder" href="./">
                    <div class="chevron__marker d-flex justify-content-lg-start justify-content-center">
-                       <!-- <p class="d-block d-lg-none font__max">
-                           D
-                       </p> -->
                        <p class="d-none d-lg-block">
                            Dogtor
                        </p>
@@ -30,8 +27,8 @@
                <ul class="menu__body__list">
 
                    <li class="d-flex flex-row row mb-3">
-                       <a class="background__title link__light" href="/">
-                           <div class="marker d-flex justify-content-lg-start justify-content-center">
+                       <a class="background__title link__light" href="/homeAdministrador">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="homeAdministrador">
                                <p class="d-block pe-lg-3">
                                    <i data-feather="grid"></i>
                                </p>
@@ -40,8 +37,8 @@
                        </a>
                    </li>
                    <li class="d-flex flex-row row mb-3">
-                       <a class="background__title link__light" href="/">
-                           <div class="marker d-flex justify-content-lg-start justify-content-center">
+                       <a class="background__title link__light" href="/verVenta">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="verVenta">
                                <p class="d-block pe-lg-3">
                                    <i data-feather="dollar-sign"></i>
                                </p>
@@ -50,8 +47,8 @@
                        </a>
                    </li>
                    <li class="d-flex flex-row row mb-3">
-                       <a class="background__title link__light" href="/">
-                           <div class="marker d-flex justify-content-lg-start justify-content-center">
+                       <a class="background__title link__light" href="/verProducto">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="verProducto">
                                <p class="d-block pe-lg-3">
                                    <i data-feather="shopping-bag"></i>
                                </p>
@@ -60,8 +57,8 @@
                        </a>
                    </li>
                    <li class="d-flex flex-row row mb-3">
-                       <a class="background__title link__light" href="/">
-                           <div class="marker d-flex justify-content-lg-start justify-content-center">
+                       <a class="background__title link__light" href="/verPedido">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="verPedido">
                                <p class="d-block pe-lg-3">
                                    <i data-feather="package"></i>
                                </p>
@@ -70,8 +67,8 @@
                        </a>
                    </li>
                    <li class="d-flex flex-row row mb-3">
-                       <a class="background__title link__light" href="/">
-                           <div class="marker d-flex justify-content-lg-start justify-content-center">
+                       <a class="background__title link__light" href="/verServicio">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="verServicio">
                                <p class="d-block pe-lg-3">
                                    <i data-feather="zap"></i>
                                </p>
@@ -80,8 +77,8 @@
                        </a>
                    </li>
                    <li class="d-flex flex-row row mb-3">
-                       <a class="background__title link__light" href="/">
-                           <div class="marker d-flex justify-content-lg-start justify-content-center">
+                       <a class="background__title link__light" href="/verCita">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="verCita">
                                <p class="d-block pe-lg-3">
                                    <i data-feather="calendar"></i>
                                </p>
@@ -90,8 +87,8 @@
                        </a>
                    </li>
                    <li class="d-flex flex-row row mb-3">
-                       <a class="background__title link__light" href="/">
-                           <div class="marker active d-flex justify-content-lg-start justify-content-center">
+                       <a class="background__title link__light" href="/verUsuario">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="verUsuario">
                                <p class="d-block pe-lg-3">
                                    <i data-feather="users"></i>
                                </p>
@@ -100,8 +97,18 @@
                        </a>
                    </li>
                    <li class="d-flex flex-row row mb-3">
-                       <a class="background__title link__light" href="/">
-                           <div class="marker d-flex justify-content-lg-start justify-content-center">
+                       <a class="background__title link__light" href="/verMascota">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="verMascota">
+                               <p class="d-block pe-lg-3">
+                                   <i data-feather="github"></i>
+                               </p>
+                               <p class="d-none d-lg-block">Mascotas</p>
+                           </div>
+                       </a>
+                   </li>
+                   <li class="d-flex flex-row row mb-3">
+                       <a class="background__title link__light" href="/verConfig">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="configMenu">
                                <p class="d-block pe-lg-3">
                                    <i data-feather="settings"></i>
                                </p>
@@ -115,3 +122,48 @@
 
    </nav>
 </c:if>
+
+<script>
+
+//var menusUsuario = [];
+/*
+$('.active').removeClass('active');
+<c:forEach var="x" items="${sessionScope.objMenus}">
+	//menusUsuario.push(${x.ruta_enlace});
+	    if(window.location.pathname === '/'+${x.ruta_enlace}) {
+    		$('#'+${x.ruta_enlace}).addClass('active');
+    	}
+	    console.log(${x.ruta_enlace});
+</c:forEach>*/
+
+function colorearMenuActivo() {
+	$('.active').removeClass('active');
+	
+	var menuUsuario = document.querySelectorAll('.marker');
+	
+	for(i = 0; i < menuUsuario.length; i++) {
+	    console.log(menuUsuario[i].getAttribute('id'));
+	    if(window.location.pathname === '/'+menuUsuario[i].getAttribute('id')) {
+	        menuUsuario[i].classList.add('active')
+	    }
+	}
+	/*
+	let opciones = ['homeAdministrador', 'verUsuario', 'verProducto', 'verServicio', 'verMascota', 'homeCliente'];
+	
+	opciones.forEach(function(value, index) {
+    	if(window.location.pathname === '/'+value) {
+    		$('#'+value).addClass('active');
+    	}
+	});
+	*/
+	//var menus = ${sessionScope.objMenus};
+	//console.log(menusUsuario)
+	}
+	
+	// Activar estado del menu según pathname
+	$(document).ready(function() {
+	
+	    colorearMenuActivo();
+		
+	});
+</script>

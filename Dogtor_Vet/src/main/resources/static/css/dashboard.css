@@ -210,6 +210,11 @@ body {
     
 } */
 
+.img__table--mini {
+	width: 30px;
+	height: 30px;
+}
+
 .table {
     width: 100% !important;
 }

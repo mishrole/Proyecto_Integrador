@@ -16,7 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	
-	<title>CRUD Usuario</title>
+	<title>CRUD Mascota</title>
 </head>
 <body class="background__light__gray">
 
@@ -36,11 +36,11 @@
                     <div class="content__body background__light__white menu__transition">
                         <div class="row justify-content-center">
                             <div class="content__body__title col-4">
-                                <p class="font__title title__color font__semibold">Usuario</p>
+                                <p class="font__title title__color font__semibold">Mascota</p>
                             </div>
                             <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
                                 <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
-                                    <input type="text" name="filtro_nombre_usuario" id="id_nombre_filtro" class="input__search title__color" placeholder="Buscar...">
+                                    <input type="text" name="filtro_nombre_mascota" id="id_nombre_filtro" class="input__search title__color" placeholder="Buscar...">
                                     <i data-feather="search" class="icon__light"></i>
                                 </div>
                                 <div class="options__filter d-none d-lg-flex mx-2">
@@ -55,62 +55,39 @@
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
                                 </div>
                         </div>
-                        <!-- 
-                        <div class="content__statistics row mt-4">
-                            <div class="col-12 col-md-4 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">En Productos</p>
-                                    <p class="font__title title__color font__semibold m-0">S/ 17 358,58</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">En Servicios</p>
-                                    <p class="font__title title__color font__semibold m-0">S/ 23 158,72</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 mt-2 mb-2 d-none d-md-inline-block">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Total General</p>
-                                    <p class="font__title title__color font__semibold m-0">S/ 40 517,30</p>
-                                </div> 
-                            </div>
-                        </div>
- 						-->
                         <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
                                 <div class="card__light">
                                     <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold">Lista de Usuarios</p>
-                                        <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraUsuario" data-target="#id_modal_RegistraUsuario">
+                                        <p class="font__subtitle title__color font__semibold">Lista de Mascotas</p>
+                                        <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota">
                                         	<i data-feather="plus"></i>
                                         	Nuevo
                                         </button>
                                         
                                     </div>
                                     <div class="card__light__body row">
-                                    	<form id="id_form_elimina" action="eliminaUsuario">
-											<input type="text" id="id_elimina" name="codigo_usuario" class="d-none">
+                                    	<form id="id_form_elimina" action="eliminaMascota">
+											<input type="text" id="id_elimina" name="codigo_mascota" class="d-none">
 											<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
 										</form>
                                         <div class="col-12 table-responsive">
                                             <table id="id_table" class="font__min display responsive no-footer text-center table table-borderless dataTable">
                                                 <thead class="background__title">
                                                     <tr>
-                                                        <th>ID</th>
-														<th>Email</th>
-														<th>Contraseña</th>
+														<th>ID</th>
+														<th>Dueño</th>
 														<th>Nombre</th>
-														<th>Apellido</th>
-														<th>Nacimiento</th>
-														<th>Distrito</th>
+														<th>Foto</th>
+														<th>Raza</th>
+														<th>Sexo</th>
+														<th>Especie</th>
+														<th>Color</th>
 														<th>Estado</th>
 														<th>Opciones</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    
-                                                </tbody>
+                                                <tbody></tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -125,12 +102,12 @@
     </main>
     
    	<div class="container-fluid">
-   		<div class="modal fade p-0" id="id_modal_RegistraUsuario">
+   		<div class="modal fade p-0" id="id_modal_RegistraMascota">
     		<div class="modal-dialog modal-lg">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
-    						<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Registro de Usuario</b></h1>
+    						<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Registro de Mascota</b></h1>
     					</div>
     				</div>
     				<div class="modal-body">
@@ -140,104 +117,85 @@
 					                <main class="col-12 col-md-10">
 					                    <form id="id_form_registra">
 					                    
+					                    <input type="text" id="id_propietario" name="codigo_propietario" value="${sessionScope.objUsuario.codigo_usuario}" class="d-none">
 					                    <input type="text" id="id_visibilidad" name="codigo_visibilidad" value="1" class="d-none">
 					                    
 					                    <div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto" name="foto_mascota" />
+					                      		</div>
+					                      	</div>
+										</div>
+										
+										<div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="text" class="form-control" id="id_nombre" name="nombre_mascota" autocomplete="on" >
+						                      		<label for="id_nombre">Nombre</label>
+					                      		</div>
+					                      	</div>
+										</div>
+										
+										<div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="form-floating">
-										  			<input type="email" class="form-control" id="id_email" name="email_usuario" autocomplete="on" >
-						                   			<label for="id_email">Email</label>
-										  		</div>
-										  	</div>
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_contrasena" name="contrasena_usuario" autocomplete="on" >
-						                    		<label for="id_contrasena">Contraseña</label>
-										  		</div>
-										  	</div>
-					                      </div>
-					                      
-					                      <div class="form-group row">
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="form-floating">
-										  			<input type="text" class="form-control" id="id_nombre" name="nombre_usuario" autocomplete="on" >
-						                   			<label for="id_nombre">Nombres</label>
-										  		</div>
-										  	</div>
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_apellido" name="apellido_usuario" autocomplete="on" >
-						                    		<label for="id_apellido">Apellidos</label>
-										  		</div>
-										  	</div>
-					                      </div>
-					                      
-					                      <div class="form-group row">
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="form-floating">
-										  			<input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_usuario" autocomplete="on">
-					                        		<label for="id_fecha_nacimiento">Fecha de nacimiento</label>
-										  		</div>
-										  	</div>
-										  	
-										  	<div class="col-12 col-md-6 mb-3">
-												<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_genero" name="genero_usuario" autocomplete="on" >
-						                    		<label for="id_genero">Género</label>
-										  		</div>
-										  	</div>
-					                      </div>
-					                      
-					                      <div class="form-group row">
-						                      <div class="col-12 col-md-6 mb-3">
-												  	<div class="col form-floating">
-											  			<input type="text" class="form-control" id="id_dni" name="dni_usuario" autocomplete="on" >
-							                    		<label for="id_dni">DNI</label>
-											  		</div>
-											  	</div>
-											  	<div class="col-12 col-md-6 mb-3">
-												  	<div class="col form-floating">
-											  			<input type="text" class="form-control" id="id_telefono" name="telefono_usuario" autocomplete="on" >
-							                    		<label for="id_telefono">Teléfono</label>
-											  		</div>
-						                      	</div>
-					                      </div>
-					                      
-					                      <div class="form-group row">
-											<div class="col-12 col-md-6 mb-3">
 										  		<div class="form-floating">
-							                      	<select class="form-select" id="select_rol" name="codigo_rol_usuario" aria-label="Default select example">
-													  <option selected value="0">Seleccione Rol</option>
+							                      	<select class="form-select" id="select_especie" name="codigo_especie_mascota" aria-label="Select">
+													  <option selected value="0">Seleccione Especie</option>
 													</select>
-													<label for="select_rol">Rol</label>
+													<label for="select_especie">Especie</label>
 					                      		</div>
 										  	</div>
-											<div class="col-12 col-md-6 mb-3">
-										  		<div class="form-floating">
-							                      	<select class="form-select" id="select_distrito" name="codigo_distrito" aria-label="Default select example">
-													  <option selected value="0">Seleccione Distrito</option>
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+							                      	<select class="form-select" id="select_raza" name="codigo_raza_mascota" aria-label="Select">
+													  <option selected value="0">Seleccione Raza</option>
 													</select>
-													<label for="select_distrito">Distrito</label>
-					                      		</div>
+													<label for="select_raza">Raza</label>
+						                      </div>
 										  	</div>
-										  	</div>
-					                      
+										  </div>
+										  
+										<div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_color" name="codigo_color_mascota" aria-label="Select">
+													  <option selected value="0">Seleccione Color</option>
+													</select>
+													<label for="select_color">Color</label>
+						                      </div>
+					                      	</div>
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_sexo" name="codigo_sexo_mascota" aria-label="Select">
+													  <option selected value="0">Seleccione Sexo</option>
+													</select>
+													<label for="select_sexo">Sexo</label>
+						                      </div>
+					                      	</div>
+					                      </div>
+					                    
+					                     <div class="form-group form-floating mb-3">
+					                        <input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_mascota" autocomplete="on">
+					                        <label for="id_fecha_nacimiento">Fecha de nacimiento</label>
+					                      </div>
 					                      
 					                      <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="form-floating">
-										  			<input type="text" class="form-control" id="id_direccion" name="direccion_usuario" autocomplete="on" >
-						                   			<label for="id_direccion">Dirección</label>
+										  			<input type="text" class="form-control" id="id_identificacion" name="codigo_identificacion_mascota" autocomplete="on" >
+						                   			<label for="id_identificación"># Identificación</label>
 										  		</div>
 										  	</div>
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_referencia" name="referencia_usuario" autocomplete="on" >
-						                    		<label for="id_referencia">Referencia</label>
+										  			<input type="text" class="form-control" id="id_sanitaria" name="codigo_cartilla_sanitaria" autocomplete="on" >
+						                    		<label for="id_sanitaria"># Cartilla Sanitaria</label>
 										  		</div>
 										  	</div>
 					                      </div>
-					                      <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="registrar_usuario">Registrar</button>
+					                    
+					                      <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="registrar_mascota">Registrar</button>
 					                    </form>
 					                  </main>
 					            </div>
@@ -251,12 +209,12 @@
     		</div>
     	</div>
     	
-    	<div class="modal fade" id="id_modal_ActualizaUsuario">
+    	<div class="modal fade" id="id_modal_ActualizaMascota">
     		<div class="modal-dialog modal-lg">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
-    						<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Actualizar Usuario</b></h1>
+    						<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Actualizar Mascota</b></h1>
     					</div>
     				</div>
     				<div class="modal-body">
@@ -266,113 +224,94 @@
 					                <main class="col-12 col-md-10">
 					                    <form id="id_form_actualiza">
 					                    
-					                      <input type="text" id="id_usuario_actualiza" name="codigo_usuario" class="d-none">
+					                      <input type="text" id="id_propietario_actualiza" name="codigo_propietario" class="d-none">
+					                      <input type="text" id="id_mascota_actualiza" name="codigo_mascota" class="d-none">
 					                      
 					                      <div class="form-group row">
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="form-floating">
-										  			<input type="email" class="form-control" id="id_email_actualiza" name="email_usuario" autocomplete="on" >
-						                   			<label for="id_email_actualiza">Email</label>
-										  		</div>
-										  	</div>
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_contrasena_actualiza" name="contrasena_usuario" autocomplete="on" >
-						                    		<label for="id_contrasena_actualiza">Contraseña</label>
-										  		</div>
-										  	</div>
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto_actualiza" name="foto_mascota" />
+					                      		</div>
+					                      	</div>
 					                      </div>
 					                      
-					                      <div class="form-group row">
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="form-floating">
-										  			<input type="text" class="form-control" id="id_nombre_actualiza" name="nombre_usuario" autocomplete="on" >
-						                   			<label for="id_nombre_actualiza">Nombres</label>
-										  		</div>
-										  	</div>
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_apellido_actualiza" name="apellido_usuario" autocomplete="on" >
-						                    		<label for="id_apellido_actualiza">Apellidos</label>
-										  		</div>
-										  	</div>
-					                      </div>
-					                      
-					                      <div class="form-group row">
-										  	<div class="col-12 col-md-6 mb-3">
-											  	<div class="form-floating">
-										  			<input type="date" class="form-control" id="id_fecha_nacimiento_actualiza" name="fecha_nacimiento_usuario" autocomplete="on">
-					                        		<label for="id_fecha_nacimiento_actualiza">Fecha de nacimiento</label>
-										  		</div>
-										  	</div>
-										  	
-										  	<div class="col-12 col-md-6 mb-3">
-												<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_genero_actualiza" name="genero_usuario" autocomplete="on" >
-						                    		<label for="id_genero_actualiza">Género</label>
-										  		</div>
-										  	</div>
-										  	
-					                      </div>
-					                      
-					                      <div class="form-group row">
-						                      <div class="col-12 col-md-6 mb-3">
-												  	<div class="col form-floating">
-											  			<input type="text" class="form-control" id="id_dni_actualiza" name="dni_usuario" autocomplete="on" >
-							                    		<label for="id_dni_actualiza">DNI</label>
-											  		</div>
-											  	</div>
-											  	<div class="col-12 col-md-6 mb-3">
-												  	<div class="col form-floating">
-											  			<input type="text" class="form-control" id="id_telefono_actualiza" name="telefono_usuario" autocomplete="on" >
-							                    		<label for="id_telefono_actualiza">Teléfono</label>
-											  		</div>
+											<div class="form-group row">
+												<div class="col-12 col-md-8 mb-3">
+							                      <div class="form-floating">
+							                      	<input type="text" class="form-control" id="id_nombre_actualiza" name="nombre_mascota" placeholder="John" autocomplete="on" >
+							                      	<label for="id_nombre_actualiza">Nombre</label>
+							                      </div>
+							                      
 						                      	</div>
-					                      </div>
-					                      
+												<div class="col-12 col-md-4 mb-3">
+					                        		<div class="form-floating">
+							  							<input type="date" class="form-control" id="id_fecha_nacimiento_actualiza" name="fecha_nacimiento_mascota" autocomplete="on">
+					                        			<label for="id_fecha_nacimiento_actualiza">Fecha de nacimiento</label>                    
+							                      </div>
+					                      		</div>
+											</div>
 					                      <div class="form-group row">
-										  	<div class="col-12 col-md-4 mb-3">
+										  	<div class="col-12 col-md-6 mb-3">
 										  		<div class="form-floating">
-							                      	<select class="form-select" id="select_rol_actualiza" name="codigo_rol_usuario" aria-label="Default select example">
-													  <option selected value="0">Seleccione Rol</option>
+							                      	<select class="form-select" id="select_especie_actualiza" name="codigo_especie_mascota" aria-label="Default select example">
+													  <option selected value="0">Seleccione Especie</option>
 													</select>
-													<label for="select_rol_actualiza">Rol</label>
+													<label for="select_especie_actualiza">Especie</label>
 					                      		</div>
 										  	</div>
-										  	<div class="col-12 col-md-4 mb-3">
-										  		<div class="form-floating">
+										  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="form-floating">
+							                      	<select class="form-select" id="select_raza_actualiza" name="codigo_raza_mascota" aria-label="Default select example">
+													  <option selected value="0">Seleccione Raza</option>
+													</select>
+													<label for="select_raza_actualiza">Raza</label>
+						                      </div>
+										  	</div>
+										  </div>
+										  
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_color_actualiza" name="codigo_color_mascota" aria-label="Default select example">
+													  <option selected value="0">Seleccione Color</option>
+													</select>
+													<label for="select_color_actualiza">Color</label>
+						                      </div>
+					                      	</div>
+					                      	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
+							                      	<select class="form-select" id="select_sexo_actualiza" name="codigo_sexo_mascota" aria-label="Default select example">
+													  <option selected value="0">Seleccione Sexo</option>
+													</select>
+													<label for="select_sexo_actualiza">Sexo</label>
+						                      </div>
+					                      	</div>
+					                      </div>
+					                      
+										  <div class="form-group row">
+										  	<div class="col-12 col-md-6 mb-3">
+						                      	<div class="form-floating">
 							                      	<select class="form-select" id="select_visibilidad_actualiza" name="codigo_visibilidad" aria-label="Default select example">
 													  <option selected value="0">Seleccione Estado</option>
 													</select>
 													<label for="select_visibilidad_actualiza">Estado</label>
-					                      		</div>
-										  	</div>
-										  	<div class="col-12 col-md-4 mb-3">
-										  		<div class="form-floating">
-							                      	<select class="form-select" id="select_distrito_actualiza" name="codigo_distrito" aria-label="Default select example">
-													  <option selected value="0">Seleccione Distrito</option>
-													</select>
-													<label for="select_distrito_actualiza">Distrito</label>
-					                      		</div>
-										  	</div>
-										  </div>
-
-					                      <div class="form-group row">
-										  	<div class="col-12 col-md-6 mb-3">
+						                      </div>
+					                      	</div>
+										  	<div class="col-12 col-md-3 mb-3">
 											  	<div class="form-floating">
-										  			<input type="text" class="form-control" id="id_direccion_actualiza" name="direccion_usuario" autocomplete="on" >
-						                   			<label for="id_direccion_actualiza">Dirección</label>
+										  			<input type="text" class="form-control" id="id_identificacion_actualiza" name="codigo_identificacion_mascota" autocomplete="on" >
+						                   			<label for="id_identificacion_actualiza"># Identificación</label>
 										  		</div>
 										  	</div>
-										  	<div class="col-12 col-md-6 mb-3">
+										  	<div class="col-12 col-md-3 mb-3">
 											  	<div class="col form-floating">
-										  			<input type="text" class="form-control" id="id_referencia_actualiza" name="referencia_usuario" autocomplete="on" >
-						                    		<label for="id_referencia_actualiza">Referencia</label>
+										  			<input type="text" class="form-control" id="id_sanitaria_actualiza" name="codigo_cartilla_sanitaria" autocomplete="on" >
+						                    		<label for="id_sanitaria_actualiza"># Cartilla Sanitaria</label>
 										  		</div>
 										  	</div>
 					                      </div>
 					                      
-					                      <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="actualizar_usuario">Actualizar</button>
+					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="actualizar_mascota">Actualizar</button>
 					                    </form>
 					                  </main>
 					            </div>
@@ -404,7 +343,7 @@
     // Load icons
     feather.replace();
 
-	var selectedDistritoActualiza, selectedRolActualiza, selectedVisibilidadActualiza;
+    var selectedColorActualiza, selectedSexoActualiza, selectedRazaActualiza, selectedEspecieActualiza, selectedVisibilidadActualiza;
 	
 	function agregarGrilla(lista) {
 		//console.log(lista)
@@ -417,62 +356,77 @@
 				processing: true,
 				pageLength: 6,
 				lengthChange: false,
+				responsive: true,
 				columns:[
-					{data: "codigo_usuario"},
-					{data: "email_usuario"},
-					{data: "contrasena_usuario"},
-					{data: "nombre_usuario"},
-					{data: "apellido_usuario"},
-					{data: "fecha_nacimiento_usuario"},
-					{data: "distrito.nombre_distrito"},
-					{data: "visibilidad.nombre_visibilidad"},
-					{data: function(row, type, val, meta){
-						var btnEditar ='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaUsuario" onclick="editar(\'' + row.codigo_usuario +
-								'\',\'' + row.email_usuario +
-								'\',\'' + row.contrasena_usuario +
-								'\',\'' + row.nombre_usuario +
-								'\',\'' + row.apellido_usuario +
-								'\',\'' + row.fecha_nacimiento_usuario +
-								'\',\'' + row.genero_usuario +
-								'\',\'' + row.dni_usuario +
-								'\',\'' + row.direccion_usuario  +
-								'\',\'' + row.referencia_usuario +
-								'\',\'' + row.telefono_usuario +
-								'\',\'' + row.codigo_distrito +
-								'\',\'' + row.codigo_visibilidad +
-								'\')"><i data-feather="edit-2"></i></button>';
-								
-						let btnVisibilidad = '';
+					{data: "codigo_mascota"},
+					{data: "codigo_propietario"},
+					{data: "nombre_mascota"},
+					{data: function(row, type, val, meta) {
 						
-						if(row.codigo_visibilidad === 1) {
-						    btnVisibilidad = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')"><i data-feather="eye-off"></i></button>';
+						var salida = "";
+						if(row.foto_mascota == null) {
+							salida = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
+						} else if(row.foto_mascota.length > 0) {
+							 salida = "<img src='data:image/png;base64," +row.foto_mascota+ "' class='img__table--mini' alt='Pet image'>";
 						} else {
-						    btnVisibilidad = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_usuario + '\',\'' + row.codigo_visibilidad + '\')"><i data-feather="eye"></i></button>';
+							salida = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
 						}
 						
-						let btnEliminar = '<button type="button" class="btn btn-danger btn-sm" onclick="eliminar(\'' + row.codigo_usuario + '\')"><i data-feather="trash"></i></button>';
-						
-				    	
-						return btnEditar + btnVisibilidad + btnEliminar;
-					},className:'text-center mx-auto'},	
-					/*{data: function(row, type, val, meta){
-					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_usuario + '\')">Eliminar</button>';
 						return salida;
-					},className:'text-center'},*/
-				]                                     
+					}, className: 'text-center'},
+					{data: "raza.nombre_raza_mascota"},
+					{data: "sexo.nombre_sexo_mascota"},
+					{data: "especie.nombre_especie_mascota"},
+					{data: "color.nombre_color_mascota"},
+					{data: "visibilidad.nombre_visibilidad"},
+					{data: function(row, type, val, meta) {
+						var btnActualizar='<button type="button" class="btn btn-info btn-sm mx-1 btnModal_ActualizaMascota" onclick="editar(\'' + row.codigo_mascota +
+								'\',\'' + row.codigo_propietario +
+								'\',\'' + row.nombre_mascota +
+								'\',\'' + row.foto_mascota +
+								'\',\'' + row.codigo_raza_mascota +
+								'\',\'' + row.codigo_sexo_mascota +
+								'\',\'' + row.codigo_especie_mascota +
+								'\',\'' + row.codigo_color_mascota +
+								'\',\'' + row.fecha_nacimiento_mascota  +
+								'\',\'' + row.codigo_identificacion_mascota +
+								'\',\'' + row.codigo_cartilla_sanitaria +
+								'\',\'' + row.codigo_visibilidad +
+								'\')"><i data-feather="edit-2"></i></button>';
+						
+						let btnMostrarOcultar = '';
+						
+						if(row.codigo_visibilidad === 1) {
+							btnMostrarOcultar = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')"><i data-feather="eye-off"></i></button>';
+						} else {
+							btnMostrarOcultar = '<button type="button" class="btn btn-warning btn-sm" onclick="cambiarVisibilidad(\'' + row.codigo_mascota + '\',\'' + row.codigo_visibilidad + '\')"><i data-feather="eye"></i></button>';
+						}
+						
+						let btnEliminar = '<button type="button" class="btn btn-danger btn-sm" onclick="eliminar(\'' + row.codigo_mascota + '\')"><i data-feather="trash"></i></button>';
+						
+						return btnActualizar + btnMostrarOcultar + btnEliminar;
+					},className:'text-center mx-auto d-flex justify-content-center'},
+				]                                                   
 		    });
 		 	
 		 	// Reload icons
 		    feather.replace();
+		 	
+		 	$('#id_table').DataTable().columns.adjust().draw();
 		}
-	
-		function cambiarVisibilidad(codigo_usuario, codigo_visibilidad) {
-			mostrarMensajeConfirmacion("¿Desea modificar la visibilidad del registro?", accionVisibilidad, null, {codigo_usuario, codigo_visibilidad});
+		
+		function listarMascotasDatatable(nombre) {
+			$.getJSON("listaMascotaPorNombre", {"nombre_mascota": nombre}, function(lista) {
+				agregarGrilla(lista);
+			});
+		}
+		
+		function cambiarVisibilidad(codigo_mascota, codigo_visibilidad) {
+			mostrarMensajeConfirmacion("¿Desea modificar la visibilidad del registro?", accionVisibilidad, null, {codigo_mascota, codigo_visibilidad});
 		}
 		
 		function accionVisibilidad(data) {
-
-			$('#id_elimina').val(data.codigo_usuario);
+			$('#id_elimina').val(data.codigo_mascota);
 			
 			let nuevoEstado;
 			
@@ -482,124 +436,110 @@
 				nuevoEstado = 1;
 			}
 			
-			//console.log("Visibilidad: " + data.codigo_visibilidad, "Usuario: " + data.codigo_usuario)
-			
 			$('#id_visibilidad_elimina').val(nuevoEstado);
 			
-			//console.log("Nuevo estado: " + nuevoEstado)
-			
 			$.ajax({
 				type: "POST",
-				url: "actualizaVisibilidadUsuario",
+				url: "actualizaVisibilidadMascota",
 				data: $('#id_form_elimina').serialize(),
 				success: function(data) {
-					$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": ""}, function(lista) {
-						agregarGrilla(lista);
-					});
+				    listarMascotasDatatable("");
+					mostrarMensaje(data.MENSAJE);
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR);
+				}
+			});
+		}
+		
+		function accionEliminar(codigo_mascota) {
+			$('#id_elimina').val(codigo_mascota);
+			console.log("Código mascota en accionEliminar "+ codigo_mascota);
+			$.ajax({
+				type: "POST",
+				url: "eliminaMascota",
+				data: $('#id_form_elimina').serialize(),
+				success: function(data) {
+				    listarMascotasDatatable("");
+					mostrarMensaje(data.MENSAJE);
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR);
+				}
+			});
+		}
+		
+		function eliminar(codigo_mascota) {
+			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_mascota);
+			console.log("Código mascota en eliminar "+ codigo_mascota);
+		}
+		
+		function editar(codigo_mascota, codigo_propietario, nombre_mascota, foto_mascota,
+		codigo_raza_mascota, codigo_sexo_mascota, codigo_especie_mascota, codigo_color_mascota, 
+		fecha_nacimiento_mascota, codigo_identificacion_mascota, codigo_cartilla_sanitaria, codigo_visibilidad) {
 					
-					//console.log(data)
-					// NO tiene distrito
-					//agregarGrilla(data.lista);
-					mostrarMensaje(data.MENSAJE);
-				},
-				error: function() {
-					mostrarMensaje(MSG_ERROR);
-				}
-			});
-		}
-		
-		
-		function eliminar(codigo_usuario) {
-			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_usuario);
-			//console.log("Código usuario en eliminar "+ codigo_usuario);
-		}
-		
-		
-		function accionEliminar(codigo_usuario) {
-			$('#id_elimina').val(codigo_usuario);
-			
-			//console.log("Código usuario en accionEliminar "+ codigo_usuario);
-			$.ajax({
-				type: "POST",
-				url: "eliminaUsuario",
-				data: $('#id_form_elimina').serialize(),
-				success: function(data) {
-					$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": ""}, function(lista) {
-						agregarGrilla(lista);
-					});
-					// NO tiene distrito
-					//agregarGrilla(data.lista);
-					mostrarMensaje(data.MENSAJE);
-				},
-				error: function() {
-					mostrarMensaje(MSG_ERROR);
-				}
-			});
-			
-		}
-		
-		function editar(codigo_usuario, email_usuario, contrasena_usuario,
-		nombre_usuario, apellido_usuario, fecha_nacimiento_usuario,
-		genero_usuario, dni_usuario, direccion_usuario, referencia_usuario,
-		telefono_usuario, codigo_distrito, codigo_visibilidad) {
-				
-			selectedDistritoActualiza = codigo_distrito;
+			selectedColorActualiza = codigo_color_mascota;
+			selectedSexoActualiza = codigo_sexo_mascota;
+			selectedRazaActualiza = codigo_raza_mascota;
+			selectedEspecieActualiza = codigo_especie_mascota;
 			selectedVisibilidadActualiza = codigo_visibilidad;
-			//console.log(codigo_usuario);
 			
-			$.getJSON("listaRolPorUsuario", {"codigo_usuario": codigo_usuario}, function(lista) {
-				$('#select_rol_actualiza').val(lista[0].codigo_rol_usuario);
-				selectedRolActualiza = lista[0].codigo_rol_usuario;
-			});
-			
-			$('#id_usuario_actualiza').val(codigo_usuario);
-			$('#id_email_actualiza').val(email_usuario);
-			$('#id_contrasena_actualiza').val(contrasena_usuario);
-			$('#id_nombre_actualiza').val(nombre_usuario);
-			$('#id_apellido_actualiza').val(apellido_usuario);
-			$('#id_fecha_nacimiento_actualiza').val(fecha_nacimiento_usuario);
-			$('#id_genero_actualiza').val(genero_usuario);
-			$('#id_dni_actualiza').val(dni_usuario);
-			$('#id_direccion_actualiza').val(direccion_usuario);
-			$('#id_referencia_actualiza').val(referencia_usuario);
-			$('#id_telefono_actualiza').val(telefono_usuario);
-			$('#select_distrito_actualiza').val(codigo_distrito);
+			$('#id_mascota_actualiza').val(codigo_mascota);
+			$('#id_propietario_actualiza').val(codigo_propietario);
+			$('#id_nombre_actualiza').val(nombre_mascota);
+			$('#select_sexo_actualiza').val(codigo_sexo_mascota);
+			$('#select_especie_actualiza').val(codigo_especie_mascota);
+			$('#select_color_actualiza').val(codigo_color_mascota);
+			$('#id_fecha_nacimiento_actualiza').val(fecha_nacimiento_mascota);
+			$('#id_identificacion_actualiza').val(codigo_identificacion_mascota);
+			$('#id_sanitaria_actualiza').val(codigo_cartilla_sanitaria);
 			$('#select_visibilidad_actualiza').val(codigo_visibilidad);
 			
-			$('#id_modal_ActualizaUsuario').modal("show");
+			$.getJSON('listaRaza', {"especie":codigo_especie_mascota}, function(data) {
+				$("#select_raza_actualiza > option.option__raza").remove();
+				
+				$.each( data, function( index, value) {
+					let option = document.createElement('option');
+					option.value = value.codigo_raza_mascota;
+					option.text = value.nombre_raza_mascota;
+					option.className = "option__raza";
+					$('#select_raza_actualiza').append(option);
+				});
+				
+				$('#select_raza_actualiza').val(codigo_raza_mascota);
+			});
+			
+			$('#id_modal_ActualizaMascota').modal("show");
 		}
 		
 	$(document).ready(function() {
 		
-	    function listarUsuariosDatatable(nombre) {
-			$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": nombre}, function(lista) {
-				agregarGrilla(lista);
-			});
-		}
-		
-		// Mostrar usuarios al cargar la página
-		listarUsuariosDatatable("");
+		// Mostrar mascotas al cargar la página
+		listarMascotasDatatable("");
 		
 		// Selects	
 		
-		const selectDistrito = $('#select_distrito');
-		const selectDistritoActualiza = $('#select_distrito_actualiza');
+		const selectEspecie = $('#select_especie');
+		const selectColor = $('#select_color');
+		const selectSexo = $('#select_sexo');
+		const selectRaza = $('#select_raza');
 		
-		const selectRol = $('#select_rol');
-		const selectRolActualiza = $('#select_rol_actualiza');
-		
+		const selectEspecieActualiza = $('#select_especie_actualiza');
+		const selectColorActualiza = $('#select_color_actualiza');
+		const selectSexoActualiza = $('#select_sexo_actualiza');
+		const selectRazaActualiza = $('#select_raza_actualiza');
 		const selectVisibilidadActualiza = $('#select_visibilidad_actualiza');
 		
 		// Botones
 		
-		const btnRegister = $('#registrar_usuario');
-		const btnUpdate = $('#actualizar_usuario');
-		const btnFilter = $('#filtra_usuario');
-		const btnModalRegister = $('#id_btnModal_RegistraUsuario');
+		const btnRegister = $('#registrar_mascota');
+		const btnUpdate = $('#actualizar_mascota');
+		const btnFilter = $('#filtra_mascota');
+		const btnModalRegister = $('#id_btnModal_RegistraMascota');
 		
 		// Modals
 		
-		const modalRegister = $('#id_modal_RegistraUsuario');
+		const modalRegister = $('#id_modal_RegistraMascota');
 		
 		// Abrir Modal con Click
 		
@@ -607,60 +547,61 @@
 			modalRegister.modal("show");
 		});
 		
-		// Filtrar Usuario por Nombre
+		// Filtrar Mascota por Nombre
 		
 		$('#id_nombre_filtro').keydown(function(e) {
 		    if(e.key === 'Enter' || e.keyCode === 13) {
-		        listarUsuariosDatatable($('#id_nombre_filtro').val());
+		        listarMascotasDatatable($('#id_nombre_filtro').val());
 		    }
-		   /* 
-		    if(e.key === 'Backspace' || e.keyCode === 8) {
-		        if($('#id_nombre_filtro').val().length < 2) {
-		            listarUsuariosDatatable("");
-		        }
-		    }
-		   */
 		});
 		
+		// Get Especie
 		
-		/*
-		btnFilter.click(function() {
-			const filterText = $('#id_nombre_filtro').val();
-			listarUsuariosDatatable(filterText);
-		});
-		*/
-		
-		// Get Rol
-		
-		function generarSelectRol(idSelectRol) {
-			$.getJSON('listaRol', function(data) {
+		function generarSelectEspecie(idSelectEspecie) {
+			$.getJSON('listaEspecie', function(data) {
 				$.each( data, function( index, value ) {
 					let option = document.createElement('option');
-					option.value = value.codigo_rol_usuario;
-					option.text = value.nombre_rol_usuario;
-					idSelectRol.append(option);
+					option.value = value.codigo_especie_mascota;
+					option.text = value.nombre_especie_mascota;
+					idSelectEspecie.append(option);
 				});
 			});
 		}
 		
-		generarSelectRol(selectRol);
-		generarSelectRol(selectRolActualiza);
+		generarSelectEspecie(selectEspecie);
+		generarSelectEspecie(selectEspecieActualiza);
 		
-		// Get Distrito
+		// Get Color
 		
-		function generarSelectDistrito(idSelectDistrito) {
-			$.getJSON('listaDistrito', function(data) {
-				$.each( data, function( index, value ) {
-					let option = document.createElement('option');
-					option.value = value.codigo_distrito;
-					option.text = value.nombre_distrito;
-					idSelectDistrito.append(option);
+		function generarSelectColor(idSelectColor) {
+			$.getJSON('listaColor', function(data){
+				  $.each( data, function( index, value ) {
+					  let option = document.createElement('option');
+					  option.value = value.codigo_color_mascota;
+					  option.text = value.nombre_color_mascota;
+					  idSelectColor.append(option);
+				  });
+			});
+		}
+		
+		generarSelectColor(selectColor);
+		generarSelectColor(selectColorActualiza);
+		
+		// Get Sexo
+		
+		function generarSelectSexo(idSelectSexo) {
+			$.getJSON('listaSexo', function(data) {
+				$.each( data, function( index, value) {
+					  let option = document.createElement('option');
+					  option.value = value.codigo_sexo_mascota;
+					  option.text = value.nombre_sexo_mascota;
+					  idSelectSexo.append(option);
 				});
 			});
 		}
 		
-		generarSelectDistrito(selectDistrito);
-		generarSelectDistrito(selectDistritoActualiza);
+		generarSelectSexo(selectSexo);
+		generarSelectSexo(selectSexoActualiza);
 		
 		// Get Visibilidad
 		
@@ -677,35 +618,103 @@
 		
 		generarSelectVisibilidad(selectVisibilidadActualiza);
 		
-		var selectedDistrito, selectedRol;
+		var selectedColor, selectedSexo, selectedRaza, selectedEspecie;
 		
 		// Validar selects cuando cambie el option en Registrar
 		
-		selectDistrito.change(function(e) {
-			selectedDistrito = e.target.selectedIndex;
-			validateSelect(selectDistrito, selectedDistrito, 'distrito');
+		selectColor.change(function(e) {
+			selectedColor = e.target.selectedIndex;
+			validateSelect(selectColor, selectedColor, 'color');
+		});
+
+		selectSexo.change(function(e) {
+			selectedSexo = e.target.selectedIndex;
+			validateSelect(selectSexo, selectedSexo, 'sexo');
 		});
 		
-		selectRol.change(function(e) {
-			selectedRol= e.target.selectedIndex;
-			validateSelect(selectRol, selectedRol, 'rol');
+		selectRaza.change(function(e) {
+			selectedRaza = e.target.selectedIndex;
+			validateSelect(selectRaza, selectedRaza, 'raza');
 		});
 		
 		// Validar selects cuando cambie el option en Actualizar
 		
-		selectDistritoActualiza.change(function(e) {
-			selectedRolActualiza = e.target.selectedIndex;
-			validateSelect(selectDistritoActualiza, selectedDistritoActualiza, 'distrito');
+		selectColorActualiza.change(function(e) {
+			selectedColorActualiza = e.target.selectedIndex;
+			validateSelect(selectColorActualiza, selectedColorActualiza, 'color');
+		});
+
+		selectSexoActualiza.change(function(e) {
+			selectedSexoActualiza = e.target.selectedIndex;
+			validateSelect(selectSexoActualiza, selectedSexoActualiza, 'sexo');
 		});
 		
-		selectRolActualiza.change(function(e) {
-			selectedRolActualiza = e.target.selectedIndex;
-			validateSelect(selectRolActualiza, selectedRolActualiza, 'rol');
+		selectRazaActualiza.change(function(e) {
+			selectedRazaActualiza = e.target.selectedIndex;
+			validateSelect(selectRazaActualiza, selectedRazaActualiza, 'raza');
 		});
 		
 		selectVisibilidadActualiza.change(function(e) {
 			selectedVisibilidadActualiza = e.target.selectedIndex;
 			validateSelect(selectVisibilidadActualiza, selectedVisibilidadActualiza, 'visibilidad');
+		});
+		
+		// Get Raza en función a la especie Registra
+		
+		selectEspecie.change(function(e) {
+			selectedEspecie = e.target.selectedIndex;
+			
+			$.getJSON('listaRaza', {"especie":selectedEspecie}, function(data) {
+				
+				// Limpia las razas de la especie anterior
+				
+				if($('#select_raza > option').hasClass("option__raza")) {
+					$("#select_raza > option.option__raza").remove();
+					selectedRaza = 0;
+				}
+				
+				$.each( data, function( index, value) {
+					let option = document.createElement('option');
+					option.value = value.codigo_raza_mascota;
+					option.text = value.nombre_raza_mascota;
+					option.className = "option__raza";
+					selectRaza.append(option);
+				});
+			});
+			
+			// Validar selects de Especie y Raza
+			
+			validateSelect(selectEspecie, selectedEspecie, 'especie');
+			validateSelect(selectRaza, selectedRaza, 'raza');
+		});
+
+		// Get Raza en función a la especie Actualiza (On change)
+		
+		selectEspecieActualiza.change(function(e) {
+			selectedEspecieActualiza = e.target.selectedIndex;
+			
+			$.getJSON('listaRaza', {"especie":selectedEspecieActualiza}, function(data) {
+				
+				// Limpia las razas de la especie anterior
+				
+				if($('#select_raza_actualiza > option').hasClass("option__raza")) {
+					$("#select_raza_actualiza > option.option__raza").remove();
+					selectedRazaActualiza = 0;
+				}
+				
+				$.each( data, function( index, value) {
+					let option = document.createElement('option');
+					option.value = value.codigo_raza_mascota;
+					option.text = value.nombre_raza_mascota;
+					option.className = "option__raza";
+					selectRazaActualiza.append(option);
+				});
+			});
+			
+			// Validar selects de Especie y Raza
+			
+			validateSelect(selectEspecieActualiza, selectedEspecieActualiza, 'especie');
+			validateSelect(selectRazaActualiza, selectedRazaActualiza, 'raza');
 		});
 		
 		// Bootstrap validator
@@ -718,7 +727,7 @@
 				validating: 'glyphicon glyphicon-refresh'
 			},
 			fields: {
-				nombre_usuario: {
+				nombre_mascota: {
 					selector: '#id_nombre',
 					validators: {
 						notEmpty: {
@@ -731,37 +740,8 @@
 						},
 					}
 				},
-				apellido_usuario: {
-					selector: '#id_apellido',
-					validators: {
-						notEmpty: {
-							message: '* Este campo es obligatorio'
-						},
-						stringLength: {
-							min: 3,
-							max: 40,
-							message: 'El nombre debe contener entre 3 a 40 caracteres'
-						},
-					}
-				},
-				fecha_nacimiento_usuario: {
+				fecha_nacimiento_mascota: {
 					selector: '#id_fecha_nacimiento',
-					validators: {
-						notEmpty: {
-							message: '* Este campo es obligatorio'
-						}
-					}
-				},
-				email_usuario: {
-					selector: '#id_email',
-					validators: {
-						notEmpty: {
-							message: '* Este campo es obligatorio'
-						}
-					}
-				},
-				contrasena_usuario: {
-					selector: '#id_contrasena',
 					validators: {
 						notEmpty: {
 							message: '* Este campo es obligatorio'
@@ -779,7 +759,7 @@
 				validating: 'glyphicon glyphicon-refresh'
 			},
 			fields: {
-				nombre_usuario: {
+				nombre_mascota: {
 					selector: '#id_nombre_actualiza',
 					validators: {
 						notEmpty: {
@@ -792,37 +772,8 @@
 						},
 					}
 				},
-				apellido_usuario: {
-					selector: '#id_apellido_actualiza',
-					validators: {
-						notEmpty: {
-							message: '* Este campo es obligatorio'
-						},
-						stringLength: {
-							min: 3,
-							max: 40,
-							message: 'El nombre debe contener entre 3 a 40 caracteres'
-						},
-					}
-				},
-				fecha_nacimiento_usuario: {
+				fecha_nacimiento_mascota: {
 					selector: '#id_fecha_nacimiento_actualiza',
-					validators: {
-						notEmpty: {
-							message: '* Este campo es obligatorio'
-						}
-					}
-				},
-				email_usuario: {
-					selector: '#id_email_actualiza',
-					validators: {
-						notEmpty: {
-							message: '* Este campo es obligatorio'
-						}
-					}
-				},
-				contrasena_usuario: {
-					selector: '#id_contrasena_actualiza',
 					validators: {
 						notEmpty: {
 							message: '* Este campo es obligatorio'
@@ -832,61 +783,77 @@
 			}
 		});
 		
-		// Registrar usuario
+		// Registrar Mascota
 	
 		btnRegister.click(function() {
 			var validator = $('#id_form_registra').data('bootstrapValidator');
 			validator.validate();
 			
 			// Validar selects
-			validateSelect(selectDistrito, selectedDistrito, 'distrito');
-			validateSelect(selectRol, selectedRol, 'rol');
+			validateSelect(selectEspecie, selectedEspecie, 'especie');
+			validateSelect(selectRaza, selectedRaza, 'raza');
+			validateSelect(selectSexo, selectedSexo, 'sexo');
+			validateSelect(selectColor, selectedColor, 'color');
 			
-			if(selectedDistrito > 0 && selectedRol > 0 && validator.isValid()) {
+			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
+				
+				var form = $("#id_form_registra").serialize();
+				var data = new FormData($("#id_form_registra")[0]);
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_registra').serialize(),
-					url: 'registraUsuario',
+					data: data,
+					enctype: 'multipart/form-data',
+					url: '/registraMascotaConFoto',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
-						listarUsuariosDatatable("");
-						//agregarGrilla(data.lista);
-						//console.log(data.lista)
-						$('#id_modal_RegistraUsuario').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						listarMascotasDatatable("");
+						$('#id_modal_RegistraMascota').modal("hide");
+						mostrarMensaje(data.MENSAJE);
 						limpiar();
-						validator.resetForm()
+						validator.resetForm();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
 			}
+			
 		});
 		
-		// Actualizar usuario
+		// Actualizar mascota
 		
 		btnUpdate.click(function() {
 			var validator = $('#id_form_actualiza').data('bootstrapValidator');
 			validator.validate();
 			
 			// Validar selects
-			validateSelect(selectDistritoActualiza, selectedDistritoActualiza, 'distrito');
-			validateSelect(selectRolActualiza, selectedRolActualiza, 'rol');
+			validateSelect(selectEspecieActualiza, selectedEspecieActualiza, 'especie');
+			validateSelect(selectRazaActualiza, selectedRazaActualiza, 'raza');
+			validateSelect(selectSexoActualiza, selectedSexoActualiza, 'sexo');
+			validateSelect(selectColorActualiza, selectedColorActualiza, 'color');
+			
 			validateSelect(selectVisibilidadActualiza, selectedVisibilidadActualiza, 'visibilidad');
 			
-			if(selectedDistritoActualiza > 0 && selectedRolActualiza > 0 && selectedVisibilidadActualiza > 0 && validator.isValid()) {
+			if(selectedEspecieActualiza > 0 && selectedColorActualiza > 0 && selectedSexoActualiza > 0 && selectedRazaActualiza > 0 && selectedVisibilidadActualiza > 0 && validator.isValid()) {
+				
+				var form = $("#id_form_actualiza").serialize();
+				var data = new FormData($("#id_form_actualiza")[0]);
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_actualiza').serialize(),
-					url: 'actualizaUsuario',
+					data: data,
+					url: '/actualizaMascotaConFoto',
+					enctype: 'multipart/form-data',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
-
-						listarUsuariosDatatable("");
-						/* [BUG]: Data de actualizar no trae distrito */
-						
+						listarMascotasDatatable("");
 						//agregarGrilla(data.lista);
-						//console.log(data.lista);
-						$('#id_modal_ActualizaUsuario').modal("hide");
+						$('#id_modal_ActualizaMascota').modal("hide");
 						mostrarMensaje(data.MENSAJE);
 						limpiarActualiza();
 						validator.resetForm();
@@ -899,40 +866,38 @@
 		});
 
 		function limpiar() {
-			$('#id_usuario').val('');
-			$('#id_email').val('');
-			$('#id_contrasena').val('');
 			$('#id_nombre').val('');
-			$('#id_apellido').val('');
+			$('#id_foto').val('');
+			$('#select_especie')[0].selectedIndex = 0;
+			$('#select_raza')[0].selectedIndex = 0;
+			$('#select_color')[0].selectedIndex = 0;
+			$('#select_sexo')[0].selectedIndex = 0;
 			$('#id_fecha_nacimiento').val('');
-			$('#id_genero').val('');
-			$('#id_dni').val('');
-			$('#id_direccion').val('');
-			$('#id_referencia').val('');
-			$('#id_telefono').val('');
-			$('#select_distrito')[0].selectedIndex = 0;
-			$('#select_rol')[0].selectedIndex = 0;
-			selectedDistrito = 0;
-			selectedRol = 0;
+			$('#id_identificacion').val('');
+			$('#id_sanitaria').val('');
+			selectedEspecie = 0;
+			selectedRaza = 0;
+			selectedColor = 0;
+			selectedSexo = 0;
 		}
 		
 		function limpiarActualiza() {
-			$('#id_usuario_actualiza').val('');
-			$('#id_email_actualiza').val('');
-			$('#id_contrasena_actualiza').val('');
+			$('#id_mascota_actualiza').val('');
+			$('#id_propietario_actualiza').val('');
 			$('#id_nombre_actualiza').val('');
-			$('#id_apellido_actualiza').val('');
-			$('#id_fecha_nacimiento_actualiza').val('');
-			$('#id_genero_actualiza').val('');
-			$('#id_dni_actualiza').val('');
-			$('#id_direccion_actualiza').val('');
-			$('#id_referencia_actualiza').val('');
-			$('#id_telefono_actualiza').val('');
-			$('#select_distrito_actualiza')[0].selectedIndex = 0;
-			$('#select_rol_actualiza')[0].selectedIndex = 0;
+			$('#id_foto_actualiza').val('');
+			$('#select_raza_actualiza')[0].selectedIndex = 0;
+			$('#select_sexo_actualiza')[0].selectedIndex = 0;
+			$('#select_especie_actualiza')[0].selectedIndex = 0;
+			$('#select_color_actualiza')[0].selectedIndex = 0;
 			$('#select_visibilidad_actualiza')[0].selectedIndex = 0;
-			selectedDistritoActualiza = 0;
-			selectedRolActualiza = 0;
+			$('#id_fecha_nacimiento_actualiza').val('');
+			$('#id_identificacion_actualiza').val('');
+			$('#id_sanitaria_actualiza').val('');
+			selectedEspecieActualiza = 0;
+			selectedRazaActualiza  = 0;
+			selectedColorActualiza  = 0;
+			selectedSexoActualiza  = 0;
 			selectedVisibilidadActualiza = 0;
 		}
 

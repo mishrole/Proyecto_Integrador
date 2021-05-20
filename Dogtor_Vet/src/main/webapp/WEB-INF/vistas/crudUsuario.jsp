@@ -16,6 +16,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<title>CRUD Usuario</title>
 </head>
 <body class="background__light__gray">
@@ -365,7 +366,6 @@
     	</div>
    	</div>
 
-	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 	<!-- JavaScript Bundle with Popper -->

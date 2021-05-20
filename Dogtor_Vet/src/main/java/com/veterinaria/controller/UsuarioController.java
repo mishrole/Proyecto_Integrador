@@ -15,7 +15,6 @@ import com.veterinaria.entity.DetalleUsuarioRolPK;
 import com.veterinaria.entity.Rol;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.DetalleUsuarioRolService;
-import com.veterinaria.service.RolService;
 import com.veterinaria.service.UsuarioService;
 
 @Controller
