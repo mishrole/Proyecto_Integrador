@@ -46,7 +46,7 @@
                         <img src="./images/landing/building.svg" class="d-block w-100" alt="Especialidades">
                     </div>
                 </div>
-                <div class="col-12 col-md-5 d-flex flex-column justify-content-center align-items-center mx-auto">
+                <div class="col-12 col-md-5 mt-5 d-flex flex-column justify-content-center align-items-center mx-auto">
                     <h4 class="text-start primary__color mb-5">Principales <br />Especialidades</h4>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item title__color border-0 font__regular">
