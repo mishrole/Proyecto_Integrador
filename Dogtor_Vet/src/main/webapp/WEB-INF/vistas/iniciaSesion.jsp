@@ -17,7 +17,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 	
-	<title>Inicia Sesión</title>
+	<title>Inicia Sesión | Dogtor</title>
 </head>
 <body>
 
@@ -100,62 +100,6 @@
 			}
 		});
 		
-		/* IMPORTANTE: Esto es momentáneo hasta que aprendamos a usar Spring Security 
-		     _________________________ESTO NO ES SEGURO___________________________
-		*/
-		/*
-		btnRegister.click(function() {
-			const inputEmail = $('#id_email').val();
-			const inputPassword = $('#id_contrasena').val();
-			
-			var validator = $('#id_form').data('bootstrapValidator');
-			validator.validate();
-			
-			// Si los inputs Email y Contraseña pasan la validación
-			if(validator.isValid()) {
-				// Select de Usuario en función a Email y Contraseña del Form
-				$.getJSON('listaUsuarioPorEmailYContrasena', {'email_usuario':inputEmail , 'contrasena_usuario':inputPassword},
-				function(dataUsuario) {
-					if(dataUsuario.length > 0) {
-						// Del array de Usuario que retorna requiero la primera coincidencia
-						// Nota: Email es UNIQUE
-						const codigoUsuario = dataUsuario[0].codigo_usuario; // Obtengo el código de ese usuario
-						
-						// Select a la tabla compuesta Detalle Usuario Rol usando el código de usuario del Select anterior
-						$.getJSON('listaRolPorUsuario', {'codigo_usuario':codigoUsuario}, function(dataRolUsuario) {
-							// Del array de Detalle que retorna requiero la primera coincidencia
-							const nombreRolUsuario = dataRolUsuario[0].nombre_rol_usuario;
-							
-							// Si el nombre del rol que encontró al buscar por ese usuario es Admin
-							if(nombreRolUsuario === 'Administrador') {
-								// Paso al home de administrador, está mappeado por AccesoController
-								window.location.href = "/homeAdministrador";
-							} else if (nombreRolUsuario === 'Cliente') {
-								// Si no entró en el if anterior, entonces pasa de frente al home de cliente
-								window.location.href = "/homeCliente";	
-							}
-						});
-						
-					} else {
-						mostrarMensaje(MSG_ERROR)
-					}
-				});
-			} else {
-				mostrarMensaje(MSG_ERROR)
-			}
-		});
-		*/
-		/*
-		btnRegister.click(function() {
-			$('#id_form').bootstrapValidator('validate');
-		});
-		*/
-		/*
-		function limpiar() {
-			$('#id_email').val('');
-			$('#id_contrasena').val('');
-		}
-		*/
 	});
 	
 	</script>

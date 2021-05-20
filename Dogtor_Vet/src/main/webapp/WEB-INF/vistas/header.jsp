@@ -53,7 +53,7 @@
     </nav>
 </c:if>
 
-<c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/login' || requestScope['javax.servlet.forward.servlet_path'] == '/nuevaCuenta'}">
+<c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/login' || requestScope['javax.servlet.forward.servlet_path'] == '/nuevaCuenta' || requestScope['javax.servlet.forward.servlet_path'] == '/logout'}">
 	<!-- Sign In & Register -->
     <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top">
         <div class="container">

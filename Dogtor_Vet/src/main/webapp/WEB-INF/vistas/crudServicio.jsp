@@ -1,6 +1,6 @@
 <jsp:include page="validarSesion.jsp" />
 <!DOCTYPE html>
-<html lang="es" >
+<html lang="es">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,73 +11,101 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	
 	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/dashboard.css"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-	
-	<title>CRUD Servicio</title>
+	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
+	<!-- Menu y Header requieren jQuery al inicio -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<title>Servicio | Dogtor</title>
 </head>
-<body>
+<body class="background__light__gray">
 
-   <jsp:include page="header.jsp" />
-
-    <div class="container">
-    	<div class="row">
-    		<div class="col-12" >
-    			<div class="row mt-3 mb-3">
-	    			<div class="row mt-3 mb-3 col-sm-12 justify-content-center align-items-center d-flex">
-						<div class="col-10 col-md-2">
-		    				<div class="col-12">
-								<button type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio" class='w-100 btn btn-primary btn-generic'>Nuevo Servicio</button>
-							</div>
-    					</div>
-						<div class="col-10 col-md-6" >
-							<input class="form-control" id="id_nombre_filtro" name="filtro_nombre_servicio" placeholder="Ingrese el nombre" type="text" maxlength="30"/>
-						</div>
-						<div class="col-10 col-md-2" >
-							<button type="button" class="w-100 btn btn-primary" id="filtra_servicio">Filtrar Servicios</button>
-						</div>
-					</div>
-    			</div>
-    		
-				<form id="id_form_elimina" action="eliminaServicio">
-					<input type="hidden" id="id_elimina" name="codigo_servicio">
-				</form>
-
-				<div class="row mt-3 mb-3" > 
-					<div class="col-12" >
-						<div class="content table-responsive" >
-						
-							<table id="id_table" class="table table-borderless" >
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Tipo</th>
-										<th>Especialidad</th>
-										<th>Especialista</th>
-										<th>Día Semana</th>
-										<th>Hora Inicio</th>
-										<th>Hora Fin</th>
-										<th>Nombre</th>
-										<th>Descripción</th>
-										<th>Precio</th>
-										<th>Límite</th>
-										<th>Actualiza</th>
-										<th>Elimina</th>
-									</tr>
-								</thead>
-								<tbody></tbody>
-							</table>	
-							
-						</div>	
-					</div>
-				</div>
-		  </div>
-    	</div>
-    	
-    	<div class="modal fade" id="id_modal_RegistraServicio">
-    		<div class="modal-dialog">
+    <main id="dashboard">
+        <div class="container-fluid align-items-stretch">
+		
+		<!-- Header on XS, SM, and MD -->
+		<jsp:include page="header.jsp" />
+            
+            <div class="row">
+                
+                <!-- Menu on LG and XXL -->
+                <jsp:include page="menu.jsp" />
+                
+                <!-- Dashboard Content -->
+                <div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-1 mt-5 menu__transition mx-auto">
+                    <div class="content__body background__light__white menu__transition">
+                        <div class="row justify-content-center">
+                            <div class="content__body__title col-4">
+                                <p class="font__title title__color font__semibold">Servicio</p>
+                            </div>
+                            <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
+                                <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
+                                    <input type="text" name="filtro_nombre_servicio" id="id_nombre_filtro" class="input__search title__color" placeholder="Buscar...">
+                                    <i data-feather="search" class="icon__light"></i>
+                                </div>
+                                <div class="options__filter d-none d-lg-flex mx-2">
+                                    <select name="select_time" id="id_select_time" class="select__time form-select">
+                                        <option value="0">Este mes</option>
+                                    </select>
+                                </div>
+                                <div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
+                                    <i data-feather="message-square"></i>
+                                </div>
+                                <div id="btnProfile" class="options__profile mx-2">
+                                    <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
+                                </div>
+                        </div>
+                        <div class="content__alert row">
+                            <div class="col-12 mt-4 mb-2">
+                                <div class="card__light">
+                                    <div class="card__light__header d-flex justify-content-between my-3">
+                                        <p class="font__subtitle title__color font__semibold">Lista de Servicios</p>
+                                        <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio">
+                                        	<i data-feather="plus"></i>Nuevo</button>
+                                    </div>
+                                    <div class="card__light__body row">
+                                    	<form id="id_form_elimina" action="eliminaServicio">
+											<input type="text" id="id_elimina" name="codigo_servicio" class="d-none">
+											<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
+										</form>
+                                        <div class="col-12 table-responsive">
+                                            <table id="id_table" class="font__min display responsive no-footer text-center table table-borderless dataTable">
+                                                <thead class="background__title">
+                                                    <tr>
+														<th>#</th>
+														<th>Tipo</th>
+														<th>Especialidad</th>
+														<th>Especialista</th>
+														<th>Día Semana</th>
+														<th>Hora Inicio</th>
+														<th>Hora Fin</th>
+														<th>Nombre</th>
+														<th>Descripción</th>
+														<th>Precio</th>
+														<th>Límite</th>
+														<!--<th>Estado</th>-->
+														<th>Opciones</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            	</div>
+            </div>
+        </div>
+    </main>
+    
+   	<div class="container-fluid">
+   		<div class="modal fade p-0" id="id_modal_RegistraServicio">
+    		<div class="modal-dialog modal-lg">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
@@ -169,7 +197,7 @@
 										  	</div>
 					                      </div>
 					                      
-					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_servicio">Registrar</button>
+					                      <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="registrar_servicio">Registrar</button>
 					                    </form>
 					                  </main>
 					            </div>
@@ -184,7 +212,7 @@
     	</div>
     	
     	<div class="modal fade" id="id_modal_ActualizaServicio">
-    		<div class="modal-dialog">
+    		<div class="modal-dialog modal-lg">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
@@ -277,32 +305,37 @@
 										  		</div>
 										  	</div>
 					                      </div>
-					                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="actualizar_servicio">Actualizar</button>
+					                      <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="actualizar_servicio">Actualizar</button>
 					                    </form>
 					                  </main>
-					            </div>
-					        </div>
-    					</div>
-    				</div>
-    				<div class="modal-footer">
-    					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-    				</div>
+							       </div>
+							      </div>
+		    					</div>
+		    				</div>
+		    				<div class="modal-footer">
+		    					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+		    				</div>
     			</div>
     		</div>
     	</div>
-    </div>
-	
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+   	</div>
+
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
-	<script type="text/javascript" src="js/global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Custom JS -->
+    <script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
-	
+	<script type="text/javascript" src="js/menuDashboard.js"></script>
+
 	<script type="text/javascript">
 	
+    // Load icons
+    feather.replace();
+
 	var selectedTipoServicioActualiza, selectedEspecialidadActualiza, selectedEspecialistaActualiza, selectedDiaSemanaActualiza;
 	
 	function agregarGrilla(lista) {
@@ -328,7 +361,7 @@
 					{data: "precio_servicio"},
 					{data: "limite_diario_servicio"},
 					{data: function(row, type, val, meta){
-						var salida='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaServicio" onclick="editar(\'' + row.codigo_servicio +
+						var btnActualizar ='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaServicio" onclick="editar(\'' + row.codigo_servicio +
 								'\',\'' + row.codigo_tipo_servicio +
 								'\',\'' + row.codigo_especialidad +
 								'\',\'' + row.codigo_especialista +
@@ -339,16 +372,26 @@
 								'\',\'' + row.descripcion_servicio  +
 								'\',\'' + row.precio_servicio +
 								'\',\'' + row.limite_diario_servicio +
-								'\')">Editar</button>';
-						return salida;
-					},className:'text-center'},	
-					{data: function(row, type, val, meta){
-					    var salida='<button type="button" class="btn btn-warning btn-sm" onclick="eliminar(\'' + row.codigo_servicio + '\')">Eliminar</button>';
-						return salida;
+								'\')"><i data-feather="edit-2"></i></button>';
+								
+							var btnEliminar = '<button type="button" class="btn btn-danger btn-sm" onclick="eliminar(\'' + row.codigo_servicio + '\')"><i data-feather="trash"></i></button>';
+								
+						return btnActualizar + btnEliminar;
 					},className:'text-center'},													
-				]                                     
+				]
 		    });
+		 
+		 	// Reload icons
+		    feather.replace();
+		 	
+		    $('#id_table').DataTable().columns.adjust().draw();
 		}
+		
+		function listarServiciosDatatable(nombre) {
+	        $.getJSON("listaServicioPorNombre", {"nombre_servicio": nombre}, function(lista) {
+	            agregarGrilla(lista);
+	        });
+	    }
 		
 		function eliminar(codigo_servicio) {
 			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_servicio);
@@ -396,13 +439,7 @@
 		}
 		
 	$(document).ready(function() {
-		
-		function listarServiciosDatatable(nombre) {
-            $.getJSON("listaServicioPorNombre", {"nombre_servicio": nombre}, function(lista) {
-                agregarGrilla(lista);
-            });
-        }
-		
+	    
 		listarServiciosDatatable("");
 		
 		// Selects	
@@ -698,8 +735,6 @@
 		}
 	
 	});
-	
-	
 	</script>
 </body>
 </html>

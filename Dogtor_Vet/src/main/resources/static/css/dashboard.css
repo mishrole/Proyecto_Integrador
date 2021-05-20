@@ -145,13 +145,11 @@ body {
 .dashboard__menu {
     padding-top: 0.5rem;
     padding-left: 0.25rem !important;
-    /* transition: all 0.5s; */
 }
 
 .menu__fixed {
     width: 20%;
     padding: 1.5rem 1.1rem 1.5rem 0rem;
-    /* transition: all .5s; */
 }
 
 .menu__fixed.collapsed {
@@ -177,7 +175,7 @@ body {
 }
 
 .marker {
-	transition: all .5s;
+	transition: all .2s;
 }
 
 .marker,
@@ -185,7 +183,6 @@ body {
     padding: 0.6rem 1.5rem;
     border-radius: 1px;
     border-left: 0.5rem solid var(--background-light-gray);
-    /* margin-right: 0.5rem; */
 }
 
 .marker > p {
@@ -193,26 +190,16 @@ body {
 }
 
 .marker.active {
-    /* background-color: var(--primary-light); */
-    /* color: var(--background-light-white);*/
     color: var(--primary-light);
     border-left: 0.5rem solid var(--primary-light);
 }
 
 .marker:hover {
-    /* background-color: var(--primary-light); */
-    /* border-left: 0.5rem solid var(--background-light-gray); */
     border-left: 0.5rem solid var(--primary-light);
-    /* border-radius: 3px; */
-    /* color: var(--background-light-white); */
     color: var(--primary-light);
 }
 
 /* Dashboard Content */
-
-/* .dashboard__content {
-    
-} */
 
 .img__table--mini {
 	width: 30px;

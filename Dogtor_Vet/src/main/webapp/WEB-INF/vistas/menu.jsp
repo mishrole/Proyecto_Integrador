@@ -38,6 +38,16 @@
                        </a>
                    	</li>
 				</c:forEach>
+				<li class="d-flex flex-row row mb-3">
+                       <a class="background__title link__light" href="logout">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center">
+                               <p class="d-block pe-lg-3">
+                                   <i data-feather="log-out"></i>
+                               </p>
+                               <p class="d-none d-lg-block">Salir</p>
+                           </div>
+                       </a>
+                </li>
 				<!-- 
                    <li class="d-flex flex-row row mb-3">
                        <a class="background__title link__light" href="/homeAdministrador">
@@ -138,24 +148,20 @@
 
 <script>
 
-function colorearMenuActivo() {
-    
-	$('.active').removeClass('active');
-	
-	var menuUsuario = document.querySelectorAll('.marker');
-	
-	for(i = 0; i < menuUsuario.length; i++) {
-	    console.log(menuUsuario[i].getAttribute('id'));
-	    if(window.location.pathname === '/'+menuUsuario[i].getAttribute('id')) {
-	        menuUsuario[i].classList.add('active')
-	    }
-	}
-}
-	
-	// Activar estado del menu según pathname
-	$(document).ready(function() {
-	
-	    colorearMenuActivo();
+	function colorearMenuActivo() {
+		$('.active').removeClass('active');
 		
+		var menuUsuario = document.querySelectorAll('.marker');
+		
+		for(i = 0; i < menuUsuario.length; i++) {
+		    if(window.location.pathname === '/'+menuUsuario[i].getAttribute('id')) {
+		        menuUsuario[i].classList.add('active');
+		    }
+		}
+	}
+	
+	$(document).ready(function() {
+	 	// Activar estado del menu según pathname
+	    colorearMenuActivo();
 	});
 </script>
