@@ -34,12 +34,12 @@ INSERT INTO TB_DETALLE_USUARIO_ROL VALUES
 
 
 INSERT INTO tb_enlace VALUES
-(1, 'Home', 'homeAdministrador'),
-(2, 'Usuario', 'verUsuario'),
-(3, 'Producto', 'verProducto'),
-(4, 'Servicio', 'verServicio'),
-(5, 'Mascota', 'verMascota'),
-(6, 'Home', 'homeCliente');
+(1, 'Home', 'homeAdministrador', 'grid'),
+(2, 'Usuario', 'verUsuario', 'users'),
+(3, 'Producto', 'verProducto', 'shopping-bag'),
+(4, 'Servicio', 'verServicio', 'zap'),
+(5, 'Mascota', 'verMascota', 'github'),
+(6, 'Home', 'homeCliente', 'grid');
 
 INSERT INTO tb_detalle_rol_enlace VALUES
 (1, 1),

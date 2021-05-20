@@ -25,7 +25,20 @@
 
            <div class="menu__body d-flex flex-column my-5 pe-lg-4 menu__transition">
                <ul class="menu__body__list">
-
+               
+               <c:forEach var="x" items="${sessionScope.objMenus}">
+               		<li class="d-flex flex-row row mb-3">
+                       <a class="background__title link__light" href="${x.ruta_enlace}">
+                           <div class="marker d-flex justify-content-lg-start justify-content-center" id="${x.ruta_enlace}">
+                               <p class="d-block pe-lg-3">
+                                   <i data-feather="${x.icono_enlace}"></i>
+                               </p>
+                               <p class="d-none d-lg-block">${x.descripcion_enlace}</p>
+                           </div>
+                       </a>
+                   	</li>
+				</c:forEach>
+				<!-- 
                    <li class="d-flex flex-row row mb-3">
                        <a class="background__title link__light" href="/homeAdministrador">
                            <div class="marker d-flex justify-content-lg-start justify-content-center" id="homeAdministrador">
@@ -115,7 +128,7 @@
                                <p class="d-none d-lg-block">Config</p>
                            </div>
                        </a>
-                   </li>
+                   </li> -->
                </ul>
            </div>
        </div>
@@ -125,18 +138,8 @@
 
 <script>
 
-//var menusUsuario = [];
-/*
-$('.active').removeClass('active');
-<c:forEach var="x" items="${sessionScope.objMenus}">
-	//menusUsuario.push(${x.ruta_enlace});
-	    if(window.location.pathname === '/'+${x.ruta_enlace}) {
-    		$('#'+${x.ruta_enlace}).addClass('active');
-    	}
-	    console.log(${x.ruta_enlace});
-</c:forEach>*/
-
 function colorearMenuActivo() {
+    
 	$('.active').removeClass('active');
 	
 	var menuUsuario = document.querySelectorAll('.marker');
@@ -147,18 +150,7 @@ function colorearMenuActivo() {
 	        menuUsuario[i].classList.add('active')
 	    }
 	}
-	/*
-	let opciones = ['homeAdministrador', 'verUsuario', 'verProducto', 'verServicio', 'verMascota', 'homeCliente'];
-	
-	opciones.forEach(function(value, index) {
-    	if(window.location.pathname === '/'+value) {
-    		$('#'+value).addClass('active');
-    	}
-	});
-	*/
-	//var menus = ${sessionScope.objMenus};
-	//console.log(menusUsuario)
-	}
+}
 	
 	// Activar estado del menu según pathname
 	$(document).ready(function() {

@@ -21,6 +21,9 @@ public class Enlace {
 	
 	@Column(name = "ruta_enlace")
 	private String ruta_enlace;
+	
+	@Column(name = "icono_enlace")
+	private String icono_enlace;
 
 	public Integer getCodigo_enlace() {
 		return codigo_enlace;
@@ -44,6 +47,14 @@ public class Enlace {
 
 	public void setRuta_enlace(String ruta_enlace) {
 		this.ruta_enlace = ruta_enlace;
+	}
+
+	public String getIcono_enlace() {
+		return icono_enlace;
+	}
+
+	public void setIcono_enlace(String icono_enlace) {
+		this.icono_enlace = icono_enlace;
 	}
 	
 }
