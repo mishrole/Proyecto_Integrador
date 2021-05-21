@@ -575,6 +575,132 @@
 						},
 					}
 				},
+				
+				
+				precio_servicio: {
+					selector: '#id_precio',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				
+				limite_diario_servicio: {
+					selector: '#id_limite',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				
+				descripcion_servicio: {
+					selector: '#id_descripcion',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				codigo_tipo_servicio: {
+					selector: '#select_tipo_servicio',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				
+				codigo_especialidad: {
+					selector: '#select_especialidad',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				codigo_especialista: {
+					selector: '#select_especialista',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				codigo_dia_semana: {
+					selector: '#select_dia_semana',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				inicio_turno_servicio: {
+					selector: '#id_inicio_turno',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				fin_turno_servicio: {
+					selector: '#id_fin_turno',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
 			}
 		});
 		
@@ -599,6 +725,121 @@
 						},
 					}
 				},
+				
+				
+				precio_servicio: {
+					selector: '#id_precio_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				
+				limite_diario_servicio: {
+					selector: '#id_limite_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				
+				descripcion_servicio: {
+					selector: '#id_descripcion_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				codigo_tipo_servicio: {
+					selector: '#select_tipo_servicio_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				
+				codigo_especialidad: {
+					selector: '#select_especialidad_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				codigo_especialista: {
+					selector: '#select_especialista_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						
+					}
+				},
+				
+				
+				codigo_dia_semana: {
+					selector: '#select_dia_semana_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				inicio_turno_servicio: {
+					selector: '#id_inicio_turno_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				fin_turno_servicio: {
+					selector: '#id_fin_turno_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 3,
+							max: 40,
+							message: 'El nombre debe contener entre 3 a 40 caracteres'
+						},
+					}
+				},
+				
+				
+				
 			}
 		});
 		

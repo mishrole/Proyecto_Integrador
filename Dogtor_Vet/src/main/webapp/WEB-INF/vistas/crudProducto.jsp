@@ -701,9 +701,37 @@
 						regexp: {
 							regexp: /^(\d+)(\.\d{1,2})?$/,
 							message: 'El precio debe ser decimal'
-						}
+						},
 					}
 				},
+				
+				codigo_marca: {
+					selector: '#select_marca',
+					validators : {
+						notEmpty: {
+							message: '* Obligatorio'
+						},
+					}
+				},
+				
+				codigo_categoria_producto: {
+					selector: '#select_categoria_producto',
+					validators : {
+						notEmpty: {
+							message: '* Obligatorio'
+						},
+					}
+				},
+				
+				codigo_proveedor: {
+					selector: '#select_proveedor',
+					validators : {
+						notEmpty: {
+							message: '* Obligatorio'
+						},
+					}
+				},
+				
 				stock_producto: {
 					selector: '#id_stock',
 					validators : {
@@ -772,6 +800,37 @@
 						}
 					}
 				},
+				
+				codigo_marca: {
+					selector: '#select_marca_actualiza',
+					validators : {
+						notEmpty: {
+							message: '* Obligatorio'
+						},
+						
+					}
+				},
+				
+				codigo_categoria_producto: {
+					selector: '#select_categoria_producto_actualiza',
+					validators : {
+						notEmpty: {
+							message: '* Obligatorio'
+						},
+						
+					}
+				},
+				
+				codigo_proveedor: {
+					selector: '#select_proveedor_actualiza',
+					validators : {
+						notEmpty: {
+							message: '* Obligatorio'
+						},
+						
+					}
+				},
+				
 				stock_producto: {
 					selector: '#id_stock_actualiza',
 					validators : {
@@ -785,7 +844,7 @@
 					}
 				},
 				pedido_producto: {
-					selector: '#id_pedido_actualiza',
+					selector: '#id_pedido_actualiza',descripcion_html_producto
 					validators : {
 						notEmpty: {
 							message: '* Obligatorio'

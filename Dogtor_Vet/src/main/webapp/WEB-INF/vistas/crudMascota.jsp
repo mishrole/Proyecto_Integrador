@@ -691,9 +691,73 @@
 					validators: {
 						notEmpty: {
 							message: '* Este campo es obligatorio'
+								
+						},
+					}
+				},
+				codigo_especie_mascota: {
+					selector: '#select_especie',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				codigo_raza_mascota: {
+					selector: '#select_raza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				codigo_color_mascota: {
+					selector: '#select_color',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				codigo_sexo_mascota: {
+					selector: '#select_sexo',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				codigo_identificacion_mascota: {
+					selector: '#id_identificacion',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 8,
+							max: 8,
+							message: 'El codigo de identificacion debe contener 8 caracteres'
+						},
+					}
+				},
+				
+				codigo_cartilla_sanitaria: {
+					selector: '#id_sanitaria',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 8,
+							max: 8,
+							message: 'El codigo de la cartilla sanitaria debe contener 8 caracteres'
 						}
 					}
-				}
+				},
+				
 			}
 		});
 		
@@ -715,7 +779,7 @@
 							min: 3,
 							max: 40,
 							message: 'El nombre debe contener entre 3 a 40 caracteres'
-						},
+						}
 					}
 				},
 				fecha_nacimiento_mascota: {
@@ -723,9 +787,73 @@
 					validators: {
 						notEmpty: {
 							message: '* Este campo es obligatorio'
+								
+						}
+					}
+				},
+				codigo_especie_mascota: {
+					selector: '#select_especie_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				codigo_raza_mascota: {
+					selector: '#select_raza_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				codigo_color_mascota: {
+					selector: '#select_color_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				codigo_sexo_mascota: {
+					selector: '#select_sexo_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+					}
+				},
+				
+				codigo_identificacion_mascota: {
+					selector: '#id_identificacion_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 8,
+							max: 8,
+							message: 'El codigo de identificacion debe contener 8 caracteres'
+						},
+					}
+				},
+				
+				codigo_cartilla_sanitaria: {
+					selector: '#id_sanitaria_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						stringLength: {
+							min: 8,
+							max: 8,
+							message: 'El codigo de la cartilla sanitaria debe contener 8 caracteres'
 						}
 					}
 				}
+				
 			}
 		});
 		
