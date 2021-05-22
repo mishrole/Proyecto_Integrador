@@ -32,22 +32,28 @@ INSERT INTO TB_DETALLE_USUARIO_ROL VALUES
 (4, 4),
 (5, 5);
 
-
 INSERT INTO tb_enlace VALUES
 (1, 'Home', 'homeAdministrador', 'grid'),
 (2, 'Usuario', 'verUsuario', 'users'),
-(3, 'Producto', 'verProducto', 'shopping-bag'),
+(3, 'Producto', 'verProducto', 'archive'),
 (4, 'Servicio', 'verServicio', 'zap'),
 (5, 'Mascota', 'verMascota', 'github'),
-(6, 'Home', 'homeCliente', 'grid');
+(6, 'Home', 'homeCliente', 'grid'),
+(7, 'Mascotas', 'verMisMascotas', 'github'),
+(8, 'Citas', 'verMisCitas', 'calendar'),
+(9, 'Pedidos', 'verMisPedidos', 'truck'),
+(10, 'Tienda', 'verTienda', 'shopping-bag'),
+(11, 'Servicios', 'verServicio', 'zap'),
+(12, 'Home', 'homeVendedor', 'grid'),
+(13, 'Home', 'homeEspecialista', 'grid'),
+(14, 'Home', 'homeRepartidor', 'grid');
 
 INSERT INTO tb_detalle_rol_enlace VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(1, 4),
-(1,5),
-(2,6);
+(1, 1),(1, 2),(1, 3),(1, 4),(1, 5),
+(2, 6),(2, 7),(2, 8),(2, 9),(2, 10),(2, 11),
+(3, 12),
+(4, 13),
+(5, 14);
 
 INSERT INTO tb_color_mascota VALUES
 (1, 'Blanco y Negro'),
@@ -68,26 +74,18 @@ INSERT INTO tb_sexo_mascota VALUES
 (1, 'Hembra'), (2, 'Macho'), (3, 'Indeterminado');
 
 INSERT INTO tb_raza_mascota VALUES
-(1, 'Chihuahua', 1),
-(2, 'Pastor Alemán', 1),
-(3, 'Husky Siberiano', 1),
-(4, 'Persa', 2),
-(5, 'Siamés', 2),
-(6, 'Sphynx', 2),
-(7 ,'Californiano', 3),
-(8, 'Holandés', 3),
-(9, 'Arlequín', 3),
-(10, 'Ruso', 4),
-(11, 'Sirio', 4),
-(12, 'Chino', 4);
+(1, 'Chihuahua', 1),(2, 'Pastor Alemán', 1),(3, 'Husky Siberiano', 1),
+(4, 'Persa', 2),(5, 'Siamés', 2),(6, 'Sphynx', 2),
+(7 ,'Californiano', 3),(8, 'Holandés', 3),(9, 'Arlequín', 3),
+(10, 'Ruso', 4),(11, 'Sirio', 4),(12, 'Chino', 4);
 
 INSERT INTO tb_marca VALUES
-(1, 'Marca Random A'),
-(2, 'Marca Random B'),
-(3, 'Marca Random C');
+(1, 'Michicat'),
+(2, 'Pulgout'),
+(3, 'Funtoy');
 
 INSERT INTO tb_categoria_producto VALUES
-(1, 'Alimento'),
+(1, 'Alimentos'),
 (2 ,'Antipulgas'),
 (3, 'Juguetes');
 
@@ -124,5 +122,16 @@ INSERT INTO tb_tipo_servicio VALUES
 INSERT INTO tb_estado_cita VALUES
 (1, 'Pendiente'),
 (2, 'En curso'),
-(3, 'Atendida'),
-(4, 'Cancelada');
+(3, 'Atendido'),
+(4, 'Cancelado');
+
+INSERT INTO tb_estado_pedido VALUES
+(1, 'Recibido'),
+(2, 'Confirmado'),
+(3, 'En camino'),
+(4, 'Entregado'),
+(5, 'Cancelado');
+
+INSERT INTO tb_tipo_boleta VALUES
+(1, 'Boleta de Producto'),
+(2, 'Boleta de Servicio');
