@@ -142,7 +142,6 @@
     feather.replace();
     
     function agregarGrilla(lista) {
-		//console.log(lista)
 		 $('#id_table').DataTable().clear();
 		 $('#id_table').DataTable().destroy();
 		 $('#id_table').DataTable({

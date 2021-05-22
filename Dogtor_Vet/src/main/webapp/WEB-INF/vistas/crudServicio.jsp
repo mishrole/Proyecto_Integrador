@@ -648,7 +648,6 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraServicio',
 					success: function(data) {
-						//agregarGrilla(data.lista);
 						listarServiciosDatatable("");
 						$('#id_modal_RegistraServicio').modal("hide");
 						mostrarMensaje(data.MENSAJE);
@@ -680,7 +679,6 @@
 					data: $('#id_form_actualiza').serialize(),
 					url: 'actualizaServicio',
 					success: function(data) {
-						//agregarGrilla(data.lista);
 						listarServiciosDatatable("");
 						$('#id_modal_ActualizaServicio').modal("hide");
 						mostrarMensaje(data.MENSAJE);
