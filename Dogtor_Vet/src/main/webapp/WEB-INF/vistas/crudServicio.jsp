@@ -377,7 +377,7 @@
 							var btnEliminar = '<button type="button" class="btn btn-danger btn-sm" onclick="eliminar(\'' + row.codigo_servicio + '\')"><i data-feather="trash"></i></button>';
 								
 						return btnActualizar + btnEliminar;
-					},className:'text-center'},													
+					},className:'text-center mx-auto d-flex justify-content-center'},													
 				]
 		    });
 		 
