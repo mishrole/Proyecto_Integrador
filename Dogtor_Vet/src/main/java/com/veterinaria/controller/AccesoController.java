@@ -21,6 +21,11 @@ public class AccesoController {
 	@Autowired
 	private UsuarioService service;
 	
+	@RequestMapping("/test")
+	public String verTest() {
+		return "test";
+	}
+	
 	@RequestMapping("/")
 	public String verInicio() {
 		return "inicio";
@@ -36,9 +41,15 @@ public class AccesoController {
 		Usuario usuario = service.login(objUsuario);
 		
 		if(usuario == null) {
-			request.setAttribute("MENSAJE", "El usuario no existe");
+			request.setAttribute("MENSAJE", "El usuario y/o contraseña son incorrectos");
 			return "iniciaSesion";
 		} else {
+			
+			if(usuario.getCodigo_visibilidad() != 1) {
+				request.setAttribute("MENSAJE", "El usuario se encuentra deshabilitado");
+				return "iniciaSesion";
+			}
+			
 			List<Enlace> menus = service.obtenerEnlacesDeUsuario(usuario.getCodigo_usuario());
 			List<Rol> roles = service.obtenerRolesDeUsuario(usuario.getCodigo_usuario());
 			
@@ -50,6 +61,7 @@ public class AccesoController {
 			session.setAttribute("objUsuario", usuario);
 			session.setAttribute("objMenus", menus);
 			session.setAttribute("objRoles", roles);
+			session.setAttribute("currentRol", roles.get(0).getNombre_rol_usuario());
 			
 			String homeRol = "";
 			

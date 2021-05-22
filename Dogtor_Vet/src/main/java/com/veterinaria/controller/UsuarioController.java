@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.veterinaria.entity.DetalleUsuarioRol;
 import com.veterinaria.entity.DetalleUsuarioRolPK;
+import com.veterinaria.entity.Rol;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.DetalleUsuarioRolService;
 import com.veterinaria.service.UsuarioService;
@@ -31,8 +32,6 @@ public class UsuarioController {
 	public String verRegistraCliente() {
 		return "registraCliente";
 	}
-	
-	/* NOTA: Esto es momentáneo, necesitamos usar @Transaction en el service para hacer rollback si falla el registro */
 	
 	@RequestMapping("/registraCliente")
 	@ResponseBody
@@ -72,14 +71,6 @@ public class UsuarioController {
 		
 		return salida;
 
-	}
-	
-	/* Login de Usuario - YA NO ESTÁ EN USO */
-	
-	@RequestMapping("/listaUsuarioPorEmailYContrasena")
-	@ResponseBody
-	public List<Usuario> listaUsuarioPorEmailYContrasena(String email_usuario, String contrasena_usuario) {
-		return usuarioService.listausuarioPorEmailYContrasena(email_usuario, contrasena_usuario);
 	}
 	
 	/* Crud para Administrador */
@@ -146,7 +137,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			salida.put("MENSAJE", "El registro no pudo ser completado");
 		} finally {
-			List<Usuario> lista = usuarioService.listaUsuario();
+			List<Usuario> lista = usuarioService.listaUsuarioPorNombre("");
 			salida.put("lista", lista);
 		}
 		
@@ -198,7 +189,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			salida.put("MENSAJE", "La actualización no pudo ser completada");
 		} finally {
-			List<Usuario> lista = usuarioService.listaUsuario();
+			List<Usuario> lista = usuarioService.listaUsuarioPorNombre("");
 			salida.put("lista", lista);
 		}
 		
@@ -231,15 +222,13 @@ public class UsuarioController {
 			e.printStackTrace();
 			salida.put("MENSAJE", "Error, la visibilidad no pudo ser actualizada");
 		} finally {
-			List<Usuario> lista = usuarioService.listaUsuario();
+			List<Usuario> lista = usuarioService.listaUsuarioPorNombre("");
 			salida.put("lista", lista);
 		}
 		
 		return salida;
 	}
 	
-	
-	/*
 	@RequestMapping("/eliminaUsuario")
 	@ResponseBody
 	public Map<String, Object> elimina(Integer codigo_usuario) {
@@ -250,13 +239,28 @@ public class UsuarioController {
 		try {
 			if(option.isPresent()) {
 				try {
-					detalleUsuarioRolService.eliminaUsuarioRol(codigo_usuario);
+					List<Rol> roles = usuarioService.obtenerRolesDeUsuario(codigo_usuario);
+					DetalleUsuarioRolPK objRolUsuarioPK = new DetalleUsuarioRolPK();
+					objRolUsuarioPK.setCodigo_rol_usuario(roles.get(0).getCodigo_rol_usuario());
+					objRolUsuarioPK.setCodigo_usuario(codigo_usuario);
+					
+					DetalleUsuarioRol objRolUsuario = new DetalleUsuarioRol();
+					objRolUsuario.setObjDetalleUsuarioRolPK(objRolUsuarioPK);
+										
+					detalleUsuarioRolService.eliminaUsuarioRol(objRolUsuario);
+					
+					try {
+						usuarioService.eliminaUsuario(codigo_usuario);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 					salida.put("MENSAJE", "Error, el usuario no pudo ser eliminado");
 				}
 				
-				usuarioService.eliminaUsuario(codigo_usuario);
 				salida.put("MENSAJE", "¡Eliminación exitosa!");
 			} else {
 				salida.put("MENSAJE", "Error, el usuario no existe");
@@ -265,12 +269,11 @@ public class UsuarioController {
 			e.printStackTrace();
 			salida.put("MENSAJE", "Error, el usuario no pudo ser eliminado");
 		} finally {
-			List<Usuario> lista = usuarioService.listaUsuario();
+			List<Usuario> lista = usuarioService.listaUsuarioPorNombre("");
 			salida.put("lista", lista);
 		}
 		
 		return salida;
 	}
-	*/
 	
 }

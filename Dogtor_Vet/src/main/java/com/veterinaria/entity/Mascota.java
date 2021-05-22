@@ -25,7 +25,7 @@ public class Mascota {
 	private String nombre_mascota;
 	
 	@Column(name = "foto_mascota")
-	private String foto_mascota;
+	private byte[] foto_mascota;
 	
 	@Column(name = "codigo_raza_mascota")
 	private Integer codigo_raza_mascota;
@@ -151,11 +151,11 @@ public class Mascota {
 		this.codigo_cartilla_sanitaria = codigo_cartilla_sanitaria;
 	}
 
-	public String getFoto_mascota() {
+	public byte[] getFoto_mascota() {
 		return foto_mascota;
 	}
 
-	public void setFoto_mascota(String foto_mascota) {
+	public void setFoto_mascota(byte[] foto_mascota) {
 		this.foto_mascota = foto_mascota;
 	}
 

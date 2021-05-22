@@ -35,5 +35,5 @@ public class DiaSemana {
 		this.nombre_dia_semana = nombre_dia_semana;
 	}
 	
-	
 }
+

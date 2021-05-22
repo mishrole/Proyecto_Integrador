@@ -13,3 +13,4 @@ public interface DiaSemanaRepository extends JpaRepository<DiaSemana, Integer> {
 	public abstract List<DiaSemana> listaDiaSemana();
 	
 }
+

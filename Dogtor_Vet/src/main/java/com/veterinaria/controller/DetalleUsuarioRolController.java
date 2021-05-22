@@ -38,9 +38,9 @@ public class DetalleUsuarioRolController {
 	
 	@RequestMapping("/eliminaDetalleUsuarioRol")
 	@ResponseBody
-	public List<Rol> eliminaDetalleUsuarioRol(Integer codigo_usuario) {		
-		detalleUsuarioRolService.eliminaUsuarioRol(codigo_usuario);
-		return rolService.listaRolPorUsuario(codigo_usuario);
+	public List<Rol> eliminaDetalleUsuarioRol(DetalleUsuarioRol detalleUsuarioRol) {		
+		detalleUsuarioRolService.eliminaUsuarioRol(detalleUsuarioRol);
+		return rolService.listaRolPorUsuario(detalleUsuarioRol.getObjDetalleUsuarioRolPK().getCodigo_usuario());
 	}
 	
 

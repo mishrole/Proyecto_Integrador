@@ -3,17 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Expires" content="-1" />
+	<meta http-equiv="Cache-Control" content="private" />
+	<meta http-equiv="Cache-Control" content="no-store" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 	<link rel="stylesheet" href="css/bootstrapValidator.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/dashboard.css"/>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-	
-	<title>Registra Usuario</title>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<title>Crea tu cuenta | Dogtor</title>
 </head>
 <body>
 
-   <jsp:include page="header.jsp" />
+	<jsp:include page="header.jsp" />
+	
+	<c:if test="${requestScope.MENSAJE != null}">
+    	<div class="alert alert-danger fade in" id="success-alert">
+        	<a href="#" class="close" data-dismiss="alert">&times;</a>
+        	<strong>${requestScope.MENSAJE}</strong>
+    	</div>
+   	</c:if>
 
     <div class="container">
         <div class="row">
@@ -78,8 +92,8 @@
 						  	</div>
 	                     </div>
 
-                      <button class="w-100 btn btn-lg btn-primary btn-generic" type="button" id="registrar_usuario">Registrar</button>
-                      <p class="text-center mt-3">¿Tienes una cuenta? <a href="login">Inicia Sesión</a></p>
+                      <button class="w-100 btn btn-lg btn__primary" type="button" id="registrar_usuario">Registrar</button>
+                      <p class="text-center mt-3 font__regular title__color">¿Ya tienes una cuenta? <a href="login" class="primary__color">Inicia Sesión</a></p>
                     </form>
                   </main>
             </div>
@@ -91,7 +105,6 @@
     	<input type="text" id="id_rol_usuario" class="d-none" name="codigo_rol_usuario" value="2">
     </form>
 	
-	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>

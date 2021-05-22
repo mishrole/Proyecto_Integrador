@@ -1,72 +1,137 @@
 USE PI_DOGTOR;
 
-INSERT INTO tb_visibilidad(NOMBRE_VISIBILIDAD) VALUES
-('Visible'),('Invisible');
+INSERT INTO tb_visibilidad VALUES
+(1, 'Visible'),
+(2, 'Invisible');
 
-INSERT INTO TB_DISTRITO(NOMBRE_DISTRITO) VALUES
-('Independencia'), ('Comas'), ('San Martín de Porres');
+INSERT INTO TB_DISTRITO VALUES
+(1, 'Independencia'),
+(2, 'Comas'),
+(3, 'San Martín de Porres');
 
 /* Especialista es médico, peluquero, etc */
-INSERT INTO tb_rol_usuario(NOMBRE_ROL_USUARIO) VALUES 
-('Administrador'),('Cliente'), ('Especialista'), ('Vendedor'), ('Repartidor');
+INSERT INTO tb_rol_usuario VALUES
+(1, 'Administrador'),
+(2, 'Cliente'),
+(3, 'Especialista'),
+(4, 'Vendedor'),
+(5, 'Repartidor');
 
-INSERT INTO tb_usuario(CODIGO_USUARIO, EMAIL_USUARIO, CONTRASENA_USUARIO,
-NOMBRE_USUARIO, APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO, CODIGO_DISTRITO, CODIGO_VISIBILIDAD) VALUES 
-(null, 'admin@gmail.com', '123', 'Usuario', 'Admin', '1997-03-25', 1, 1),
-(null, 'cliente@gmail.com', '123', 'Usuario', 'Cliente', '1997-03-25', 1, 1);
+INSERT INTO tb_usuario(CODIGO_USUARIO, EMAIL_USUARIO, CONTRASENA_USUARIO, NOMBRE_USUARIO,
+APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO, CODIGO_DISTRITO, CODIGO_VISIBILIDAD) VALUES
+(1, 'admin@gmail.com', '123', 'Usuario', 'Admin', '1997-03-25', 1, 1),
+(2, 'cliente@gmail.com', '123', 'Usuario', 'Cliente', '1997-03-25', 2, 1),
+(3, 'especialista@gmail.com', '123', 'Usuario', 'Especialista', '1997-03-25', 3, 1),
+(4, 'vendedor@gmail.com', '123', 'Usuario', 'Vendedor', '1997-03-25', 1, 1),
+(5, 'repartidor@gmail.com', '123', 'Usuario', 'Repartidor', '1997-03-25', 2, 1);
 
 INSERT INTO TB_DETALLE_USUARIO_ROL VALUES 
-(1, 1), (2, 2);
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
 
 INSERT INTO tb_enlace VALUES
-(null, "Home", "homeAdministrador"),
-(null, "Usuario", "verUsuario"),
-(null, "Producto", "verProducto"),
-(null, "Servicio", "verServicio"),
-(null, "Mascota", "verMascota"),
-(null, "Home", "homeCliente");
+(1, 'Home', 'homeAdministrador', 'grid'),
+(2, 'Usuario', 'verUsuario', 'users'),
+(3, 'Producto', 'verProducto', 'archive'),
+(4, 'Servicio', 'verServicio', 'zap'),
+(5, 'Mascota', 'verMascota', 'github'),
+(6, 'Home', 'homeCliente', 'grid'),
+(7, 'Mascotas', 'verMisMascotas', 'github'),
+(8, 'Citas', 'verMisCitas', 'calendar'),
+(9, 'Pedidos', 'verMisPedidos', 'truck'),
+(10, 'Tienda', 'verTienda', 'shopping-bag'),
+(11, 'Servicios', 'verServicio', 'zap'),
+(12, 'Home', 'homeVendedor', 'grid'),
+(13, 'Home', 'homeEspecialista', 'grid'),
+(14, 'Home', 'homeRepartidor', 'grid');
 
 INSERT INTO tb_detalle_rol_enlace VALUES
-(1, 1), (1, 2), (1, 3), (1, 4), (1,5), (2,6);
+(1, 1),(1, 2),(1, 3),(1, 4),(1, 5),
+(2, 6),(2, 7),(2, 8),(2, 9),(2, 10),(2, 11),
+(3, 12),
+(4, 13),
+(5, 14);
 
-INSERT INTO tb_color_mascota(NOMBRE_COLOR_MASCOTA) VALUES 
-("Blanco y Negro"),("Blanco y Gris"),
-("Blanco y Crema"),("Blanco"),
-("Negro"),("Crema"),
-("Crema, Blanco, y Negro");
+INSERT INTO tb_color_mascota VALUES
+(1, 'Blanco y Negro'),
+(2, 'Blanco y Gris'),
+(3, 'Blanco y Crema'),
+(4, 'Blanco'),
+(5, 'Negro'),
+(6, 'Crema'),
+(7, 'Crema, Blanco, y Negro');
 
-INSERT INTO tb_especie_mascota(NOMBRE_ESPECIE_MASCOTA) VALUES 
-("Perro"), ("Gato"), ("Conejo"), ("Hámster");
+INSERT INTO tb_especie_mascota VALUES
+(1, 'Perro'),
+(2, 'Gato'),
+(3, 'Conejo'),
+(4, 'Hámster');
 
-INSERT INTO tb_sexo_mascota(NOMBRE_SEXO_MASCOTA) VALUES 
-("Hembra"), ("Macho"), ("Indeterminado");
+INSERT INTO tb_sexo_mascota VALUES
+(1, 'Hembra'), (2, 'Macho'), (3, 'Indeterminado');
 
-INSERT INTO tb_raza_mascota(NOMBRE_RAZA_MASCOTA, CODIGO_ESPECIE_MASCOTA) VALUES 
-("Chihuahua", 1),("Pastor Alemán", 1),("Husky Siberiano", 1),
-("Persa", 2),("Siamés", 2),("Sphynx", 2),("Californiano", 3),
-("Holandés", 3),("Arlequín", 3),("Ruso", 4),("Sirio", 4),("Chino", 4);
+INSERT INTO tb_raza_mascota VALUES
+(1, 'Chihuahua', 1),(2, 'Pastor Alemán', 1),(3, 'Husky Siberiano', 1),
+(4, 'Persa', 2),(5, 'Siamés', 2),(6, 'Sphynx', 2),
+(7 ,'Californiano', 3),(8, 'Holandés', 3),(9, 'Arlequín', 3),
+(10, 'Ruso', 4),(11, 'Sirio', 4),(12, 'Chino', 4);
 
-INSERT INTO tb_marca(NOMBRE_MARCA) VALUES 
-('Marca Random A'),('Marca Random B'), ('Marca Random C');
+INSERT INTO tb_marca VALUES
+(1, 'Michicat'),
+(2, 'Pulgout'),
+(3, 'Funtoy');
 
-INSERT INTO tb_categoria_producto(NOMBRE_CATEGORIA_PRODUCTO) VALUES
-('Alimentos enlatados'),('Antipulgas');
+INSERT INTO tb_categoria_producto VALUES
+(1, 'Alimentos'),
+(2 ,'Antipulgas'),
+(3, 'Juguetes');
 
-INSERT INTO tb_proveedor(NOMBRE_PROVEEDOR) VALUES
-('Proveedor con nombre social súper largo A S.A.C.'),
-('Proveedor con nombre social súper largo B S.A.C.'),
-('Proveedor con nombre social súper largo C S.A.C.');
+INSERT INTO tb_proveedor VALUES
+(1, 'Pettoy S.A.C.'),
+(2, 'Katsky S.A.C.'),
+(3, 'RabbIT S.A.C.');
 
-INSERT INTO TB_ESPECIALIDAD(NOMBRE_ESPECIALIDAD) VALUES 
-('Cardiología'),('Endocrinología'),('Fisioterapia'),
-('Neurología'),('Nutrición'),('Odontología'),
-('Oftalmología'),('Oncología'),('Traumatología');
+INSERT INTO tb_especialidad VALUES
+(1, 'Cardiología'),
+(2, 'Endocrinología'),
+(3 ,'Fisioterapia'),
+(4, 'Neurología'),
+(5, 'Nutrición'),
+(6, 'Odontología'),
+(7, 'Oftalmología'),
+(8, 'Oncología'),
+(9, 'Traumatología');
 
-INSERT INTO TB_DIA_SEMANA(NOMBRE_DIA_SEMANA) VALUES
-('Lunes'), ('Martes'), ('Miércoles'), ('Jueves'), ('Viernes'), ('Sábado'), ('Domingo');
+INSERT INTO tb_dia_semana VALUES
+(1 ,'Lunes'),
+(2, 'Martes'),
+(3, 'Miércoles'),
+(4, 'Jueves'),
+(5, 'Viernes'),
+(6, 'Sábado'),
+(7, 'Domingo');
 
-INSERT INTO tb_tipo_servicio(NOMBRE_TIPO_SERVICIO) VALUES 
-('Consulta Veterinaria'),('Aseo'),('Laboratorio');
+INSERT INTO tb_tipo_servicio VALUES
+(1, 'Consulta'),
+(2, 'Aseo'),
+(3, 'Laboratorio');
 
-INSERT INTO TB_ESTADO_CITA(NOMBRE_ESTADO_CITA) VALUES
-('Pendiente'), ('En curso'), ('Atendida'), ('Cancelada');
+INSERT INTO tb_estado_cita VALUES
+(1, 'Pendiente'),
+(2, 'En curso'),
+(3, 'Atendido'),
+(4, 'Cancelado');
+
+INSERT INTO tb_estado_pedido VALUES
+(1, 'Recibido'),
+(2, 'Confirmado'),
+(3, 'En camino'),
+(4, 'Entregado'),
+(5, 'Cancelado');
+
+INSERT INTO tb_tipo_boleta VALUES
+(1, 'Boleta de Producto'),
+(2, 'Boleta de Servicio');

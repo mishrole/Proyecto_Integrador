@@ -18,8 +18,8 @@ public class DetalleUsuarioRolServiceImplem implements DetalleUsuarioRolService 
 	}
 
 	@Override
-	public void eliminaUsuarioRol(Integer codigo_usuario) {
-		repository.deleteById(codigo_usuario);
+	public void eliminaUsuarioRol(DetalleUsuarioRol detalleUsuarioRol) {
+		repository.delete(detalleUsuarioRol);
 		
 	}
 

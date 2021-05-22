@@ -29,7 +29,7 @@
         	<h5 class="text-principal-color mb-3 mt-3">Hola ${sessionScope.objUsuario.nombre_usuario} ${sessionScope.objUsuario.apellido_usuario}</h5>
             <h4 class="text-principal-color mb-3 mt-3">Mis mascotas</h4>
             <div class="col-12 d-flex justify-content-end align-items-center mt-3 mb-3">
-            	<div class="col-12 col-md-2">
+            	<div class="col-12 col-md-4 col-lg-2">
             		<button type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota" class='w-100 btn btn-primary btn-generic'>Nueva Mascota</button>
             	</div>
             </div>
@@ -58,10 +58,19 @@
 					                      
 					                      <input type="text" id="id_propietario" name="codigo_propietario" value="${sessionScope.objUsuario.codigo_usuario}" class="d-none">
 					                    
-					                   	  <div class="form-group form-floating mb-3">
+					                      <div class="form-group row">
+					                      	<div class="col-12 mb-3">
+					                      		<div class="form-floating">
+					                      			<input type="file" class="form-control" id="id_foto" name="foto_mascota" />
+					                      		</div>
+					                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group form-floating mb-3">
 						                      <input type="text" class="form-control" id="id_nombre" name="nombre_mascota" placeholder="John" autocomplete="on" >
 						                      <label for="id_nombre">Nombre</label>
 					                      </div>
+					                      
 					                      <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 										  		<div class="form-floating">
@@ -306,22 +315,33 @@
 			validateSelect(selectColor, selectedColor, 'color');
 			
 			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
+				
+				var form = $("#id_form_registra").serialize();
+				var data = new FormData($("#id_form_registra")[0]);
+				
 				$.ajax({
 					type: 'POST',
-					data: $('#id_form_registra').serialize(),
-					url: 'registraMascota',
+					data: data,
+					enctype: 'multipart/form-data',
+					url: '/registraMascotaConFoto',
+					processData: false,
+					contentType: false,
+					cache: false,
 					success: function(data) {
 						$('#id_modal_RegistraMascota').modal("hide");
-						mostrarMensaje(data.MENSAJE)
+						mostrarMensaje(data.MENSAJE);
 						limpiar();
-						validator.resetForm()
+						validator.resetForm();
 						mascotasContainer.empty();
 						generarListaMascotas();
 					},
 					error: function() {
-						mostrarMensaje(MSG_ERROR)
+						mostrarMensaje(MSG_ERROR);
 					}
 				});
+				
+				
+				
 			}
 		});
 		
@@ -329,20 +349,54 @@
 		const codigoPropietario = $("#id_propietario").val();
 		
 		function calcularEdad(fechaString) {
-		    var hoy = new Date();
+			var hoy = new Date();
+			hoy.setHours(0,0,0,0);
 		    var fechaNacimiento = new Date(fechaString);
-		    var edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-		    var m = hoy.getMonth() - fechaNacimiento.getMonth();
-		    if (m < 0 || (m === 0 && hoy.getDate() < fechaNacimiento.getDate())) 
-		    {
-		    	edad--;
-		    }
-		    return edad;
+		    var tiempo = (hoy.getTime() - fechaNacimiento.getTime()) / 1000;
+		    var anio = Math.abs(Math.floor((tiempo/(60 * 60 * 24))/365));
+		    var mes = Math.abs(Math.floor(tiempo/(60 * 60 * 24 * 7 * 4)));
+
+		    // Menos de 0 meses no existe
+	    	if(mes < 0 || fechaNacimiento > hoy) {
+	    		return "Fecha inválida";
+	    	} else {
+	    		// 0 meses a 11 meses
+			    if(mes >= 0 && mes < 12) {
+			    	if(mes === 1) {
+			    		return mes + " mes";
+			    	} else {
+			    		return mes + " meses";
+			    	}
+			    } else {	    	
+			    	// 12 meses : 1 año
+			    	if(mes === 12) {
+			    		return anio + " año";
+			    	}
+			    	
+		    		var mesesSobrantes = mes % 12;
+			    	
+			    	// 1 año con x meses y menos de 2 años
+			    	if(mes > 12 && mes < 24) {
+			    		// 1 año y 1 mes
+			    		if(mesesSobrantes === 1) {
+		    				return anio + " año y " + mesesSobrantes + " mes";
+		    			} else {
+		    				// 1 año y varios meses
+		    				return anio + " año y " + mesesSobrantes + " meses";
+		    			}
+			    	} else if (mes >= 24) {
+			    		if(mesesSobrantes === 1) {
+			    			return anio + " años y " + mesesSobrantes + " mes";
+			    		} else {
+			    			return anio + " años y " + mesesSobrantes + " meses";
+			    		}
+			    	}
+			    }
+	    	}
 		}
 		
 		function generarListaMascotas() {
 			$.getJSON("listaMascotaPorPropietario", {"codigo_propietario": codigoPropietario}, function(lista) {
-				console.log(lista);
 				
 				if(lista.length > 0) {
 					$.each( lista, function(index, mascota) {
@@ -353,9 +407,15 @@
 						cardPet.className = "card pet__card h-100";
 						
 						const imgPet = document.createElement('img');
-						imgPet.src = "../../images/pet.jpg";
-						imgPet.className = "card-img-top";
-						imgPet.alt = "Dog";
+						
+						if(mascota.foto_mascota.length > 0) {
+							imgPet.src = "data:image/png;base64," + mascota.foto_mascota; 
+						} else {
+							imgPet.src = "../../images/noimage.png";
+						}
+						
+						imgPet.className = "card-img-top pet__card--cover";
+						imgPet.alt = "Pet image";
 						
 						const cardBody = document.createElement('div');
 						cardBody.className = "card-body";
@@ -368,16 +428,8 @@
 						cardBodyText.className = "card-text text-center";
 						
 						const edadCalculada = calcularEdad(mascota.fecha_nacimiento_mascota);
-						
-						let edadActual;
-						
-						if(edadCalculada == 1) {
-							edadActual = edadCalculada + " año";
-						} else {
-							edadActual = edadCalculada + " años";
-						}	
-						
-						cardBodyText.innerHTML = edadActual;
+
+						cardBodyText.innerHTML = edadCalculada;
 						
 						const cardFooter = document.createElement('div');
 						cardFooter.className = "card-footer text-center";
@@ -422,15 +474,14 @@
 					divContainer.append(title);
 					mascotasContainer.append(divContainer);
 				}
-				
-				
-				
+
 			});
 		}
 		
 		generarListaMascotas();
 		
 		function limpiar() {
+			$('#id_foto').val('');
 			$('#id_nombre').val('');
 			$('#select_especie')[0].selectedIndex = 0;
 			$('#select_raza')[0].selectedIndex = 0;
