@@ -25,11 +25,6 @@ public class UsuarioServiceImplem implements UsuarioService {
 	}
 
 	@Override
-	public List<Usuario> listausuarioPorEmailYContrasena(String email_usuario, String contrasena_usuario) {
-		return repository.listaUsuarioPorEmailYContrasena(email_usuario, contrasena_usuario);
-	}
-
-	@Override
 	public void eliminaUsuario(Integer codigo_usuario) {
 		repository.deleteById(codigo_usuario);	
 	}
@@ -78,11 +73,5 @@ public class UsuarioServiceImplem implements UsuarioService {
 	public List<Usuario> obtenerUsuarioPorEmail(String email_usuario) {
 		return repository.obtenerUsuarioPorEmail(email_usuario);
 	}
-	/*
-	@Override
-	public void actualizaVisibilidadUsuario(Integer codigo_usuario, Integer codigo_visibilidad) {
-		repository.actualizaVisibilidadUsuario(codigo_usuario, codigo_visibilidad);
-	}
-	*/
 
 }

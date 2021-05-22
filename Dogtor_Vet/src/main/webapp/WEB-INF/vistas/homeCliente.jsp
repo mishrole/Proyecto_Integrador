@@ -315,50 +315,9 @@
 			validateSelect(selectColor, selectedColor, 'color');
 			
 			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
-				/*
-				$.ajax({
-					type: 'POST',
-					data: $('#id_form_registra').serialize(),
-					url: 'registraMascota',
-					success: function(data) {
-						$('#id_modal_RegistraMascota').modal("hide");
-						mostrarMensaje(data.MENSAJE)
-						limpiar();
-						validator.resetForm()
-						mascotasContainer.empty();
-						generarListaMascotas();
-					},
-					error: function() {
-						mostrarMensaje(MSG_ERROR)
-					}
-				});*/
 				
 				var form = $("#id_form_registra").serialize();
 				var data = new FormData($("#id_form_registra")[0]);
-				
-				/*$.ajax({
-					type: 'POST',
-					data: data,
-					enctype: 'multipart/form-data',
-					url: '/registraMascotaConFoto',
-					processData: false,
-					contentType: false,
-					cache: false,
-					success: function(data, statusText, xhr) {
-						if(xhr.status == "200") {
-							$('#id_modal_RegistraMascota').modal("hide");
-							mostrarMensaje(data.MENSAJE);
-							limpiar();
-							validator.resetForm();
-							mascotasContainer.empty();
-							generarListaMascotas();
-							console.log($('#id_form_registra').serialize());
-						}
-					},
-					error: function() {
-						mostrarMensaje(MSG_ERROR);
-					}
-				});*/
 				
 				$.ajax({
 					type: 'POST',
@@ -438,7 +397,6 @@
 		
 		function generarListaMascotas() {
 			$.getJSON("listaMascotaPorPropietario", {"codigo_propietario": codigoPropietario}, function(lista) {
-				console.log(lista);
 				
 				if(lista.length > 0) {
 					$.each( lista, function(index, mascota) {
@@ -470,18 +428,7 @@
 						cardBodyText.className = "card-text text-center";
 						
 						const edadCalculada = calcularEdad(mascota.fecha_nacimiento_mascota);
-						
-						/*
-						let edadActual;
-						
-						if(edadCalculada == 1) {
-							edadActual = edadCalculada + " año";
-						} else {
-							edadActual = edadCalculada + " años";
-						}
-						*/
-						
-						//cardBodyText.innerHTML = edadActual;
+
 						cardBodyText.innerHTML = edadCalculada;
 						
 						const cardFooter = document.createElement('div');

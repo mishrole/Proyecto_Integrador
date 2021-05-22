@@ -471,7 +471,6 @@
 				url: "actualizaVisibilidadUsuario",
 				data: $('#id_form_elimina').serialize(),
 				success: function(data) {
-					//agregarGrilla(data.lista);
 					listarUsuariosDatatable("");
 					mostrarMensaje(data.MENSAJE);
 				},
@@ -792,7 +791,6 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraUsuario',
 					success: function(data) {
-						//agregarGrilla(data.lista);
 						listarUsuariosDatatable("");
 						$('#id_modal_RegistraUsuario').modal("hide");
 						mostrarMensaje(data.MENSAJE);
@@ -823,7 +821,6 @@
 					data: $('#id_form_actualiza').serialize(),
 					url: 'actualizaUsuario',
 					success: function(data) {
-						//agregarGrilla(lista);
 						listarUsuariosDatatable("");
 						$('#id_modal_ActualizaUsuario').modal("hide");
 						mostrarMensaje(data.MENSAJE);

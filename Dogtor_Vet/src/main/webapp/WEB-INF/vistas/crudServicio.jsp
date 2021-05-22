@@ -395,12 +395,10 @@
 		
 		function eliminar(codigo_servicio) {
 			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_servicio);
-			console.log("Código servicio en eliminar "+ codigo_servicio);
 		}
 		
 		function accionEliminar(codigo_servicio) {
 			$('#id_elimina').val(codigo_servicio);
-			console.log("Código servicio en accionEliminar "+ codigo_servicio);
 			$.ajax({
 				type: "POST",
 				url: "eliminaServicio",

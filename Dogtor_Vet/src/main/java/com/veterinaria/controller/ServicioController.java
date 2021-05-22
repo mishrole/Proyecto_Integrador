@@ -20,8 +20,6 @@ public class ServicioController {
 	@Autowired
 	private ServicioService service;
 	
-	// Crud (En proceso)
-	
 	@RequestMapping("/verServicio")
 	public String verRegistra() {
 		return "crudServicio";
@@ -114,33 +112,5 @@ public class ServicioController {
 		
 		return salida;
 	}
-	
-	
-	// Solo registrar
-	/*
-	@RequestMapping("/verRegistraServicio")
-	public String verRegistraServicio() {
-		return "registraServicio";
-	}
-	*/
-	
-	/*
-	
-	@RequestMapping("/registraServicio")
-	@ResponseBody
-	public Map<String, Object> registra(Servicio objServicio) {
-		
-		Map<String, Object> salida = new HashMap<>();
-		Servicio objSalida = service.insertaServicio(objServicio);
-		
-		if (objSalida == null) {
-			salida.put("MENSAJE", "El registro no pudo ser completado");
-		} else {
-			salida.put("MENSAJE", "¡Registro exitoso!");
-		}
-		
-		return salida;
-	}
-	*/
 	
 }
