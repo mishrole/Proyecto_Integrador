@@ -212,6 +212,12 @@ public class MascotaController {
 		return service.listaMascotaPorPropietario(codigo_propietario);
 	}
 	
+	@RequestMapping("/listaMascotaPorPropietarioYNombre")
+	@ResponseBody
+	public List<Mascota> listaMascotaPorPropietarioYNombre(Integer codigo_propietario, String nombre_mascota) {
+		return service.listaMascotaPorPropietarioYNombre(codigo_propietario, nombre_mascota);
+	}
+	
 	@RequestMapping("/registraMascota")
 	@ResponseBody
 	public Map<String, Object> registra(Mascota objMascota) {

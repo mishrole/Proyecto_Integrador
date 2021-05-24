@@ -38,7 +38,7 @@
 	                      <h1 class="h3 mb-4 mt-4 text-center title__color font__semibold">Inicia Sesión</h1>
 	                    
 	                      <div class="form-group form-floating mb-3">
-	                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on" value="admin@gmail.com">
+	                        <input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on" value="vendedor@gmail.com">
 	                        <label for="id_email">Correo electrónico</label>
 	                      </div>
 	                      <div class="form-group form-floating mb-3">

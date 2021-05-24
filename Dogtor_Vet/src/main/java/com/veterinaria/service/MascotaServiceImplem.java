@@ -44,5 +44,10 @@ public class MascotaServiceImplem implements MascotaService {
 	public List<Mascota> listaMascotaPorPropietario(Integer codigo_propietario) {
 		return repository.listaMascotaPorPropietario(codigo_propietario);
 	}
+
+	@Override
+	public List<Mascota> listaMascotaPorPropietarioYNombre(Integer codigo_propietario, String nombre_mascota) {
+		return repository.listaMascotaPorPropietarioYNombre(codigo_propietario, nombre_mascota);
+	}
 	
 }
