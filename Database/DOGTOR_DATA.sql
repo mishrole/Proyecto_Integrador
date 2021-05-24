@@ -19,11 +19,11 @@ INSERT INTO tb_rol_usuario VALUES
 
 INSERT INTO tb_usuario(CODIGO_USUARIO, EMAIL_USUARIO, CONTRASENA_USUARIO, NOMBRE_USUARIO,
 APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO, CODIGO_DISTRITO, CODIGO_VISIBILIDAD) VALUES
-(1, 'admin@gmail.com', '123', 'Usuario', 'Admin', '1997-03-25', 1, 1),
-(2, 'cliente@gmail.com', '123', 'Usuario', 'Cliente', '1997-03-25', 2, 1),
-(3, 'especialista@gmail.com', '123', 'Usuario', 'Especialista', '1997-03-25', 3, 1),
-(4, 'vendedor@gmail.com', '123', 'Usuario', 'Vendedor', '1997-03-25', 1, 1),
-(5, 'repartidor@gmail.com', '123', 'Usuario', 'Repartidor', '1997-03-25', 2, 1);
+(1, 'admin@gmail.com', '123', 'Juan', 'Admin', '1997-03-25', 1, 1),
+(2, 'cliente@gmail.com', '123', 'Luis', 'Cliente', '1997-03-25', 2, 1),
+(3, 'especialista@gmail.com', '123', 'Marcos', 'Especialista', '1997-03-25', 3, 1),
+(4, 'vendedor@gmail.com', '123', 'Mario', 'Vendedor', '1997-03-25', 1, 1),
+(5, 'repartidor@gmail.com', '123', 'Francisco', 'Repartidor', '1997-03-25', 2, 1);
 
 INSERT INTO TB_DETALLE_USUARIO_ROL VALUES 
 (1, 1),
@@ -33,27 +33,36 @@ INSERT INTO TB_DETALLE_USUARIO_ROL VALUES
 (5, 5);
 
 INSERT INTO tb_enlace VALUES
-(1, 'Home', 'homeAdministrador', 'grid'),
+/* Administrador */
+(1, 'Home', 'home', 'grid'),
 (2, 'Usuario', 'verUsuario', 'users'),
 (3, 'Producto', 'verProducto', 'archive'),
 (4, 'Servicio', 'verServicio', 'zap'),
 (5, 'Mascota', 'verMascota', 'github'),
-(6, 'Home', 'homeCliente', 'grid'),
+/* Cliente */
+(6, 'Home', 'home', 'grid'),
 (7, 'Mascotas', 'verMisMascotas', 'github'),
 (8, 'Citas', 'verMisCitas', 'calendar'),
 (9, 'Pedidos', 'verMisPedidos', 'truck'),
 (10, 'Tienda', 'verTienda', 'shopping-bag'),
 (11, 'Servicios', 'verServicio', 'zap'),
-(12, 'Home', 'homeVendedor', 'grid'),
-(13, 'Home', 'homeEspecialista', 'grid'),
-(14, 'Home', 'homeRepartidor', 'grid');
+/* Especialista */
+(12, 'Home', 'home', 'grid'),
+(13, 'Cita', 'verCita', 'calendar'),
+/* Vendedor */
+(14, 'Home', 'home', 'grid'),
+(15, 'Venta', 'verVenta', 'dollar-sign'),
+(16, 'Reserva', 'verReserva', 'book-open'),
+/* Repartidor */
+(17, 'Home', 'home', 'grid'),
+(18, 'Pedido', 'verPedido', 'truck');
 
 INSERT INTO tb_detalle_rol_enlace VALUES
 (1, 1),(1, 2),(1, 3),(1, 4),(1, 5),
 (2, 6),(2, 7),(2, 8),(2, 9),(2, 10),(2, 11),
-(3, 12),
-(4, 13),
-(5, 14);
+(3, 12),(3, 13),
+(4, 14),(4, 15),(4, 16),
+(5, 17),(5,18);
 
 INSERT INTO tb_color_mascota VALUES
 (1, 'Blanco y Negro'),
