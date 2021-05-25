@@ -31,6 +31,12 @@ public class ServicioController {
 		return service.listaServicioPorNombreLike(nombre_servicio.trim());
 	}
 	
+	@RequestMapping("/listaServicioPorTipoYEspecialidad")
+	@ResponseBody
+	public List<Servicio> listaServicioPorTipoYEspecialidad(Integer codigo_tipo, Integer codigo_especialidad) {
+		return service.listaServicioPorTipoYEspecialidad(codigo_tipo, codigo_especialidad);
+	}
+	
 	@RequestMapping("/registraServicio")
 	@ResponseBody
 	public Map<String, Object> registra(Servicio objServicio) {

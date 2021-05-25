@@ -28,6 +28,7 @@
 			
 			<div class="row">
 				<!-- Menu on LG and XXL --> <jsp:include page="menu.jsp" />
+				
 				<c:if test="${requestScope.MENSAJE != null}">
 					<div class="alert alert-danger fade in" id="success-alert">
 						<a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -37,6 +38,8 @@
 				
 				<!-- Dashboard Content -->
 				<div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-1 mt-5 menu__transition mx-auto">
+					<div id="alerta_dogtor"></div>
+				
 					<div class="content__body background__light__white menu__transition">
 						<div class="row justify-content-center">
 							<div class="content__body__title col-4">
@@ -51,7 +54,7 @@
 							
 							<div class="content__alert row">
 								<div class="col-12 mt-4 mb-2">
-									<form id="id_form_registra">
+									<form id="id_form_registraCita">
 										<div class="card__light">
 											<div class="card__light__header d-flex justify-content-between my-3">
 												<p class="font__subtitle title__color font__semibold">Información de Propietario</p>
@@ -59,7 +62,8 @@
 											<div class="card__light__body row">
 												<div class="form-group row align-items-center mx-auto">
 													<div class="col-12 col-md-3 mb-3">
-														<div class="form-floating"><input type="text" name="codigo_propietario" class="form-control" id="id_codigo_propietario" readonly>
+														<div class="form-floating">
+															<input type="text" name="codigo_propietario" class="form-control" id="id_codigo_propietario" readonly>
 															<label for="id_codigo_propietario">Código</label>
 														</div>
 													</div>
@@ -84,7 +88,7 @@
 													</div>
 													<div class="col-12 col-md-3 mb-3">
 														<div class="row align-itmes-center mx-auto">
-															<button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_BuscarCliente" data-target="#id_modal_BuscarCliente"><i data-feather="search"></i>Buscar Cliente</button>
+															<button class="btn btn__clean" type="button" data-toggle="modal" id="id_btnModal_BuscarCliente" data-bs-content="Selecciona a un cliente" data-bs-toggle="popover" data-target="#id_modal_BuscarCliente"><i data-feather="search"></i>Buscar Cliente</button>
 														</div>
 													</div>
 												</div>
@@ -136,7 +140,7 @@
 													</div>
 													<div class="col-12 col-md-3 mb-3">
 														<div class="row align-items-center mx-auto">
-															<button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_BuscarMascota" data-target="#id_modal_BuscarMascota"><i data-feather="search"></i>Buscar mascota</button>
+															<button class="btn btn__clean" type="button" data-toggle="modal" id="id_btnModal_BuscarMascota" data-bs-content="Selecciona a una Mascota" data-bs-toggle="popover" data-target="#id_modal_BuscarMascota"><i data-feather="search"></i>Buscar Mascota</button>
 														</div>
 													</div>
 												</div>
@@ -146,16 +150,22 @@
 												</div>
 												
 												<div class="form-group row align-items-center mx-auto">
-													<div class="col-12 col-md-3 mb-3">
+													<div class="col-12 col-md-2 mb-3">
 														<div class="form-floating">
 															<input type="text" name="codigo_servicio" class="form-control" id="id_codigo_servicio" readonly>
 															<label for="id_codigo_servicio">Código</label>
 														</div>
 													</div>
-													<div class="col-12 col-md-9 mb-3">
+													<div class="col-12 col-md-3 mb-3">
 														<div class="form-floating">
 															<input type="text" name="nombre_servicio" class="form-control" id="id_nombre_servicio" readonly>
 															<label for="id_nombre_servicio">Nombre de Servicio</label>
+														</div>
+													</div>
+													<div class="col-12 col-md-7 mb-3">
+														<div class="form-floating">
+															<input type="text" name="descripcion_servicio" class="form-control" id="id_descripcion_servicio" readonly>
+															<label for="id_descripcion_servicio">Descripción de Servicio</label>
 														</div>
 													</div>
 												</div>
@@ -163,18 +173,70 @@
 												<div class="form-group row align-items-center mx-auto">
 													<div class="col-12 col-md-3 mb-3">
 														<div class="form-floating">
-															<input type="time" name="inicio_turno_servicio" class="form-control" id="id_hora_inicio_servicio" readonly>
-															<label for="id_hora_inicio_servicio">Inicio</label>
+															<input type="text" name="codigo_tipo_servicio" class="form-control" id="id_tipo_servicio" readonly>
+															<label for="id_tipo_servicio">Tipo</label>
 														</div>
 													</div>
-													<div class="col-12 col-md-9 mb-3">
+													<div class="col-12 col-md-3 mb-3">
 														<div class="form-floating">
-															<input type="time" name="fin_turno_servicio" class="form-control" id="id_hora_fin_servicio" readonly>
-															<label for="id_hora_fin_servicio">Fin</label>
+															<input type="text" name="codigo_especialidad" class="form-control" id="id_especialidad_servicio" readonly>
+															<label for="id_especialidad_servicio">Especialidad</label>
+														</div>
+													</div>
+													<div class="col-12 col-md-6 mb-3">
+														<div class="form-floating">
+															<input type="text" name="codigo_especialista" class="form-control" id="id_especialista_servicio" readonly>
+															<label for="id_especialista_servicio">Especialista</label>
 														</div>
 													</div>
 												</div>
 												
+												<div class="form-group row align-items-center mx-auto">
+													<div class="col-12 col-md-2 mb-3">
+														<div class="form-floating">
+															<input type="text" name="codigo_dia_semana" class="form-control" id="id_dia_servicio" readonly>
+															<label for="id_dia_servicio">Día</label>
+														</div>
+													</div>
+													<div class="col-12 col-md-3 mb-3">
+														<div class="form-floating">
+															<input type="date" name="fecha_programada_cita" class="form-control" id="id_fecha_cita">
+															<label for="id_fecha_cita">Fecha</label>
+														</div>
+													</div>
+													<div class="col-12 col-md-2 mb-3">
+														<div class="form-floating">
+															<input type="time" name="inicio_turno_servicio" class="form-control" id="id_hora_inicio_servicio" readonly>
+															<label for="id_hora_inicio_servicio">Desde las</label>
+														</div>
+													</div>
+													<div class="col-12 col-md-2 mb-3">
+														<div class="form-floating">
+															<input type="time" name="fin_turno_servicio" class="form-control" id="id_hora_fin_servicio" readonly>
+															<label for="id_hora_fin_servicio">Hasta las</label>
+														</div>
+													</div>
+													<div class="col-12 col-md-3 mb-3">
+														<div class="row align-items-center mx-auto">
+															<button class="btn btn__clean" type="button" data-toggle="modal" id="id_btnModal_BuscarServicio" data-bs-content="Selecciona un Servicio" data-bs-toggle="popover" data-target="#id_modal_BuscarServicio"><i data-feather="search"></i>Buscar Servicio</button>
+														</div>
+													</div>
+												</div>
+												
+												<div class="form-group row align-items-center mx-auto">
+													<div class="col-12 mb-3">
+														<div class="form-floating">
+															<input type="text" name="motivo_cita" class="form-control" id="id_motivo_cita">
+															<label for="id_motivo_cita">Descripción de síntomas</label>
+														</div>
+													</div>
+												</div>
+												
+												<div class="form-group row justify-content-center align-items-center mx-auto">
+													<div class="form-floating text-center">
+														<button class="btn btn__primary" type="button" id="btnRegistrarCita">Registrar</button>
+													</div>
+												</div>
 											</div>
 										</div>
 									</form>
@@ -203,7 +265,7 @@
 						<div class="container">
 							<div class="row mt-2">
 								<div class="col-12 justify-content-center align-items-center d-flex">
-									<main class="col-12 col-md-10">
+									<main class="col-12">
 										<form id="id_form_buscaCliente">
 											<div class="form-group row justify-content-center align-items-center mx-auto">
 												<div class="col-9 mb-3">
@@ -259,7 +321,7 @@
 						<div class="container">
 							<div class="row mt-2">
 								<div class="col-12 justify-content-center align-items-center d-flex">
-									<main class="col-12 col-md-10">
+									<main class="col-12">
 										<form id="id_form_registraCliente">
 											<div class="form-group row justify-content-center align-items-center mx-auto">
 											
@@ -350,7 +412,7 @@
 						<div class="container">
 							<div class="row mt-2">
 								<div class="col-12 justify-content-center align-items-center d-flex">
-									<main class="col-12 col-md-10">
+									<main class="col-12">
 										<form id="id_form_buscaMascota">
 											<div class="form-group row justify-content-center align-items-center mx-auto">
 												<div class="col-9 mb-3">
@@ -409,7 +471,7 @@
 						<div class="container">
 							<div class="row mt-2">
 								<div class="col-12 justify-content-center align-items-center d-flex">
-									<main class="col-12 col-md-10">
+									<main class="col-12">
 										<form id="id_form_registraMascota">
 										
 											<div class="form-group row justify-content-center align-items-center mx-auto">
@@ -482,6 +544,74 @@
 			</div>
 		</div>
 		
+		<!-- Modal de Búsqueda de Servicios -->
+		<div class="modal fade p-0" id="id_modal_BuscarServicio">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="col-12 justify-content-center align-items-center d-flex">
+							<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Buscar Servicios</b></h1>
+						</div>
+					</div>
+					
+					<div class="modal-body">
+						<div class="container">
+							<div class="row mt-2">
+								<div class="col-12 justify-content-center align-items-center d-flex">
+									<main class="col-12">
+										<form id="id_form_buscaMascota">
+											<div class="form-group row justify-content-center align-items-center mx-auto">
+												<div class="col-12 col-md-4 mb-3">
+											  		<div class="form-floating">
+								                      	<select class="form-select" id="select_tipo_servicio" name="codigo_tipo_servicio" aria-label="Default select example">
+															<option selected value="0">Seleccione Tipo</option>
+														</select>
+														<label for="select_tipo_servicio">Tipo</label>
+						                      		</div>
+											  	</div>
+											  	<div class="col-12 col-md-5 mb-3">
+												  	<div class="form-floating">
+								                      	<select class="form-select" id="select_especialidad_servicio" name="codigo_especialidad" aria-label="Default select example">
+															<option selected value="0">Seleccione Especialidad</option>
+														</select>
+														<label for="select_especialidad_servicio">Especialidad</label>
+							                    	</div>
+										  		</div>
+												<div class="col-12 col-md-3 mb-3 text-center">
+													<button class="btn btn-primary" type="button" id="filtra_servicio"><i data-feather="search"></i>Buscar</button>
+												</div>
+											</div>
+											
+											<div class="row justify-content-center align-items-center mx-auto">
+												<div class="col-12 table-responsive">
+													<table id="id_table_servicio" class="font__min display responsive no-footer text-center table table-borderless dataTable">
+														<thead class="background__title">
+															<tr>
+																<th>#</th>
+																<th>Especialista</th>
+																<th>Precio</th>
+																<th>Día</th>
+																<th>Horario</th>
+																<th>Acción</th>
+															</tr>
+														</thead>
+														<tbody></tbody>
+													</table>
+												</div>
+											</div>
+										</form>
+									</main>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="modal-footer justify-content-end align-items-center">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
@@ -497,7 +627,15 @@
 	
 	<script type="text/javascript">
 	
-		var selectedDistrito, selectedColor, selectedSexo, selectedRaza, selectedEspecie;
+		function mostrarAlerta(mensaje) {
+		    $('#alerta_dogtor').empty();
+			const alerta = '<div class="alert alert-warning alert-dismissible fade show" id="alert" role="alert">' 
+			+ mensaje + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+			$('#alerta_dogtor').append(alerta);
+			$('#alert').show();
+		}
+	
+		var selectedDistrito, selectedColor, selectedSexo, selectedRaza, selectedEspecie, selectedTipoServicio, selectedEspecialidadServicio;
 	
         // Load icons
         feather.replace();
@@ -599,6 +737,75 @@
 
             $('#id_table_mascota').DataTable().columns.adjust().draw();
         }
+        
+        function agregarGrillaServicios(lista) {
+            $('#id_table_servicio').DataTable().clear();
+            $('#id_table_servicio').DataTable().destroy();
+            $('#id_table_servicio').DataTable(
+                   {
+                       data : lista,
+                       searching : false,
+                       ordering : true,
+                       processing : true,
+                       pageLength : 6,
+                       lengthChange : false,
+                       responsive : true,
+                       columns : 
+                           [
+		                        {
+		                            data : "codigo_servicio"
+		                        },
+		                        {
+		                            data : function (row, type, val, meta) {
+		                                var especialista = '';
+		                                especialista = row.usuario.nombre_usuario + ' ' + row.usuario.apellido_usuario;
+		                                return especialista;
+		                            }, className : 'text-center mx-auto'
+		                        },
+		                        {
+		                            data : "precio_servicio"
+		                        },
+		                        {
+		                            data : "diasemana.nombre_dia_semana"
+		                        },
+		                        {
+		                            data : function (row, type, val, meta) {
+		                                var horario = '';
+		                                horario = row.inicio_turno_servicio + ' - ' + row.fin_turno_servicio;
+		                                return horario;
+		                            }, className : 'text-center mx-auto'
+		                        },
+		                        {
+		                            data : function (row, type, val, meta) {
+		                                var btnSeleccionar = '<button type="button" class="btn btn__clean btn-sm" onclick="seleccionarServicio(\''
+		                                        + row.codigo_servicio
+		                                        + '\',\''
+		                                        + row.nombre_servicio
+		                                        + '\',\''
+		                                        + row.descripcion_servicio
+		                                        + '\',\''
+		                                        + row.tiposervicio.nombre_tipo_servicio
+		                                        + '\',\''
+		                                        + row.especialidad.nombre_especialidad
+		                                        + '\',\''
+		                                        + row.usuario.nombre_usuario + ' ' + row.usuario.apellido_usuario
+		                                        + '\',\''
+		                                        + row.diasemana.nombre_dia_semana
+		                                        + '\',\''
+		                                        + row.inicio_turno_servicio
+		                                        + '\',\''
+		                                        + row.fin_turno_servicio
+		                                        + '\')"><i data-feather="user-check"></i></button>';
+		                                return btnSeleccionar
+		                       },className : 'text-center mx-auto'},
+						]
+                   });
+
+            // Reload icons
+            feather.replace();
+
+            $('#id_table_servicio').DataTable().columns.adjust().draw();
+        }
 
         function listarUsuarioPorNombre(nombre) {
             $.getJSON("listaUsuarioPorNombre", {"nombre_usuario" : nombre}, function (lista) {
@@ -609,6 +816,12 @@
         function listarMascotaPorPropietarioYNombre(propietario, nombre) {
             $.getJSON("listaMascotaPorPropietarioYNombre", {"codigo_propietario" : propietario,"nombre_mascota" : nombre}, function (lista) {
                 agregarGrillaMascotas(lista);
+            });
+        }
+        
+        function listaServicioPorTipoYEspecialidad(tipo, especialidad) {
+            $.getJSON("listaServicioPorTipoYEspecialidad", {"codigo_tipo" : tipo,"codigo_especialidad" : especialidad}, function (lista) {
+                agregarGrillaServicios(lista);
             });
         }
 
@@ -629,8 +842,27 @@
 			$('#id_raza_mascota').val(raza);
 			$('#id_modal_BuscarMascota').modal("hide");
         }
+        
+        function seleccionarServicio(codigo, nombre, descripcion, tipo, especialidad, especialista, dia, inicio, fin) {
+            $('#id_codigo_servicio').val(codigo);
+        	$('#id_nombre_servicio').val(nombre);
+        	$('#id_descripcion_servicio').val(descripcion);
+        	$('#id_tipo_servicio').val(tipo);
+        	$('#id_especialidad_servicio').val(especialidad);
+        	$('#id_especialista_servicio').val(especialista);
+        	$('#id_dia_servicio').val(dia);
+        	$('#id_hora_inicio_servicio').val(inicio);
+        	$('#id_hora_fin_servicio').val(fin);
+        	$('#id_modal_BuscarServicio').modal("hide");
+        }
 
         $(document).ready(function () {
+            
+            // Activar todos los popovers
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl);
+            });
             
             // Selects Cliente
             
@@ -753,9 +985,57 @@
 				validateSelect(selectRaza, selectedRaza, 'raza');
 			});
 			
+			const selectTipoServicio = $('#select_tipo_servicio');
+			const selectEspecialidadServicio = $('#select_especialidad_servicio');
+			
+			// Get Tipo Servicio
+			
+			function generarSelectTipoServicio(idSelectTipoServicio) {
+				$.getJSON('listaTipoServicio', function(data) {
+					$.each( data, function( index, value ) {
+						let option = document.createElement('option');
+						option.value = value.codigo_tipo_servicio;
+						option.text = value.nombre_tipo_servicio;
+						idSelectTipoServicio.append(option);
+					});
+				});
+			}
+			
+			generarSelectTipoServicio(selectTipoServicio);
+			
+			// Get Especialidad
+			
+			function generarSelectEspecialidad(idSelectEspecialidad) {
+				$.getJSON('listaEspecialidad', function(data) {
+					$.each( data, function(index, value) {
+						let option = document.createElement('option');
+						option.value = value.codigo_especialidad;
+						option.text = value.nombre_especialidad;
+						idSelectEspecialidad.append(option);
+					});
+				})
+			}
+			
+			generarSelectEspecialidad(selectEspecialidadServicio);
+			
+			// Validar selects cuando cambie el option en Registrar
+			
+			selectTipoServicio.change(function(e) {
+				selectedTipoServicio = e.target.selectedIndex;
+				validateSelect(selectTipoServicio, selectedTipoServicio, 'tipo');
+			});
+
+			selectEspecialidadServicio.change(function(e) {
+			    selectedEspecialidadServicio = e.target.selectedIndex;
+				validateSelect(selectEspecialidadServicio, selectedEspecialidadServicio, 'especialidad');
+			});
+
 	        /*const btnRegister = $('#registrar_cita');
 	        const btnModalRegister = $('#id_btnModal_RegistraCita');
 	        const modalRegister = $('#id_modal_RegistraCita');*/
+	        
+	        /* =================================================================== */
+	        
 	
 	        // Propietarios (Usuario con Rol Cliente)
 	        const btnMostrarBuscarCliente = $('#id_btnModal_BuscarCliente');
@@ -796,6 +1076,9 @@
 	
 	            if (propietario.length > 0) {
 	                listarMascotaPorPropietarioYNombre(propietario, nombre);
+	            } else {
+	                modalBuscarMascota.modal("hide");
+	                mostrarAlerta("<strong>¡Recuerda!</strong> Es necesario seleccionar un Cliente antes de buscar Mascotas");
 	            }
 	        });
 	
@@ -806,6 +1089,85 @@
 	            modalBuscarMascota.modal("hide");
 	            modalRegistrarMascota.modal("show");
 	        });
+	        
+	        // Servicios
+	        
+	        const btnMostrarBuscarServicio = $('#id_btnModal_BuscarServicio');
+	        const modalBuscarServicio = $('#id_modal_BuscarServicio');
+	        
+	        btnMostrarBuscarServicio.click(function() {
+	            modalBuscarServicio.modal("show");
+	        });
+	        
+	        const btnFilterServicio = $('#filtra_servicio');
+	        
+	        btnFilterServicio.click(function() {
+	            // Validar selects
+	            validateSelect(selectTipoServicio, selectedTipoServicio, 'tipo');
+				validateSelect(selectEspecialidadServicio, selectedEspecialidadServicio, 'especialidad');
+	            
+	            if(selectedTipoServicio > 0 && selectedEspecialidadServicio > 0) {
+	                listaServicioPorTipoYEspecialidad(selectedTipoServicio, selectedEspecialidadServicio);
+	            }
+	        });
+	        
+	        /*
+	        const btnRegistrarServicio = $('#');
+	        
+	        btnRegistrarServicio.click(function() {
+	            
+	        });*/
+	        
+	        // Cita
+	        
+	        const btnRegistrarCita = $('#btnRegistrarCita');
+	        
+	        btnRegistrarCita.click(function() {
+	            //var validator = $('#id_form_registraCita').data('bootstrapValidator');
+				//validator.validate();
+				    
+				const fechaProgramadaCita = $('#id_fecha_cita').val();
+				const servicio = $('#id_codigo_servicio').val();
+				const propietario = $('#id_codigo_propietario').val();
+				const mascota = $('#id_codigo_mascota').val();
+				const motivo = $('#id_motivo_cita').val();
+				
+				if(propietario.length > 0 && mascota.length > 0 && servicio.length > 0 && fechaProgramadaCita.length > 0 && motivo.length > 0) {
+				    $.ajax({
+						type: 'POST',
+						data: $('#id_form_registraCita').serialize(),
+						url: 'registraCita',
+						success: function(data) {
+							mostrarMensaje(data.MENSAJE);
+							limpiar();
+							validator.resetForm();
+						},
+						error: function() {
+							mostrarMensaje(MSG_ERROR);
+						}
+					});
+				} else {
+		            if(propietario.length === 0) {
+		                $('#id_btnModal_BuscarCliente').popover('show');
+		            }
+		            
+		            if(mascota.length === 0) {
+		                $('#id_btnModal_BuscarMascota').popover('show');
+		            }
+		            
+		            if(servicio.length === 0) {
+		                $('#id_btnModal_BuscarServicio').popover('show');
+		            }
+		            
+		            setTimeout(function(){
+		                $('#id_btnModal_BuscarCliente').popover('hide');
+		                $('#id_btnModal_BuscarMascota').popover('hide');
+		                $('#id_btnModal_BuscarServicio').popover('hide');
+		            }, 3000);
+				}
+	        });
+	        
+	        
 
 	    });
     </script>

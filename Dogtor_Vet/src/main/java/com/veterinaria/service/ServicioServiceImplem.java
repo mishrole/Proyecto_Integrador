@@ -44,4 +44,9 @@ public class ServicioServiceImplem implements ServicioService {
 	public List<Servicio> listaServicioPorNombreLike(String nombre_servicio) {
 		return repository.listaServicioPorNombreLike(nombre_servicio + "%");
 	}
+
+	@Override
+	public List<Servicio> listaServicioPorTipoYEspecialidad(Integer codigo_tipo, Integer codigo_especialidad) {
+		return repository.listaServicioPorTipoYEspecialidad(codigo_tipo, codigo_especialidad);
+	}
 }
