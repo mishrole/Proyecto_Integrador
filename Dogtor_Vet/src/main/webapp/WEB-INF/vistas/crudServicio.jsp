@@ -516,7 +516,7 @@
 					option.text = value.nombre_usuario + " " + value.apellido_usuario;
 					idSelectEspecialista.append(option);
 				});
-			})
+			});
 		}
 		
 		generarSelectEspecialista(selectEspecialista);
@@ -530,7 +530,7 @@
 					option.text = value.nombre_dia_semana;
 					idSelectDia.append(option);
 				});
-			})
+			});
 		}
 		
 		generarSelectDiaSemana(selectDiaSemana);

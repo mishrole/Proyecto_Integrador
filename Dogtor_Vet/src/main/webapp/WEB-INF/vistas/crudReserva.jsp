@@ -299,8 +299,8 @@
 						</div>
 					</div>
 						
-					<div class="modal-footer justify-content-between align-items-center">
-						<button class="btn btn-primary" type="button" id="id_btnModal_RegistrarCliente"><i data-feather="plus"></i>Nuevo Cliente</button>
+					<div class="modal-footer justify-content-end align-items-center">
+						<button class="btn btn-primary d-none" type="button" id="id_btnModal_RegistrarCliente"><i data-feather="plus"></i>Nuevo Cliente</button>
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
@@ -447,8 +447,8 @@
 						</div>
 					</div>
 					
-					<div class="modal-footer justify-content-between align-items-center">
-						<button class="btn btn-primary" type="button" id="id_btnModal_RegistrarMascota"><i data-feather="plus"></i>Nueva Mascota</button>
+					<div class="modal-footer justify-content-end align-items-center">
+						<button class="btn btn-primary d-none" type="button" id="id_btnModal_RegistrarMascota"><i data-feather="plus"></i>Nueva Mascota</button>
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 					</div>
 				</div>
@@ -807,8 +807,8 @@
             $('#id_table_servicio').DataTable().columns.adjust().draw();
         }
 
-        function listarUsuarioPorNombre(nombre) {
-            $.getJSON("listaUsuarioPorNombre", {"nombre_usuario" : nombre}, function (lista) {
+        function listarUsuarioPorNombreYRol(nombre) {
+            $.getJSON("listaUsuarioPorNombreYRol", {"nombre_usuario" : nombre, "codigo_rol_usuario": 2}, function (lista) {
                 agregarGrillaPropietarios(lista);
             });
         }
@@ -1043,7 +1043,7 @@
 	
 	        btnFilterCliente.click(function () {
 	            var nombre = $('#id_cliente_filtro').val();
-	            listarUsuarioPorNombre(nombre);
+	            listarUsuarioPorNombreYRol(nombre);
 	        });
 	
 	        const btnMostrarRegistrarCliente = $('#id_btnModal_RegistrarCliente');

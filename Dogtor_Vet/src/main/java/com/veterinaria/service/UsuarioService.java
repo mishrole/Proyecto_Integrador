@@ -16,6 +16,7 @@ public interface UsuarioService {
 	
 	public abstract List<Usuario> listaUsuarioPorNombre(String nombre_usuario);
 	public abstract List<Usuario> listaUsuarioPorRol(Integer codigo_rol_usuario);
+	public abstract List<Usuario> listaUsuarioPorNombreYRol(String nombre_usuario, Integer codigo_rol_usuario);
 	
 	public abstract Usuario login(Usuario objUsuario);
 	public abstract List<Enlace> obtenerEnlacesDeUsuario(Integer codigo_usuario);
