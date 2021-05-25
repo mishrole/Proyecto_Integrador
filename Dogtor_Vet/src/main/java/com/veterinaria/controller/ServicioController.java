@@ -42,8 +42,9 @@ public class ServicioController {
 	public Map<String, Object> registra(Servicio objServicio) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
-		objServicio.setInicio_turno_servicio(new Date());
-		objServicio.setFin_turno_servicio(new Date());
+		//objServicio.setInicio_turno_servicio(new Date());
+		//objServicio.setFin_turno_servicio(new Date());
+		
 		Servicio objSalida = null;
 		try {
 			objSalida = service.insertaServicio(objServicio);

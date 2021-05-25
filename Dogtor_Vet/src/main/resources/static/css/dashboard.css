@@ -31,6 +31,13 @@ body {
     padding: 0 !important;
 }
 
+.help-block {
+	width: 100%;
+    margin-top: .25rem;
+    font-size: .875em;
+    color: var(--danger-light) !important;
+}
+
 /* ====== Landing ====== */
 
 .hero__container {

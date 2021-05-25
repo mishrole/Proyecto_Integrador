@@ -190,7 +190,7 @@
 														</div>
 													</div>
 												</div>
-												
+
 												<div class="form-group row align-items-center mx-auto">
 													<div class="col-12 col-md-2 mb-3">
 														<div class="form-floating">
@@ -858,12 +858,6 @@
 
         $(document).ready(function () {
             
-            // Activar todos los popovers
-            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-                return new bootstrap.Popover(popoverTriggerEl);
-            });
-            
             // Selects Cliente
             
             const selectDistrito = $('#select_distrito_cliente');
@@ -1111,35 +1105,54 @@
 	            }
 	        });
 	        
-	        /*
-	        const btnRegistrarServicio = $('#');
-	        
-	        btnRegistrarServicio.click(function() {
-	            
-	        });*/
+	        $('#id_form_registraCita').bootstrapValidator({
+				message: 'El valor no es válido',
+				feedbackIcons: {
+					valid: 'glyphicon glyphicon-ok',
+					invalid: 'glyphicon glyphicon-remove',
+					validating: 'glyphicon glyphicon-refresh'
+				},
+				fields: {
+					fecha_servicio: {
+						selector: '#id_fecha_cita',
+						validators: {
+							notEmpty: {
+								message: '* Este campo es obligatorio'
+							},
+						}
+					},
+					motivo_servicio: {
+						selector: '#id_motivo_cita',
+						validators: {
+							notEmpty: {
+								message: '* Este campo es obligatorio'
+							},
+						}
+					},
+					
+				}
+			});
 	        
 	        // Cita
 	        
 	        const btnRegistrarCita = $('#btnRegistrarCita');
 	        
 	        btnRegistrarCita.click(function() {
-	            //var validator = $('#id_form_registraCita').data('bootstrapValidator');
-				//validator.validate();
+	            var validator = $('#id_form_registraCita').data('bootstrapValidator');
+				validator.validate();
 				    
-				const fechaProgramadaCita = $('#id_fecha_cita').val();
 				const servicio = $('#id_codigo_servicio').val();
 				const propietario = $('#id_codigo_propietario').val();
 				const mascota = $('#id_codigo_mascota').val();
-				const motivo = $('#id_motivo_cita').val();
 				
-				if(propietario.length > 0 && mascota.length > 0 && servicio.length > 0 && fechaProgramadaCita.length > 0 && motivo.length > 0) {
+				if(validator.isValid() && servicio.length > 0 && propietario.length > 0 && mascota.length > 0) {
 				    $.ajax({
 						type: 'POST',
 						data: $('#id_form_registraCita').serialize(),
 						url: 'registraCita',
 						success: function(data) {
 							mostrarMensaje(data.MENSAJE);
-							limpiar();
+							limpiarRegistrarCita();
 							validator.resetForm();
 						},
 						error: function() {
@@ -1147,6 +1160,13 @@
 						}
 					});
 				} else {
+				    
+		            // Activar todos los popovers
+		            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+		            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+		                return new bootstrap.Popover(popoverTriggerEl);
+		            });
+				    
 		            if(propietario.length === 0) {
 		                $('#id_btnModal_BuscarCliente').popover('show');
 		            }
@@ -1159,15 +1179,39 @@
 		                $('#id_btnModal_BuscarServicio').popover('show');
 		            }
 		            
+		            // Ocultar popover luego de 3s
 		            setTimeout(function(){
-		                $('#id_btnModal_BuscarCliente').popover('hide');
-		                $('#id_btnModal_BuscarMascota').popover('hide');
-		                $('#id_btnModal_BuscarServicio').popover('hide');
+		                $('a[rel=popover]').popover('hide');
+		                $('a[rel=popover]').popover('disable');
+		                $(".popover").remove();
 		            }, 3000);
+		            
 				}
 	        });
 	        
-	        
+	        function limpiarRegistrarCita() {
+	            $('#id_codigo_propietario').val('');
+	            $('#id_email_propietario').val('');
+	            $('#id_nombre_propietario').val('');
+	            $('#id_apellido_propietario').val('');
+	            $('#id_codigo_mascota').val('');
+	            $('#id_nombre_mascota').val('');
+	            $('#id_color_mascota').val('');
+	            $('#id_sexo_mascota').val('');
+	            $('#id_especie_mascota').val('');
+	            $('#id_raza_mascota').val('');
+	            $('#id_codigo_servicio').val('');
+	            $('#id_nombre_servicio').val('');
+	            $('#id_descripcion_servicio').val('');
+	            $('#id_tipo_servicio').val('');
+	            $('#id_especialidad_servicio').val('');
+	            $('#id_especialista_servicio').val('');
+	            $('#id_dia_servicio').val('');
+	            $('#id_fecha_cita').val('');
+	            $('#id_hora_inicio_servicio').val('');
+	            $('#id_hora_fin_servicio').val('');
+	            $('#id_motivo_cita').val('');
+	        }
 
 	    });
     </script>

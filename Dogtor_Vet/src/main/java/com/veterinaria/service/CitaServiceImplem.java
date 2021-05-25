@@ -24,4 +24,9 @@ public class CitaServiceImplem implements CitaService {
 		return repository.listaCitaPorCodigo(codigo_cita);
 	}
 
+	@Override
+	public Cita insertaCita(Cita objCita) {
+		return repository.save(objCita);
+	}
+
 }
