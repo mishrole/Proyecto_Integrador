@@ -12,4 +12,5 @@ public interface MascotaService {
 	public abstract void eliminaMascota(Integer codigo_mascota);
 	public abstract Optional<Mascota> obtienePorId(Integer codigo_mascota);
 	public abstract List<Mascota> listaMascotaPorPropietario(Integer codigo_propietario);
+	public abstract List<Mascota> listaMascotaPorPropietarioYNombre(Integer codigo_propietario, String nombre_mascota);
 }

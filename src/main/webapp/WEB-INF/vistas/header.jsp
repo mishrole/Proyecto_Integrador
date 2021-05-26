@@ -2,7 +2,7 @@
 
 <c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/'}">
 	<!-- Landing Menu -->
-    <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top py-3">
         <div class="container">
             <a class="primary__color font__bolder font__max link__light" href="./">Dogtor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -26,17 +26,11 @@
 	                    <li class="nav-item mx-lg-2">
 	                        <a class="nav-link link-menu subtitle__color scroll" href="tienda">Tienda</a>
 	                    </li>
-		                    <c:if test="${sessionScope.objRoles != null}">
-		                    	<li class="nav-item">
-		                    		<c:if test="${sessionScope.currentRol == 'Administrador'}">
-		                    			<a class="nav-link link-menu text-secondary-color" href="homeAdministrador">Panel</a>
-		                    		</c:if>
-		                    		
-		                    		<c:if test="${sessionScope.currentRol == 'Cliente'}">
-		                    			<a class="nav-link link-menu text-secondary-color" href="homeCliente">Panel</a>
-		                    		</c:if>
-		                    	</li>
-		                    </c:if>
+	                     <c:if test="${sessionScope.objRoles != null}">
+					            <li class="nav-item">
+			            			<a class="nav-link link-menu text-secondary-color" href="home">Panel</a>
+			            		</li>
+		                 </c:if>
                 </ul>
                 <div class="d-flex">
                     
@@ -55,7 +49,7 @@
 
 <c:if test="${requestScope['javax.servlet.forward.servlet_path'] == '/login' || requestScope['javax.servlet.forward.servlet_path'] == '/nuevaCuenta' || requestScope['javax.servlet.forward.servlet_path'] == '/logout'}">
 	<!-- Sign In & Register -->
-    <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top py-3">
         <div class="container">
             <a class="primary__color font__bolder font__max link__light" href="./">Dogtor</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -64,17 +58,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-		                    <c:if test="${sessionScope.objRoles != null}">
-		                    	<li class="nav-item">
-		                    		<c:if test="${sessionScope.currentRol == 'Administrador'}">
-		                    			<a class="nav-link link-menu text-secondary-color" href="homeAdministrador">Panel</a>
-		                    		</c:if>
-		                    		
-		                    		<c:if test="${sessionScope.currentRol == 'Cliente'}">
-		                    			<a class="nav-link link-menu text-secondary-color" href="homeCliente">Panel</a>
-		                    		</c:if>
-		                    	</li>
-		                    </c:if>
+                   <c:if test="${sessionScope.objRoles != null}">
+		            <li class="nav-item">
+            			<a class="nav-link link-menu text-secondary-color" href="home">Panel</a>
+            		</li>
+                   </c:if>
                 </ul>
                 <div class="d-flex">
                     

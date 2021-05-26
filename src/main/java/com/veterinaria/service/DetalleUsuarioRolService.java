@@ -1,7 +1,6 @@
 package com.veterinaria.service;
 
 import com.veterinaria.entity.DetalleUsuarioRol;
-import com.veterinaria.entity.DetalleUsuarioRolPK;
 
 public interface DetalleUsuarioRolService {
 	

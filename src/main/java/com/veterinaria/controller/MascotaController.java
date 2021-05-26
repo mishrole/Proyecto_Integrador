@@ -65,7 +65,6 @@ public class MascotaController {
 				
 				// Setear archivo
 				byte[] imageData = file.getBytes();
-				//mascota.setFoto_mascota(Base64.getEncoder().encode(file.getBytes()));
 				mascota.setFoto_mascota(imageData);
 				
 				// Guardar localmente
@@ -152,7 +151,6 @@ public class MascotaController {
 							
 							// Setear archivo
 							byte[] imageData = file.getBytes();
-							//mascota.setFoto_mascota(Base64.getEncoder().encode(file.getBytes()));
 							
 							if(file.getBytes() != null && file.getSize() > 0 && imageData.length > 0) {
 								result.setFoto_mascota(imageData);
@@ -212,6 +210,12 @@ public class MascotaController {
 	@ResponseBody
 	public List<Mascota> listaMascotaPorPropietario(Integer codigo_propietario) {
 		return service.listaMascotaPorPropietario(codigo_propietario);
+	}
+	
+	@RequestMapping("/listaMascotaPorPropietarioYNombre")
+	@ResponseBody
+	public List<Mascota> listaMascotaPorPropietarioYNombre(Integer codigo_propietario, String nombre_mascota) {
+		return service.listaMascotaPorPropietarioYNombre(codigo_propietario, nombre_mascota);
 	}
 	
 	@RequestMapping("/registraMascota")

@@ -84,13 +84,11 @@
                             <div class="col-12 mt-4 mb-2">
                                 <div class="card__light">
                                     <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold">Alerta de Stock</p>
-                                        <!-- <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio">
-                                        	<i data-feather="plus"></i>Nuevo</button> -->
+                                        <p class="font__subtitle title__color font__semibold">Lista de Reserva de Citas</p>
                                     </div>
                                     <div class="card__light__body row">
-                                    	<form id="id_form_elimina" action="eliminaServicio">
-											<input type="text" id="id_elimina" name="codigo_servicio" class="d-none">
+                                    	<form id="id_form_elimina" action="eliminaCita">
+											<input type="text" id="id_elimina" name="codigo_cita" class="d-none">
 											<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
 										</form>
                                         <div class="col-12 table-responsive">
@@ -98,16 +96,11 @@
                                                 <thead class="background__title">
                                                     <tr>
 														<th>#</th>
-														<th>Nombre</th>
-														<th>Descripción</th>
-														<th>Precio</th>
-														<th>Stock</th>
-														<th>Serie</th>
-														<th>Fotos</th>
-														<th>Marca</th>
-														<th>Categoría</th>
-														<th>Proveedor</th>
-														<!--<th>Estado</th>-->
+														<th>Fecha Reservada</th>
+														<th>Servicio</th>
+														<th>Propietario</th>
+														<th>Mascota</th>
+														<th>Estado</th>
 														<th>Opciones</th>
                                                     </tr>
                                                 </thead>
@@ -137,12 +130,10 @@
 	<script type="text/javascript" src="js/menuDashboard.js"></script>
 
 	<script type="text/javascript">
-	
-    // Load icons
+	// Load icons
     feather.replace();
     
     function agregarGrilla(lista) {
-		//console.log(lista)
 		 $('#id_table').DataTable().clear();
 		 $('#id_table').DataTable().destroy();
 		 $('#id_table').DataTable({
@@ -154,42 +145,26 @@
 				lengthChange: false,
 				responsive: true,
 				columns:[
-					{data: "codigo_producto"},
-					{data: "nombre_producto"},
-					{data: "descripcion_simple_producto"},
-					{data: "precio_producto"},
-					{data: "stock_producto"},
-					{data: "serie_producto"},
-					{data: function(row, type, val, meta) {
-					    var foto1, foto2, foto3 = "";
-					    
-					    if(row.foto1_producto != null || row.foto1_producto != "") {
-					        foto1 = "<img src='data:image/png;base64," +row.foto1_producto+ "' class='img__table--mini' alt='Pet image'>";
-					    } else {
-					        foto1 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
-					    }
-					    
-					    if(row.foto2_producto != null || row.foto2_producto != "") {
-					        foto2 = "<img src='data:image/png;base64," +row.foto2_producto+ "' class='img__table--mini' alt='Pet image'>";
-					    } else {
-					        foto2 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
-					    }
-					    
-					    if(row.foto3_producto != null || row.foto3_producto != "") {
-					        foto3 = "<img src='data:image/png;base64," +row.foto3_producto+ "' class='img__table--mini' alt='Pet image'>";
-					    } else {
-					        foto3 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
-					    }
-						
-						return foto1 + foto2 + foto3;
-					}, className: 'text-center mx-auto float-center'},
-					{data: "marca.nombre_marca"},
-					{data: "categoria.nombre_categoria_producto"},
-					{data: "proveedor.nombre_proveedor"},
+					{data: "codigo_cita"},
+					{data: "fecha_programada_cita"},
+					{data: "servicio.codigo_servicio"},
+					{data: "usuario.codigo_usuario"},
+					{data: "mascota.codigo_mascota"},
+					{data: "estado.codigo_estado_cita"},
 					{data: function(row, type, val, meta){
-					    var btnSolicitarProveedor = '<button type="button" class="btn btn-info btn-sm mx-1" onclick="solicitar(\'' + row.codigo_producto + '\')"><i data-feather="send"></i> Solicitar</button>';
+					    var btnActualizarCita ='<button type="button" class="btn btn-info btn-sm mx-1 btnModal_ActualizaCita" onclick="editar(\'' + row.codigo_cita +
+						'\',\'' + row.fecha_solicitud_cita +
+						'\',\'' + row.fecha_programada_cita +
+						'\',\'' + row.codigo_servicio +
+						'\',\'' + row.codigo_usuario +
+						'\',\'' + row.codigo_mascota +
+						'\',\'' + row.codigo_estado_cita +
+						'\',\'' + row.motivo_cita  +
+						'\')"><i data-feather="edit-2"></i></button>';
 						
-						return btnSolicitarProveedor;
+				var btnEliminarCita ='<button type="button" class="btn btn-danger btn-sm mx-1" onclick="eliminar(\'' + row.codigo_cita + '\')"><i data-feather="trash"></i></button>';
+
+				return btnActualizarCita + btnEliminarCita;
 					},className:'text-center mx-auto'},												
 				]                                                   
 		    });
@@ -200,20 +175,23 @@
 		 	$('#id_table').DataTable().columns.adjust().draw();
 		}
     
-		function solicitar(codigo_producto) {
-			alert('Solicitud enviada. Código de producto: ' + codigo_producto );
-		}
-    
-		function listarProductosDatatable(nombre) {
-	        $.getJSON("listaProductoPorNombre", {"nombre_producto": nombre}, function(lista) {
+		function listarCitasDatatable() {
+	        $.getJSON("listaCita", {}, function(lista) {
 	            agregarGrilla(lista);
 	        });
 	    }
 		
+		function listarCitasPorCodigo(codigo_cita) {
+		    $.getJSON("listaCitaPorCodigo", {"codigo_cita": codigo_cita}, function(lista) {
+	            agregarGrilla(lista);
+	        });
+		}
+		
 	
 	$(document).ready(function() {
-		// Mostrar productos al cargar la página
-		listarProductosDatatable("");
+		// Mostrar citas al cargar la página
+		listarCitasDatatable();
+		
 	});
 	</script>
 </body>

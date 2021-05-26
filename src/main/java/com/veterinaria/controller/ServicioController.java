@@ -1,6 +1,5 @@
 package com.veterinaria.controller;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +19,6 @@ public class ServicioController {
 	@Autowired
 	private ServicioService service;
 	
-	// Crud (En proceso)
-	
 	@RequestMapping("/verServicio")
 	public String verRegistra() {
 		return "crudServicio";
@@ -33,13 +30,17 @@ public class ServicioController {
 		return service.listaServicioPorNombreLike(nombre_servicio.trim());
 	}
 	
+	@RequestMapping("/listaServicioPorTipoYEspecialidad")
+	@ResponseBody
+	public List<Servicio> listaServicioPorTipoYEspecialidad(Integer codigo_tipo, Integer codigo_especialidad) {
+		return service.listaServicioPorTipoYEspecialidad(codigo_tipo, codigo_especialidad);
+	}
+	
 	@RequestMapping("/registraServicio")
 	@ResponseBody
 	public Map<String, Object> registra(Servicio objServicio) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
-		objServicio.setInicio_turno_servicio(new Date());
-		objServicio.setFin_turno_servicio(new Date());
 		Servicio objSalida = null;
 		try {
 			objSalida = service.insertaServicio(objServicio);
@@ -114,33 +115,5 @@ public class ServicioController {
 		
 		return salida;
 	}
-	
-	
-	// Solo registrar
-	/*
-	@RequestMapping("/verRegistraServicio")
-	public String verRegistraServicio() {
-		return "registraServicio";
-	}
-	*/
-	
-	/*
-	
-	@RequestMapping("/registraServicio")
-	@ResponseBody
-	public Map<String, Object> registra(Servicio objServicio) {
-		
-		Map<String, Object> salida = new HashMap<>();
-		Servicio objSalida = service.insertaServicio(objServicio);
-		
-		if (objSalida == null) {
-			salida.put("MENSAJE", "El registro no pudo ser completado");
-		} else {
-			salida.put("MENSAJE", "¡Registro exitoso!");
-		}
-		
-		return salida;
-	}
-	*/
 	
 }

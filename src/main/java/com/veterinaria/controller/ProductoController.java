@@ -79,17 +79,13 @@ public class ProductoController {
 
 				// Setear archivo
 				byte[] imageData = file.getBytes();
-				//mascota.setFoto_mascota(Base64.getEncoder().encode(file.getBytes()));
 				producto.setFoto1_producto(imageData);
 
 				byte[] imageData1 = file1.getBytes();
-				//mascota.setFoto_mascota(Base64.getEncoder().encode(file.getBytes()));
 				producto.setFoto2_producto(imageData1);
 
 				byte[] imageData2 = file2.getBytes();
-				//mascota.setFoto_mascota(Base64.getEncoder().encode(file.getBytes()));
 				producto.setFoto3_producto(imageData2);
-
 
 				// Guardar localmente
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
@@ -191,7 +187,6 @@ public class ProductoController {
 							byte[] imageData = file.getBytes();
 							byte[] imageData1 = file1.getBytes();
 							byte[] imageData2 = file2.getBytes();
-							//mascota.setFoto_mascota(Base64.getEncoder().encode(file.getBytes()));
 
 							if(file.getBytes() != null && file.getSize() > 0 && imageData.length > 0) {
 								result.setFoto1_producto(imageData);
@@ -248,69 +243,6 @@ public class ProductoController {
 
 	}
 
-	
-	//@RequestParam(name="foto1_producto", required = false) MultipartFile imageFile,
-	/*@RequestMapping("/registraProducto")
-	@ResponseBody
-	public Map<String, Object> registra(Producto objProducto) {
-		
-		Map<String, Object> salida = new HashMap<String, Object>();
-		Producto objSalida = null;
-		
-		
-		try {
-			
-			objSalida = service.insertaProducto(objProducto);
-			
-			if(objSalida == null) {
-				salida.put("MENSAJE", "El registro no pudo ser completado");
-			} else {
-				salida.put("MENSAJE", "¡Registro exitoso!");
-			}
-			
-		} catch (Exception e) {
-			salida.put("MENSAJE", "El registro no pudo ser completado");
-		} finally {
-			List<Producto> lista = service.listaProducto();
-			salida.put("lista", lista);
-		}
-		return salida;
-		
-	}
-
-	
-	@RequestMapping("/actualizaProducto")
-	@ResponseBody
-	public Map<String, Object> actualiza(Producto objProducto) {
-		Map<String, Object> salida = new HashMap<String, Object>();
-		
-		try {
-			Optional<Producto> option = service.obtienePorId(objProducto.getCodigo_producto());
-			
-			if(option.isPresent()) {
-				Producto objSalida = service.insertaProducto(objProducto);
-				
-				if(objSalida == null) {
-					salida.put("MENSAJE", "La actualización no pudo ser completada");
-					
-				} else {
-					salida.put("MENSAJE", "¡Actualización exitosa!");
-				}
-			} else {
-				salida.put("MENSAJE", "Error, el producto no existe");
-			}
-			
-		} catch (Exception e) {
-			salida.put("MENSAJE", "La actualización no pudo ser completada");
-		} finally {
-			List<Producto> lista = service.listaProducto();
-			salida.put("lista", lista);
-		}
-		
-		return salida;
-	}
-	*/
-	
 	@RequestMapping("/eliminaProducto")
 	@ResponseBody
 	public Map<String, Object> elimina(Integer codigo_producto) {

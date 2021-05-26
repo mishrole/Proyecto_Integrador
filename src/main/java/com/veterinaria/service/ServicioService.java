@@ -12,4 +12,5 @@ public interface ServicioService {
 	public abstract Optional<Servicio> obtienePorId(Integer codigo_servicio);
 	public abstract void eliminaServicio(Integer codigo_servicio);
 	public abstract List<Servicio> listaServicioPorNombreLike(String nombre_servicio);
+	public abstract List<Servicio> listaServicioPorTipoYEspecialidad(Integer codigo_tipo, Integer codigo_especialidad);
 }

@@ -58,28 +58,7 @@
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
                                 </div>
                         </div>
-                        
-                         <div class="content__statistics row mt-4">
-                            <div class="col-12 col-md-4 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">En Productos</p>
-                                    <p class="font__title title__color font__semibold m-0">S/ 17 358,58</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">En Servicios</p>
-                                    <p class="font__title title__color font__semibold m-0">S/ 23 158,72</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-4 mt-2 mb-2 d-none d-md-inline-block">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Total General</p>
-                                    <p class="font__title title__color font__semibold m-0">S/ 40 517,30</p>
-                                </div> 
-                            </div>
-                        </div>
-                        
+
                         <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
                                 <div class="card__light">
@@ -142,7 +121,6 @@
     feather.replace();
     
     function agregarGrilla(lista) {
-		//console.log(lista)
 		 $('#id_table').DataTable().clear();
 		 $('#id_table').DataTable().destroy();
 		 $('#id_table').DataTable({

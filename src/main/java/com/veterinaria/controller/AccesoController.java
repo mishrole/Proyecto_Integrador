@@ -62,16 +62,8 @@ public class AccesoController {
 			session.setAttribute("objMenus", menus);
 			session.setAttribute("objRoles", roles);
 			session.setAttribute("currentRol", roles.get(0).getNombre_rol_usuario());
-			
-			String homeRol = "";
-			
-			if(roles.get(0).getCodigo_rol_usuario() == 1) {
-				homeRol = "homeAdministrador";
-			} else if (roles.get(0).getCodigo_rol_usuario() == 2) {
-				homeRol = "homeCliente";
-			}
-			
-			return "redirect:" + homeRol;
+
+			return "redirect:home";
 			
 		}
 	}
@@ -88,14 +80,42 @@ public class AccesoController {
 		return "iniciaSesion";
 	}
 
-	@RequestMapping("/homeCliente")
-	public String verHomeCliente() {
-		return "homeCliente";
+	@RequestMapping("/verReserva")
+	public String verReserva() {
+		return "crudReserva";
 	}
 	
-	@RequestMapping("/homeAdministrador")
-	public String verHomeAdministrador() {
-		return "homeAdministrador";
+	@RequestMapping("/verVenta")
+	public String verVenta() {
+		return "crudVenta";
+	}
+	
+	@RequestMapping("/notFound")
+	public String verError() {
+		return "error";
+	}
+	
+	@RequestMapping("/home")
+	public String verHome(HttpSession session) {
+		
+		if(session.getAttribute("currentRol") == null) {
+			return "redirect:notFound";
+		} else {
+			switch((String)session.getAttribute("currentRol")) {
+			case "Administrador":
+				return "homeAdministrador";
+			case "Cliente":
+				return "homeCliente";
+			case "Especialista":
+				return "homeEspecialista";
+			case "Vendedor":
+				return "homeVendedor";
+			case "Repartidor":
+				return "homeRepartidor";
+			default:
+				return "redirect:notFound";
+			}
+		}
 	}
 	
 }

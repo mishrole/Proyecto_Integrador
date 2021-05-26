@@ -346,7 +346,6 @@
     var selectedColorActualiza, selectedSexoActualiza, selectedRazaActualiza, selectedEspecieActualiza, selectedVisibilidadActualiza;
 	
 	function agregarGrilla(lista) {
-		//console.log(lista)
 		 $('#id_table').DataTable().clear();
 		 $('#id_table').DataTable().destroy();
 		 $('#id_table').DataTable({
@@ -454,7 +453,6 @@
 		
 		function accionEliminar(codigo_mascota) {
 			$('#id_elimina').val(codigo_mascota);
-			console.log("Código mascota en accionEliminar "+ codigo_mascota);
 			$.ajax({
 				type: "POST",
 				url: "eliminaMascota",
@@ -471,7 +469,6 @@
 		
 		function eliminar(codigo_mascota) {
 			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_mascota);
-			console.log("Código mascota en eliminar "+ codigo_mascota);
 		}
 		
 		function editar(codigo_mascota, codigo_propietario, nombre_mascota, foto_mascota,

@@ -377,7 +377,7 @@
 							var btnEliminar = '<button type="button" class="btn btn-danger btn-sm" onclick="eliminar(\'' + row.codigo_servicio + '\')"><i data-feather="trash"></i></button>';
 								
 						return btnActualizar + btnEliminar;
-					},className:'text-center'},													
+					},className:'text-center mx-auto d-flex justify-content-center'},													
 				]
 		    });
 		 
@@ -395,12 +395,10 @@
 		
 		function eliminar(codigo_servicio) {
 			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminar, null, codigo_servicio);
-			console.log("Código servicio en eliminar "+ codigo_servicio);
 		}
 		
 		function accionEliminar(codigo_servicio) {
 			$('#id_elimina').val(codigo_servicio);
-			console.log("Código servicio en accionEliminar "+ codigo_servicio);
 			$.ajax({
 				type: "POST",
 				url: "eliminaServicio",
@@ -518,7 +516,7 @@
 					option.text = value.nombre_usuario + " " + value.apellido_usuario;
 					idSelectEspecialista.append(option);
 				});
-			})
+			});
 		}
 		
 		generarSelectEspecialista(selectEspecialista);
@@ -532,7 +530,7 @@
 					option.text = value.nombre_dia_semana;
 					idSelectDia.append(option);
 				});
-			})
+			});
 		}
 		
 		generarSelectDiaSemana(selectDiaSemana);
@@ -650,7 +648,6 @@
 					data: $('#id_form_registra').serialize(),
 					url: 'registraServicio',
 					success: function(data) {
-						//agregarGrilla(data.lista);
 						listarServiciosDatatable("");
 						$('#id_modal_RegistraServicio').modal("hide");
 						mostrarMensaje(data.MENSAJE);
@@ -682,7 +679,6 @@
 					data: $('#id_form_actualiza').serialize(),
 					url: 'actualizaServicio',
 					success: function(data) {
-						//agregarGrilla(data.lista);
 						listarServiciosDatatable("");
 						$('#id_modal_ActualizaServicio').modal("hide");
 						mostrarMensaje(data.MENSAJE);

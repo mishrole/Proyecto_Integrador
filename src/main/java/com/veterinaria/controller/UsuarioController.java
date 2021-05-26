@@ -33,8 +33,6 @@ public class UsuarioController {
 		return "registraCliente";
 	}
 	
-	/* NOTA: Esto es momentáneo, necesitamos usar @Transaction en el service para hacer rollback si falla el registro */
-	
 	@RequestMapping("/registraCliente")
 	@ResponseBody
 	public Map<String, Object> registra(Usuario objUsuario) {
@@ -75,14 +73,6 @@ public class UsuarioController {
 
 	}
 	
-	/* Login de Usuario - YA NO ESTÁ EN USO */
-	
-	@RequestMapping("/listaUsuarioPorEmailYContrasena")
-	@ResponseBody
-	public List<Usuario> listaUsuarioPorEmailYContrasena(String email_usuario, String contrasena_usuario) {
-		return usuarioService.listausuarioPorEmailYContrasena(email_usuario, contrasena_usuario);
-	}
-	
 	/* Crud para Administrador */
 	
 	@RequestMapping("/verUsuario")
@@ -100,6 +90,12 @@ public class UsuarioController {
 	@ResponseBody
 	public List<Usuario> listaUsuarioPorRol(Integer codigo_rol_usuario) {
 		return usuarioService.listaUsuarioPorRol(codigo_rol_usuario);
+	}
+	
+	@RequestMapping("listaUsuarioPorNombreYRol")
+	@ResponseBody
+	public List<Usuario> listaUsuarioPorNombreYRol(String nombre_usuario, Integer codigo_rol_usuario) {
+		return usuarioService.listaUsuarioPorNombreYRol(nombre_usuario.trim(), codigo_rol_usuario);
 	}
 	
 	@RequestMapping("/registraUsuario")
