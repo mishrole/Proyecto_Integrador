@@ -559,7 +559,7 @@
 							<div class="row mt-2">
 								<div class="col-12 justify-content-center align-items-center d-flex">
 									<main class="col-12">
-										<form id="id_form_buscaMascota">
+										<form id="id_form_buscaServicio">
 											<div class="form-group row justify-content-center align-items-center mx-auto">
 												<div class="col-12 col-md-4 mb-3">
 											  		<div class="form-floating">

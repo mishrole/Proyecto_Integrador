@@ -79,6 +79,30 @@ public class AccesoController {
 		request.setAttribute("MENSAJE", "El usuario cerró sesión");
 		return "iniciaSesion";
 	}
+	
+	/* Cliente */
+	
+	@RequestMapping("/verMisMascotas")
+	public String verMisMascotas() {
+		return "clienteMascota";
+	}
+	
+	@RequestMapping("/verMisCitas")
+	public String verMisCitas() {
+		return "clienteCita";
+	}
+	
+	@RequestMapping("/verMisPedidos")
+	public String verMisPedidos() {
+		return "clientePedido";
+	}
+	
+	@RequestMapping("/verTienda")
+	public String verTienda() {
+		return "clienteTienda";
+	}
+	
+	/* Vendedor */
 
 	@RequestMapping("/verReserva")
 	public String verReserva() {

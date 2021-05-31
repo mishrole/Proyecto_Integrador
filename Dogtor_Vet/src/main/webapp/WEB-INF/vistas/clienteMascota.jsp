@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	<!-- Menu y Header requieren jQuery al inicio -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<title>Home | Dogtor</title>
+	<title>Mascota | Dogtor</title>
 </head>
 <body class="background__light__gray">
 

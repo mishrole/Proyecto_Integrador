@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	<!-- Menu y Header requieren jQuery al inicio -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<title>Home | Dogtor</title>
+	<title>Pedido | Dogtor</title>
 </head>
 <body class="background__light__gray">
 
@@ -54,40 +54,41 @@
                                 <div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
                                     <i data-feather="message-square"></i>
                                 </div>
+                                <div id="btnCart" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
+                                    <i data-feather="shopping-cart"></i>
+                                </div>
                                 <div id="btnProfile" class="options__profile mx-2">
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
                                 </div>
-                        </div>
-                        
-                         <div class="content__statistics row mt-4">
-                            <div class="col-12 col-md-6 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Próxima Cita</p>
-                                    <p class="font__title title__color font__semibold m-0">12/06/2021</p>
-                                    <p class="font__title title__color font__semibold m-0">3:40PM a 4:50PM</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Último Pedido</p>
-                                    <p class="font__title title__color font__semibold m-0">29/05/2021</p>
-                                    <p class="font__title title__color font__semibold m-0">En curso</p>
-                                </div>
-                            </div>
                         </div>
                         
                         <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
                                 <div class="card__light">
                                     <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold"></p>
-                                        <!-- <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota">
-                                        	<i data-feather="plus"></i>
-                                        	Nuevo
-                                        </button> -->
+                                        <p class="font__subtitle title__color font__semibold">Mis Pedidos</p>
                                     </div>
                                     <div class="card__light__body row">
-                                    	
+                                    	<form id="id_form_elimina" action="eliminaPedido">
+											<input type="text" id="id_elimina" name="codigo_pedido" class="d-none">
+											<input type="text" id="id_estado_elimina" name="codigo_estado_pedido" class="d-none">
+										</form>
+										
+										<div class="col-12 table-responsive">
+                                            <table id="id_table_Pedido" class="font__min display responsive no-footer text-center table table-borderless dataTable">
+                                                <thead class="background__title">
+                                                    <tr>
+														<th>#</th>
+														<th>Entrega</th>
+														<th>Monto</th>
+														<th>Repartidor</th>
+														<th>Estado</th>
+														<th>Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -118,6 +119,87 @@
 	
 	    // Load icons
 	    feather.replace();
+	    
+	    // Usuario actual
+	 	const codigoPropietario = ${sessionScope.objUsuario.codigo_usuario};
+	    
+	    function agregarGrillaPedido(lista) {
+		//console.log(lista)
+		 $('#id_table_Pedido').DataTable().clear();
+		 $('#id_table_Pedido').DataTable().destroy();
+		 $('#id_table_Pedido').DataTable({
+				data: lista,
+				searching: false,
+				ordering: true,
+				processing: true,
+				pageLength: 6,
+				lengthChange: false,
+				responsive: true,
+				columns:[
+					{data: "codigo_pedido"},
+					{data: "fecha_entrega_pedido"},
+					{data: "monto_pedido"},
+					{data: function(row, type, val, meta) {
+					    var nombre = '';
+					    nombre = row.usuarioRepartidor.nombre_usuario + ' ' + row.usuarioRepartidor.apellido_usuario;
+					    return nombre;
+					}, className: 'text-center mx-auto float-center'},
+					{data: "estadoPedido.nombre_estado_pedido"},
+					{data: function(row, type, val, meta){
+					    
+					    var btnCancelarReserva = '';
+					    
+					    if(row.codigo_estado_pedido === 1) {
+					        btnCancelarReserva = '<button type="button" class="btn btn-danger btn-sm mx-1" onclick="cancelarPedido(\'' + row.codigo_pedido + '\')"><i data-feather="x"></i> Cancelar</button>';
+					    } else {
+					        btnCancelarReserva = '<button type="button" class="btn btn-danger btn-sm mx-1 disabled"><i data-feather="x"></i> Cancelar</button>'; 
+					    }
+					    
+					    return btnCancelarReserva;
+					},className:'text-center mx-auto'},												
+				]                                                   
+		    });
+		 	
+		 	// Reload icons
+		    feather.replace();
+		 	
+		 	$('#id_table_Pedido').DataTable().columns.adjust().draw();
+		}
+	    
+		function listarPedidosDatatable(usuario) {
+	        $.getJSON("listaPedidoPorCliente", {"codigo_cliente": usuario}, function(lista) {
+	            agregarGrillaPedido(lista);
+	        });
+	    }
+		
+		function cancelarPedido(codigo_pedido) {
+		    const codigo_estado_pedido = 5;
+		    mostrarMensajeConfirmacion("¿Desea cancelar la cita?", accionCancelarPedido, null, {codigo_pedido, codigo_estado_pedido});
+		}
+		
+		function accionCancelarPedido(data) {
+		    $('#id_elimina').val(data.codigo_pedido);
+		    $('#id_estado_elimina').val(data.codigo_estado_pedido);
+		    
+		    if(data.codigo_pedido.length > 0) {
+			    $.ajax({
+					type: 'POST',
+					data: $('#id_form_elimina').serialize(),
+					url: 'actualizaEstadoPedido',
+					success: function(data) {
+					    listarPedidosDatatable(codigoPropietario);
+						mostrarMensaje(data.MENSAJE);
+					},
+					error: function() {
+						mostrarMensaje(MSG_ERROR);
+					}
+				});
+			}
+		}
+		
+		$(document).ready(function() {
+		    listarPedidosDatatable(codigoPropietario);
+		});
     
 	</script>
 </body>

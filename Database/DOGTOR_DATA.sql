@@ -1,4 +1,4 @@
-USE PI_DOGTOR;
+USE `PI_DOGTOR`;
 
 INSERT INTO tb_visibilidad VALUES
 (1, 'Visible'),
@@ -23,14 +23,21 @@ APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO, CODIGO_DISTRITO, CODIGO_VISIBILIDAD)
 (2, 'cliente@gmail.com', '123', 'Luis', 'Cliente', '1997-03-25', 2, 1),
 (3, 'especialista@gmail.com', '123', 'Marcos', 'Especialista', '1997-03-25', 3, 1),
 (4, 'vendedor@gmail.com', '123', 'Mario', 'Vendedor', '1997-03-25', 1, 1),
-(5, 'repartidor@gmail.com', '123', 'Francisco', 'Repartidor', '1997-03-25', 2, 1);
+(5, 'repartidor@gmail.com', '123', 'Francisco', 'Especialista', '1997-03-25', 2, 1),
+(6, 'especialista2@gmail.com', '123', 'Carlos', 'Especialista', '1997-03-25', 3, 1),
+(7, 'especialista3@gmail.com', '123', 'Juan', 'Especialista', '1997-03-25', 1, 1),
+(8, 'especialista4@gmail.com', '123', 'Pedro', 'Especialista', '1997-03-25', 2, 1),
+(9, 'cliente2@gmail.com', '123', 'Pedro', 'Cliente', '1997-03-25', 2, 1);
 
 INSERT INTO TB_DETALLE_USUARIO_ROL VALUES 
 (1, 1),
 (2, 2),
 (3, 3),
 (4, 4),
-(5, 5);
+(5, 5),
+(6, 3),
+(7, 3),
+(8, 3);
 
 INSERT INTO tb_enlace VALUES
 /* Administrador */
@@ -45,24 +52,23 @@ INSERT INTO tb_enlace VALUES
 (8, 'Citas', 'verMisCitas', 'calendar'),
 (9, 'Pedidos', 'verMisPedidos', 'truck'),
 (10, 'Tienda', 'verTienda', 'shopping-bag'),
-(11, 'Servicios', 'verServicio', 'zap'),
 /* Especialista */
-(12, 'Home', 'home', 'grid'),
-(13, 'Cita', 'verCita', 'calendar'),
+(11, 'Home', 'home', 'grid'),
+(12, 'Cita', 'verCita', 'calendar'),
 /* Vendedor */
-(14, 'Home', 'home', 'grid'),
-(15, 'Venta', 'verVenta', 'dollar-sign'),
-(16, 'Reserva', 'verReserva', 'book-open'),
+(13, 'Home', 'home', 'grid'),
+(14, 'Venta', 'verVenta', 'dollar-sign'),
+(15, 'Reserva', 'verReserva', 'book-open'),
 /* Repartidor */
-(17, 'Home', 'home', 'grid'),
-(18, 'Pedido', 'verPedido', 'truck');
+(16, 'Home', 'home', 'grid'),
+(17, 'Pedido', 'verPedido', 'truck');
 
 INSERT INTO tb_detalle_rol_enlace VALUES
 (1, 1),(1, 2),(1, 3),(1, 4),(1, 5),
-(2, 6),(2, 7),(2, 8),(2, 9),(2, 10),(2, 11),
-(3, 12),(3, 13),
-(4, 14),(4, 15),(4, 16),
-(5, 17),(5,18);
+(2, 6),(2, 7),(2, 8),(2, 9),(2, 10),
+(3, 11),(3, 12),
+(4, 13),(4, 14),(4, 15),
+(5, 16),(5,17);
 
 INSERT INTO tb_color_mascota VALUES
 (1, 'Blanco y Negro'),
@@ -144,3 +150,12 @@ INSERT INTO tb_estado_pedido VALUES
 INSERT INTO tb_tipo_boleta VALUES
 (1, 'Boleta de Producto'),
 (2, 'Boleta de Servicio');
+
+INSERT INTO tb_servicio VALUES
+(1, 1, 1 ,3 ,1, '16:50:00', '18:50:00', 'Servicio 1', 'Descripción de Servicio 1', 30, 10),
+(2, 1, 2 ,6 ,2, '16:50:00', '18:50:00', 'Servicio 2', 'Descripción de Servicio 2', 30, 10),
+(3, 1, 3 ,7 ,3, '16:50:00', '18:50:00', 'Servicio 3', 'Descripción de Servicio 3', 30, 10),
+(4, 1, 4 ,8 ,4, '16:50:00', '18:50:00', 'Servicio 4', 'Descripción de Servicio 4', 30, 10);
+
+INSERT INTO tb_pedido VALUES
+(1, 2, '2021-03-25', '2021-03-28', 32, 5, 1);
