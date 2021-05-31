@@ -21,6 +21,7 @@ public class ProductoHasBoleta {
 
 	@Column(length = 10)
 	private int cantidad;
+	
 
 	@ManyToOne
 	@JoinColumn(name = "codigo_boleta", nullable = false, insertable = false, updatable = false)
@@ -69,8 +70,9 @@ public class ProductoHasBoleta {
 	public void setCodigo_producto(Producto codigo_producto) {
 		this.codigo_producto = codigo_producto;
 	}
+
 	
-	
-	
+
+
 	
 }

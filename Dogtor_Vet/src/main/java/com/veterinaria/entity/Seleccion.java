@@ -3,16 +3,16 @@ package com.veterinaria.entity;
 public class Seleccion {
 
 	private int codigo_producto;
-	private String nombre;
-	private double precio;
+	private String nombre_producto;
+	private double precio_producto;
 	private int cantidad;
 	private double totalParcial;
 	
 	public double getTotalParcial() {
-		totalParcial = precio * cantidad;
+		totalParcial = precio_producto * cantidad;
 		return totalParcial;
 	}
-	
+
 	public int getCodigo_producto() {
 		return codigo_producto;
 	}
@@ -21,20 +21,20 @@ public class Seleccion {
 		this.codigo_producto = codigo_producto;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombre_producto() {
+		return nombre_producto;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre_producto(String nombre_producto) {
+		this.nombre_producto = nombre_producto;
 	}
 
-	public double getPrecio() {
-		return precio;
+	public double getPrecio_producto() {
+		return precio_producto;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
+	public void setPrecio_producto(double precio_producto) {
+		this.precio_producto = precio_producto;
 	}
 
 	public int getCantidad() {
@@ -48,6 +48,7 @@ public class Seleccion {
 	public void setTotalParcial(double totalParcial) {
 		this.totalParcial = totalParcial;
 	}
+	
 	
 	
 }

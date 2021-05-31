@@ -721,6 +721,10 @@
 						notEmpty: {
 							message: '* Obligatorio'
 						},
+						regexp: {
+	                        regexp: /^[0-9]{7}$/,
+	                        message: 'La serie es 7 dígitos'
+	                    },
 					}
 				},
 				precio_producto: {
@@ -789,6 +793,10 @@
 						notEmpty: {
 							message: '* Obligatorio'
 						},
+						regexp: {
+	                        regexp: /^[0-9]{7}$/,
+	                        message: 'La serie es 7 dígitos'
+	                    },
 					}
 				},
 				precio_producto: {

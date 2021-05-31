@@ -73,5 +73,10 @@ public class UsuarioServiceImplem implements UsuarioService {
 	public List<Usuario> obtenerUsuarioPorEmail(String email_usuario) {
 		return repository.obtenerUsuarioPorEmail(email_usuario);
 	}
+	
+	@Override
+    public List<Usuario> listaUsuarioPorNombreYRol(String nombre_usuario, Integer codigo_rol_usuario) {
+        return repository.listaUsuarioPorNombreYRol(nombre_usuario+"%", codigo_rol_usuario);
+    }
 
 }

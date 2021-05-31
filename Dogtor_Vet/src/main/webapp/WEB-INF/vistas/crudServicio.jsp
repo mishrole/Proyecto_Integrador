@@ -596,6 +596,11 @@
 						notEmpty: {
 							message: '* Este campo es obligatorio'
 						},
+						regexp: {
+	                        regexp: /^[a-zA-Z]{3,40}$/,
+	                        message: 'Solo Letras. '
+	                        
+	                    },
 						stringLength: {
 							min: 3,
 							max: 40,
@@ -620,6 +625,11 @@
 						notEmpty: {
 							message: '* Este campo es obligatorio'
 						},
+						regexp: {
+	                        regexp: /^[a-zA-Z]{3,40}$/,
+	                        message: 'Solo Letras. '
+	                        
+	                    },
 						stringLength: {
 							min: 3,
 							max: 40,

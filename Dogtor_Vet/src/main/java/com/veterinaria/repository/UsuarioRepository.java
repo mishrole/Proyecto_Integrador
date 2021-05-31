@@ -50,5 +50,10 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	public Page<Usuario> findAll(Pageable pageable);
 	
 	
+	@Query("Select u from Usuario u, DetalleUsuarioRol dur, Rol r where dur.usuario.codigo_usuario = u.codigo_usuario and "+
+            "r.codigo_rol_usuario = dur.rol.codigo_rol_usuario and concat(u.nombre_usuario, ' ', u.apellido_usuario) like :param_usuario and dur.rol.codigo_rol_usuario = :param_rol")
+    public abstract List<Usuario> listaUsuarioPorNombreYRol(@Param("param_usuario") String nombre_usuario, @Param("param_rol") Integer codigo_rol_usuario);
+	
+	
 	
 }

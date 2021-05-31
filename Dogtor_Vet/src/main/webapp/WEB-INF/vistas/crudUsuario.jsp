@@ -667,6 +667,11 @@
 						notEmpty: {
 							message: '* Este campo es obligatorio'
 						},
+						regexp: {
+	                        regexp: /^[a-zA-Z]{3,40}$/,
+	                        message: 'Solo Letras. '
+	                        
+	                    },
 						stringLength: {
 							min: 3,
 							max: 40,
@@ -680,6 +685,11 @@
 						notEmpty: {
 							message: '* Este campo es obligatorio'
 						},
+						regexp: {
+	                        regexp: /^[a-zA-Z]{3,40}$/,
+	                        message: 'Solo Letras. '
+	                        
+	                    },
 						stringLength: {
 							min: 3,
 							max: 40,
@@ -701,6 +711,18 @@
 						notEmpty: {
 							message: '* Este campo es obligatorio'
 						}
+					}
+				},
+				dni_usuario: {
+					selector: '#id_dni',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						regexp: {
+	                        regexp: /^[0-9]{8}$/,
+	                        message: 'El dni es 8 dígitos'
+	                    },
 					}
 				},
 				contrasena_usuario: {
@@ -728,6 +750,11 @@
 						notEmpty: {
 							message: '* Este campo es obligatorio'
 						},
+						regexp: {
+	                        regexp: /^[a-zA-Z]{3,40}$/,
+	                        message: 'Solo Letras. '	                        
+	                    },
+						
 						stringLength: {
 							min: 3,
 							max: 40,
@@ -741,6 +768,11 @@
 						notEmpty: {
 							message: '* Este campo es obligatorio'
 						},
+						regexp: {
+	                        regexp: /^[a-zA-Z]{3,40}$/,
+	                        message: 'Solo Letras. '
+	                        
+	                    },
 						stringLength: {
 							min: 3,
 							max: 40,
@@ -762,6 +794,18 @@
 						notEmpty: {
 							message: '* Este campo es obligatorio'
 						}
+					}
+				},
+				dni_usuario: {
+					selector: '#id_dni_actualiza',
+					validators: {
+						notEmpty: {
+							message: '* Este campo es obligatorio'
+						},
+						regexp: {
+	                        regexp: /^[0-9]{8}$/,
+	                        message: 'El dni es 8 dígitos'
+	                    },
 					}
 				},
 				contrasena_usuario: {

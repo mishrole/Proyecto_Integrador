@@ -23,4 +23,10 @@ public interface UsuarioService {
 	public Page<Usuario> findAll(Pageable pageable);
 	
 	public abstract List<Usuario> obtenerUsuarioPorEmail(String email_usuario);
+	
+	public abstract List<Usuario> listaUsuarioPorNombreYRol(String nombre_usuario, Integer codigo_rol_usuario);
+	
+	
+	
+	
 }

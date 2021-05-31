@@ -1,7 +1,9 @@
 package com.veterinaria.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.veterinaria.entity.Boleta;
+import com.veterinaria.entity.DetalleUsuarioRol;
+import com.veterinaria.entity.DetalleUsuarioRolPK;
 import com.veterinaria.entity.Mensaje;
 import com.veterinaria.entity.Producto;
 import com.veterinaria.entity.ProductoHasBoleta;
@@ -68,12 +72,22 @@ public class BoletaController {
 		return seleccionados;
 	}
 	
+
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/registraBoleta")
 	@ResponseBody
 	public Mensaje registra(Usuario objCliente) {
 		Usuario objUsuario = new Usuario();
+		Usuario objVendedor = new Usuario();
 		objUsuario.setCodigo_usuario(1);
+		objVendedor.setCodigo_usuario(2);
 
 		List<ProductoHasBoleta> detalles = new ArrayList<ProductoHasBoleta>();
 		for (Seleccion x : seleccionados) {
@@ -82,7 +96,7 @@ public class BoletaController {
 
 			ProductoHasBoleta phb = new ProductoHasBoleta();
 			phb.setCantidad(x.getCantidad());
-			phb.setPrecio(x.getPrecio());
+			phb.setPrecio(x.getPrecio_producto());
 			phb.setProductoHasBoletaPK(pk);
 
 			detalles.add(phb);
@@ -91,6 +105,7 @@ public class BoletaController {
 		Boleta objBoleta = new Boleta();
 		//objBoleta.setCliente(objCliente);
 		objBoleta.setCliente(objUsuario);
+		objBoleta.setVendedor(objUsuario);
 		objBoleta.setDetallesBoleta(detalles);
 
 		Boleta objIns = boletaService.insertaBoleta(objBoleta);
@@ -102,9 +117,9 @@ public class BoletaController {
 			salida += "<table class=\"table\"><tr><td>Producto</td><td>Precio</td><td>Cantidad</td><td>Subtotal</td></tr>";
 			double monto = 0;
 			for (Seleccion x : seleccionados) {
-				salida += "<tr><td>"  + x.getNombre() + "</td><td>" + x.getPrecio() + "</td><td>" + x.getCantidad()
+				salida += "<tr><td>"  + x.getNombre_producto() + "</td><td>" + x.getPrecio_producto() + "</td><td>" + x.getCantidad()
 						+ "</td><td>" + x.getTotalParcial() + "</td></tr>";
-				monto += x.getCantidad() * x.getPrecio();
+				monto += x.getCantidad() * x.getPrecio_producto();
 			}
 			salida += "</table><br>";
 			salida += "Monto a pagar : " + monto;
@@ -117,6 +132,8 @@ public class BoletaController {
 
 		return objMensaje;
 	}
+	
+	
 	
 	@RequestMapping("/cargaCliente")
 	@ResponseBody

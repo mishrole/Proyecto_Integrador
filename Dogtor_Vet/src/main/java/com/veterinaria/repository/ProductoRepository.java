@@ -12,5 +12,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer>{
 	@Query("Select m from Producto m where m.nombre_producto like :param_producto")
 	public abstract List<Producto> listaProductoPorNombre(@Param("param_producto") String nombre_producto);
 	
+	//@Query("Select p from Producto p, Visibilidad v where p.codigo_visibilidad = v.codigo_visibilidad and p.codigo_visibilidad = 1 and pz.codigo_propietario like :param_propietario and m.nombre_mascota like :param_mascota")
+	//public abstract List<Producto> listaProductoPorPropietarioYNombre(@Param("param_propietario") Integer codigo_propietario, @Param("param_producto") String nombre_producto);
 	
 }

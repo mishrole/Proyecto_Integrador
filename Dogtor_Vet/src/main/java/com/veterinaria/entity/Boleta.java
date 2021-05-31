@@ -29,26 +29,36 @@ public class Boleta {
 	private Integer codigo_boleta;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "fecha_boleta")
 	private Date fecha_boleta = new Date();
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "codigo_cliente", nullable = false)
+	@Column(name = "codigo_cliente")
+	private Integer codigo_cliente;
+	
+	@Column(name = "codigo_vendedor")
+	private Integer codigo_vendedor;
+	
+	@Column(name = "codigo_tipo_boleta")
+	private Integer codigo_tipo_boleta;
+	
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_cliente", insertable = false, updatable = false, nullable = false)
 	private Usuario cliente;
 	
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "codigo_vendedor", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "codigo_vendedor", insertable = false, updatable = false, nullable = false)
 	private Usuario vendedor;
 	
 	
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@JoinColumn(name = "codigo_tipo_boleta", insertable = false, updatable = false, nullable = false)
 	private TipoBoleta tipoboleta;
 	
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "codigo_boleta")
 	private List<ProductoHasBoleta> detallesBoleta;
-	
 	
 
 	public Integer getCodigo_boleta() {
