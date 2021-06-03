@@ -330,6 +330,7 @@
     <script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
 	<script type="text/javascript" src="js/menuDashboard.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 
 	<script type="text/javascript">
 	
@@ -358,7 +359,10 @@
 					{data: "fin_turno_servicio"},
 					{data: "nombre_servicio"},
 					{data: "descripcion_servicio"},
-					{data: "precio_servicio"},
+					{data: function(row, type, val, meta) {
+					    let precio = formatter.format(row.precio_servicio);
+					    return precio;
+					}, className: 'text-center mx-auto'},
 					{data: "limite_diario_servicio"},
 					{data: function(row, type, val, meta){
 						var btnActualizar ='<button type="button" class="btn btn-info btn-sm btnModal_ActualizaServicio" onclick="editar(\'' + row.codigo_servicio +

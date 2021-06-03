@@ -372,6 +372,7 @@
 	<script type="text/javascript" src="js/hotkeys.js"></script>
 	<script type="text/javascript" src="js/uploader.js"></script>
 	<script type="text/javascript" src="js/simditor.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 
 	<script type="text/javascript">
 
@@ -393,7 +394,10 @@
 					{data: "codigo_producto"},
 					{data: "nombre_producto"},
 					{data: "descripcion_simple_producto"},
-					{data: "precio_producto"},
+					{data: function(row, type, val, meta) {
+					    let precio = formatter.format(row.precio_producto);
+					    return precio;
+					}, className: 'text-center mx-auto'},
 					{data: "stock_producto"},
 					{data: "serie_producto"},
 					{data: function(row, type, val, meta) {
