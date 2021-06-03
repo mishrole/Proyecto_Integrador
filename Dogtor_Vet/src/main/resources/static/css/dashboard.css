@@ -6,6 +6,7 @@
     --background-light-icon: #99b2c6;
     --background-light-link: #4C739A;
     --border-light-gray: #B0C3D3;
+    --border-light-gray-a: rgba(176, 195, 211, 0.1);
     --border-light-card: #405B72;
     --danger-light: #F2497D;
     --disabled-light: #B3C5D3;
@@ -382,6 +383,10 @@ body {
 .order__status.status-5,
 .btn__status-5 {
 	background-color: var(--status-cancel) !important;
+}
+
+.orders__list.active {
+	background-color: var(--border-light-gray-a) !important;
 }
 
 

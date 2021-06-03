@@ -143,6 +143,9 @@
 	 	function generarCuerpoPedidos(pedido) {
 	 	    
 	 		contenidoPedidos.empty();
+	 		
+ 		 	var cards = document.getElementsByClassName("orders__list");
+            console.log(cards);
 	 	   
 			var fechaSolicitud = new Date(pedido.fecha_solicitud_pedido);
 			var fechaEntrega = new Date(pedido.fecha_entrega_pedido);
@@ -238,6 +241,8 @@
 		                listaPedidos.append(divCard);
 		                
 		                divCard.onclick = function() {
+		                    $(".orders__list").removeClass('active');
+	                    	this.setAttribute("class", "card border__bottom orders__list active");
 		                    generarCuerpoPedidos(pedido);
 	                    }
 		                
@@ -253,6 +258,7 @@
 
 	    $(document).ready(function() {
 	        generarListaPedidos(codigoUsuario);
+           
 		});
 	    
 	   
