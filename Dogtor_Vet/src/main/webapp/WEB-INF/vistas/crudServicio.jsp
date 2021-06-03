@@ -235,13 +235,13 @@
 					                        		<label for="id_nombre_actualiza">Nombre</label>
 										  		</div>
 										  	</div>
-										  	<div class="col-12 col-md-4 mb-3">
+										  	<div class="col-12 col-md-3 mb-3">
 											  	<div class="col form-floating">
 										  			<input type="text" class="form-control" id="id_precio_actualiza" name="precio_servicio" autocomplete="on" >
 						                   			<label for="id_precio_actualiza">Precio</label>
 										  		</div>
 										  	</div>
-										  	<div class="col-12 col-md-4 mb-3">
+										  	<div class="col-12 col-md-3 mb-3">
 											  	<div class="col form-floating">
 										  			<input type="text" class="form-control" id="id_limite_actualiza" name="limite_diario_servicio" autocomplete="on" >
 						                   			<label for="id_limite_actualiza">Límite</label>

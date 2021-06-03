@@ -5,21 +5,24 @@
     --background-light-font: #8ea9c0;
     --background-light-icon: #99b2c6;
     --background-light-link: #4C739A;
-    --border-light-gray: #b0c3d3;
+    --border-light-gray: #B0C3D3;
     --border-light-card: #405B72;
     --danger-light: #F2497D;
-    --disabled-light: #b3c5d3;
+    --disabled-light: #B3C5D3;
     --font-size-max: 1.3125rem;
     --font-size-min: 0.9rem;
     --font-size-subtitle: 1rem;
     --font-size-title: 1.2rem;
-    --primary-light: #3a36db;
+    --primary-light: #3A36DB;
     --secondary-light: #4B47EC;
     --subtitle-light: #404b5d;
     --stable-light: #3060F2;
     --success-light: #24F23B;
-    --title-light: #3f3d56;
+    --title-light: #3F3D56;
     --warning-light: #F2B618;
+    --status-success: #2A7D4F;
+    --status-cancel: #DC3545;
+    --status-progress: #F6CF48;
     /*--card-light-background: #f1f4f9;*/
 }
 
@@ -36,6 +39,10 @@ body {
     margin-top: .25rem;
     font-size: .875em;
     color: var(--danger-light) !important;
+}
+
+.accordion-button::after {
+	margin-left: 0 !important;
 }
 
 /* ====== Landing ====== */
@@ -283,6 +290,7 @@ body {
     border: 1px solid var(--background-light-white);
     border-radius: 1rem;
     padding: 1.3rem;
+    min-height: 95vh;
 }
 
 /* .content__body__title {
@@ -293,8 +301,27 @@ body {
 
 .card__light {
     border: 1px solid var(--border-light-gray);
-    border-radius: 20px;
+    border-radius: 20px !important;
     padding: 1rem;
+}
+
+.border__white {
+	border: 1px solid var(--background-light-white) !important;
+}
+
+.border__bottom {
+	border: none !important;
+	border-bottom: 1px solid var(--border-light-gray) !important;
+}
+
+.border__left {
+	border: none !important;
+	border-left: 1px solid var(--border-light-gray) !important;
+}
+
+.border__right {
+	border: none !important;
+	border-right: 1px solid var(--border-light-gray) !important;
 }
 
 .card__light__title {
@@ -312,6 +339,56 @@ body {
 }
 
 /* Productos */
+
+.card__image--cover {
+	height: 200px;
+    object-fit: cover;
+}
+
+.card-footer--clean {
+	background-color: transparent !important;
+	border-top: none !important;
+}
+
+.order__status {
+    border-radius: 15px;
+    color: var(--background-light-white);
+    font-size: var(--font-size-min);
+    font-weight: bolder;
+    padding: 0.4rem 1rem;
+    text-align: center;
+}
+
+.order__status.status-1,
+.btn__status-1 {
+	background-color: var(--background-light-font) !important;
+}
+
+.order__status.status-2,
+.btn__status-2 {
+	background-color: var(--stable-light) !important;
+}
+
+.order__status.status-3,
+.btn__status-3 {
+	background-color: var(--status-progress) !important;
+}
+
+.order__status.status-4,
+.btn__status-4 {
+	background-color: var(--status-success) !important;
+}
+
+.order__status.status-5,
+.btn__status-5 {
+	background-color: var(--status-cancel) !important;
+}
+
+
+
+.order__action {
+	cursor: pointer;
+}
 
 textarea#id_descripcion_simple,
 textarea#id_descripcion {

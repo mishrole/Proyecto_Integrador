@@ -59,23 +59,6 @@
                                 </div>
                         </div>
                         
-                         <div class="content__statistics row mt-4">
-                            <div class="col-12 col-md-6 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Próxima Cita</p>
-                                    <p class="font__title title__color font__semibold m-0">12/06/2021</p>
-                                    <p class="font__title title__color font__semibold m-0">3:40PM a 4:50PM</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Último Pedido</p>
-                                    <p class="font__title title__color font__semibold m-0">29/05/2021</p>
-                                    <p class="font__title title__color font__semibold m-0">En curso</p>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
                                 <div class="card__light">

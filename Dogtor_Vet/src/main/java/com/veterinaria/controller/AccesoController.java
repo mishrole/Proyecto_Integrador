@@ -97,9 +97,9 @@ public class AccesoController {
 		return "clientePedido";
 	}
 	
-	@RequestMapping("/verTienda")
+	@RequestMapping("/shop")
 	public String verTienda() {
-		return "clienteTienda";
+		return "shop";
 	}
 	
 	/* Vendedor */
@@ -113,6 +113,14 @@ public class AccesoController {
 	public String verVenta() {
 		return "crudVenta";
 	}
+	
+	/* Repartidor */
+	@RequestMapping("/verPedido")
+	public String verPedido() {
+		return "repartidorPedido";
+	}
+	
+	
 	
 	@RequestMapping("/notFound")
 	public String verError() {

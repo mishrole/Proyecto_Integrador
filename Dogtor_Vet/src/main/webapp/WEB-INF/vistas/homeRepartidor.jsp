@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	<!-- Menu y Header requieren jQuery al inicio -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<title>Tienda | Dogtor</title>
+	<title>Home | Dogtor</title>
 </head>
 <body class="background__light__gray">
 
@@ -60,54 +60,38 @@
                         </div>
                         
                          <div class="content__statistics row mt-4">
-                            <div class="col-12 col-md-6 mt-2 mb-2">
+                            <div class="col-12 col-md-4 mt-2 mb-2">
                                 <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Próxima Cita</p>
-                                    <p class="font__title title__color font__semibold m-0">12/06/2021</p>
-                                    <p class="font__title title__color font__semibold m-0">3:40PM a 4:50PM</p>
+                                    <p class="card__light__title">En Productos</p>
+                                    <p class="font__title title__color font__semibold m-0">S/ 17 358,58</p>
                                 </div>
                             </div>
-                            <div class="col-12 col-md-6 mt-2 mb-2">
+                            <div class="col-12 col-md-4 mt-2 mb-2">
                                 <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Último Pedido</p>
-                                    <p class="font__title title__color font__semibold m-0">29/05/2021</p>
-                                    <p class="font__title title__color font__semibold m-0">En curso</p>
+                                    <p class="card__light__title">En Servicios</p>
+                                    <p class="font__title title__color font__semibold m-0">S/ 23 158,72</p>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="content__alert row">
-                            <div class="col-12 mt-4 mb-2">
-                                <div class="card__light">
-                                    <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold"></p>
-                                        <!-- <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota">
-                                        	<i data-feather="plus"></i>
-                                        	Nuevo
-                                        </button> -->
-                                    </div>
-                                    <div class="card__light__body row">
-                                    	
-                                    </div>
-                                </div>
+                            <div class="col-12 col-md-4 mt-2 mb-2 d-none d-md-inline-block">
+                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
+                                    <p class="card__light__title">Total General</p>
+                                    <p class="font__title title__color font__semibold m-0">S/ 40 517,30</p>
+                                </div> 
                             </div>
-                        </div>
+                        </div>                        
+
                     </div>
                 </div>
             	</div>
             </div>
         </div>
     </main>
-    
-    <div class="container-fluid">
-		
-    </div>
 
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
+	<!-- <script type="text/javascript" src="js/bootstrapValidator.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <!-- Custom JS -->
     <script type="text/javascript" src="js/global.js"></script>
@@ -116,8 +100,9 @@
 
 	<script type="text/javascript">
 	
-	    // Load icons
-	    feather.replace();
+    // Load icons
+    feather.replace();
+    
     
 	</script>
 </body>

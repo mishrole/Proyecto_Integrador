@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	<!-- Menu y Header requieren jQuery al inicio -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<title>Pedido | Dogtor</title>
+	<title>Tienda | Dogtor</title>
 </head>
 <body class="background__light__gray">
 
@@ -39,11 +39,11 @@
                     <div class="content__body background__light__white menu__transition">
                         <div class="row justify-content-center">
                             <div class="content__body__title col-4">
-                                <p class="font__title title__color font__semibold">Resumen</p>
+                                <p class="font__title title__color font__semibold">Tienda</p>
                             </div>
                             <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
                                 <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
-                                    <input type="text" name="filtro_nombre_servicio" id="id_nombre_filtro" class="input__search title__color" placeholder="Buscar...">
+                                    <input type="text" name="filtro_nombre_producto" id="id_nombre_producto" class="input__search title__color" placeholder="Buscar...">
                                     <i data-feather="search" class="icon__light"></i>
                                 </div>
                                 <div class="options__filter d-none d-lg-flex mx-2">
@@ -54,9 +54,6 @@
                                 <div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
                                     <i data-feather="message-square"></i>
                                 </div>
-                                <div id="btnCart" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
-                                    <i data-feather="shopping-cart"></i>
-                                </div>
                                 <div id="btnProfile" class="options__profile mx-2">
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
                                 </div>
@@ -64,32 +61,16 @@
                         
                         <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
-                                <div class="card__light">
+                                <div class="card__light border__white">
                                     <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold">Mis Pedidos</p>
+                                        <p class="font__subtitle title__color font__semibold"></p>
+                                        
                                     </div>
-                                    <div class="card__light__body row">
-                                    	<form id="id_form_elimina" action="eliminaPedido">
-											<input type="text" id="id_elimina" name="codigo_pedido" class="d-none">
-											<input type="text" id="id_estado_elimina" name="codigo_estado_pedido" class="d-none">
-										</form>
-										
-										<div class="col-12 table-responsive">
-                                            <table id="id_table_Pedido" class="font__min display responsive no-footer text-center table table-borderless dataTable">
-                                                <thead class="background__title">
-                                                    <tr>
-														<th>#</th>
-														<th>Entrega</th>
-														<th>Monto</th>
-														<th>Repartidor</th>
-														<th>Estado</th>
-														<th>Acción</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
-                                        </div>
+                                    <div class="card__light__body row justify-content-center">
+                                    	<!-- Products Container -->
+                                    	<div class="row justify-content-left" id="shopContainer"></div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -100,9 +81,7 @@
         </div>
     </main>
     
-    <div class="container-fluid">
-		
-    </div>
+    <div class="container-fluid"></div>
 
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
@@ -121,89 +100,79 @@
 	    // Load icons
 	    feather.replace();
 	    
-	    // Usuario actual
-	 	const codigoPropietario = ${sessionScope.objUsuario.codigo_usuario};
-	    
-	    function agregarGrillaPedido(lista) {
-		//console.log(lista)
-		 $('#id_table_Pedido').DataTable().clear();
-		 $('#id_table_Pedido').DataTable().destroy();
-		 $('#id_table_Pedido').DataTable({
-				data: lista,
-				searching: false,
-				ordering: true,
-				processing: true,
-				pageLength: 6,
-				lengthChange: false,
-				responsive: true,
-				columns:[
-					{data: "codigo_pedido"},
-					{data: "fecha_entrega_pedido"},
-					{data: function(row, type, val, meta) {
-					    var monto = formatter.format(row.monto_pedido);
-					    return monto;
-					}},
-					{data: function(row, type, val, meta) {
-					    var nombre = '';
-					    nombre = row.usuarioRepartidor.nombre_usuario + ' ' + row.usuarioRepartidor.apellido_usuario;
-					    return nombre;
-					}, className: 'text-center mx-auto float-center'},
-					{data: "estadoPedido.nombre_estado_pedido"},
-					{data: function(row, type, val, meta){
-					    
-					    var btnCancelarReserva = '';
-					    
-					    if(row.codigo_estado_pedido === 1) {
-					        btnCancelarReserva = '<button type="button" class="btn btn-danger btn-sm mx-1" onclick="cancelarPedido(\'' + row.codigo_pedido + '\')"><i data-feather="x"></i> Cancelar</button>';
-					    } else {
-					        btnCancelarReserva = '<button type="button" class="btn btn-danger btn-sm mx-1 disabled"><i data-feather="x"></i> Cancelar</button>'; 
-					    }
-					    
-					    return btnCancelarReserva;
-					},className:'text-center mx-auto'},												
-				]                                                   
-		    });
-		 	
-		 	// Reload icons
-		    feather.replace();
-		 	
-		 	$('#id_table_Pedido').DataTable().columns.adjust().draw();
-		}
-	    
-		function listarPedidosDatatable(usuario) {
-	        $.getJSON("listaPedidoPorCliente", {"codigo_cliente": usuario}, function(lista) {
-	            agregarGrillaPedido(lista);
+	    function generarListaProductos() {
+	        
+	        const nombre_producto = $('#id_nombre_producto').val();
+	        const productsContainer = $('#shopContainer');
+	       	productsContainer.empty();
+	        
+	        $.getJSON("listaProductoPorNombre", {"nombre_producto": nombre_producto}, function(lista) {
+	            if(lista.length > 0) {
+	                
+	                $.each(lista, function(index, producto) {
+	                    
+		                const divContainer = document.createElement('div');
+	                    divContainer.className = 'col-12 col-sm-6 col-md-4 col-lg-3 p-2';
+	                    
+	                    const divCard = document.createElement('div');
+	                    divCard.className = 'card__light text-center card h-100';
+	                    
+	                    const divCardImageContainer = document.createElement('div');
+	                    divCardImageContainer.className = 'col-12 p-1';
+	                 
+	                    const cardImage = document.createElement('img');
+	                    cardImage.className = 'card__image--cover card-img-top';
+	                    cardImage.alt = producto.nombre_producto;
+	                    cardImage.src = "../../images/noimage.png";
+	                    
+	                    if(producto.foto1_producto.length > 0) {
+	                        cardImage.src = 'data:image/png;base64,' + producto.foto1_producto;
+	                    }
+	                    
+	                    const divCardTitleContainer = document.createElement('div');
+	                    divCardTitleContainer.className = 'card-body';
+	                    
+	                    const cardTitle = document.createElement('p');
+	                    cardTitle.innerHTML = producto.nombre_producto;
+	                    
+	                    const cardPrice = document.createElement('p');
+	                    cardPrice.innerHTML = formatter.format(producto.precio_producto);
+	                    cardPrice.className = 'm-0 font__subtitle font__semibold';
+
+	                    const divCardActionContainer = document.createElement('div');
+	                    divCardActionContainer.className = 'card-footer card-footer--clean';
+	                    
+	                    const cardButton = document.createElement('button');
+	                    cardButton.className = 'btn btn__clean my-1';
+	                    cardButton.type = 'button';
+	                    cardButton.innerHTML = 'Añadir al carrito';
+	                    
+	                    cardButton.onclick = function() {
+	                        alert(producto.codigo_producto);
+	                    }
+	                    
+	                    divCardActionContainer.append(cardButton);
+	                    divCardTitleContainer.append(cardTitle, cardPrice);
+	                    divCardImageContainer.append(cardImage);
+	                    divCard.append(divCardImageContainer, divCardTitleContainer, divCardActionContainer);
+	                    divContainer.append(divCard);
+	                    productsContainer.append(divContainer);
+	                    
+	                });
+	            } else {
+	                const divContainer = document.createElement('div');
+                    divContainer.className = 'col-12 p-2 text-center';
+                 
+                    const cardTitle = document.createElement('p');
+                    cardTitle.innerHTML = 'Sin productos disponibles';
+                    
+                    divContainer.append(cardTitle);
+                    productsContainer.append(divContainer);
+	            }
 	        });
 	    }
 		
-		function cancelarPedido(codigo_pedido) {
-		    const codigo_estado_pedido = 5;
-		    mostrarMensajeConfirmacion("¿Desea cancelar el pedido?", accionCancelarPedido, null, {codigo_pedido, codigo_estado_pedido});
-		}
-		
-		function accionCancelarPedido(data) {
-		    $('#id_elimina').val(data.codigo_pedido);
-		    $('#id_estado_elimina').val(data.codigo_estado_pedido);
-		    
-		    if(data.codigo_pedido.length > 0) {
-			    $.ajax({
-					type: 'POST',
-					data: $('#id_form_elimina').serialize(),
-					url: 'actualizaEstadoPedido',
-					success: function(data) {
-					    listarPedidosDatatable(codigoPropietario);
-						mostrarMensaje(data.MENSAJE);
-					},
-					error: function() {
-						mostrarMensaje(MSG_ERROR);
-					}
-				});
-			}
-		}
-		
-		$(document).ready(function() {
-		    listarPedidosDatatable(codigoPropietario);
-		});
+		generarListaProductos();
     
 	</script>
 </body>

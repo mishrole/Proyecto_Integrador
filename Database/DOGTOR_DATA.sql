@@ -51,7 +51,7 @@ INSERT INTO tb_enlace VALUES
 (7, 'Mascotas', 'verMisMascotas', 'github'),
 (8, 'Citas', 'verMisCitas', 'calendar'),
 (9, 'Pedidos', 'verMisPedidos', 'truck'),
-(10, 'Tienda', 'verTienda', 'shopping-bag'),
+(10, 'Tienda', 'shop', 'shopping-bag'),
 /* Especialista */
 (11, 'Home', 'home', 'grid'),
 (12, 'Cita', 'verCita', 'calendar'),
@@ -141,8 +141,8 @@ INSERT INTO tb_estado_cita VALUES
 (4, 'Cancelado');
 
 INSERT INTO tb_estado_pedido VALUES
-(1, 'Recibido'),
-(2, 'Confirmado'),
+(1, 'Programado'),
+(2, 'Empaquetado'),
 (3, 'En camino'),
 (4, 'Entregado'),
 (5, 'Cancelado');
@@ -158,4 +158,8 @@ INSERT INTO tb_servicio VALUES
 (4, 1, 4 ,8 ,4, '16:50:00', '18:50:00', 'Servicio 4', 'Descripción de Servicio 4', 30, 10);
 
 INSERT INTO tb_pedido VALUES
-(1, 2, '2021-03-25', '2021-03-28', 32, 5, 1);
+(1, 2, '2021-03-25', '2021-03-26', 32, 5, 1),
+(2, 2, '2021-03-26', '2021-03-27', 55.5, 5, 2),
+(3, 2, '2021-03-27', '2021-03-28', 90.7, 5, 3),
+(4, 2, '2021-03-28', '2021-03-29', 105.3, 5, 4),
+(5, 2, '2021-03-29', '2021-03-31', 385.7, 5, 5);
