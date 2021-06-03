@@ -250,6 +250,7 @@
 		            
 		            // Cargar primer pedido por defecto
 		            generarCuerpoPedidos(lista[0]);
+		            $('.orders__list').first().addClass('active');
 		            
 			    }
 	        });

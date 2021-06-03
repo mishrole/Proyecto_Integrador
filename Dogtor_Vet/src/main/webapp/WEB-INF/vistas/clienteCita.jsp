@@ -39,7 +39,7 @@
                     <div class="content__body background__light__white menu__transition">
                         <div class="row justify-content-center">
                             <div class="content__body__title col-4">
-                                <p class="font__title title__color font__semibold">Resumen</p>
+                                <p class="font__title title__color font__semibold">Cita</p>
                             </div>
                             <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
                                 <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
@@ -80,7 +80,7 @@
                             <div class="col-12 mt-4 mb-2">
                                 <div class="card__light">
                                     <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold">Mis Citas</p>
+                                        <p class="font__subtitle title__color font__semibold">Listado de Citas</p>
                                         <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraReserva" data-target="#id_modal_RegistraReserva">
                                         	<i data-feather="plus"></i>
                                         	Nuevo

@@ -39,7 +39,7 @@
                     <div class="content__body background__light__white menu__transition">
                         <div class="row justify-content-center">
                             <div class="content__body__title col-4">
-                                <p class="font__title title__color font__semibold">Resumen</p>
+                                <p class="font__title title__color font__semibold">Mascota</p>
                             </div>
                             <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
                                 <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
@@ -61,9 +61,9 @@
                         
                         <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
-                                <div class="card__light">
+                                <div class="card__light border__white">
                                     <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold">Mis Mascotas</p>
+                                        <p class="font__subtitle title__color font__semibold">Listado de Mascotas</p>
                                         <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota">
                                         	<i data-feather="plus"></i>
                                         	Nuevo
@@ -75,7 +75,7 @@
 											<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad_mascota" class="d-none">
 										</form>
                                                                    
-                                        <div class="d-flex flex-wrap justify-content-center align-items-center mt-3 mb-3" id="mascotas_container"></div>
+                                        <div class="d-flex flex-wrap justify-content-left align-items-center mt-3 mb-3" id="mascotas_container"></div>
                                     </div>
                                 </div>
                             </div>

@@ -39,7 +39,7 @@
                     <div class="content__body background__light__white menu__transition">
                         <div class="row justify-content-center">
                             <div class="content__body__title col-4">
-                                <p class="font__title title__color font__semibold">Resumen</p>
+                                <p class="font__title title__color font__semibold">Pedido</p>
                             </div>
                             <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
                                 <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
@@ -60,41 +60,25 @@
                                 <div id="btnProfile" class="options__profile mx-2">
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
                                 </div>
-                        </div>
+                        	</div>
                         
-                        <div class="content__alert row">
-                            <div class="col-12 mt-4 mb-2">
-                                <div class="card__light">
-                                    <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold">Mis Pedidos</p>
-                                    </div>
-                                    <div class="card__light__body row">
-                                    	<form id="id_form_elimina" action="eliminaPedido">
-											<input type="text" id="id_elimina" name="codigo_pedido" class="d-none">
-											<input type="text" id="id_estado_elimina" name="codigo_estado_pedido" class="d-none">
-										</form>
-										
-										<div class="col-12 table-responsive">
-                                            <table id="id_table_Pedido" class="font__min display responsive no-footer text-center table table-borderless dataTable">
-                                                <thead class="background__title">
-                                                    <tr>
-														<th>#</th>
-														<th>Entrega</th>
-														<th>Monto</th>
-														<th>Repartidor</th>
-														<th>Estado</th>
-														<th>Acción</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        	<div class="content__alert row">
+                            	<div class="col-12 mt-4 mb-2">
+	                                <p class="font__subtitle title__color font__semibold my-3">Historial de Pedidos</p>
+                            	
+                                	<div class="row">
+	                                   	<!-- Lista de Pedidos -->
+	                                	<div class="col-12 col-lg-4 border__right" id="id_pedido_lista"></div>
+	                                	
+	                                	<!-- Cuerpo del Pedido -->
+		                                <div class="col-12 col-lg-8">
+			                            	<div id="id_pedido_contenido" class="py-3 px-2"></div>
+		                           		</div>
+                                   </div>
+                            	</div>
+                        	</div>
+                    	</div>
+                	</div>
             	</div>
             </div>
         </div>
@@ -104,8 +88,8 @@
 		
     </div>
 
-	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="js/jquery.dataTables.min.js"></script> -->
+	<!-- <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script> -->
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
@@ -123,86 +107,150 @@
 	    
 	    // Usuario actual
 	 	const codigoPropietario = ${sessionScope.objUsuario.codigo_usuario};
-	    
-	    function agregarGrillaPedido(lista) {
-		//console.log(lista)
-		 $('#id_table_Pedido').DataTable().clear();
-		 $('#id_table_Pedido').DataTable().destroy();
-		 $('#id_table_Pedido').DataTable({
-				data: lista,
-				searching: false,
-				ordering: true,
-				processing: true,
-				pageLength: 6,
-				lengthChange: false,
-				responsive: true,
-				columns:[
-					{data: "codigo_pedido"},
-					{data: "fecha_entrega_pedido"},
-					{data: function(row, type, val, meta) {
-					    var monto = formatter.format(row.monto_pedido);
-					    return monto;
-					}},
-					{data: function(row, type, val, meta) {
-					    var nombre = '';
-					    nombre = row.usuarioRepartidor.nombre_usuario + ' ' + row.usuarioRepartidor.apellido_usuario;
-					    return nombre;
-					}, className: 'text-center mx-auto float-center'},
-					{data: "estadoPedido.nombre_estado_pedido"},
-					{data: function(row, type, val, meta){
-					    
-					    var btnCancelarReserva = '';
-					    
-					    if(row.codigo_estado_pedido === 1) {
-					        btnCancelarReserva = '<button type="button" class="btn btn-danger btn-sm mx-1" onclick="cancelarPedido(\'' + row.codigo_pedido + '\')"><i data-feather="x"></i> Cancelar</button>';
-					    } else {
-					        btnCancelarReserva = '<button type="button" class="btn btn-danger btn-sm mx-1 disabled"><i data-feather="x"></i> Cancelar</button>'; 
-					    }
-					    
-					    return btnCancelarReserva;
-					},className:'text-center mx-auto'},												
-				]                                                   
-		    });
-		 	
-		 	// Reload icons
-		    feather.replace();
-		 	
-		 	$('#id_table_Pedido').DataTable().columns.adjust().draw();
+	 	const listaPedidos = $('#id_pedido_lista');
+	 	const contenidoPedidos = $('#id_pedido_contenido');
+	 	
+	 	function cambiarEstadoPedido(codigo_pedido, codigo_estado_pedido) {
+			mostrarMensajeConfirmacion("¿Desea modificar el pedido?", accionEstadoPedido, null, {codigo_pedido, codigo_estado_pedido});
 		}
-	    
-		function listarPedidosDatatable(usuario) {
-	        $.getJSON("listaPedidoPorCliente", {"codigo_cliente": usuario}, function(lista) {
-	            agregarGrillaPedido(lista);
+	 	
+	 	function accionEstadoPedido(data) {
+	 	    
+	 	    let nuevoEstado = '';
+	 	    
+	 	    if(data.codigo_estado_pedido !== 5) {
+	 	        nuevoEstado = 5;
+	 	    }
+
+			$.ajax({
+				type: "POST",
+				url: "actualizaEstadoPedido",
+				data: {"codigo_pedido": data.codigo_pedido, "codigo_estado_pedido": nuevoEstado},
+				success: function(data) {
+				    generarListaPedidos(codigoPropietario);
+					mostrarMensaje(data.MENSAJE);
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR);
+				}
+			});
+			
+		}
+	 	
+		function generarCuerpoPedidos(pedido) {
+	 	    
+	 		contenidoPedidos.empty();
+	 		
+ 		 	var cards = document.getElementsByClassName("orders__list");
+            console.log(cards);
+	 	   
+			var fechaSolicitud = new Date(pedido.fecha_solicitud_pedido);
+			var fechaEntrega = new Date(pedido.fecha_entrega_pedido);
+    
+			const divBodyContainer = document.createElement('div');
+			divBodyContainer.className = 'ms-2';
+  
+ 			const pOrderNumber = document.createElement('p');
+			pOrderNumber.innerHTML = "Pedido #"+pedido.codigo_pedido + "<br />" + (new Date(fechaSolicitud)).toISOString().split('T')[0];
+			pOrderNumber.className = "font__semibold";
+
+			const pOrderDate = document.createElement('p');
+			pOrderDate.className = "m-0";
+			pOrderDate.innerHTML = "Fecha de Entrega: "+ (new Date(fechaEntrega)).toISOString().split('T')[0];
+			
+			const cardTotal = document.createElement('p');
+			cardTotal.className = "m-0";
+			cardTotal.innerHTML = "Total del pedido: " + formatter.format(pedido.monto_pedido);
+			
+			const cardClient = document.createElement('p');
+			cardClient.className = "m-0";
+			cardClient.innerHTML = "Repartidor: " + pedido.usuarioRepartidor.nombre_usuario + " " + pedido.usuarioRepartidor.apellido_usuario + "<br /> Correo: " + pedido.usuarioRepartidor.email_usuario;
+			
+			const cardBtnContainer = document.createElement('div');
+			cardBtnContainer.className = 'my-2';
+			
+            let btnAction = document.createElement('button');
+            
+            btnAction.className = 'btn btn__status-5';
+            
+            if(pedido.codigo_estado_pedido === 1) {
+                btnAction.innerHTML = 'Cancelar';
+            } else {
+                btnAction = "";
+            }
+            
+            btnAction.onclick = () => {
+                cambiarEstadoPedido(pedido.codigo_pedido, pedido.codigo_estado_pedido);
+            }
+            
+            cardBtnContainer.append(btnAction);
+			divBodyContainer.append(pOrderNumber, pOrderDate, cardTotal, cardClient, cardBtnContainer);
+  
+			// Cuerpo de Pedidos
+  			contenidoPedidos.append(divBodyContainer);
+	 	}
+		
+		function generarListaPedidos(usuario) {
+		    $.getJSON("listaPedidoPorCliente", {"codigo_cliente": usuario}, function(lista) {
+		        if(lista.length > 0) {
+		            
+		            listaPedidos.empty();
+		            
+		            $.each( lista, function(index, pedido) {
+		                const divCard = document.createElement('div');
+		                divCard.className = "card border__bottom orders__list";
+		                
+		                const cardBody = document.createElement('div');
+		                cardBody.className = "card-body";
+		                
+		                const cardRow = document.createElement('div');
+		                cardRow.className = "row align-items-center order__action";
+		                
+		                const cardFlex = document.createElement('div');
+		                cardFlex.className = "d-flex";
+		                
+		                const cardStatus = document.createElement('p');
+		                cardStatus.className = "order__status status-" + pedido.codigo_estado_pedido;
+		                cardStatus.innerHTML = pedido.estadoPedido.nombre_estado_pedido;
+		                
+		                const cardOrderNumber = document.createElement('p');
+		                cardOrderNumber.className = "font__semibold m-0";
+		                cardOrderNumber.innerHTML = "Pedido #"+pedido.codigo_pedido;
+		                
+		                var fechaSolicitud = new Date(pedido.fecha_solicitud_pedido);
+		                var fechaEntrega = new Date(pedido.fecha_entrega_pedido);
+		                
+		                const cardOrderDate = document.createElement('p');
+		                cardOrderDate.className = "m-0";
+		                cardOrderDate.innerHTML = (new Date(fechaSolicitud)).toISOString().split('T')[0];
+		                
+		                cardFlex.append(cardStatus);
+		                cardRow.append(cardFlex, cardOrderNumber, cardOrderDate);
+		                cardBody.append(cardRow);
+		                divCard.append(cardBody);
+	                
+		                // Lista de Pedidos
+		                listaPedidos.append(divCard);
+		                
+		                divCard.onclick = function() {
+		                    $(".orders__list").removeClass('active');
+	                    	this.setAttribute("class", "card border__bottom orders__list active");
+		                    generarCuerpoPedidos(pedido);
+	                    }
+		                
+		            });
+		            
+		            // Cargar primer pedido por defecto
+		            generarCuerpoPedidos(lista[0]);
+		            $('.orders__list').first().addClass('active');
+		            
+			    }
 	        });
+
 	    }
 		
-		function cancelarPedido(codigo_pedido) {
-		    const codigo_estado_pedido = 5;
-		    mostrarMensajeConfirmacion("¿Desea cancelar el pedido?", accionCancelarPedido, null, {codigo_pedido, codigo_estado_pedido});
-		}
-		
-		function accionCancelarPedido(data) {
-		    $('#id_elimina').val(data.codigo_pedido);
-		    $('#id_estado_elimina').val(data.codigo_estado_pedido);
-		    
-		    if(data.codigo_pedido.length > 0) {
-			    $.ajax({
-					type: 'POST',
-					data: $('#id_form_elimina').serialize(),
-					url: 'actualizaEstadoPedido',
-					success: function(data) {
-					    listarPedidosDatatable(codigoPropietario);
-						mostrarMensaje(data.MENSAJE);
-					},
-					error: function() {
-						mostrarMensaje(MSG_ERROR);
-					}
-				});
-			}
-		}
-		
 		$(document).ready(function() {
-		    listarPedidosDatatable(codigoPropietario);
+		    generarListaPedidos(codigoPropietario);
 		});
     
 	</script>

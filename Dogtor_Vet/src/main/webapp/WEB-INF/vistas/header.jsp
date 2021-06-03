@@ -104,6 +104,15 @@
 					</li>
 				</c:forEach>
 	        </ul>
+			<div class="d-flex">
+            	<c:if test="${sessionScope.objMenus == null}">
+            		<a class="btn btn__clean" href="login">Iniciar Sesión</a>
+     			</c:if>
+     	
+     			<c:if test="${sessionScope.objMenus != null}">
+     				<a class="btn btn__clean" href="logout">Cerrar Sesión</a>
+     			</c:if>
+        	</div>
 	    </div>
 	</nav>
 </c:if>
