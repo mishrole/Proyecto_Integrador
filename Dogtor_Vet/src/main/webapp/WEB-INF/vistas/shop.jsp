@@ -58,6 +58,7 @@
                                 </div>-->
                                 <button id="btnCart" class="btn options__cart d-flex align-items-center mx-2">
                                     <i data-feather="shopping-cart"></i>
+                                    <span class="dot__notification"></span>
                                 </button>
                                 <div id="btnProfile" class="options__profile mx-2">
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
@@ -117,7 +118,7 @@
 	                $.each(lista, function(index, producto) {
 	                    
 		                const divContainer = document.createElement('div');
-	                    divContainer.className = 'col-12 col-sm-6 col-md-4 col-lg-3 p-2';
+	                    divContainer.className = 'col-12 col-sm-6 col-md-6 col-lg-3 p-2';
 	                    
 	                    const divCard = document.createElement('div');
 	                    divCard.className = 'card__light text-center card h-100';
@@ -153,7 +154,7 @@
 	                    cardButton.innerHTML = 'Añadir al carrito';
 	                    
 	                    cardButton.onclick = function() {
-	                        alert(producto.codigo_producto);
+	                        agregarProductoCarrito(${sessionScope.objUsuario.codigo_usuario}, producto.codigo_producto, 1)
 	                    }
 	                    
 	                    divCardActionContainer.append(cardButton);
@@ -176,8 +177,26 @@
 	            }
 	        });
 	    }
+	    
+		function agregarProductoCarrito(usuario, producto, cantidad) {
+			
+			$.ajax({
+				type: "POST",
+				url: "registraCarrito",
+				data: {"codigo_usuario": usuario, "codigo_producto": producto, "cantidad_carrito": cantidad},
+				success: function(data) {
+				    listaCarritoPorUsuario(usuario);
+					mostrarMensaje(data.MENSAJE);
+				},
+				error: function() {
+					mostrarMensaje(MSG_ERROR);
+				}
+			});
+		}
 		
-		generarListaProductos();
+		$(document).ready(function() {
+		    generarListaProductos();
+		});
     
 	</script>
 </body>

@@ -35,4 +35,9 @@ public class CarritoServiceImplem implements CarritoService {
 		return repository.findById(codigo_carrito);
 	}
 
+	@Override
+	public Optional<Carrito> buscarCarritoPorUsuarioYProducto(Integer codigo_usuario, Integer codigo_producto) {
+		return repository.buscarCarritoPorUsuarioYProducto(codigo_usuario, codigo_producto);
+	}
+
 }

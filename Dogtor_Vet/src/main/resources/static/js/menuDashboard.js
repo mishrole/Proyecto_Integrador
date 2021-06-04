@@ -56,5 +56,5 @@ $('#menuIconBtn').on('click', () => {
 // Toggle de Carrito
 $('#btnCart').click(function() {
    $('#carrito').toggleClass('active');
-   
+   //listaCarritoPorUsuario(usuarioCarrito);
 });

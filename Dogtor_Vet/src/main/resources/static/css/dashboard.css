@@ -272,6 +272,10 @@ body {
     color: var(--title-light) !important;
 }
 
+.options__cart {
+	position: relative !important;
+}
+
 .options__message:hover,
 .options__cart:hover > *,
 .profile__image:hover {
@@ -366,11 +370,31 @@ body {
 .cart__body {
 	background-color: white;
 	display: none;
-	max-width: 250px;
-	min-width: 250px;
+	max-width: 320px;
+	min-width: 300px;
 	position: absolute;
 	right: 100px;
 	top: 100px;
+}
+
+.dot__notification {
+	background: var(--danger-light);
+	border-radius: 50%;
+    height: .6em;
+    width: .6em;
+    position: absolute;
+    margin: 0;
+    top: .5rem;
+    right: .5rem;
+    display: none;
+}
+
+.dot__notification.active {
+	display: inline-block;
+}
+
+#id_table_carrito > thead > tr > * {
+	border: 0px solid white !important;
 }
 
 /* Pedidos */
@@ -521,6 +545,15 @@ textarea#id_descripcion {
     border: 1px solid var(--primary-light) !important;
     background-color: var(--background-light-white) !important;
     color: var(--primary-light) !important;
+}
+
+.btn__danger {
+	border: 1px solid var(--background-light-white) !important;
+	color: var(--danger-light) !important;
+}
+
+.btn__danger:hover {
+	color: var(--status-cancel) !important;
 }
 
 .btn__clean:hover {

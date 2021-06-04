@@ -30,17 +30,35 @@ public class CarritoController {
 	public Map<String, Object> registra(Carrito objCarrito) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
-		Carrito objSalida = null;
+		Optional<Carrito> option = service.buscarCarritoPorUsuarioYProducto(objCarrito.getCodigo_usuario(), objCarrito.getCodigo_producto());
 		
 		try {
-			objSalida = service.insertaProductoCarrito(objCarrito);
-			if(objSalida == null) {
-				salida.put("MENSAJE", "No se pudo añadir el producto");
+			if(option.isPresent()) {
+				option.ifPresent((Carrito result) -> {
+					
+					Integer nuevaCantidad = result.getCantidad_carrito() + objCarrito.getCantidad_carrito();
+					
+					result.setCantidad_carrito(nuevaCantidad);
+					
+					Carrito objSalida = service.insertaProductoCarrito(result);
+					
+					if(objSalida != null) {
+						salida.put("MENSAJE", "Cantidad actualizada");
+					}
+				});
 			} else {
-				salida.put("MENSAJE", "Producto añadido");
+				
+				Carrito objSalida = service.insertaProductoCarrito(objCarrito);
+				
+				if(objSalida == null) {
+					salida.put("MENSAJE", "No se pudo añadir el producto");
+				} else {
+					salida.put("MENSAJE", "Producto añadido");
+				}
+				
 			}
 		} catch (Exception e) {
-			salida.put("MENSAJE", "El producto no pudo ser añadido");
+			salida.put("MENSAJE", "Ocurrió un error al realizar la operación");
 			e.printStackTrace();
 		} finally {
 			List<Carrito> lista = service.listaCarritoPorUsuario(objCarrito.getCodigo_usuario());

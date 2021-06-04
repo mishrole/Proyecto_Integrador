@@ -58,6 +58,7 @@
                                 </div> -->
                                 <button id="btnCart" class="btn options__cart d-flex align-items-center mx-2">
                                     <i data-feather="shopping-cart"></i>
+                                    <span class="dot__notification"></span>
                                 </button>
                                 <div id="btnProfile" class="options__profile mx-2">
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
@@ -204,6 +205,7 @@
     <script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
 	<script type="text/javascript" src="js/menuDashboard.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 
 	<script type="text/javascript">
 	
