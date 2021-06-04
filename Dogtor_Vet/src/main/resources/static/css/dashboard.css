@@ -272,8 +272,19 @@ body {
     color: var(--title-light) !important;
 }
 
-.options__message:hover {
+.options__message:hover,
+.options__cart:hover > *,
+.profile__image:hover {
     cursor: pointer;
+    color: var(--primary-light) !important;
+}
+
+.options__cart:focus {
+	box-shadow: none !important;
+}
+
+.options__cart > * {
+	color: var(--background-light-link) !important;
 }
 
 .profile__image {
@@ -281,10 +292,6 @@ body {
     background-color: var(--border-light-gray);
     border: 1px solid var(--border-light-gray);
     border-radius: 30px;
-}
-
-.profile__image:hover {
-    cursor: pointer;
 }
 
 .content__body {
@@ -332,14 +339,10 @@ body {
     margin-bottom: 0 !important;
 }
 
-/* Mascotas */
-
-.pet__card--cover {
-	height: 300px;
-    object-fit: cover;
+/* Cards de tienda de Productos */
+.cart__body.active {
+	display: block;
 }
-
-/* Productos */
 
 .card__image--cover {
 	height: 200px;
@@ -350,6 +353,27 @@ body {
 	background-color: transparent !important;
 	border-top: none !important;
 }
+
+/* Mascotas */
+
+.pet__card--cover {
+	height: 300px;
+    object-fit: cover;
+}
+
+/* Carrito de Productos */
+
+.cart__body {
+	background-color: white;
+	display: none;
+	max-width: 250px;
+	min-width: 250px;
+	position: absolute;
+	right: 100px;
+	top: 100px;
+}
+
+/* Pedidos */
 
 .order__status {
     border-radius: 15px;
@@ -518,9 +542,19 @@ textarea#id_descripcion {
         width: 10%;
         padding: 1.5rem 0;
     }
+    
+    .cart__body {
+		right: 180px;
+    	top: 150px;
+	}
 }
 
 @media only screen and (max-width: 768px) {
+	
+	.cart__body {
+		right: 110px;
+    	top: 140px;
+	}
     
 /* 
     td,
@@ -543,4 +577,11 @@ textarea#id_descripcion {
     tr {
         margin-bottom: 1rem;
     } */
+}
+
+@media only screen and (max-width: 425px) {
+	.cart__body {
+		right: 40px;
+    	top: 140px;
+	}
 }

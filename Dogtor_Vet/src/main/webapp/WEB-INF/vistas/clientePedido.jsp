@@ -28,6 +28,8 @@
 		
 		<!-- Header on XS, SM, and MD -->
 		<jsp:include page="header.jsp" />
+		<!-- Carrito de Compras -->
+        <jsp:include page="carrito.jsp" />
             
             <div class="row">
                 
@@ -51,12 +53,12 @@
                                         <option value="0">Este mes</option>
                                     </select>
                                 </div>
-                                <div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
+                                <!-- <div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
                                     <i data-feather="message-square"></i>
-                                </div>
-                                <div id="btnCart" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
+                                </div> -->
+                                <button id="btnCart" class="btn options__cart d-flex align-items-center mx-2">
                                     <i data-feather="shopping-cart"></i>
-                                </div>
+                                </button>
                                 <div id="btnProfile" class="options__profile mx-2">
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
                                 </div>

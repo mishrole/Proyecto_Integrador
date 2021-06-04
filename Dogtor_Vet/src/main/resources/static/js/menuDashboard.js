@@ -52,3 +52,9 @@ $('#menuIconBtn').on('click', () => {
     feather.replace();
     
 });
+
+// Toggle de Carrito
+$('#btnCart').click(function() {
+   $('#carrito').toggleClass('active');
+   
+});
