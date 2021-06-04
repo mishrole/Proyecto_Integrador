@@ -47,7 +47,7 @@
             
             $.each( lista, function( index, value ) {
                 
-                totalPagar += value.producto.precio_producto;
+                totalPagar += value.producto.precio_producto * value.cantidad_carrito;
                 
                 let tr = document.createElement('tr');
                 let thFoto = document.createElement('th');
