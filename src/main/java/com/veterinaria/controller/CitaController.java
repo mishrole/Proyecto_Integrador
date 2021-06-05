@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +32,12 @@ public class CitaController {
 		return service.listaCita();
 	}
 	
+	@RequestMapping("/listaCitaPorUsuario")
+	@ResponseBody
+	public List<Cita> listaCitaPorUsuario(Integer codigo_usuario) {
+		return service.listaCitaPorUsuario(codigo_usuario);
+	}
+	
 	@RequestMapping("/registraCita")
 	@ResponseBody
 	public Map<String, Object> registra(Cita objCita) {
@@ -50,6 +57,39 @@ public class CitaController {
 			}
 		} catch (Exception e) {
 			salida.put("MENSAJE", "El registro no pudo ser completado");
+		} finally {
+			List<Cita> lista = service.listaCita();
+			salida.put("lista", lista);
+		}
+		
+		return salida;
+	}
+	
+	@RequestMapping("/actualizaEstadoCita")
+	@ResponseBody
+	public Map<String, Object> actualizaEstadoCita(Integer codigo_cita, Integer codigo_estado_cita) {
+		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		Optional<Cita> option = service.obtienePorId(codigo_cita);
+		
+		try {
+			if(option.isPresent()) {
+				option.ifPresent((Cita result) -> {
+					result.setCodigo_estado_cita(codigo_estado_cita);
+					
+					Cita citaSalida = service.insertaCita(result);
+					
+					if(citaSalida != null) {
+						salida.put("MENSAJE", "El estado de la cita ha sido modificado");
+					}
+				});
+			} else {
+				salida.put("MENSAJE", "Error, la cita no existe");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			salida.put("MENSAJE", "Error, la cita no pudo ser actualizada");
 		} finally {
 			List<Cita> lista = service.listaCita();
 			salida.put("lista", lista);

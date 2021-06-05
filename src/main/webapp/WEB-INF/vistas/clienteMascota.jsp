@@ -19,7 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	<!-- Menu y Header requieren jQuery al inicio -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<title>Home | Dogtor</title>
+	<title>Mascota | Dogtor</title>
 </head>
 <body class="background__light__gray">
 
@@ -28,6 +28,8 @@
 		
 		<!-- Header on XS, SM, and MD -->
 		<jsp:include page="header.jsp" />
+		<!-- Carrito de Compras -->
+        <jsp:include page="carrito.jsp" />
             
             <div class="row">
                 
@@ -39,7 +41,7 @@
                     <div class="content__body background__light__white menu__transition">
                         <div class="row justify-content-center">
                             <div class="content__body__title col-4">
-                                <p class="font__title title__color font__semibold">Resumen</p>
+                                <p class="font__title title__color font__semibold">Mascota</p>
                             </div>
                             <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
                                 <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
@@ -51,36 +53,23 @@
                                         <option value="0">Este mes</option>
                                     </select>
                                 </div>
-                                <div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
+                                <!-- <div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2">
                                     <i data-feather="message-square"></i>
-                                </div>
+                                </div> -->
+                                <button id="btnCart" class="btn options__cart d-flex align-items-center mx-2">
+                                    <i data-feather="shopping-cart"></i>
+                                    <span class="dot__notification"></span>
+                                </button>
                                 <div id="btnProfile" class="options__profile mx-2">
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
                                 </div>
                         </div>
                         
-                         <div class="content__statistics row mt-4">
-                            <div class="col-12 col-md-6 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Próxima Cita</p>
-                                    <p class="font__title title__color font__semibold m-0">12/06/2021</p>
-                                    <p class="font__title title__color font__semibold m-0">3:40PM a 4:50PM</p>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 mt-2 mb-2">
-                                <div class="card__light d-flex justify-content-around flex-column align-items-center align-items-md-start">
-                                    <p class="card__light__title">Último Pedido</p>
-                                    <p class="font__title title__color font__semibold m-0">29/05/2021</p>
-                                    <p class="font__title title__color font__semibold m-0">En curso</p>
-                                </div>
-                            </div>
-                        </div>
-                        
                         <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
-                                <div class="card__light">
+                                <div class="card__light border__white">
                                     <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold">Mis Mascotas</p>
+                                        <p class="font__subtitle title__color font__semibold">Listado de Mascotas</p>
                                         <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraMascota" data-target="#id_modal_RegistraMascota">
                                         	<i data-feather="plus"></i>
                                         	Nuevo
@@ -92,7 +81,7 @@
 											<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad_mascota" class="d-none">
 										</form>
                                                                    
-                                        <div class="d-flex flex-wrap justify-content-center align-items-center mt-3 mb-3" id="mascotas_container"></div>
+                                        <div class="d-flex flex-wrap justify-content-left align-items-center mt-3 mb-3" id="mascotas_container"></div>
                                     </div>
                                 </div>
                             </div>
@@ -216,6 +205,7 @@
     <script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
 	<script type="text/javascript" src="js/menuDashboard.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 
 	<script type="text/javascript">
 	

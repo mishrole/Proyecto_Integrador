@@ -114,6 +114,7 @@
     <script type="text/javascript" src="js/global.js"></script>
 	<script type="text/javascript" src="js/createNewErrorMessage.js"></script>
 	<script type="text/javascript" src="js/menuDashboard.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 
 	<script type="text/javascript">
 	
@@ -135,32 +136,36 @@
 					{data: "codigo_producto"},
 					{data: "nombre_producto"},
 					{data: "descripcion_simple_producto"},
-					{data: "precio_producto"},
+					{data: function(row, type, val, meta) {
+					    let precio = formatter.format(row.precio_producto);
+					    return precio;
+					}, className: 'text-center mx-auto'},
 					{data: "stock_producto"},
 					{data: "serie_producto"},
 					{data: function(row, type, val, meta) {
-					    var foto1, foto2, foto3 = "";
+
+						var foto1, foto2, foto3 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
 					    
-					    if(row.foto1_producto != null || row.foto1_producto != "") {
+					    if(row.foto1_producto != null && row.foto1_producto != "" && row.foto1_producto.length != 0) {
 					        foto1 = "<img src='data:image/png;base64," +row.foto1_producto+ "' class='img__table--mini' alt='Pet image'>";
 					    } else {
 					        foto1 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
 					    }
 					    
-					    if(row.foto2_producto != null || row.foto2_producto != "") {
+					    if(row.foto2_producto != null && row.foto2_producto != "" && row.foto2_producto.length != 0) {
 					        foto2 = "<img src='data:image/png;base64," +row.foto2_producto+ "' class='img__table--mini' alt='Pet image'>";
 					    } else {
 					        foto2 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
 					    }
 					    
-					    if(row.foto3_producto != null || row.foto3_producto != "") {
+					    if(row.foto3_producto != null && row.foto3_producto != "" && row.foto3_producto.length != 0) {
 					        foto3 = "<img src='data:image/png;base64," +row.foto3_producto+ "' class='img__table--mini' alt='Pet image'>";
 					    } else {
 					        foto3 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
 					    }
 						
 						return foto1 + foto2 + foto3;
-					}, className: 'text-center mx-auto float-center'},
+					}, className: 'text-center mx-auto float-center d-flex justify-content-center'},
 					{data: "marca.nombre_marca"},
 					{data: "categoria.nombre_categoria_producto"},
 					{data: "proveedor.nombre_proveedor"},

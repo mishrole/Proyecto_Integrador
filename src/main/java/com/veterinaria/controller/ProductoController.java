@@ -38,6 +38,12 @@ public class ProductoController {
 	public String verRegistra() {
 		return "crudProducto";
 	}
+	
+	@RequestMapping("/listaProductoPorCodigo")
+	@ResponseBody
+	public Optional<Producto> listaProductoPorCodigo(Integer codigo_producto) {
+		return service.obtienePorId(codigo_producto);
+	}
 
 	@RequestMapping("/listaProductoPorNombre")
 	@ResponseBody
