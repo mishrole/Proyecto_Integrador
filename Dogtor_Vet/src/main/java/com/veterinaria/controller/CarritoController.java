@@ -68,12 +68,12 @@ public class CarritoController {
 		return salida;
 	}
 	
-	@RequestMapping("actualizaCantidadProductoCarrito")
+	@RequestMapping("/actualizaCantidadProductoCarrito")
 	@ResponseBody
 	public Map<String, Object> actualizaCantidadProductoCarrito(Integer codigo_carrito, Integer cantidad_carrito) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
-		Optional<Carrito> option = service.obtieneProductoCarritoPorId(codigo_carrito);
+		Optional<Carrito> option = service.obtienePorId(codigo_carrito);
 		
 		try {
 			if(option.isPresent()) {
@@ -95,6 +95,28 @@ public class CarritoController {
 		} finally {
 			List<Carrito> lista = service.listaCarritoPorUsuario(option.get().getCodigo_usuario());
 			salida.put("lista", lista);
+		}
+		
+		return salida;
+	}
+	
+	@RequestMapping("/eliminaProductoCarrito")
+	@ResponseBody
+	public Map<String, Object> eliminaProductoCarrito(Integer codigo_carrito) {
+		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		Optional<Carrito> option = service.obtienePorId(codigo_carrito);
+		
+		try {
+			if(option.isPresent()) {
+				service.eliminaProductoCarrito(codigo_carrito);
+				salida.put("MENSAJE", "¡Eliminación exitosa!");
+			} else {
+				salida.put("MENSAJE", "Error, el registro no existe");
+			}
+		} catch (Exception e) {
+			salida.put("MENSAJE", "Error, el registro no pudo ser eliminado");
+			e.printStackTrace();
 		}
 		
 		return salida;

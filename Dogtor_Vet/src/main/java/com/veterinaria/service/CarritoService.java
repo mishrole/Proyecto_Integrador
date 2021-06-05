@@ -9,6 +9,6 @@ public interface CarritoService {
 	public abstract List<Carrito> listaCarritoPorUsuario(Integer codigo_usuario);
 	public abstract Carrito insertaProductoCarrito(Carrito objCarrito);
 	public abstract void eliminaProductoCarrito(Integer codigo_carrito);
-	public abstract Optional<Carrito> obtieneProductoCarritoPorId(Integer codigo_carrito);
+	public abstract Optional<Carrito> obtienePorId(Integer codigo_carrito);
 	public abstract Optional<Carrito> buscarCarritoPorUsuarioYProducto(Integer codigo_usuario, Integer codigo_producto);
 }

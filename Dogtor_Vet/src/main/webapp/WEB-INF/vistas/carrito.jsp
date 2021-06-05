@@ -42,7 +42,7 @@
                 $('#btnCart span').removeClass('active');
                 $('#id_table_carrito tbody').append("<p class='text-center font__bolder'>Tu cesta está vacía</p>");
             }
-            
+
             let totalPagar = 0;
             
             $.each( lista, function( index, value ) {
@@ -58,14 +58,16 @@
                 thNombre.className = 'font__regular';
                 let nombre = document.createElement('p');
                 nombre.className = "m-0";
+                nombre.style = 'font-size: 0.9rem; font-weight: 700';
                 let cantidad = document.createElement('p');
                 cantidad.className = "m-0";
                 cantidad.style = 'font-size: 0.8rem';
                 
                 let thPrecio = document.createElement('th');
-                thPrecio.className = 'font__regular';
+                thPrecio.className = 'font__regular primary__color';
                 let precio = document.createElement('p');
                 precio.className = "m-0";
+                precio.style = 'font-size: 0.8rem';
                 
                 let thEliminar = document.createElement('th');
                 let btnEliminar = document.createElement('button');
@@ -94,12 +96,33 @@
                 thEliminar.append(btnEliminar);
                 tr.append(thFoto, thNombre, thPrecio, thEliminar);
                 
+                btnEliminar.onclick = function() {
+                    eliminarProductoCarrito(value.codigo_carrito);
+                }
+                
                 $('#id_table_carrito tbody').append(tr);
 			});
             
             $('#id_table_total').append("<p>Total a pagar: <span class='font__semibold'>"+formatter.format(totalPagar)+"</span></p>");
         });
     }
+	
+	function eliminarProductoCarrito(codigo_carrito) {
+	    alert('Eliminar: ' + codigo_carrito);
+	    
+	    $.ajax({
+	        type: "POST",
+	        url: "eliminaProductoCarrito",
+	        data: {"codigo_carrito": codigo_carrito},
+	        success: function(data) {
+	            listaCarritoPorUsuario(usuarioCarrito);
+	            mostrarMensaje(data.MENSAJE);
+	        },
+	        error: function() {
+	            mostrarMensaje(data.ERROR);
+	        }
+	    });
+	}
 	
 	$(document).ready(function() {
 	    listaCarritoPorUsuario(usuarioCarrito);

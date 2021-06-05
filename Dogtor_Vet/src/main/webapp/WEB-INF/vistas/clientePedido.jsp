@@ -145,7 +145,6 @@
 	 		contenidoPedidos.empty();
 	 		
  		 	var cards = document.getElementsByClassName("orders__list");
-            console.log(cards);
 	 	   
 			var fechaSolicitud = new Date(pedido.fecha_solicitud_pedido);
 			var fechaEntrega = new Date(pedido.fecha_entrega_pedido);

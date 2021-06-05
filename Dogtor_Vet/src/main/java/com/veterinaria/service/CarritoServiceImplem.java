@@ -31,7 +31,7 @@ public class CarritoServiceImplem implements CarritoService {
 	}
 
 	@Override
-	public Optional<Carrito> obtieneProductoCarritoPorId(Integer codigo_carrito) {
+	public Optional<Carrito> obtienePorId(Integer codigo_carrito) {
 		return repository.findById(codigo_carrito);
 	}
 
