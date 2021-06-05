@@ -102,6 +102,11 @@ public class AccesoController {
 		return "shop";
 	}
 	
+	@RequestMapping("/cart")
+	public String verCarrito() {
+		return "clienteCarrito";
+	}
+	
 	/* Vendedor */
 
 	@RequestMapping("/verReserva")

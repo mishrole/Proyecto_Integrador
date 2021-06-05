@@ -30,14 +30,19 @@ public class CarritoController {
 	public Map<String, Object> registra(Carrito objCarrito) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
+		if(objCarrito.getCantidad_carrito() < 1) {
+			salida.put("MENSAJE", "La cantidad mínima es 1");
+			return salida;
+		}
+		
 		Optional<Carrito> option = service.buscarCarritoPorUsuarioYProducto(objCarrito.getCodigo_usuario(), objCarrito.getCodigo_producto());
 		
 		try {
 			if(option.isPresent()) {
 				option.ifPresent((Carrito result) -> {
 					
-					Integer nuevaCantidad = result.getCantidad_carrito() + objCarrito.getCantidad_carrito();
-					
+					//Integer nuevaCantidad = result.getCantidad_carrito() + objCarrito.getCantidad_carrito();
+					Integer nuevaCantidad = objCarrito.getCantidad_carrito();
 					result.setCantidad_carrito(nuevaCantidad);
 					
 					Carrito objSalida = service.insertaProductoCarrito(result);

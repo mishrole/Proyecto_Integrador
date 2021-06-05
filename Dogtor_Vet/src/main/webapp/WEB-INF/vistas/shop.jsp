@@ -139,6 +139,19 @@
 	                    const cardPrice = document.createElement('p');
 	                    cardPrice.innerHTML = formatter.format(producto.precio_producto);
 	                    cardPrice.className = 'm-0 font__subtitle font__semibold';
+	                    
+	                    const cardCantidad = document.createElement('input');
+	                    cardCantidad.className = 'form-control text-center mt-3';
+	                    cardCantidad.type = 'text';
+	                    cardCantidad.value = '1';
+	                    
+	                    cardCantidad.onkeydown = function(e) {
+	                        if((e.keyCode >= 48 && e.keyCode <=57) || (e.keyCode >= 96 && e.keyCode <=105) || e.keyCode === 8){ 
+	                            return true;
+	                        } else {
+	                            return false;
+	                        }
+	                    }
 
 	                    const divCardActionContainer = document.createElement('div');
 	                    divCardActionContainer.className = 'card-footer card-footer--clean';
@@ -149,11 +162,11 @@
 	                    cardButton.innerHTML = 'Añadir al carrito';
 	                    
 	                    cardButton.onclick = function() {
-	                        agregarProductoCarrito(${sessionScope.objUsuario.codigo_usuario}, producto.codigo_producto, 1)
+	                        agregarProductoCarrito(${sessionScope.objUsuario.codigo_usuario}, producto.codigo_producto, cardCantidad.value);
 	                    }
 	                    
 	                    divCardActionContainer.append(cardButton);
-	                    divCardTitleContainer.append(cardTitle, cardPrice);
+	                    divCardTitleContainer.append(cardTitle, cardPrice, cardCantidad);
 	                    divCardImageContainer.append(cardImage);
 	                    divCard.append(divCardImageContainer, divCardTitleContainer, divCardActionContainer);
 	                    divContainer.append(divCard);

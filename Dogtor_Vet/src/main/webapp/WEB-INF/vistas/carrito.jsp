@@ -19,7 +19,7 @@
 		<div class="card-footer text-end">
 			<div class="row justify-content-between">
 				<div id="id_table_total"></div>
-				<button class="btn btn__primary">Comprar ahora</button>
+				<button id="btnComprarAhora" class="btn btn__primary">Comprar ahora</button>
 			</div>
 			
 		</div>
@@ -28,6 +28,10 @@
 
 <script type="text/javascript">
 	var usuarioCarrito = ${sessionScope.objUsuario.codigo_usuario};
+	
+	$('#btnComprarAhora').click(function() {
+	   window.location = '/cart'; 
+	});
 	
 	function listaCarritoPorUsuario(usuario) {
 	    
@@ -71,7 +75,6 @@
                 
                 let thEliminar = document.createElement('th');
                 let btnEliminar = document.createElement('button');
-                btnEliminar.id = 'btnEliminar';
                 btnEliminar.className = 'btn btn__danger';
                 btnEliminar.style = 'font-size: 0.7rem';
                 btnEliminar.innerHTML = "Eliminar";
@@ -103,12 +106,11 @@
                 $('#id_table_carrito tbody').append(tr);
 			});
             
-            $('#id_table_total').append("<p>Total a pagar: <span class='font__semibold'>"+formatter.format(totalPagar)+"</span></p>");
+            $('#id_table_total').append("<p>Subtotal: <span class='font__semibold'>"+formatter.format(totalPagar)+"</span></p>");
         });
     }
 	
 	function eliminarProductoCarrito(codigo_carrito) {
-	    alert('Eliminar: ' + codigo_carrito);
 	    
 	    $.ajax({
 	        type: "POST",
