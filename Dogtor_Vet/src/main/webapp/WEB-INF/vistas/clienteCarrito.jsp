@@ -115,7 +115,60 @@
     </main>
     
     <div class="container-fluid">
-		
+		<div class="modal fade p-0" id="id_modal_RegistraPedido">
+    		<div class="modal-dialog modal-lg">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<div class="col-12 justify-content-center align-items-center d-flex">
+    						<h1 class="h3 mb-2 mt-2 fw-normal text-center"><b>Registro de Compra</b></h1>
+    					</div>
+    				</div>
+    				<div class="modal-body">
+    					<div class="container">
+    						 <div class="row mt-2">
+					            <div class="col-12 justify-content-center align-items-center d-flex">
+					                <main class="col-12 col-md-10">
+					                    <form id="id_form_registra">
+					                      
+					                      <input type="text" id="id_cliente" name="codigo_cliente" value="${sessionScope.objUsuario.codigo_usuario}" class="d-none">
+					                      
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+					                      		<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_direccion" name="direccion_usuario" >
+						                      		<label for="id_direccion">Dirección</label>
+					                      		</div>
+					                      	</div>
+					                      	
+					                      	<div class="col-12 col-md-6 mb-3">
+					                      		<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_referencia" name="referencia_usuario" >
+						                      		<label for="id_referencia">Referencia</label>
+					                      		</div>
+					                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+										  	
+										  </div>
+										  
+					                      <div class="form-group row">
+					                      
+					                      </div>
+					                      
+					                      <button class="w-100 btn btn-lg btn__primary" type="button" id="registrar_pedido">Finalizar compra</button>
+					                    </form>
+					                  </main>
+					            </div>
+					        </div>
+    					</div>
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
     </div>
 
 	<!-- <script type="text/javascript" src="js/jquery.dataTables.min.js"></script> -->
@@ -276,6 +329,10 @@
 	            if(totalPagar > 0) {
 	                $('#id_comprar_container').append(btnComprar);
 	            }
+	            
+	            $('#id_btn_comprar').click(function() {
+	                $('#id_modal_RegistraPedido').modal('show');
+				});
  
 	            $('#id_resume_compra tbody').append(filaSubtotal, filaEnvio, filaTotal);
 	            
@@ -329,6 +386,7 @@
 		
 		$(document).ready(function() {
 		    listaDetalleCarritoPorUsuario(codigoUsuario);
+
 		});
     
 	</script>

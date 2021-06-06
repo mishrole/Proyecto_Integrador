@@ -25,6 +25,12 @@ public class CarritoController {
 		return service.listaCarritoPorUsuario(codigo_usuario);
 	}
 	
+	@RequestMapping("/subtotalCarrito")
+	@ResponseBody
+	public Double subtotalCarrito(Integer codigo_usuario) {
+		return service.subtotalCarrito(codigo_usuario);
+	}
+	
 	@RequestMapping("/registraCarrito")
 	@ResponseBody
 	public Map<String, Object> registra(Carrito objCarrito) {

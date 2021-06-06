@@ -98,6 +98,12 @@ public class UsuarioController {
 		return usuarioService.listaUsuarioPorNombreYRol(nombre_usuario.trim(), codigo_rol_usuario);
 	}
 	
+	@RequestMapping("obtieneRepartidorRandom")
+	@ResponseBody
+	public List<Usuario> obtieneRepartidorRandom() {
+		return usuarioService.obtieneRepartidorRandom();
+	}
+	
 	@RequestMapping("/registraUsuario")
 	@ResponseBody
 	public Map<String, Object> register(Usuario objUsuario, Integer codigo_rol_usuario) {

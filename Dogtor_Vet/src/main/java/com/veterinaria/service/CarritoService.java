@@ -11,4 +11,5 @@ public interface CarritoService {
 	public abstract void eliminaProductoCarrito(Integer codigo_carrito);
 	public abstract Optional<Carrito> obtienePorId(Integer codigo_carrito);
 	public abstract Optional<Carrito> buscarCarritoPorUsuarioYProducto(Integer codigo_usuario, Integer codigo_producto);
+	public abstract Double subtotalCarrito(Integer codigo_usuario);
 }

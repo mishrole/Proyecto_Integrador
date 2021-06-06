@@ -24,4 +24,6 @@ public interface UsuarioService {
 	public Page<Usuario> findAll(Pageable pageable);
 	
 	public abstract List<Usuario> obtenerUsuarioPorEmail(String email_usuario);
+	
+	public abstract List<Usuario> obtieneRepartidorRandom();
 }
