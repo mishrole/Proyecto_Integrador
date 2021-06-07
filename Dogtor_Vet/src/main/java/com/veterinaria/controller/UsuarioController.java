@@ -80,6 +80,12 @@ public class UsuarioController {
 		return "crudUsuario";
 	}
 	
+	@RequestMapping("/listaUsuarioPorId")
+	@ResponseBody
+	public Optional<Usuario> obtieneUsuarioPorId(Integer codigo_usuario) {
+		return usuarioService.obtieneUsuarioPorId(codigo_usuario);
+	}
+	
 	@RequestMapping("/listaUsuarioPorNombre")
 	@ResponseBody
 	public List<Usuario> listaUsuarioPorNombre(String nombre_usuario) {

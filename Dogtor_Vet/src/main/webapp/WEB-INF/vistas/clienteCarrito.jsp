@@ -238,6 +238,17 @@
 	    
 	    // Usuario actual
 	 	const codigoUsuario = ${sessionScope.objUsuario.codigo_usuario};
+		
+	 	function obtenerDatosUsuario(usuario) {
+	 	   $.getJSON("listaUsuarioPorId", {"codigo_usuario" : usuario}, function (lista) {
+			    $('#id_dni').val(lista.dni_usuario);
+			    $('#id_telefono').val(lista.telefono_usuario);
+			    $('#id_email').val(lista.email_usuario);
+			    $('#id_direccion').val(lista.direccion_usuario);
+			    $('#id_referencia').val(lista.referencia_usuario);
+	 	       
+	 	   });
+	 	}
 	 	
 	 	function listaDetalleCarritoPorUsuario(usuario) {
 		    $("#id_table_compra tbody").empty();
@@ -381,6 +392,7 @@
 	            $('#id_btn_comprar').click(function() {
 	                $('#id_modal_RegistraPedido').modal('show');
 	                $('#id_cliente').val(codigoUsuario);
+	        	 	obtenerDatosUsuario(codigoUsuario);
 				});
  
 	            $('#id_resume_compra tbody').append(filaSubtotal, filaEnvio, filaTotal);
@@ -548,7 +560,6 @@
 							validator.resetForm();
 							listaDetalleCarritoPorUsuario(codigoUsuario);
 							listaCarritoPorUsuario(codigoUsuario);
-							console.log(data.lista);
 						},
 						error: function() {
 							mostrarMensaje(MSG_ERROR);
@@ -558,11 +569,6 @@
 		    });
 		    
 			function limpiarRegistrarPedido() {
-			    $('#id_dni').val('');
-			    $('#id_telefono').val('');
-			    $('#id_email').val('');
-			    $('#id_direccion').val('');
-			    $('#id_referencia').val('');
 			    $('#id_fecha_entrega').val('');
 			}
 		});
