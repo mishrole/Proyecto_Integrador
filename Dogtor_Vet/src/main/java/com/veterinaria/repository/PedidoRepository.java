@@ -10,9 +10,9 @@ import com.veterinaria.entity.Pedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 	
-	@Query("Select p from Pedido p, Usuario u, EstadoPedido ep where p.usuarioCliente.codigo_usuario = u.codigo_usuario and p.estadoPedido.codigo_estado_pedido = ep.codigo_estado_pedido and p.codigo_cliente like :param_cliente")
+	@Query("Select p from Pedido p, Usuario u, EstadoPedido ep where p.usuarioCliente.codigo_usuario = u.codigo_usuario and p.estadoPedido.codigo_estado_pedido = ep.codigo_estado_pedido and p.codigo_cliente like :param_cliente order by p.codigo_pedido desc")
 	public abstract List<Pedido> listaPedidoPorCliente(@Param("param_cliente") Integer codigo_cliente);
 	
-	@Query("Select p from Pedido p, Usuario u, EstadoPedido ep where p.usuarioRepartidor.codigo_usuario = u.codigo_usuario and p.estadoPedido.codigo_estado_pedido = ep.codigo_estado_pedido and p.codigo_repartidor like :param_repartidor")
+	@Query("Select p from Pedido p, Usuario u, EstadoPedido ep where p.usuarioRepartidor.codigo_usuario = u.codigo_usuario and p.estadoPedido.codigo_estado_pedido = ep.codigo_estado_pedido and p.codigo_repartidor like :param_repartidor order by p.codigo_pedido desc")
 	public abstract List<Pedido> listaPedidoPorRepartidor(@Param("param_repartidor") Integer codigo_repartidor);
 }

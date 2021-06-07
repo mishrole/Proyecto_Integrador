@@ -1,6 +1,7 @@
 :root {
     --background-light-black: #2f2e41;
     --background-light-gray: #f1f4fa;
+    --background-light-blue: #f1f2fd;
     --background-light-white: #fefefe;
     --background-light-font: #8ea9c0;
     --background-light-icon: #99b2c6;
@@ -78,6 +79,10 @@ body {
 
 .beneficios__title {
     margin-bottom: 0;
+}
+
+#specialists {
+	background-color: var(--background-light-blue);
 }
 
 .specialist__profile__image:hover {
@@ -399,6 +404,11 @@ body {
 
 /* Pedidos */
 
+#id_pedido_lista {
+	height: 70vh;
+    overflow: auto;
+}
+
 .order__status {
     border-radius: 15px;
     color: var(--background-light-white);
@@ -617,4 +627,24 @@ textarea#id_descripcion {
 		right: 40px;
     	top: 140px;
 	}
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8886;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #88888887;
 }

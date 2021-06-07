@@ -28,7 +28,7 @@
 
 <script type="text/javascript">
 	var usuarioCarrito = ${sessionScope.objUsuario.codigo_usuario};
-	
+
 	$('#btnComprarAhora').click(function() {
 	   window.location = '/cart'; 
 	});
@@ -108,6 +108,7 @@
             
             $('#id_table_total').append("<p>Subtotal: <span class='font__semibold'>"+formatter.format(totalPagar)+"</span></p>");
         });
+
     }
 	
 	function eliminarProductoCarrito(codigo_carrito) {

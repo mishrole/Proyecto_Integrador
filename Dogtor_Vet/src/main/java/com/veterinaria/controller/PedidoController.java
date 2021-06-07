@@ -51,9 +51,9 @@ public class PedidoController {
 		return service.listaPedidoPorRepartidor(codigo_repartidor);
 	}
 	
-	@RequestMapping("registraPedido")
+	@RequestMapping("/registraPedido")
 	@ResponseBody
-	public Map<String, Object> registraPedido(Integer codigo_usuario, String fecha_entrega) {
+	public Map<String, Object> registraPedido(Integer codigo_usuario, String direccion_usuario, String referencia_usuario, String telefono_usuario, String dni_usuario, String fecha_entrega) {
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
 		try {
@@ -87,6 +87,7 @@ public class PedidoController {
 				// Obtenemos un usuario con rol repartidor aleatorio
 				List<Usuario> usuarioRepartidor = usuarioService.obtieneRepartidorRandom();
 				
+				// Seteamos los datos del Pedido
 				Pedido objPedido = new Pedido();
 				objPedido.setCodigo_cliente(codigo_usuario);
 				objPedido.setFecha_solicitud_pedido(new Date());
@@ -99,12 +100,38 @@ public class PedidoController {
 				Pedido objSalida = service.insertaPedido(objPedido);
 				
 				if(objSalida != null) {
+					
 					// Vaciar carrito
 					for(Carrito c : carrito) {
 						carritoService.eliminaProductoCarrito(c.getCodigo_carrito());
 					}
 					
-					salida.put("MENSAJE", "El pedido ha sido registrado");
+					try {
+						// Obtenemos al usuario Cliente actual
+						Optional<Usuario> usuarioCliente = usuarioService.obtieneUsuarioPorId(codigo_usuario);
+						
+						// Actualizamos la dirección, referencia, y teléfono del usuario Cliente
+						if(usuarioCliente.isPresent()) {
+							usuarioCliente.ifPresent((Usuario result) -> {
+								result.setDireccion_usuario(direccion_usuario);
+								result.setReferencia_usuario(referencia_usuario);
+								result.setTelefono_usuario(telefono_usuario);
+								result.setDni_usuario(dni_usuario);
+								
+								Usuario objSalidaCliente = usuarioService.insertaUsuario(result);
+								
+								if(objSalidaCliente == null) {
+									salida.put("MENSAJE", "Error al actualizar usuario");
+								}
+							});
+						}
+					} catch (Exception e) {
+						salida.put("MENSAJE", "Error al actualizar información del usuario");
+						e.printStackTrace();
+					}
+					
+					salida.put("MENSAJE", "El pedido ha sido registrado correctamente");
+					
 				}
 			}
 
