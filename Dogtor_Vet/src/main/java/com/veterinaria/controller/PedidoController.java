@@ -138,6 +138,9 @@ public class PedidoController {
 		} catch (Exception e) {
 			salida.put("MENSAJE", "Error, el pedido no pudo ser registrado");
 			e.printStackTrace();
+		} finally {
+			List<Pedido> lista = service.listaPedido();
+			salida.put("lista", lista);
 		}
 		
 		return salida;

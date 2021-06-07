@@ -495,11 +495,8 @@
 							notEmpty: {
 								message: '* Obligatorio'
 							},
-							stringLength: {
-							    min: 5
-							},
 							regexp: {
-							    regexp: /^[0-9a-zραινσϊό.# ]+$/i,
+							    regexp: /^[0-9a-zραινσϊό.# ]{5,}$/i,
 							    message: 'Mνnimo 5 caracteres'
 							}
 						}
@@ -510,11 +507,8 @@
 							notEmpty: {
 								message: '* Obligatorio'
 							},
-							stringLength: {
-							    min: 5
-							},
 							regexp: {
-							    regexp: /^[0-9a-zραινσϊό.# ]+$/i,
+							    regexp: /^[0-9a-zραινσϊό.# ]{5,}$/i,
 							    message: 'Mνnimo 5 caracteres'
 							}
 						}
@@ -554,13 +548,12 @@
 							validator.resetForm();
 							listaDetalleCarritoPorUsuario(codigoUsuario);
 							listaCarritoPorUsuario(codigoUsuario);
+							console.log(data.lista);
 						},
 						error: function() {
 							mostrarMensaje(MSG_ERROR);
 						}
 					});
-				    
-				    alert(cliente)
 				}
 		    });
 		    
