@@ -40,4 +40,9 @@ public class CarritoServiceImplem implements CarritoService {
 		return repository.buscarCarritoPorUsuarioYProducto(codigo_usuario, codigo_producto);
 	}
 
+	@Override
+	public Double subtotalCarrito(Integer codigo_usuario) {
+		return repository.subtotalCarrito(codigo_usuario);
+	}
+
 }

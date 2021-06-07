@@ -1,13 +1,15 @@
 # Dogtor Project
 
-> E-commerce for the sale of veterinary products and services, created with Spring Boot, Angular and MySQL for the Integrator Project and Web Application Development II courses at [Cibertec](https://www.cibertec.edu.pe/).
+> E-commerce for the sale of veterinary products and services, created with Java 8, Spring Boot, Javascript, jQuery and MySQL for the Integrator Project, Web Application Development II, and Web Services Development II courses at [Cibertec](https://www.cibertec.edu.pe/).
 
 ## Table of Contents
 
-* [General Info](#general-info)
-* [User Stories](#user-stories)
-* [Technologies](#technologies)
-* [Collaborators](#collaborators)
+- [Dogtor Project](#dogtor-project)
+  - [Table of Contents](#table-of-contents)
+  - [General Info](#general-info)
+  - [User Stories](#user-stories)
+  - [Technologies](#technologies)
+  - [Collaborators](#collaborators)
 
 ## General Info
 
@@ -25,15 +27,17 @@
 
 ## Technologies
 
-* **Spring Boot 2.4.4**
-* **Angular**
+* **Java 8**
+* **Spring Boot v2.4.4**
+* **Angular** (*proximamente*)
 * **MySQL**
-* **Bootstrap 5.0**
-* **jQuery 3.6.0**
+* **Bootstrap v5.0**
+* **jQuery v3.6.0**
+* **Feather v4.28.0**
+* **Heroku v20**
 
 ## Collaborators
 
 [@Abregu1998](https://github.com/Abregu1998)
 [@arturcv26](https://github.com/arturcv26)
 [@enrique963](https://github.com/enrique963)
-[@Romario2017](https://github.com/Romario2017)

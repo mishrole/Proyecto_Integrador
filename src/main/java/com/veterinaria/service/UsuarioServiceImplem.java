@@ -79,4 +79,9 @@ public class UsuarioServiceImplem implements UsuarioService {
 		return repository.listaUsuarioPorNombreYRol(nombre_usuario+"%", codigo_rol_usuario);
 	}
 
+	@Override
+	public List<Usuario> obtieneRepartidorRandom() {
+		return repository.obtieneRepartidorRandom();
+	}
+
 }

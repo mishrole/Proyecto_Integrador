@@ -53,5 +53,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
 	public Page<Usuario> findAll(Pageable pageable);
 	
+	/* OBTENER UN REPARTIDOR ALEATORIO */
+
+	@Query(value = "Select * from tb_usuario u, tb_detalle_usuario_rol dur, tb_rol_usuario r where dur.codigo_usuario = u.codigo_usuario and "
+			+ "r.codigo_rol_usuario = dur.codigo_rol_usuario and dur.codigo_rol_usuario like 5 order by rand() limit 1", nativeQuery = true)
+	public abstract List<Usuario> obtieneRepartidorRandom(); 
+	
 	
 }

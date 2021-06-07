@@ -1,15 +1,20 @@
 package com.veterinaria.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_pedido")
@@ -49,6 +54,10 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "codigo_estado_pedido", insertable = false, updatable = false, nullable = false)
 	private EstadoPedido estadoPedido;
+	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido") 
+	private List<DetallePedidoProducto> detallesPedido;
 
 	public Integer getCodigo_pedido() {
 		return codigo_pedido;
@@ -130,4 +139,11 @@ public class Pedido {
 		this.estadoPedido = estadoPedido;
 	}
 
+	public List<DetallePedidoProducto> getDetallesPedido() {
+		return detallesPedido;
+	}
+
+	public void setDetallesPedido(List<DetallePedidoProducto> detallesPedido) {
+		this.detallesPedido = detallesPedido;
+	}
 }

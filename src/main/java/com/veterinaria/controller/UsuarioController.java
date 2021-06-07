@@ -80,6 +80,12 @@ public class UsuarioController {
 		return "crudUsuario";
 	}
 	
+	@RequestMapping("/listaUsuarioPorId")
+	@ResponseBody
+	public Optional<Usuario> obtieneUsuarioPorId(Integer codigo_usuario) {
+		return usuarioService.obtieneUsuarioPorId(codigo_usuario);
+	}
+	
 	@RequestMapping("/listaUsuarioPorNombre")
 	@ResponseBody
 	public List<Usuario> listaUsuarioPorNombre(String nombre_usuario) {
@@ -96,6 +102,12 @@ public class UsuarioController {
 	@ResponseBody
 	public List<Usuario> listaUsuarioPorNombreYRol(String nombre_usuario, Integer codigo_rol_usuario) {
 		return usuarioService.listaUsuarioPorNombreYRol(nombre_usuario.trim(), codigo_rol_usuario);
+	}
+	
+	@RequestMapping("obtieneRepartidorRandom")
+	@ResponseBody
+	public List<Usuario> obtieneRepartidorRandom() {
+		return usuarioService.obtieneRepartidorRandom();
 	}
 	
 	@RequestMapping("/registraUsuario")

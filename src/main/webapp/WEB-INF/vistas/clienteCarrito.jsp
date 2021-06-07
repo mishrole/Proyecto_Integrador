@@ -69,10 +69,10 @@
                             	
                                 	<div class="row">
 	                                   	<!-- Lista de Pedidos -->
-	                                	<div class="col-12 col-lg-8">
+	                                	<div class="col-12 col-lg-8 table-responsive">
 	                                		<p class="font__subtitle title__color font__semibold my-3">Detalle de Compra</p>
 	                                	
-	                                		<table id="id_table_compra" class="table text-center">
+	                                		<table id="id_table_compra" class="table table-sm text-center">
 	                                			<thead>
 	                                				<tr>
 	                                					<th scope="col"></th>
@@ -90,7 +90,7 @@
 	                                	<!-- Cuerpo del Pedido -->
 		                                <div class="col-12 col-lg-4">
 											<p class="font__subtitle title__color font__semibold my-3">Resumen de Compra</p>
-			                            	<table id="id_resume_compra" class="table text-center">
+			                            	<table id="id_resume_compra" class="table table-sm text-center">
 			                            		<thead>
 			                            			<tr>
 			                            				<th scope="col">Tipo</th>
@@ -115,11 +115,112 @@
     </main>
     
     <div class="container-fluid">
-		
+		<div class="modal fade p-0" id="id_modal_RegistraPedido">
+    		<div class="modal-dialog modal-xl">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<div class="col-12 justify-content-center align-items-center d-flex">
+    						<h1 class="text-center primary__color"><b>Dogtor</b></h1>
+    					</div>
+    				</div>
+    				<div class="modal-body">
+    					<div class="container">
+    						 <div class="row mt-2">
+					            <div class="col-12 justify-content-center align-items-center d-flex">
+					                <main class="col-12 col-md-10">
+					                    <form id="id_form_registraPedido">
+					                      
+					                      <input type="text" id="id_cliente" name="codigo_usuario" value="${sessionScope.objUsuario.codigo_usuario}" class="d-none">
+					                      
+					                      <div class="form-group row">
+					                    	<div class="col-12 mb-3">
+					                    		<p class="font__subtitle title__color font__semibold m-0">Datos de Cliente</p>
+					                    	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+					                      	
+					                      	<div class="col-12 col-md-6 mb-3">
+					                      		<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_email" name="email_usuario" value="${sessionScope.objUsuario.email_usuario}" readonly >
+						                      		<label for="id_email">Email</label>
+					                      		</div>
+					                      	</div>
+					                      	
+					                      	<div class="col-12 col-md-3 mb-3">
+					                      		<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_dni" name="dni_usuario" value="${sessionScope.objUsuario.dni_usuario}">
+						                      		<label for="id_dni">DNI</label>
+					                      		</div>
+					                      	</div>
+					                      	
+					                      	<div class="col-12 col-md-3 mb-3">
+					                      		<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_telefono" name="telefono_usuario" value="${sessionScope.objUsuario.telefono_usuario}" >
+						                      		<label for="id_telefono">Teléfono</label>
+					                      		</div>
+					                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+					                    	<div class="col-12 mb-3">
+					                    		<p class="font__subtitle title__color font__semibold m-0">¿Dónde recibirás tu pedido?</p>
+					                    	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+					                      		<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_direccion" name="direccion_usuario" value="${sessionScope.objUsuario.direccion_usuario}">
+						                      		<label for="id_direccion">Dirección</label>
+					                      		</div>
+					                      	</div>
+					                      	
+					                      	<div class="col-12 col-md-6 mb-3">
+					                      		<div class="form-floating">
+						                      		<input type="text" class="form-control" id="id_referencia" name="referencia_usuario" value="${sessionScope.objUsuario.referencia_usuario}">
+						                      		<label for="id_referencia">Referencia</label>
+					                      		</div>
+					                      	</div>
+					                      </div>
+					                      
+					                      <div class="form-group row">
+										  	<div class="col-12 mb-3">
+					                    		<p class="font__subtitle title__color font__semibold m-0">Elige una fecha de entrega</p>
+					                    	</div>
+										  </div>
+										  
+					                      <div class="form-group row">
+					                      	<div class="col-12 col-md-6 mb-3">
+					                      		<div class="form-floating">
+													<input type="date" name="fecha_entrega" class="form-control" id="id_fecha_entrega">
+													<label for="id_fecha_entrega">Fecha</label>
+												</div>
+					                      	</div>
+					                      </div>
+					                      
+					                      <!-- 
+					                      <div class="form-group row">
+										  	<div class="col-12 mb-3">
+					                    		<p class="font__subtitle title__color font__semibold">Pago en línea</p>
+					                    	</div>
+										  </div>
+					                       -->
+					                      <button class="w-100 btn btn-lg btn__primary" type="button" id="id_btn_registrar_pedido">Finalizar compra</button>
+					                    </form>
+					                  </main>
+					            </div>
+					        </div>
+    					</div>
+    				</div>
+    				<div class="modal-footer">
+    					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
     </div>
 
-	<!-- <script type="text/javascript" src="js/jquery.dataTables.min.js"></script> -->
-	<!-- <script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script> -->
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script>
@@ -137,6 +238,17 @@
 	    
 	    // Usuario actual
 	 	const codigoUsuario = ${sessionScope.objUsuario.codigo_usuario};
+		
+	 	function obtenerDatosUsuario(usuario) {
+	 	   $.getJSON("listaUsuarioPorId", {"codigo_usuario" : usuario}, function (lista) {
+			    $('#id_dni').val(lista.dni_usuario);
+			    $('#id_telefono').val(lista.telefono_usuario);
+			    $('#id_email').val(lista.email_usuario);
+			    $('#id_direccion').val(lista.direccion_usuario);
+			    $('#id_referencia').val(lista.referencia_usuario);
+	 	       
+	 	   });
+	 	}
 	 	
 	 	function listaDetalleCarritoPorUsuario(usuario) {
 		    $("#id_table_compra tbody").empty();
@@ -276,6 +388,12 @@
 	            if(totalPagar > 0) {
 	                $('#id_comprar_container').append(btnComprar);
 	            }
+	            
+	            $('#id_btn_comprar').click(function() {
+	                $('#id_modal_RegistraPedido').modal('show');
+	                $('#id_cliente').val(codigoUsuario);
+	        	 	obtenerDatosUsuario(codigoUsuario);
+				});
  
 	            $('#id_resume_compra tbody').append(filaSubtotal, filaEnvio, filaTotal);
 	            
@@ -329,6 +447,130 @@
 		
 		$(document).ready(function() {
 		    listaDetalleCarritoPorUsuario(codigoUsuario);
+		    
+		    $('#id_form_registraPedido').bootstrapValidator({
+				message: 'El valor no es válido',
+				feedbackIcons: {
+					valid: 'glyphicon glyphicon-ok',
+					invalid: 'glyphicon glyphicon-remove',
+					validating: 'glyphicon glyphicon-refresh'
+				},
+				fields: {
+					codigo_usuario: {
+						selector: '#id_cliente',
+						validators: {
+							notEmpty: {
+								message: '* Obligatorio'
+							},
+						}
+					},
+					dni_usuario: {
+						selector: '#id_dni',
+						validators: {
+							notEmpty: {
+								message: '* Obligatorio'
+							},
+							regexp: {
+							    regexp: /^[0-9]{8}$/,
+							    message: 'Ingrese DNI válido'
+							}
+						}
+					},
+					telefono_usuario: {
+						selector: '#id_telefono',
+						validators: {
+							notEmpty: {
+								message: '* Obligatorio'
+							},
+							regexp: {
+							    regexp: /^[0-9]{9}$/,
+							    message: 'Teléfono de 9 dígitos'
+							}
+						}
+					},
+					email_usuario: {
+						selector: '#id_email',
+						validators: {
+							notEmpty: {
+								message: '* Obligatorio'
+							},
+							regexp: {
+							    regexp: /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
+							    message: 'Ingrese un email válido'
+							        
+							}
+						}
+					},
+					direccion_usuario: {
+						selector: '#id_direccion',
+						validators: {
+							notEmpty: {
+								message: '* Obligatorio'
+							},
+							regexp: {
+							    regexp: /^[0-9a-zñáéíóúü.# ]{5,}$/i,
+							    message: 'Mínimo 5 caracteres'
+							}
+						}
+					},
+					referencia_usuario: {
+						selector: '#id_referencia',
+						validators: {
+							notEmpty: {
+								message: '* Obligatorio'
+							},
+							regexp: {
+							    regexp: /^[0-9a-zñáéíóúü.# ]{5,}$/i,
+							    message: 'Mínimo 5 caracteres'
+							}
+						}
+					},
+					fecha_entrega: {
+						selector: '#id_fecha_entrega',
+						validators: {
+							notEmpty: {
+								message: '* Obligatorio'
+							},
+						}
+					},
+				}
+			});
+		    
+		    $('#id_btn_registrar_pedido').click(function() {
+		        var validator = $('#id_form_registraPedido').data('bootstrapValidator');
+				validator.validate();
+				
+				var cliente =  $('#id_cliente').val();
+				var dni = $('#id_dni').val();
+				var telefono = $('#id_telefono').val();
+				var email = $('#id_email').val();
+				var direccion = $('#id_direccion').val();
+				var referencia = $('#id_referencia').val();
+				var fecha = $('#id_fecha_entrega').val();
+				
+				if(validator.isValid()) {
+				    $.ajax({
+						type: 'POST',
+						data: {"codigo_usuario": cliente, "direccion_usuario": direccion, "referencia_usuario": referencia, "telefono_usuario": telefono, "dni_usuario": dni, "fecha_entrega": fecha},
+						url: 'registraPedido',
+						success: function(data) {
+						    $('#id_modal_RegistraPedido').modal('hide');
+							mostrarMensaje(data.MENSAJE);
+							limpiarRegistrarPedido();
+							validator.resetForm();
+							listaDetalleCarritoPorUsuario(codigoUsuario);
+							listaCarritoPorUsuario(codigoUsuario);
+						},
+						error: function() {
+							mostrarMensaje(MSG_ERROR);
+						}
+					});
+				}
+		    });
+		    
+			function limpiarRegistrarPedido() {
+			    $('#id_fecha_entrega').val('');
+			}
 		});
     
 	</script>
