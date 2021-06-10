@@ -27,7 +27,8 @@ APELLIDO_USUARIO, FECHA_NACIMIENTO_USUARIO, CODIGO_DISTRITO, CODIGO_VISIBILIDAD)
 (6, 'especialista2@gmail.com', '123', 'Carlos', 'Especialista', '1997-03-25', 3, 1),
 (7, 'especialista3@gmail.com', '123', 'Juan', 'Especialista', '1997-03-25', 1, 1),
 (8, 'especialista4@gmail.com', '123', 'Pedro', 'Especialista', '1997-03-25', 2, 1),
-(9, 'cliente2@gmail.com', '123', 'Pedro', 'Cliente', '1997-03-25', 2, 1);
+(9, 'cliente2@gmail.com', '123', 'Pedro', 'Cliente', '1997-03-25', 2, 1),
+(10, 'repartidor2@gmail.com', '123', 'Francisco', 'Repartidor', '1997-03-25', 2, 1);
 
 INSERT INTO TB_DETALLE_USUARIO_ROL VALUES 
 (1, 1),

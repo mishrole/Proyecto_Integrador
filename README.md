@@ -4,8 +4,6 @@
 
 ## Table of Contents
 
-- [Dogtor Project](#dogtor-project)
-  - [Table of Contents](#table-of-contents)
   - [General Info](#general-info)
   - [User Stories](#user-stories)
   - [Technologies](#technologies)
@@ -29,8 +27,8 @@
 
 * **Java 8**
 * **Spring Boot v2.4.4**
-* **Angular** (*proximamente*)
-* **MySQL**
+* **Angular** (*coming soon*)
+* **MySQL / ClearDB**
 * **Bootstrap v5.0**
 * **jQuery v3.6.0**
 * **Feather v4.28.0**
