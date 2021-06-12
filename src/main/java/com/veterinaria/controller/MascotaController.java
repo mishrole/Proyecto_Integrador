@@ -1,11 +1,6 @@
 package com.veterinaria.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-//import java.io.IOException;
-import java.nio.file.Paths;
-//import java.util.Base64;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +17,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.veterinaria.entity.Mascota;
 import com.veterinaria.service.MascotaService;
-
-import org.springframework.util.StringUtils;
 
 @Controller
 public class MascotaController {
@@ -35,8 +34,25 @@ public class MascotaController {
 	@Value("${resourcesDir}")
 	private String uploadFolder;
 	
+	@Value("${awsAccess}")
+	private String ACCESS_KEY;
+	
+	@Value("${awsSecret}")
+	private String SECRET_KEY;
+	
+	@Value("${awsRegion}")
+	private String REGION_NAME;
+	
+	@Value("${awsBucket}")
+	private String BUCKET_NAME;
+	
+	@Value("${awsEndpoint}")
+	private String ENDPOINT_URL;
+	
 	@Autowired
 	private MascotaService service;
+
+	private AmazonS3 s3Cliente;
 	
 	@PostMapping("/registraMascotaConFoto")
 	public @ResponseBody Map<String, Object> registraMascotaConFoto(@RequestParam(value = "codigo_propietario") Integer codigoPropietario,
@@ -49,32 +65,15 @@ public class MascotaController {
 		
 		Map<String, Object> salida = new HashMap<String, Object>();
 		
-		Mascota mascota = new Mascota();
+		BasicAWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
+		s3Cliente = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(REGION_NAME).build();
 		
 		try {
-			String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
-			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-			String filePath = Paths.get(uploadDirectory, fileName).toString();
+			String fileUrl = "";
+			Mascota mascota = new Mascota();
 			
-			try {
-				
-				File dir = new File(uploadDirectory);
-				if(!dir.exists()) {
-					dir.mkdirs();
-				}
-				
-				// Setear archivo
-				byte[] imageData = file.getBytes();
-				mascota.setFoto_mascota(imageData);
-				
-				// Guardar localmente
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-				stream.write(file.getBytes());
-				stream.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				salida.put("MENSAJE", "El archivo no pudo ser procesado");
-			}
+			String fileName = new Date().getTime()+"-"+file.getOriginalFilename().replace(" ", "_");
+			ObjectMetadata metadata = new ObjectMetadata();
 			
 			mascota.setCodigo_mascota(null);
 			mascota.setCodigo_propietario(codigoPropietario);
@@ -88,6 +87,13 @@ public class MascotaController {
 			mascota.setCodigo_cartilla_sanitaria(cartillaMascota);
 			mascota.setCodigo_visibilidad(1);
 			
+			if(file.getSize() > 0) {
+				metadata.setContentLength(file.getSize());
+				fileUrl = ENDPOINT_URL+"/"+BUCKET_NAME+"/"+fileName;
+				s3Cliente.putObject(new PutObjectRequest(BUCKET_NAME, fileName, file.getInputStream(), metadata).withCannedAcl(CannedAccessControlList.PublicRead));	
+			}
+
+			mascota.setFoto_mascota(fileUrl);
 			Mascota objSalida = service.insertaMascota(mascota);
 			
 			if(objSalida == null) {
@@ -101,10 +107,10 @@ public class MascotaController {
 				}
 
 			}
-			
-		} catch(Exception e) {
-			e.printStackTrace();
+	
+		} catch (Exception e) {
 			salida.put("MENSAJE", "El registro no pudo ser completado");
+			e.printStackTrace();
 		}
 		
 		return salida;
@@ -121,6 +127,9 @@ public class MascotaController {
 			Model model, HttpServletRequest request, final @RequestParam(value = "foto_mascota") MultipartFile file) {
 				
 		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		BasicAWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
+		s3Cliente = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(REGION_NAME).build();
 		
 		try {
 			Optional<Mascota> option = service.obtienePorId(codigoMascota);
@@ -139,47 +148,35 @@ public class MascotaController {
 					result.setCodigo_identificacion_mascota(identificacionMascota);
 					
 					try {
-						String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
-						String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-						String filePath = Paths.get(uploadDirectory, fileName).toString();
+						String fileUrl = "";
 						
-						try {
-							File dir = new File(uploadDirectory);
-							if(!dir.exists()) {
-								dir.mkdirs();
+						String fileName = new Date().getTime()+"-"+file.getOriginalFilename().replace(" ", "_");
+						ObjectMetadata metadata = new ObjectMetadata();
+						
+						if(file.getSize() > 0) {
+							metadata.setContentLength(file.getSize());
+							fileUrl = ENDPOINT_URL+"/"+BUCKET_NAME+"/"+fileName;
+							s3Cliente.putObject(new PutObjectRequest(BUCKET_NAME, fileName, file.getInputStream(), metadata).withCannedAcl(CannedAccessControlList.PublicRead));
+						}
+						
+						result.setFoto_mascota(fileUrl);
+						Mascota objSalida = service.insertaMascota(result);
+						
+						if(objSalida == null) {
+							salida.put("MENSAJE", "El registro no pudo ser completado");
+						} else {
+							
+							if(fileName == null || fileName.contains("..")) {
+								salida.put("MENSAJE", "El registro se completó sin la imagen");
+							} else {
+								salida.put("MENSAJE", "¡Registro exitoso!");
 							}
-							
-							// Setear archivo
-							byte[] imageData = file.getBytes();
-							
-							if(file.getBytes() != null && file.getSize() > 0 && imageData.length > 0) {
-								result.setFoto_mascota(imageData);
-							}
-							
-							// Guardar localmente
-							BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-							stream.write(file.getBytes());
-							stream.close();
-						} catch (Exception e) {
-							e.printStackTrace();
-							salida.put("MENSAJE", "El archivo no es válido");
+
 						}
 						
 					} catch (Exception e) {
 						e.printStackTrace();
-						salida.put("MENSAJE", "El archivo no pudo ser procesado");
-					} finally {
-						Mascota objSalida = service.insertaMascota(result);
-						
-						if(objSalida == null) {
-							salida.put("MENSAJE", "La actualización no pudo ser completada");
-						} else {
-							if(objSalida.getFoto_mascota() == null) {
-								salida.put("MENSAJE", "La foto no pudo ser actualizada");
-							} else {
-								salida.put("MENSAJE", "¡Actualización exitosa!");
-							}
-						}
+						salida.put("MENSAJE", "El archivo no es válido");
 					}
 				});
 
@@ -216,63 +213,6 @@ public class MascotaController {
 	@ResponseBody
 	public List<Mascota> listaMascotaPorPropietarioYNombre(Integer codigo_propietario, String nombre_mascota) {
 		return service.listaMascotaPorPropietarioYNombre(codigo_propietario, nombre_mascota);
-	}
-	
-	@RequestMapping("/registraMascota")
-	@ResponseBody
-	public Map<String, Object> registra(Mascota objMascota) {
-		
-		Map<String, Object> salida = new HashMap<String, Object>();
-		Mascota objSalida = null;
-		
-		try {
-			objMascota.setCodigo_visibilidad(1); // Visibilidad 1 = Visible
-			objSalida = service.insertaMascota(objMascota);
-			
-			if(objSalida == null) {
-				salida.put("MENSAJE", "El registro no pudo ser completado");
-			} else {
-				salida.put("MENSAJE", "¡Registro exitoso!");
-			}
-			
-		} catch (Exception e) {
-			salida.put("MENSAJE", "El registro no pudo ser completado");
-		} finally {
-			List<Mascota> lista = service.listaMascotaPorNombre("");
-			salida.put("lista", lista);
-		}
-		
-		return salida;
-	}
-	
-	@RequestMapping("/actualizaMascota")
-	@ResponseBody
-	public Map<String, Object> actualiza(Mascota objMascota) {
-		Map<String, Object> salida = new HashMap<String, Object>();
-		
-		try {
-			Optional<Mascota> option = service.obtienePorId(objMascota.getCodigo_mascota());
-			
-			if(option.isPresent()) {
-				Mascota objSalida = service.insertaMascota(objMascota);
-				
-				if(objSalida == null) {
-					salida.put("MENSAJE", "La actualización no pudo ser completada");
-				} else {
-					salida.put("MENSAJE", "¡Actualización exitosa!");
-				}
-			} else {
-				salida.put("MENSAJE", "Error, la mascota no existe");
-			}
-			
-		} catch (Exception e) {
-			salida.put("MENSAJE", "La actualización no pudo ser completada");
-		} finally {
-			List<Mascota> lista = service.listaMascotaPorNombre("");
-			salida.put("lista", lista);
-		}
-		
-		return salida;
 	}
 	
 	@RequestMapping("/actualizaVisibilidadMascota")

@@ -498,7 +498,8 @@
 						const imgPet = document.createElement('img');
 						
 						if(mascota.foto_mascota.length > 0) {
-							imgPet.src = "data:image/png;base64," + mascota.foto_mascota; 
+							//imgPet.src = "data:image/png;base64," + mascota.foto_mascota;
+							imgPet.src = mascota.foto_mascota;
 						} else {
 							imgPet.src = "../../images/noimage.png";
 						}

@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.veterinaria.entity.Producto;
 import com.veterinaria.service.ProductoService;
 
@@ -31,8 +39,25 @@ public class ProductoController {
 	@Value("${resourcesDir}")
 	private String uploadFolder;
 	
+	@Value("${awsAccess}")
+	private String ACCESS_KEY;
+	
+	@Value("${awsSecret}")
+	private String SECRET_KEY;
+	
+	@Value("${awsRegion}")
+	private String REGION_NAME;
+	
+	@Value("${awsBucket}")
+	private String BUCKET_NAME;
+	
+	@Value("${awsEndpoint}")
+	private String ENDPOINT_URL;
+	
 	@Autowired
 	private ProductoService service;
+	
+	private AmazonS3 s3Cliente;
 	
 	@RequestMapping("/verProducto")
 	public String verRegistra() {
@@ -59,55 +84,30 @@ public class ProductoController {
 			@RequestParam(value = "codigo_marca", required = false) Integer codigo_marca,
 			@RequestParam(value = "codigo_categoria_producto", required = false) Integer codigo_categoria_producto,
 			@RequestParam(value = "codigo_proveedor", required = false) Integer codigo_proveedor,
-			Model model, HttpServletRequest request, final @RequestParam(value = "foto1_producto") MultipartFile file,
-			final @RequestParam(value = "foto2_producto") MultipartFile file1, final @RequestParam(value = "foto3_producto") MultipartFile file2) {
+			Model model, HttpServletRequest request, final @RequestParam(value = "foto1_producto") MultipartFile file1,
+			final @RequestParam(value = "foto2_producto") MultipartFile file2, final @RequestParam(value = "foto3_producto") MultipartFile file3) {
 
 		Map<String, Object> salida = new HashMap<String, Object>();
-
-		Producto producto = new Producto();
+		
+		BasicAWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
+		s3Cliente = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(REGION_NAME).build();
 
 		try {
-			String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
-			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-			String fileName1 = StringUtils.cleanPath(file1.getOriginalFilename());
-			String fileName2 = StringUtils.cleanPath(file2.getOriginalFilename());
-
-			String filePath = Paths.get(uploadDirectory, fileName).toString();
-			String filePath1 = Paths.get(uploadDirectory, fileName1).toString();
-			String filePath2 = Paths.get(uploadDirectory, fileName2).toString();
-
-			try {
-
-				File dir = new File(uploadDirectory);
-				if(!dir.exists()) {
-					dir.mkdirs();
-				}
-
-				// Setear archivo
-				byte[] imageData = file.getBytes();
-				producto.setFoto1_producto(imageData);
-
-				byte[] imageData1 = file1.getBytes();
-				producto.setFoto2_producto(imageData1);
-
-				byte[] imageData2 = file2.getBytes();
-				producto.setFoto3_producto(imageData2);
-
-				// Guardar localmente
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-				BufferedOutputStream stream1 = new BufferedOutputStream(new FileOutputStream(new File(filePath1)));
-				BufferedOutputStream stream2 = new BufferedOutputStream(new FileOutputStream(new File(filePath2)));
-				stream.write(file.getBytes());
-				stream1.write(file1.getBytes());
-				stream2.write(file2.getBytes());
-				stream.close();
-				stream1.close();
-				stream2.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-				salida.put("MENSAJE", "El archivo no pudo ser procesado");
-			}
-
+			
+			String fileUrl1 = "";
+			String fileUrl2 = "";
+			String fileUrl3 = "";
+			
+			Producto producto = new Producto();
+			
+			String fileName1 = new Date().getTime()+"-"+file1.getOriginalFilename().replace(" ", "_");
+			String fileName2 = new Date().getTime()+"-"+file2.getOriginalFilename().replace(" ", "_");
+			String fileName3 = new Date().getTime()+"-"+file3.getOriginalFilename().replace(" ", "_");
+			
+			ObjectMetadata metadata1 = new ObjectMetadata();
+			ObjectMetadata metadata2 = new ObjectMetadata();
+			ObjectMetadata metadata3 = new ObjectMetadata();
+			
 			producto.setCodigo_producto(null);
 			producto.setNombre_producto(nombre_producto);
 			producto.setDescripcion_simple_producto(descripcion_simple_producto);
@@ -119,26 +119,40 @@ public class ProductoController {
 			producto.setCodigo_marca(codigo_marca);
 			producto.setCodigo_categoria_producto(codigo_categoria_producto);
 			producto.setCodigo_proveedor(codigo_proveedor);
-
+			
+			if(file1.getSize() > 0 && file2.getSize() > 0 && file3.getSize() > 0) {
+				
+				metadata1.setContentLength(file1.getSize());
+				metadata2.setContentLength(file2.getSize());
+				metadata3.setContentLength(file3.getSize());
+				
+				fileUrl1 = ENDPOINT_URL+"/"+BUCKET_NAME+"/"+fileName1;
+				fileUrl2 = ENDPOINT_URL+"/"+BUCKET_NAME+"/"+fileName2;
+				fileUrl3 = ENDPOINT_URL+"/"+BUCKET_NAME+"/"+fileName3;
+				
+				s3Cliente.putObject(new PutObjectRequest(BUCKET_NAME, fileName1, file1.getInputStream(), metadata1).withCannedAcl(CannedAccessControlList.PublicRead));
+				s3Cliente.putObject(new PutObjectRequest(BUCKET_NAME, fileName2, file2.getInputStream(), metadata2).withCannedAcl(CannedAccessControlList.PublicRead));
+				s3Cliente.putObject(new PutObjectRequest(BUCKET_NAME, fileName3, file3.getInputStream(), metadata3).withCannedAcl(CannedAccessControlList.PublicRead));
+				
+			}
+			
+			producto.setFoto1_producto(fileUrl1);
+			producto.setFoto2_producto(fileUrl2);
+			producto.setFoto3_producto(fileUrl3);
+			
 			Producto objSalida = service.insertaProducto(producto);
 
 			if(objSalida == null) {
 				salida.put("MENSAJE", "El registro no pudo ser completado");
 			} else {
-
-				if(fileName == null || fileName.contains("..") || fileName1 == null || fileName1.contains("..") || fileName2 == null || fileName2.contains("..")) {
-					salida.put("MENSAJE", "El registro se completó sin la imagen");
-				} else {
-					salida.put("MENSAJE", "¡Registro exitoso!");
-				}
-
+				salida.put("MENSAJE", "¡Registro exitoso!");
 			}
-
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 			salida.put("MENSAJE", "El registro no pudo ser completado");
 		}
-
+	
 		return salida;
 
 	}
@@ -152,14 +166,17 @@ public class ProductoController {
 			@RequestParam(value = "codigo_marca", required = false) Integer codigo_marca,
 			@RequestParam(value = "codigo_categoria_producto", required = false) Integer codigo_categoria_producto,
 			@RequestParam(value = "codigo_proveedor", required = false) Integer codigo_proveedor,
-			Model model, HttpServletRequest request, final @RequestParam(value = "foto1_producto") MultipartFile file,
-			final @RequestParam(value = "foto2_producto") MultipartFile file1, final @RequestParam(value = "foto3_producto") MultipartFile file2) {
+			Model model, HttpServletRequest request, final @RequestParam(value = "foto1_producto") MultipartFile file1,
+			final @RequestParam(value = "foto2_producto") MultipartFile file2, final @RequestParam(value = "foto3_producto") MultipartFile file3) {
 
 		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		BasicAWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY, SECRET_KEY);
+		s3Cliente = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(credentials)).withRegion(REGION_NAME).build();
 
 		try {
 			Optional<Producto> option = service.obtienePorId(codigo_producto);
-
+			
 			if(option.isPresent()) {
 				option.ifPresent((Producto result) -> {
 
@@ -175,76 +192,62 @@ public class ProductoController {
 					result.setCodigo_proveedor(codigo_proveedor);
 
 					try {
-						String uploadDirectory = request.getServletContext().getRealPath(uploadFolder);
-						String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-						String fileName1 = StringUtils.cleanPath(file1.getOriginalFilename());
-						String fileName2 = StringUtils.cleanPath(file2.getOriginalFilename());
-						String filePath = Paths.get(uploadDirectory, fileName).toString();
-						String filePath1 = Paths.get(uploadDirectory, fileName1).toString();
-						String filePath2 = Paths.get(uploadDirectory, fileName2).toString();
+						
+						String fileUrl1 = "";
+						String fileUrl2 = "";
+						String fileUrl3 = "";
+						
+						String fileName1 = new Date().getTime()+"-"+file1.getOriginalFilename().replace(" ", "_");
+						String fileName2 = new Date().getTime()+"-"+file2.getOriginalFilename().replace(" ", "_");
+						String fileName3 = new Date().getTime()+"-"+file3.getOriginalFilename().replace(" ", "_");
+						
+						ObjectMetadata metadata1 = new ObjectMetadata();
+						ObjectMetadata metadata2 = new ObjectMetadata();
+						ObjectMetadata metadata3 = new ObjectMetadata();
+						
 
-						try {
-							File dir = new File(uploadDirectory);
-							if(!dir.exists()) {
-								dir.mkdirs();
-							}
-
-							// Setear archivo
-							byte[] imageData = file.getBytes();
-							byte[] imageData1 = file1.getBytes();
-							byte[] imageData2 = file2.getBytes();
-
-							if(file.getBytes() != null && file.getSize() > 0 && imageData.length > 0) {
-								result.setFoto1_producto(imageData);
-							}
-							else if(file1.getBytes() != null && file1.getSize() > 0 && imageData1.length > 0){
-								result.setFoto2_producto(imageData1);
-							}
-							else if(file2.getBytes() != null && file2.getSize() > 0 && imageData2.length > 0){
-								result.setFoto2_producto(imageData2);
-							}
-
-							// Guardar localmente
-							BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filePath)));
-							BufferedOutputStream stream1 = new BufferedOutputStream(new FileOutputStream(new File(filePath1)));
-							BufferedOutputStream stream2 = new BufferedOutputStream(new FileOutputStream(new File(filePath2)));
-							stream.write(file.getBytes());
-							stream1.write(file1.getBytes());
-							stream2.write(file2.getBytes());
-							stream.close();
-							stream1.close();
-							stream2.close();
-						} catch (Exception e) {
-							e.printStackTrace();
-							salida.put("MENSAJE", "El archivo no es válido");
+						if(file1.getSize() > 0 && file2.getSize() > 0 && file3.getSize() > 0) {
+							
+							metadata1.setContentLength(file1.getSize());
+							metadata2.setContentLength(file2.getSize());
+							metadata3.setContentLength(file3.getSize());
+							
+							fileUrl1 = ENDPOINT_URL+"/"+BUCKET_NAME+"/"+fileName1;
+							fileUrl2 = ENDPOINT_URL+"/"+BUCKET_NAME+"/"+fileName2;
+							fileUrl3 = ENDPOINT_URL+"/"+BUCKET_NAME+"/"+fileName3;
+							
+							s3Cliente.putObject(new PutObjectRequest(BUCKET_NAME, fileName1, file1.getInputStream(), metadata1).withCannedAcl(CannedAccessControlList.PublicRead));
+							s3Cliente.putObject(new PutObjectRequest(BUCKET_NAME, fileName2, file2.getInputStream(), metadata2).withCannedAcl(CannedAccessControlList.PublicRead));
+							s3Cliente.putObject(new PutObjectRequest(BUCKET_NAME, fileName3, file3.getInputStream(), metadata3).withCannedAcl(CannedAccessControlList.PublicRead));
+							
+						}
+						
+						result.setFoto1_producto(fileUrl1);					
+						result.setFoto2_producto(fileUrl2);			
+						result.setFoto3_producto(fileUrl3);
+						
+						Producto objSalida = service.insertaProducto(result);
+						
+						if(objSalida == null) {
+							salida.put("MENSAJE", "La actualización no pudo ser completada");
+						} else {
+							salida.put("MENSAJE", "¡Actualización exitosa!");
 						}
 
 					} catch (Exception e) {
 						e.printStackTrace();
-						salida.put("MENSAJE", "El archivo no pudo ser procesado");
-					} finally {
-						Producto objSalida = service.insertaProducto(result);
-
-						if(objSalida == null) {
-							salida.put("MENSAJE", "La actualización no pudo ser completada");
-						} else {
-							if(objSalida.getFoto1_producto() == null) {
-								salida.put("MENSAJE", "La foto no pudo ser actualizada");
-							} else {
-								salida.put("MENSAJE", "¡Actualización exitosa!");
-							}
-						}
+						salida.put("MENSAJE", "Alguno de los archivos no pudo ser procesado");
 					}
 				});
 
 			} else {
 				salida.put("MENSAJE", "Error, el producto no existe");
 			}
-
+			
 		} catch (Exception e) {
 			salida.put("MENSAJE", "La actualización no pudo ser completada");
 		}
-
+		
 		return salida;
 
 	}

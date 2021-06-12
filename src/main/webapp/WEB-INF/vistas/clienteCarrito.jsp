@@ -317,7 +317,7 @@
 	                foto.alt = value.producto.nombre_producto;
 	                
 	                if(value.producto.foto1_producto.length != 0) {
-				        foto.src = "data:image/png;base64," + value.producto.foto1_producto;
+				        foto.src = value.producto.foto1_producto;
 				    } else {
 				        foto.src = "../../images/noimage.png";
 				    }

@@ -366,7 +366,7 @@
 						if(row.foto_mascota == null) {
 							salida = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
 						} else if(row.foto_mascota.length > 0) {
-							 salida = "<img src='data:image/png;base64," +row.foto_mascota+ "' class='img__table--mini' alt='Pet image'>";
+							 salida = "<img src='" +row.foto_mascota+ "' class='img__table--mini' alt='Pet image'>";
 						} else {
 							salida = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
 						}

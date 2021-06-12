@@ -41,13 +41,13 @@ public class Producto{
 	private String serie_producto;
 	
 	@Column(name = "foto1_producto")
-	private byte[] foto1_producto;
+	private String foto1_producto;
 	
 	@Column(name = "foto2_producto")
-	private byte[] foto2_producto;
+	private String foto2_producto;
 	
 	@Column(name = "foto3_producto")
-	private byte[] foto3_producto;
+	private String foto3_producto;
 	
 	@Column(name = "codigo_marca")
 	private Integer codigo_marca;
@@ -70,9 +70,6 @@ public class Producto{
 	@ManyToOne
 	@JoinColumn(name = "codigo_proveedor", insertable = false, updatable = false, nullable = false)
 	private Proveedor proveedor;
-
-	
-	
 
 	public Integer getCodigo_producto() {
 		return codigo_producto;
@@ -138,27 +135,27 @@ public class Producto{
 		this.serie_producto = serie_producto;
 	}
 
-	public byte[] getFoto1_producto() {
+	public String getFoto1_producto() {
 		return foto1_producto;
 	}
 
-	public void setFoto1_producto(byte[] foto1_producto) {
+	public void setFoto1_producto(String foto1_producto) {
 		this.foto1_producto = foto1_producto;
 	}
 
-	public byte[] getFoto2_producto() {
+	public String getFoto2_producto() {
 		return foto2_producto;
 	}
 
-	public void setFoto2_producto(byte[] foto2_producto) {
+	public void setFoto2_producto(String foto2_producto) {
 		this.foto2_producto = foto2_producto;
 	}
 
-	public byte[] getFoto3_producto() {
+	public String getFoto3_producto() {
 		return foto3_producto;
 	}
 
-	public void setFoto3_producto(byte[] foto3_producto) {
+	public void setFoto3_producto(String foto3_producto) {
 		this.foto3_producto = foto3_producto;
 	}
 
@@ -209,7 +206,5 @@ public class Producto{
 	public void setProveedor(Proveedor proveedor) {
 		this.proveedor = proveedor;
 	}
-	
-	
-	
+
 }
