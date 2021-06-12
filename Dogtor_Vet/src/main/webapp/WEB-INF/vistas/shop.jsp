@@ -127,7 +127,7 @@
 	                    cardImage.src = "../../images/noimage.png";
 	                    
 	                    if(producto.foto1_producto.length > 0) {
-	                        cardImage.src = 'data:image/png;base64,' + producto.foto1_producto;
+	                        cardImage.src = producto.foto1_producto;
 	                    }
 	                    
 	                    const divCardTitleContainer = document.createElement('div');
