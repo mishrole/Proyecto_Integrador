@@ -47,6 +47,10 @@ body {
 	margin-left: 0 !important;
 }
 
+.simditor .simditor-body {
+	min-height: 100px !important;
+}
+
 /* ====== Landing ====== */
 
 .hero__container {

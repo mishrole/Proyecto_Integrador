@@ -208,6 +208,10 @@
     <footer class="background__dark py-1">
         <div class="container">
             <div class="row title__color--dark align-items-center pt-3">
+            	<div class="col-12 d-flex justify-content-center">
+            		<p>© 2021 <a class="title__color--dark" href="https://github.com/mishrole/Proyecto_Integrador">Dogtor</a> | Todos los derechos reservados</p>
+            	</div>
+            <!-- 
                 <div class="col-3">
                     <p>Logo</p>
                 </div>
@@ -216,7 +220,7 @@
                 </div>
                 <div class="col-4">
                     <p>Contacto</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </footer>

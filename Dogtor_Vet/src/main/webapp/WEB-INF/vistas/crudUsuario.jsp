@@ -672,6 +672,11 @@
 							max: 40,
 							message: 'El nombre debe contener entre 3 a 40 caracteres'
 						},
+						regexp: {
+						    regexp: /^[a-zA-ZÁÉÍÓÚáéíóú ]*$/,
+						    message: 'Ingrese únicamente letras'
+						        
+						}
 					}
 				},
 				apellido_usuario: {
@@ -685,6 +690,11 @@
 							max: 40,
 							message: 'El nombre debe contener entre 3 a 40 caracteres'
 						},
+						regexp: {
+						    regexp: /^[a-zA-ZÁÉÍÓÚáéíóú ]*$/,
+						    message: 'Ingrese únicamente letras'
+						        
+						}
 					}
 				},
 				fecha_nacimiento_usuario: {
@@ -733,6 +743,11 @@
 							max: 40,
 							message: 'El nombre debe contener entre 3 a 40 caracteres'
 						},
+						regexp: {
+						    regexp: /^[a-zA-ZÁÉÍÓÚáéíóú ]*$/,
+						    message: 'Ingrese únicamente letras'
+						        
+						}
 					}
 				},
 				apellido_usuario: {
@@ -746,6 +761,11 @@
 							max: 40,
 							message: 'El nombre debe contener entre 3 a 40 caracteres'
 						},
+						regexp: {
+						    regexp: /^[a-zA-ZÁÉÍÓÚáéíóú ]*$/,
+						    message: 'Ingrese únicamente letras'
+						        
+						}
 					}
 				},
 				fecha_nacimiento_usuario: {
