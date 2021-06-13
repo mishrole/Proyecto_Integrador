@@ -185,13 +185,13 @@
 										  <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="form-floating">
-										  			<input type="time" class="form-control" id="id_inicio_turno" name="inicio_turno_servicio" autocomplete="on">
+										  			<input type="time" step="1" class="form-control" id="id_inicio_turno" name="inicio_turno_servicio" autocomplete="on">
 					                        		<label for="id_inicio_turno">Inicio de turno</label>
 										  		</div>
 										  	</div>
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="col form-floating">
-										  			<input type="time" class="form-control" id="id_fin_turno" name="fin_turno_servicio" autocomplete="on" >
+										  			<input type="time" step="1" class="form-control" id="id_fin_turno" name="fin_turno_servicio" autocomplete="on" >
 						                   			<label for="id_fin_turno">Fin de turno</label>
 										  		</div>
 										  	</div>
@@ -294,13 +294,13 @@
 										  <div class="form-group row">
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="form-floating">
-										  			<input type="time" class="form-control" id="id_inicio_turno_actualiza" name="inicio_turno_servicio" autocomplete="on">
+										  			<input type="time" step="1" class="form-control" id="id_inicio_turno_actualiza" name="inicio_turno_servicio" autocomplete="on">
 					                        		<label for="id_inicio_turno_actualiza">Inicio de turno</label>
 										  		</div>
 										  	</div>
 										  	<div class="col-12 col-md-6 mb-3">
 											  	<div class="col form-floating">
-										  			<input type="time" class="form-control" id="id_fin_turno_actualiza" name="fin_turno_servicio" autocomplete="on" >
+										  			<input type="time" step="1" class="form-control" id="id_fin_turno_actualiza" name="fin_turno_servicio" autocomplete="on" >
 						                   			<label for="id_fin_turno_actualiza">Fin de turno</label>
 										  		</div>
 										  	</div>
@@ -556,7 +556,7 @@
 		
 		selectEspecialista.change(function(e) {
 			selectedEspecialista = e.target.selectedIndex;
-			validateSelect(selectEspecialista, selectedEspecialista, 'dia');
+			validateSelect(selectEspecialista, selectedEspecialista, 'especialista');
 		});
 		
 		selectDiaSemana.change(function(e) {

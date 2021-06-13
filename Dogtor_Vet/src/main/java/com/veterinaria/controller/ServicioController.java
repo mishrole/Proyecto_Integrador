@@ -1,5 +1,6 @@
 package com.veterinaria.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +41,9 @@ public class ServicioController {
 	@ResponseBody
 	public Map<String, Object> registra(Servicio objServicio) {
 		Map<String, Object> salida = new HashMap<String, Object>();
+		
+		objServicio.setInicio_turno_servicio(new Date());
+		objServicio.setFin_turno_servicio(new Date());
 		
 		Servicio objSalida = null;
 		try {
