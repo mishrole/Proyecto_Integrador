@@ -104,7 +104,7 @@
     
    	<div class="container-fluid">
    		<div class="modal fade p-0" id="id_modal_RegistraProducto">
-    		<div class="modal-dialog modal-lg">
+    		<div class="modal-dialog modal-xl">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
@@ -133,7 +133,7 @@
 						                    </div>
 						                    
 					                      	<div class="form-group row">
-											  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="col-12 col-md-4 mb-3">
 											  		<div class="form-floating">
 								                      	<select class="form-select" id="select_marca" name="codigo_marca" aria-label="Default select example">
 														  <option selected value="0">Seleccione Marca</option>
@@ -141,7 +141,7 @@
 														<label for="select_marca">Marca</label>
 						                      		</div>
 											  	</div>
-											  	<div class="col-12 col-md-6 mb-3">
+											  	<div class="col-12 col-md-4 mb-3">
 												  	<div class="form-floating">
 								                      	<select class="form-select" id="select_categoria_producto" name="codigo_categoria_producto" aria-label="Default select example">
 														  <option selected value="0">Seleccione Categoría</option>
@@ -149,10 +149,7 @@
 														<label for="select_categoria_producto">Categoría</label>
 							                      </div>
 											  	</div>
-										  	</div>
-										  
-											 <div class="form-group row">
-						  					  	<div class="col-12 mb-3">
+											  	<div class="col-12 col-md-4 mb-3">
 							                      	<div class="form-floating">
 								                      	<select class="form-select" id="select_proveedor" name="codigo_proveedor" aria-label="Default select example">
 														  <option selected value="0">Seleccione Proveedor</option>
@@ -160,7 +157,7 @@
 														<label for="select_proveedor">Proveedor</label>
 							                      </div>
 						                      	</div>
-											 </div>
+										  	</div>
 										  
 					                      <div class="form-group row">
 					                      	<div class="col-12 col-md-4 mb-3">
@@ -202,13 +199,17 @@
 					                      </div>
 		                      
 			                       			<div class="form-group row" >
-					                     		<div class="col-12 mb-3">
+					                     		<div class="col-12 col-md-4 mb-3">
 					                     			<div class="form-floating">
 					                      				<input type="file" class="form-control" id="id_foto1" name="foto1_producto">
 					                     			</div>
+					                     		</div>
+					                     		<div class="col-12 col-md-4 mb-3">
 					                     			<div class="form-floating">
 					                      				<input type="file" class="form-control" id="id_foto2" name="foto2_producto">
 					                     			</div>
+					                     		</div>
+					                     		<div class="col-12 col-md-4 mb-3">
 					                     			<div class="form-floating">
 					                      				<input type="file" class="form-control" id="id_foto3" name="foto3_producto">
 					                     			</div>
@@ -230,7 +231,7 @@
     	</div>
     	
     	<div class="modal fade" id="id_modal_ActualizaProducto">
-    		<div class="modal-dialog modal-lg">
+    		<div class="modal-dialog modal-xl">
     			<div class="modal-content">
     				<div class="modal-header">
     					<div class="col-12 justify-content-center align-items-center d-flex">
@@ -262,7 +263,7 @@
 					                    
 					                      <div class="form-group row">
 					                      
-										  	<div class="col-12 col-md-6 mb-3">
+										  	<div class="col-12 col-md-4 mb-3">
 										  		<div class="form-floating">
 							                      	<select class="form-select" id="select_marca_actualiza" name="codigo_marca" aria-label="Default select example">
 													  <option selected value="0">Seleccione Marca</option>
@@ -270,7 +271,7 @@
 													<label for="select_marca_actualiza">Marca</label>
 					                      		</div>
 										  	</div>
-										  	<div class="col-12 col-md-6 mb-3">
+										  	<div class="col-12 col-md-4 mb-3">
 											  	<div class="form-floating">
 							                      	<select class="form-select" id="select_categoria_producto_actualiza" name="codigo_categoria_producto" aria-label="Default select example">
 													  <option selected value="0">Seleccione Categoría</option>
@@ -278,10 +279,7 @@
 													<label for="select_categoria_producto_actualiza">Categoría</label>
 						                      </div>
 										  	</div>
-										  </div>
-										  
-										  <div class="form-group row">
-					  					  	<div class="col-12 mb-3">
+										  	<div class="col-12 col-md-4 mb-3">
 						                      	<div class="form-floating">
 							                      	<select class="form-select" id="select_proveedor_actualiza" name="codigo_proveedor" aria-label="Default select example">
 													  <option selected value="0">Seleccione Proveedor</option>
@@ -330,13 +328,17 @@
 					                      </div>
 					                      
 					                      <div class="form-group row">
-					                      	<div class="col-12 mb-3">
+					                      	<div class="col-12 col-md-4 mb-3">
 					                      		<div class="form-floating">
 													<input type="file" class="form-control" id="id_foto1_actualiza" name="foto1_producto" />
 								             	</div>
-								             	<div class="form-floating">
+					                      	</div>
+					                      	<div class="col-12 col-md-4 mb-3">
+					                      		<div class="form-floating">
 													<input type="file" class="form-control" id="id_foto2_actualiza" name="foto2_producto" />
 								              	</div>
+					                      	</div>
+					                      	<div class="col-12 col-md-4 mb-3">
 								              	<div class="form-floating">
 								                	<input type="file" class="form-control" id="id_foto3_actualiza" name="foto3_producto" />
 								              	</div>
@@ -835,6 +837,110 @@
 			}
 		});
 		
+		/* Validar tamaño y extensión de imágenes */
+		
+		var maxFileSize = 2000000; // byte -> 2MB
+		
+		var foto1RegistroIsValid;
+		var foto2RegistroIsValid;
+		var foto3RegistroIsValid;
+		
+		var foto1ActualizaIsValid;
+		var foto2ActualizaIsValid;
+		var foto3ActualizaIsValid;
+		
+		$("#id_foto1").change(function() {
+		    var file = $("#id_foto1").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+			var fileSize = this.files[0].size;
+			console.log(fileSize)
+			
+			if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+			    foto1RegistroIsValid = true;
+			} else {
+			    modalRegister.modal("hide");
+			    mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+			    foto1RegistroIsValid = false;
+			}
+		    
+		});
+		
+		$("#id_foto2").change(function() {
+		    var file = $("#id_foto2").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+			var fileSize = this.files[0].size;
+			
+			if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+			    foto2RegistroIsValid = true;
+			} else {
+			    modalRegister.modal("hide");
+			    mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+			    foto1RegistroIsValid = false;
+			}		    
+		});
+				
+		$("#id_foto3").change(function() {
+		    var file = $("#id_foto3").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+			var fileSize = this.files[0].size;
+			
+			if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+			    foto3RegistroIsValid = true;
+			} else {
+			    modalRegister.modal("hide");
+			    mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+			    foto1RegistroIsValid = false;
+			}
+		});
+		
+		$("#id_foto1_actualiza").change(function() {
+		    var file = $("#id_foto1_actualiza").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+			var fileSize = this.files[0].size;
+			
+			if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+			    foto1ActualizaIsValid = true;
+			} else {
+			    $("#id_modal_ActualizaProducto").modal("hide");
+			    mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+			    foto1ActualizaIsValid = false;
+			}
+		});
+		
+		$("#id_foto2_actualiza").change(function() {
+		    var file = $("#id_foto2_actualiza").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+			var fileSize = this.files[0].size;
+			
+			if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+			    foto2ActualizaIsValid = true;
+			} else {
+			    $("#id_modal_ActualizaProducto").modal("hide");
+			    mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+			    foto2ActualizaIsValid = false;
+			}    
+		});
+				
+		$("#id_foto3_actualiza").change(function() {
+		    var file = $("#id_foto3_actualiza").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+			var fileSize = this.files[0].size;
+			
+			if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+			    foto3ActualizaIsValid = true;
+			} else {
+			    $("#id_modal_ActualizaProducto").modal("hide");
+			    mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+			    foto3ActualizaIsValid = false;
+			}
+		});
+		
 		// Registrar Producto
 		
 		btnRegister.click(function() {
@@ -849,7 +955,11 @@
 			// Validar textarea simple
 			validateTextarea(textareaSimple, countTextareaSimple, 'textareaSimple');
 			
-			if(selectedMarca > 0 && selectedCategoria > 0 && selectedProveedor > 0 && countTextareaSimple >= 3 && countTextareaSimple <= 100 && validator.isValid()) {
+			if(!foto1RegistroIsValid || !foto2RegistroIsValid || !foto3RegistroIsValid) {
+			    mostrarMensaje("Seleccione imágenes JPG o PNG que no excedan los 2MB");
+			}
+			
+			if(selectedMarca > 0 && selectedCategoria > 0 && selectedProveedor > 0 && countTextareaSimple >= 3 && countTextareaSimple <= 100 && validator.isValid() && foto1RegistroIsValid && foto2RegistroIsValid && foto3RegistroIsValid) {
 				
 				var form = $("#id_form_registra").serialize();
 				var data = new FormData($("#id_form_registra")[0]);
@@ -890,8 +1000,12 @@
 	
 			// Validar textarea simple
 			//validateTextarea(textareaSimpleActualiza, countTextareaSimpleActualiza, 'textareaSimple');
+
+			if(!foto1ActualizaIsValid || !foto2ActualizaIsValid || !foto3ActualizaIsValid) {
+			    mostrarMensaje("Seleccione imágenes JPG o PNG que no excedan los 2MB");
+			}
 			
-			if(selectedMarcaActualiza > 0 && selectedCategoriaActualiza > 0 && selectedProveedorActualiza > 0 && validator.isValid()) {
+			if(selectedMarcaActualiza > 0 && selectedCategoriaActualiza > 0 && selectedProveedorActualiza > 0 && validator.isValid() && foto1ActualizaIsValid && foto2ActualizaIsValid && foto3ActualizaIsValid) {
 				
 				var form = $("#id_form_actualiza").serialize();
 				var data = new FormData($("#id_form_actualiza")[0]);

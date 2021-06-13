@@ -744,8 +744,34 @@
 							message: '* Este campo es obligatorio'
 						}
 					}
+				},
+				codigo_identificacion_mascota: {
+				    selector: '#id_identificacion',
+				    validators: {
+				        notEmpty: {
+				            message: '* Este campo es obligatorio'
+				        },
+				        stringLength: {
+				            min: 8,
+				            max: 8,
+				            message: 'El identificador debe contener 8 caracteres'
+				        }
+				    }
+				},
+				codigo_cartilla_sanitaria: {
+				    selector: '#id_sanitaria',
+				    validators: {
+				        notEmpty: {
+				            message: '* Este campo es obligatorio'
+				        },
+				        stringLength: {
+				            min: 8,
+				            max: 8,
+				            message: 'El código sanitario debe contener 8 caracteres'
+				        }
+				    }
 				}
-			}
+			},
 		});
 		
 		$('#id_form_actualiza').bootstrapValidator({
@@ -776,8 +802,71 @@
 							message: '* Este campo es obligatorio'
 						}
 					}
+				},
+				codigo_identificacion_mascota: {
+				    selector: '#id_identificacion_actualiza',
+				    validators: {
+				        notEmpty: {
+				            message: '* Este campo es obligatorio'
+				        },
+				        stringLength: {
+				            min: 8,
+				            max: 8,
+				            message: 'El identificador debe contener 8 caracteres'
+				        }
+				    }
+				},
+				codigo_cartilla_sanitaria: {
+				    selector: '#id_sanitaria_actualiza',
+				    validators: {
+				        notEmpty: {
+				            message: '* Este campo es obligatorio'
+				        },
+				        stringLength: {
+				            min: 8,
+				            max: 8,
+				            message: 'El código sanitario debe contener 8 caracteres'
+				        }
+				    }
 				}
 			}
+		});
+		
+		/* Validar tamaño y extensión de imágenes */
+		
+		var maxFileSize = 2000000; // byte -> 2MB
+		
+		var fotoRegistroIsValid;
+		var fotoActualizaIsValid;
+		
+		$("#id_foto").change(function() {
+		    var file = $("#id_foto").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+			var fileSize = this.files[0].size;
+			
+			if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+			    fotoRegistroIsValid = true;
+			} else {
+			    modalRegister.modal("hide");
+			    mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+			    fotoRegistroIsValid = false;
+			}
+		});
+		
+		$("#id_foto_actualiza").change(function() {
+		    var file = $("#id_foto_actualiza").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+		   var fileSize = this.files[0].size;
+		   
+		   if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+		       fotoActualizaIsValid = true;
+		   } else {
+		       $("#id_modal_ActualizaMascota").modal("hide");
+		       mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+		       fotoActualizaIsValid = false;
+		   }
 		});
 		
 		// Registrar Mascota
@@ -792,7 +881,11 @@
 			validateSelect(selectSexo, selectedSexo, 'sexo');
 			validateSelect(selectColor, selectedColor, 'color');
 			
-			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
+			if(!fotoRegistroIsValid) {
+			    mostrarMensaje("Seleccione una imagen JPG o PNG que no exceda los 2MB");
+			}
+			
+			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid() && fotoRegistroIsValid) {
 				
 				var form = $("#id_form_registra").serialize();
 				var data = new FormData($("#id_form_registra")[0]);
@@ -817,7 +910,6 @@
 					}
 				});
 			}
-			
 		});
 		
 		// Actualizar mascota
@@ -834,7 +926,11 @@
 			
 			validateSelect(selectVisibilidadActualiza, selectedVisibilidadActualiza, 'visibilidad');
 			
-			if(selectedEspecieActualiza > 0 && selectedColorActualiza > 0 && selectedSexoActualiza > 0 && selectedRazaActualiza > 0 && selectedVisibilidadActualiza > 0 && validator.isValid()) {
+			if(!fotoActualizaIsValid) {
+			    mostrarMensaje("Seleccione una imagen JPG o PNG que no exceda los 2MB");
+			}
+			
+			if(selectedEspecieActualiza > 0 && selectedColorActualiza > 0 && selectedSexoActualiza > 0 && selectedRazaActualiza > 0 && selectedVisibilidadActualiza > 0 && validator.isValid() && fotoActualizaIsValid) {
 				
 				var form = $("#id_form_actualiza").serialize();
 				var data = new FormData($("#id_form_actualiza")[0]);

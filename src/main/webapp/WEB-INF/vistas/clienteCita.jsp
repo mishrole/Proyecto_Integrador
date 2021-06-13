@@ -820,7 +820,7 @@
 	                        message: 'Descripción de 10 a 200 caracteres'
 	                    },
 						regexp: {
-						    regexp: /^[a-zA-Z ]*$/,
+						    regexp: /^[a-zA-ZÁÉÍÓÚáéíóú ]*$/,
 						    message: 'Ingrese únicamente letras'
 						        
 						}

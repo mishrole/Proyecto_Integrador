@@ -391,6 +391,27 @@
 			}
 		});
 		
+		/* Validar tamaño y extensión de imágenes */
+		
+		var maxFileSize = 2000000; // byte -> 2MB
+		
+		var fotoRegistroIsValid;
+		
+		$("#id_foto").change(function() {
+		    var file = $("#id_foto").val();
+		    var extension = file.split(".").pop().toLowerCase();
+		    
+			var fileSize = this.files[0].size;
+			
+			if(fileSize <= maxFileSize && extension === "jpg" || extension === "png") {
+			    fotoRegistroIsValid = true;
+			} else {
+			    modalRegister.modal("hide");
+			    mostrarMensaje("Sólo archivos JPG o PNG de hasta 2MB");
+			    fotoRegistroIsValid = false;
+			}
+		});
+		
 		// Registrar mascota
 		
 		btnRegister.click(function() {
@@ -403,7 +424,11 @@
 			validateSelect(selectSexo, selectedSexo, 'sexo');
 			validateSelect(selectColor, selectedColor, 'color');
 			
-			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid()) {
+			if(!fotoRegistroIsValid) {
+			    mostrarMensaje("Seleccione una imagen JPG o PNG que no exceda los 2MB");
+			}
+			
+			if(selectedEspecie > 0 && selectedColor > 0 && selectedSexo > 0 && selectedRaza > 0 && validator.isValid() && fotoRegistroIsValid) {
 				
 				var form = $("#id_form_registra").serialize();
 				var data = new FormData($("#id_form_registra")[0]);
@@ -428,9 +453,6 @@
 						mostrarMensaje(MSG_ERROR);
 					}
 				});
-				
-				
-				
 			}
 		});
 		

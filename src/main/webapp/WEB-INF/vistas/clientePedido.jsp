@@ -246,6 +246,16 @@
 		            generarCuerpoPedidos(lista[0]);
 		            $('.orders__list').first().addClass('active');
 		            
+			    } else {
+			        
+			        var divFlex = document.createElement('div');
+			        divFlex.className = "d-flex justify-content-center align-items-center";
+			        
+			        var emptyMessage = document.createElement('p');
+			        emptyMessage.innerHTML = "No ha realizado ningún pedido";
+			        
+			        divFlex.append(emptyMessage);
+			        listaPedidos.append(divFlex);
 			    }
 	        });
 
