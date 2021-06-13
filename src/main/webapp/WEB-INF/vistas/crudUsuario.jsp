@@ -433,14 +433,18 @@
 				    	
 						return btnEditar + btnVisibilidad + btnEliminar;
 					},className:'text-center mx-auto d-flex justify-content-center'},	
-				]                                     
+				],
+				 "drawCallback": function( settings ) {
+			            feather.replace();
+			     }
 		    });
-		 	
-		 	// Reload icons
-		    feather.replace();
-		 	
+		    
 		    $('#id_table').DataTable().columns.adjust().draw();
 		}
+	
+	$('#id_table').change(function() {
+	    alert('cambio')
+	})
 	
 	    function listarUsuariosDatatable(nombre) {
 			$.getJSON("listaUsuarioPorNombre", {"nombre_usuario": nombre}, function(lista) {
