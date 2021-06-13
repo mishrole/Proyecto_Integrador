@@ -38,12 +38,12 @@ public class Servicio {
 	
 	@Column(name = "inicio_turno_servicio")
 	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date inicio_turno_servicio;
 	
 	@Column(name = "fin_turno_servicio")
 	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(pattern = "HH:mm")
+	@DateTimeFormat(pattern = "HH:mm:ss")
 	private Date fin_turno_servicio;
 	
 	@Column(name = "nombre_servicio")

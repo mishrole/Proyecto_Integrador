@@ -194,6 +194,7 @@
 		
 		function generarListaPedidos(usuario) {
 		    $.getJSON("listaPedidoPorCliente", {"codigo_cliente": usuario}, function(lista) {
+		        console.log(lista)
 		        if(lista.length > 0) {
 		            
 		            listaPedidos.empty();
