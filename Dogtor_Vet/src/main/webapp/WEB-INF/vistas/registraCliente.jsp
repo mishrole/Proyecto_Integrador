@@ -30,12 +30,12 @@
     	</div>
    	</c:if>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 justify-content-center align-items-center d-flex">
-                <main class="col-10 col-md-6 mt-5">
+    <div class="container my-5">
+        <div class="row justify-content-center align-items-center d-flex" style='min-height: 80vh;'>
+            <div class="col-sm-12">
+                <main class="col-10 col-md-8 col-lg-6 mx-auto">
                     <form id="id_form">
-                      <h1 class="h3 mb-4 mt-5 fw-normal text-center"><b>Crea una cuenta</b></h1>
+                      <h1 class="h3 mb-4 mt-5 fw-normal text-center title__color"><b>Crea una cuenta</b></h1>
                     	
                     	<div class="form-group row">
 						  	<div class="col-12 col-md-6 mb-3">

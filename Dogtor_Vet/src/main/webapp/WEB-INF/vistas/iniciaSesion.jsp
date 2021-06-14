@@ -24,8 +24,8 @@
 	<jsp:include page="header.jsp" />
 	
 	<section id="login" class="mt-5 d-flex align-items-center justify-content-center mx-auto text-center">  	
-    	 <div class="container mt-5">
-	        <div class="row">
+    	 <div class="container">
+	        <div class="row align-items-center justify-content-center" style='min-height: 80vh;'>
         		<c:if test="${requestScope.MENSAJE != null}">
 			    	<div class="alert alert-danger fade in" id="success-alert">
 			        	<a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -33,7 +33,7 @@
 			    	</div>
 		    	</c:if>
 	            <div class="col-12 justify-content-center align-items-center d-flex">
-	                <main class="col-10 col-md-6">
+	                <main class="col-10 col-md-6 mx-auto">
 	                    <form id="id_form" action="acceder" method="POST">
 	                      <h1 class="h3 mb-4 mt-4 text-center title__color font__semibold">Inicia Sesión</h1>
 	                    

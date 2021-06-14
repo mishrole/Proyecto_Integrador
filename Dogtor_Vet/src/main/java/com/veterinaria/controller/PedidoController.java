@@ -18,6 +18,7 @@ import com.veterinaria.entity.DetallePedidoProductoPK;
 import com.veterinaria.entity.Pedido;
 import com.veterinaria.entity.Usuario;
 import com.veterinaria.service.CarritoService;
+import com.veterinaria.service.DetallePedidoProductoService;
 import com.veterinaria.service.PedidoService;
 import com.veterinaria.service.UsuarioService;
 
@@ -32,6 +33,9 @@ public class PedidoController {
 	
 	@Autowired
 	private UsuarioService usuarioService;
+	
+	@Autowired
+	private DetallePedidoProductoService detalleService;
 	
 	@RequestMapping("/listaPedido")
 	@ResponseBody
@@ -49,6 +53,12 @@ public class PedidoController {
 	@ResponseBody
 	public List<Pedido> listaPedidoPorRepartidor(Integer codigo_repartidor) {
 		return service.listaPedidoPorRepartidor(codigo_repartidor);
+	}
+
+	@RequestMapping("/listaDetallePedidoProductoPorCodigo")
+	@ResponseBody
+	public List<DetallePedidoProducto> listaDetallePedidoProductoPorCodigo(Integer codigo_pedido) {
+		return detalleService.listaDetallePedidoProductoPorCodigo(codigo_pedido);
 	}
 	
 	@RequestMapping("/registraPedido")

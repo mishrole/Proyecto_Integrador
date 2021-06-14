@@ -1,7 +1,7 @@
 // Reorganización de menu y contenido
 function changeDashboard () {
-    $('.menu__header > a > .marker > p').first().next().toggleClass('d-lg-block');
-    $('.menu__header > a').toggleClass('d-none');
+    $('.menu__header > div > a > .marker > p').first().next().toggleClass('d-lg-block');
+    $('.menu__header > div').first().toggleClass('d-none');
     $('.menu__header').toggleClass('justify-content-between');
     $('.menu__header').toggleClass('justify-content-around chevron__marker');
     $('.menu__body__list > li > a > div').toggleClass('justify-content-lg-start');

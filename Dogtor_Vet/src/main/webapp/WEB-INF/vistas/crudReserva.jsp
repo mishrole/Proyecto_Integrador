@@ -37,13 +37,14 @@
 				</c:if>
 				
 				<!-- Dashboard Content -->
-				<div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-1 mt-5 menu__transition mx-auto">
+				 <div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-3 mt-5 menu__transition mx-auto">
+                    
 					<div id="alerta_dogtor"></div>
 				
-					<div class="content__body background__light__white menu__transition">
-						<div class="row justify-content-center">
+					<div class="content__body background__light__white menu__transition mt-4 mt-lg-0">
+                        <div class="row justify-content-center align-items-center">
 							<div class="content__body__title col-4">
-								<p class="font__title title__color font__semibold">Nueva Reserva de Cita</p>
+                                <p class="font__title title__color font__semibold m-0">Nueva Reserva de Cita</p>
 							</div>
 							<div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
 								<div id="btnMessage" class="options__message d-flex align-items-center d-none d-lg-flex mx-2"><i data-feather="message-square"></i></div>
