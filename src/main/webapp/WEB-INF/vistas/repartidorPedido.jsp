@@ -35,11 +35,11 @@
                 <jsp:include page="menu.jsp" />
                 
                 <!-- Dashboard Content -->
-                <div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-1 mt-5 menu__transition mx-auto">
-                    <div class="content__body background__light__white menu__transition">
-                        <div class="row justify-content-center">
+                <div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-3 mt-5 menu__transition mx-auto">
+                    <div class="content__body background__light__white menu__transition mt-4 mt-lg-0">
+                        <div class="row justify-content-center align-items-center">
                             <div class="content__body__title col-4">
-                                <p class="font__title title__color font__semibold">Pedido</p>
+                                <p class="font__title title__color font__semibold m-0">Pedido</p>
                             </div>
                             <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
                                 <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
@@ -142,10 +142,97 @@
 	 	
 	 	function generarCuerpoPedidos(pedido) {
 	 	    
+	 	   const divDetalleContainer = document.createElement('div');
+		    divDetalleContainer.className = "my-5";
+		    
+		    const divDetalleHeader = document.createElement('div');
+		    divDetalleHeader.className = "row";
+		    
+		    const divHeaderColumn1 = document.createElement("div");
+		    divHeaderColumn1.className = "row col-6";
+		    
+		    const pHeaderColumn1 = document.createElement("p");
+		    pHeaderColumn1.innerHTML = "Producto";
+		    pHeaderColumn1.className = "text-center font__semibold";
+		    
+		    divHeaderColumn1.append(pHeaderColumn1);
+		    
+		    const divHeaderColumn2 = document.createElement("div");
+		    divHeaderColumn2.className = "col-3";
+		    
+		    const pHeaderColumn2 = document.createElement("p");
+		    pHeaderColumn2.innerHTML = "Cantidad";
+		    pHeaderColumn2.className = "text-center font__semibold";
+		    
+		    divHeaderColumn2.append(pHeaderColumn2);
+		    
+		    const divHeaderColumn3 = document.createElement("div");
+		    divHeaderColumn3.className = "col-3";
+		    
+		    const pHeaderColumn3 = document.createElement("p");
+		    pHeaderColumn3.innerHTML = "Precio";
+		    pHeaderColumn3.className = "text-center font__semibold";
+		    
+		    divHeaderColumn3.append(pHeaderColumn3);
+		    
+		    divDetalleHeader.append(divHeaderColumn1, divHeaderColumn2, divHeaderColumn3);
+		    divDetalleContainer.append(divDetalleHeader);
+		    
+		    $.getJSON("listaDetallePedidoProductoPorCodigo", {"codigo_pedido": pedido.codigo_pedido}, function(lista) {
+			       
+			       if(lista.length > 0) {
+			           console.log(lista); 
+			           $.each(lista, function(index, detalle) {
+			               
+			               const divProductContainer = document.createElement("div");
+			               divProductContainer.className = "row";
+
+			               const pName = document.createElement("p");
+			               pName.innerHTML = detalle.producto.nombre_producto + "<br />" +detalle.producto.marca.nombre_marca;
+
+			               const divProductColumn1 = document.createElement("div");
+			               divProductColumn1.className = "row col-6";
+			               
+			               const divImageContainer = document.createElement("div");
+			               divImageContainer.className = "col-2";
+			               
+			               const productImage = document.createElement("img");
+			               productImage.src = detalle.producto.foto1_producto;
+			               productImage.className = "img__table--mini";
+			               
+			               divImageContainer.append(productImage);
+			               
+			               const divNameContainer = document.createElement("div");
+			               divNameContainer.className = "col-10";
+			               
+			               divNameContainer.append(pName);
+			               
+			               divProductColumn1.append(divImageContainer, divNameContainer);
+
+			               const divProductColumn2 = document.createElement("div");
+			               divProductColumn2.className = "col-3 text-center";
+			               
+			               const pCantidad = document.createElement("p");
+			               pCantidad.innerHTML = detalle.cantidad_pedido;
+			               
+			               divProductColumn2.append(pCantidad);
+			               
+			               const divProductColumn3 = document.createElement("div");
+			               divProductColumn3.className = "col-3 text-center";
+			               
+			               const pPrice = document.createElement("p");
+			               pPrice.innerHTML = formatter.format(detalle.producto.precio_producto);
+			               
+			               divProductColumn3.append(pPrice);
+			               divProductContainer.append(divProductColumn1, divProductColumn2, divProductColumn3);
+			               divDetalleContainer.append(divProductContainer);
+			           });
+			       }
+		    });
+	 	    
 	 		contenidoPedidos.empty();
 	 		
  		 	var cards = document.getElementsByClassName("orders__list");
-            console.log(cards);
 	 	   
 			var fechaSolicitud = new Date(pedido.fecha_solicitud_pedido);
 			var fechaEntrega = new Date(pedido.fecha_entrega_pedido);
@@ -162,12 +249,12 @@
 			pOrderDate.innerHTML = "Fecha de Entrega: "+ (new Date(fechaEntrega)).toISOString().split('T')[0];
 			
 			const cardTotal = document.createElement('p');
-			cardTotal.className = "m-0";
+			cardTotal.className = "m-0 text-end font__semibold";
 			cardTotal.innerHTML = "Total del pedido: " + formatter.format(pedido.monto_pedido);
 			
 			const cardClient = document.createElement('p');
 			cardClient.className = "m-0";
-			cardClient.innerHTML = "Cliente: " + pedido.usuarioCliente.nombre_usuario + " " + pedido.usuarioCliente.apellido_usuario + "<br /> Correo: " + pedido.usuarioCliente.email_usuario;
+			cardClient.innerHTML = "Cliente: " + pedido.usuarioCliente.nombre_usuario + " " + pedido.usuarioCliente.apellido_usuario;
 			
 			const cardBtnContainer = document.createElement('div');
 			cardBtnContainer.className = 'my-2';
@@ -192,10 +279,27 @@
             }
             
             cardBtnContainer.append(btnAction);
-			divBodyContainer.append(pOrderNumber, pOrderDate, cardTotal, cardClient, cardBtnContainer);
-  
+            
+            const divBodyHeader = document.createElement("div");
+            divBodyHeader.className = "row";
+            
+            const divBodyHeaderColumn1 = document.createElement("div");
+            divBodyHeaderColumn1.className = "col-6";
+            
+            divBodyHeaderColumn1.append(pOrderNumber, pOrderDate);
+            
+            const divBodyHeaderColumn2 = document.createElement("div");
+            divBodyHeaderColumn2.className = "col-6 text-end";
+            
+            divBodyHeaderColumn2.append(cardBtnContainer);
+            divBodyHeader.append(divBodyHeaderColumn1, divBodyHeaderColumn2);
+            divBodyContainer.append(divBodyHeader, cardClient, divDetalleContainer);
+  			
 			// Cuerpo de Pedidos
   			contenidoPedidos.append(divBodyContainer);
+			
+  			// Total
+			divBodyContainer.append(cardTotal);
 	 	}
 	    
 		function generarListaPedidos(usuario) {

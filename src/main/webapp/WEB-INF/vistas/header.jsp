@@ -94,7 +94,7 @@
 
 	<!-- Menu content on XS, SM, and MD -->
 	<nav class="menu__sidebar collapse navbar-collapse d-lg-none" id="navbarNav">
-	    <div class="container-fluid mt-5">
+	    <div class="container-fluid mt-5 pt-5">
 	        <ul class="navbar-nav">
 	        	<c:forEach var="x" items="${sessionScope.objMenus}">
 					<li class="nav-item">

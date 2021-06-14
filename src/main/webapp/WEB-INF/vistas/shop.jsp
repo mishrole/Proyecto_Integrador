@@ -35,11 +35,11 @@
                 <jsp:include page="menu.jsp" />
                 
                 <!-- Dashboard Content -->
-                <div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-1 mt-5 menu__transition mx-auto">
-                    <div class="content__body background__light__white menu__transition">
-                        <div class="row justify-content-center">
+                <div id="dashboardContent" class="col-12 col-md-10 dashboard__content mt-lg-3 mt-5 menu__transition mx-auto">
+                    <div class="content__body background__light__white menu__transition mt-4 mt-lg-0">
+                        <div class="row justify-content-center align-items-center">
                             <div class="content__body__title col-4">
-                                <p class="font__title title__color font__semibold">Tienda</p>
+                                <p class="font__title title__color font__semibold m-0">Tienda</p>
                             </div>
                             <div class="content__body__options col-8 d-flex flex-row justify-content-end align-items-top">
                                 <div class="options__search d-flex flex-row align-items-center d-none d-md-flex mx-2">
