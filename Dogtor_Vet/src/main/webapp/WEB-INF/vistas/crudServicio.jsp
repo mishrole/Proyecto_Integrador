@@ -382,11 +382,11 @@
 								
 						return btnActualizar + btnEliminar;
 					},className:'text-center mx-auto d-flex justify-content-center'},													
-				]
+				],
+				 "drawCallback": function( settings ) {
+			            feather.replace();
+			     }
 		    });
-		 
-		 	// Reload icons
-		    feather.replace();
 		 	
 		    $('#id_table').DataTable().columns.adjust().draw();
 		}

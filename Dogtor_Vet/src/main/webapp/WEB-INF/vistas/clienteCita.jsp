@@ -487,11 +487,11 @@
 					    
 					    return btnCancelarReserva;
 					},className:'text-center mx-auto'},												
-				]                                                   
+				],
+					 "drawCallback": function( settings ) {
+				            feather.replace();
+				     }                                                   
 		    });
-		 	
-		 	// Reload icons
-		    feather.replace();
 		 	
 		 	$('#id_table_Reserva').DataTable().columns.adjust().draw();
 		}
