@@ -58,14 +58,13 @@
                                     <img src="./images/avatar/random-1.svg" alt="Avatar" class="profile__image">
                                 </div>
                         </div>
-
-                        <div class="content__alert row">
+                        <!-- <div class="content__alert row">
                             <div class="col-12 mt-4 mb-2">
                                 <div class="card__light">
                                     <div class="card__light__header d-flex justify-content-between my-3">
                                         <p class="font__subtitle title__color font__semibold">Alerta de Stock</p>
-                                        <!-- <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio">
-                                        	<i data-feather="plus"></i>Nuevo</button> -->
+                                        <button class="btn btn__primary" type="button" data-toggle="modal" id="id_btnModal_RegistraServicio" data-target="#id_modal_RegistraServicio">
+                                        	<i data-feather="plus"></i>Nuevo</button>
                                     </div>
                                     <div class="card__light__body row">
                                     	<form id="id_form_elimina" action="eliminaServicio">
@@ -86,7 +85,6 @@
 														<th>Marca</th>
 														<th>Categoría</th>
 														<th>Proveedor</th>
-														<!--<th>Estado</th>-->
 														<th>Opciones</th>
                                                     </tr>
                                                 </thead>
@@ -96,7 +94,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
+                        
                     </div>
                 </div>
             	</div>
@@ -118,85 +117,11 @@
 
 	<script type="text/javascript">
 	
-    // Load icons
-    feather.replace();
-    
-    function agregarGrilla(lista) {
-		 $('#id_table').DataTable().clear();
-		 $('#id_table').DataTable().destroy();
-		 $('#id_table').DataTable({
-				data: lista,
-				searching: false,
-				ordering: true,
-				processing: true,
-				pageLength: 6,
-				lengthChange: false,
-				responsive: true,
-				columns:[
-					{data: "codigo_producto"},
-					{data: "nombre_producto"},
-					{data: "descripcion_simple_producto"},
-					{data: function(row, type, val, meta) {
-					    let precio = formatter.format(row.precio_producto);
-					    return precio;
-					}, className: 'text-center mx-auto'},
-					{data: "stock_producto"},
-					{data: "serie_producto"},
-					{data: function(row, type, val, meta) {
-
-						var foto1, foto2, foto3 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
-					    
-					    if(row.foto1_producto != null && row.foto1_producto != "" && row.foto1_producto.length != 0) {
-					        foto1 = "<img src='" +row.foto1_producto+ "' class='img__table--mini' alt='Pet image'>";
-					    } else {
-					        foto1 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
-					    }
-					    
-					    if(row.foto2_producto != null && row.foto2_producto != "" && row.foto2_producto.length != 0) {
-					        foto2 = "<img src='" +row.foto2_producto+ "' class='img__table--mini' alt='Pet image'>";
-					    } else {
-					        foto2 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
-					    }
-					    
-					    if(row.foto3_producto != null && row.foto3_producto != "" && row.foto3_producto.length != 0) {
-					        foto3 = "<img src='" +row.foto3_producto+ "' class='img__table--mini' alt='Pet image'>";
-					    } else {
-					        foto3 = "<img src='../../images/noimage.png' class='img__table--mini' alt='Pet image'>";
-					    }
-						
-						return foto1 + foto2 + foto3;
-					}, className: 'text-center mx-auto float-center d-flex justify-content-center'},
-					{data: "marca.nombre_marca"},
-					{data: "categoria.nombre_categoria_producto"},
-					{data: "proveedor.nombre_proveedor"},
-					{data: function(row, type, val, meta){
-					    var btnSolicitarProveedor = '<button type="button" class="btn btn-info btn-sm mx-1" onclick="solicitar(\'' + row.codigo_producto + '\')"><i data-feather="send"></i> Solicitar</button>';
-						
-						return btnSolicitarProveedor;
-					},className:'text-center mx-auto'},												
-				],
-				 "drawCallback": function( settings ) {
-			            feather.replace();
-			     }                                                   
-		    });
-
-		 	$('#id_table').DataTable().columns.adjust().draw();
-		}
-    
-		function solicitar(codigo_producto) {
-			alert('Solicitud enviada. Código de producto: ' + codigo_producto );
-		}
-    
-		function listarProductosDatatable(nombre) {
-	        $.getJSON("listaProductoPorNombre", {"nombre_producto": nombre}, function(lista) {
-	            agregarGrilla(lista);
-	        });
-	    }
-		
-	
+	    // Load icons
+	    feather.replace();
+	    	
 	$(document).ready(function() {
-		// Mostrar productos al cargar la página
-		listarProductosDatatable("");
+
 	});
 	</script>
 </body>

@@ -26,13 +26,6 @@ public class UsuarioController {
 	@Autowired
 	private DetalleUsuarioRolService detalleUsuarioRolService;
 	
-	/* Nueva cuenta de tipo Cliente */
-	
-	@RequestMapping("/nuevaCuenta")
-	public String verRegistraCliente() {
-		return "registraCliente";
-	}
-	
 	@RequestMapping("/registraCliente")
 	@ResponseBody
 	public Map<String, Object> registra(Usuario objUsuario) {

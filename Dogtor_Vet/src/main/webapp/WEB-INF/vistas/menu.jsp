@@ -12,15 +12,15 @@
                <div class="col-6">
                	<a class="font__max primary__color link__light font__bolder" href="./">
                    <div class="chevron__marker d-flex justify-content-lg-start justify-content-center">
-                       <p class="d-none d-lg-block">
+                       <p class="mb-0 mt-2">
                            Dogtor
                        </p>
                    </div>
                </a>
 
                </div>
-               <div class="col-6 text-center">
-	               <button class="btn p-0" id="menuChevron" aria-label="Toggle side menu">
+               <div class="col-6 text-center p-0">
+	               <button class="btn p-0 mb-0 mt-2" id="menuChevron" aria-label="Toggle side menu">
 	                   <i class="primary__color" data-feather="chevrons-left"></i>
 	               </button>
                </div>
@@ -36,7 +36,7 @@
                                <p class="d-block">
                                    <i data-feather="${x.icono_enlace}"></i>
                                </p>
-                               <p class="d-none d-lg-block ps-lg-3">${x.descripcion_enlace}</p>
+                               <p class="ps-lg-3">${x.descripcion_enlace}</p>
                            </div>
                        </a>
                    	</li>
@@ -47,7 +47,7 @@
                                <p class="d-block">
                                    <i data-feather="log-out"></i>
                                </p>
-                               <p class="d-none d-lg-block ps-lg-3">Salir</p>
+                               <p class="ps-lg-3">Salir</p>
                            </div>
                        </a>
                 </li>

@@ -47,7 +47,7 @@
 	                      </div>
 	
 	                      <button class="w-100 btn btn-lg btn__primary" type="submit" id="iniciar_sesion">Ingresar</button>
-	                      <p class="text-center mt-3 font__regular title__color">¿Todavía no tienes una cuenta? <a href="nuevaCuenta" class="primary__color">Regístrate</a></p>
+	                      <p class="text-center mt-3 font__regular title__color">¿Todavía no tienes una cuenta? <a href="/register" class="primary__color">Regístrate</a></p>
 	                    </form>
 	                  </main>
 	            </div>

@@ -26,7 +26,7 @@
                         <h5 class="subtitle__color font__regular">Atención en todo Lima Metropolitana</h5>
                     </div>
                     <div class="col-10 mx-auto mt-3">
-                        <button class="btn btn__primary pulse">Adquiere tu cita</button>
+                        <a class="btn btn__primary pulse" href="/register">Adquiere tu cita ahora</a>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-center">

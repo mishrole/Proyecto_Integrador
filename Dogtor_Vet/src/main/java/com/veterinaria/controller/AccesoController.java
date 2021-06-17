@@ -31,6 +31,13 @@ public class AccesoController {
 		return "inicio";
 	}
 	
+	/* Nueva cuenta de tipo Cliente */
+	
+	@RequestMapping("/register")
+	public String verRegistraCliente() {
+		return "registraCliente";
+	}
+	
 	@RequestMapping("/login")
 	public String verLogin() {
 		return "iniciaSesion";
@@ -124,7 +131,6 @@ public class AccesoController {
 	public String verPedido() {
 		return "repartidorPedido";
 	}
-	
 	
 	
 	@RequestMapping("/notFound")

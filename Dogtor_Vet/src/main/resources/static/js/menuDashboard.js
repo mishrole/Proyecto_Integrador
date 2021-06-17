@@ -1,19 +1,26 @@
 // Reorganización de menu y contenido
-function changeDashboard () {
-    $('.menu__header > div > a > .marker > p').first().next().toggleClass('d-lg-block');
-    $('.menu__header > div').first().toggleClass('d-none');
+function changeDashboard () { 
+
     $('.menu__header').toggleClass('justify-content-between');
     $('.menu__header').toggleClass('justify-content-around chevron__marker');
     $('.menu__body__list > li > a > div').toggleClass('justify-content-lg-start');
-    $('.menu__body__list > li > a > div > p.d-none').toggleClass('d-lg-block');
+    
     $('.menu__body').first().toggleClass('pe-lg-4');
     $('#menuSidebarLarge > div.menu__fixed').first().toggleClass('collapsed');
     $('#dashboardContent').toggleClass('col-md-10 col-md-11');
     $('#menuSidebarLarge').toggleClass('col-md-2 col-md-1');
+    
+    // Ocultar/Mostrar
+    
+    $('.menu__header > div > a > .marker > p').first().next().toggleClass('d-none');
+    $('.menu__header > div').first().toggleClass('d-none');
+    $('.menu__body__list > li > a > div > p.ps-lg-3').toggleClass('d-none');
+    
 }
 
 // Reemplazar el icono del Menu en LG
 $('#menuChevron').on('click', () => {
+
     let chevronSide = '';
 
     $('#menuChevron').empty();
@@ -33,7 +40,7 @@ $('#menuChevron').on('click', () => {
     feather.replace();
 
     changeDashboard();
-
+    
 });
 
 // Reemplazar el icono del Menu en XS SM y MD
@@ -54,7 +61,6 @@ $('#menuIconBtn').on('click', () => {
 });
 
 // Toggle de Carrito
-$('#btnCart').click(function() {
+$('#btnCart').click(() => {
    $('#carrito').toggleClass('active');
-   //listaCarritoPorUsuario(usuarioCarrito);
 });

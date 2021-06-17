@@ -35,18 +35,18 @@
             <div class="col-sm-12">
                 <main class="col-10 col-md-8 col-lg-6 mx-auto">
                     <form id="id_form">
-                      <h1 class="h3 mb-4 mt-5 fw-normal text-center title__color"><b>Crea una cuenta</b></h1>
+                      <h1 class="h3 mt-5 mt-md-0 fw-normal text-center title__color"><b>Crea una cuenta</b></h1>
                     	
                     	<div class="form-group row">
 						  	<div class="col-12 col-md-6 mb-3">
 							  	<div class="form-floating">
-						  			<input type="text" class="form-control" id="id_nombre" name="nombre_usuario" placeholder="John" autocomplete="on" >
+						  			<input type="text" class="form-control" id="id_nombre" name="nombre_usuario" autocomplete="on" >
 	                      			<label for="id_nombre">Nombre</label>
 						  		</div>
 						  	</div>
 						  	<div class="col-12 col-md-6 mb-3">
 							  	<div class="col form-floating">
-						  			<input type="text" class="form-control" id="id_apellido" name="apellido_usuario" placeholder="Doe" autocomplete="on">
+						  			<input type="text" class="form-control" id="id_apellido" name="apellido_usuario"autocomplete="on">
                         			<label for="id_apellido">Apellidos</label>
 						  		</div>
 						  	</div>
@@ -55,13 +55,13 @@
 	                     <div class="form-group row">
 						  	<div class="col-12 col-md-6 mb-3">
 							  	<div class="form-floating">
-						  			<input type="date" class="form-control" id="id_fecha_nacimiento" name="fecha_nacimiento_usuario" autocomplete="on">
+						  			<input type="date" class="form-control" id="id_fecha_nacimiento" autocomplete="on">
                         			<label for="id_fecha_nacimiento">Fecha de nacimiento</label>
 						  		</div>
 						  	</div>
 						  	<div class="col-12 col-md-6 mb-3">
 							  	<div class="form-floating">
-			                      	<select class="form-select" id="select_distrito" name="codigo_distrito" aria-label="Default select example">
+			                      	<select class="form-select" id="select_distrito" name="codigo_distrito">
 									  <option selected value="0">Seleccione Distrito</option>
 									</select>
 									<label for="select_distrito">Distrito</label>
@@ -72,7 +72,7 @@
 	                     <div class="form-group row">
 						  	<div class="col-12 col-md-12 mb-3">
 							  	<div class="form-floating">
-						  			<input type="email" class="form-control" id="id_email" name="email_usuario" placeholder="name@example.com" autocomplete="on">
+						  			<input type="email" class="form-control" id="id_email" name="email_usuario" autocomplete="on">
                         			<label for="id_email">Correo electrónico</label>
 						  		</div>
 						  	</div>
@@ -81,13 +81,13 @@
 	                     <div class="form-group row">
 						  	<div class="col-12 col-md-6 mb-3">
 							  	<div class="form-floating">
-						  			<input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" placeholder="Password" autocomplete="on">
+						  			<input type="password" class="form-control" id="id_contrasena" name="contrasena_usuario" autocomplete="on">
                         			<label for="id_contrasena">Contraseña</label>
 						  		</div>
 						  	</div>
 						  	<div class="col-12 col-md-6 mb-3">
 							  	<div class="col form-floating">
-						  			<input type="password" class="form-control" id="id_validar_contrasena" placeholder="Password" autocomplete="off">
+						  			<input type="password" class="form-control" id="id_validar_contrasena" autocomplete="off">
                         			<label for="id_validar_contrasena">Verificar contraseña</label>
 						  		</div>
 						  	</div>

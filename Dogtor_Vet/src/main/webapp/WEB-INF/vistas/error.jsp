@@ -16,7 +16,7 @@
 
 <body class="background__light__white">
 
-    <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light background__light__white fixed-top py-3">
         <div class="container">
             <a class="navbar-brand" href="./">
                 <p class="primary__color font__bolder font__max">Dogtor</p>

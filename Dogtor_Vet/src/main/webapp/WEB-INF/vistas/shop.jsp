@@ -194,7 +194,12 @@
 				data: {"codigo_usuario": usuario, "codigo_producto": producto, "cantidad_carrito": cantidad},
 				success: function(data) {
 				    listaCarritoPorUsuario(usuario);
-					mostrarMensaje(data.MENSAJE);
+					//mostrarMensaje(data.MENSAJE);
+					$('#btnCart').addClass('wobble');
+					
+					setTimeout(function() {
+					    $('#btnCart').removeClass('wobble');
+					}, 1450)
 				},
 				error: function() {
 					mostrarMensaje(MSG_ERROR);
