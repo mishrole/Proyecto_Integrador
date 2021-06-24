@@ -165,34 +165,34 @@
 				<div class="modal-content">
 				<div class="modal-header" style="padding: 35px 50px">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4><span class="glyphicon glyphicon-ok-sign"></span> Actualiza Producto</h4>
+					<h4><span class="glyphicon glyphicon-ok-sign"></span> Actualiza Cita</h4>
 				</div>
 				<div class="modal-body" style="padding: 20px 10px;">
-						<form id="id_form_actualiza" accept-charset="UTF-8"  action="registraActualizaCrudProducto" class="form-horizontal"     method="post">
+						<form id="id_form_actualiza" accept-charset="UTF-8"  action="actualizaEstadoCita" class="form-horizontal"     method="post">
 		                    <div class="panel-group" id="steps">
 		                        <!-- Step 1 -->
 		                        <div class="panel panel-default">
 		                            <div class="panel-heading">
-		                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#steps" href="#stepOne">Datos del Producto</a></h4>
+		                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#steps" href="#stepOne">Datos de la Cita</a></h4>
 		                            </div>
 		                            <div id="stepOne" class="panel-collapse collapse in">
 		                                <div class="panel-body">
 		                                    <div class="form-group">
 		                                        <label class="col-lg-3 control-label" for="id_ID">ID</label>
 		                                        <div class="col-lg-5">
-		                                           <input class="form-control" id="id_ID" readonly="readonly" name="idProducto" type="text" maxlength="8"/>
+		                                           <input class="form-control" id="id_ID" readonly="readonly" name="codigo_cita" type="text" maxlength="8"/>
 		                                        </div>
 		                                     </div>
 		                                     <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_act_nombre">Nombre</label>
+		                                        <label class="col-lg-3 control-label" for="id_act_fecha">Fecha Solicitud</label>
 		                                        <div class="col-lg-5">
-													<input class="form-control" id="id_act_nombre" name="nombre" placeholder="Ingrese el Nombre del producto" type="text" maxlength="20"/>
+													<input class="form-control" id="id_act_fecha" name="fecha_solicitud_cita" placeholder="Ingrese el Nombre del producto" type="text" maxlength="20"/>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_act_serie">Serie</label>
+		                                        <label class="col-lg-3 control-label" for="id_act_fechaP">Fecha Programada</label>
 		                                        <div class="col-lg-5">
-													<input class="form-control" id="id_act_serie" name="serie" placeholder="Ingrese la serie" type="text" maxlength="10"/>
+													<input class="form-control" id="id_act_fechaP" name="fecha_programada_cita" placeholder="Ingrese la serie" type="text" maxlength="10"/>
 		                                        </div>
 		                                    </div>
 		                                    <div class="form-group">
@@ -208,21 +208,13 @@
 		                                        </div>
 		                                    </div>        
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_act_marca">Marca</label>
+		                                        <label class="col-lg-3 control-label" for="id_act_estado">Estado</label>
 		                                        <div class="col-lg-5">
-			                                         <select id="id_act_marca" name="marca" class='form-control'>
+			                                         <select id="id_act_estado" name="codigo_estado_cita" class='form-control'>
 														<option value=" ">[Seleccione]</option>
 													</select>
 												</div>
-											</div> 
-											<div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_act_pais">País</label>
-		                                        <div class="col-lg-5">
-			                                         <select id="id_act_pais" name="pais" class='form-control'>
-														<option value=" ">[Seleccione]</option>
-													</select>
-												</div>
-											</div> 
+											</div>  
 		                                    <div class="form-group">
 		                                        <div class="col-lg-9 col-lg-offset-3">
 		                                        	<button type="button" class="btn btn-primary" id="id_btn_actualiza">ACTUALIZA</button>
@@ -388,10 +380,10 @@ $("#id_btn_registra").click(function(){
 /*actualizar*/
 
 
-function editar(id,nombre,serie,precio, stock,idMarca,idPais){	
-		$('#id_ID').val(id);
-		$('#id_act_nombre').val(nombre);
-		$('#id_act_serie').val(serie);
+function editar(codigo_cita,fecha_solicitud_cita,fecha_programada_cita,precio, stock,idMarca,idPais){	
+		$('#id_ID').val(codigo_cita);
+		$('#id_act_nombre').val(fecha_solicitud_cita);
+		$('#id_act_serie').val(fecha_programada_cita);
 		$('#id_act_precio').val(precio);
 		$('#id_act_stock').val(stock);
 		$('#id_act_marca').val(idMarca);
@@ -409,7 +401,7 @@ $("#id_btn_actualiza").click(function(){
     	
         $.ajax({
             type: "POST",
-            url: "actualizaCrudProducto", 
+            url: "actualizaEstadoCita", 
             data: $('#id_form_actualiza').serialize(),
             success: function(data){
           	  agregarGrilla(data.lista);
