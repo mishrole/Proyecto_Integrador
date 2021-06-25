@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="esS" >
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="Expires" content="-1" />
@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="css/simditor.css" />
 	<!-- Menu y Header requieren jQuery al inicio -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-<title>Cita | DOGTOR</title>
+	<title>Cita | DOGTOR</title>
 </head>
 <body class="background__light__gray">
 
@@ -69,7 +69,7 @@
 											<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
 										</form>
                                         <div class="col-12 table-responsive">
-                                            <table id="id_table" class="font__min display responsive no-footer text-center table table-borderless dataTable">
+                                            <table id="id_table_cita" class="font__min display responsive no-footer text-center table table-borderless dataTable">
                                                 <thead class="background__title">
                                                     <tr>
 														<th>#</th>
@@ -80,6 +80,7 @@
 														<th>Mascota</th>
 														<th>Estado Cita</th>
 														<th>Motivo Cita</th>
+														<th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody></tbody>
@@ -122,9 +123,10 @@
 													<label for="select_estado_actualiza">Estado Cita</label>
 					                      		</div>
 										  	</div>
+										  	</div>
 										  	
 					                      
-										    <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="actualizar_cita">Actualizar</button>
+										    <button class="w-100 btn btn-lg btn-primary btn__primary" type="button" id="id_btn_actualizar_cita">Actualizar</button>
 									     </form>
 								      </main>
 							       </div>
@@ -157,6 +159,14 @@
 
 <script type="text/javascript">
 
+
+//lista estado cita
+$.getJSON("listaEstadoCita", {}, function(data){
+	$.each(data, function(i,item){
+		$("#id_estado_actualiza").append("<option value="+item.codigo_estado_cita +">"+ item.nombre_estado_cita +"</option>");
+	});
+});
+
 //listar citas al cargar pagina
 window.onload=function listar(){
 	$.getJSON("listaCita", function (listado){
@@ -172,47 +182,57 @@ $("#id_btn_act_cancelar").click(function(){
   $('#id_modal_ActualizaCita').modal("hide");
 });
 
-function agregarGrilla(lista){
-	 $('#id_table').DataTable().clear();
-	 $('#id_table').DataTable().destroy();
-	 $('#id_table').DataTable({
-			data: lista,
-			searching: false,
-			ordering: true,
-			processing: true,
-			pageLength: 5,
-			lengthChange: false,
-			columns:[
-				{data: "codigo_cita"},
-				{data: "fecha_solicitud_cita"},
-				{data: "fecha_programada_cita"},
-				{data: "servicio.nombre_servicio"},
-				{data: "cliente.nombre_usuario"},
-				{data: "mascota.nombre_mascota"},
-				{data: "estadocita.nombre_estado_cita"},
-				{data: "motivo_cita"},
-				{data: function(row, type, val, meta){
-					var btnActualizarCita ='<button type="button" class="btn btn-info btn-sm mx-1 btnModal_ActualizaCita" onclick="editar(\'' + row.codigo_cita +
-					'\',\'' + row.codigo_estado_cita +
-					'\')"><i data-feather="edit-2"></i></button>';
-					return btnActualizarCita;
-				},className:'text-center'},													
-			]                                     
-	    });
-	 
-	// Reload icons
-	    feather.replace();
-	 	
-	 	$('#id_table').DataTable().columns.adjust().draw();
-}
+function agregarGrilla(lista) {
+    //console.log(lista)
+     $('#id_table_cita').DataTable().clear();
+     $('#id_table_cita').DataTable().destroy();
+     $('#id_table_cita').DataTable({
+            data: lista,
+            searching: false,
+            ordering: true,
+            processing: true,
+            pageLength: 6,
+            lengthChange: false,
+            responsive: true,
+            columns:[
+                {data: "codigo_cita"},
+                {data: "fecha_solicitud_cita"},
+                {data: "fecha_programada_cita"},
+                {data: "servicio.tiposervicio.nombre_tipo_servicio"},
+                {data: function(row, type, val, meta) {
+                    var nombre = '';
+                    nombre = row.servicio.usuario.nombre_usuario + ' ' + row.servicio.usuario.apellido_usuario;
+                    return nombre;
+                }, className: 'text-center mx-auto float-center'},
+                {data: "mascota.nombre_mascota"},
+                {data: "estado.nombre_estado_cita"},
+                {data: "motivo_cita"},
+                {data: function(row, type, val, meta){
+                	var btnActualizarCita ='<button type="button" class="btn btn-info btn-sm mx-1 btnModal_ActualizaCita" onclick="editar(\'' + row.codigo_cita +
+                		'\',\'' + row.codigo_estado_cita +
+                		'\')"><i data-feather="edit-2"></i></button>';
+                	return btnActualizarCita;
+                },className:'text-center mx-auto'},
+            ]
+        });
 
-function editar(id,nombre,estado,idPais){	
+         // Reload icons
+        feather.replace();
+
+         $('#id_table_cita').DataTable().columns.adjust().draw();
+    }
+    
+function editar(codigo_cita,codigo_estado_cita){	
 	$('#id_cita_actualiza').val(codigo_cita);
 	$('#id_estado_actualiza').val(codigo_estado_cita);
 	$('#id_modal_ActualizaCita').modal("show");
 }
 
-$("#actualizar_cita").click(function(){
+function limpiarFormulario(){	
+	$('#id_estado_actualiza').val(' ');
+}
+
+$("#id_btn_actualizar_cita").click(function(){
 	var validator = $('#id_form_actualiza').data('bootstrapValidator');
     validator.validate();
     
@@ -234,6 +254,7 @@ $("#actualizar_cita").click(function(){
           });
     }   
 });
+</script>
 
 <script type="text/javascript">
 $('#id_form_actualiza').bootstrapValidator({
@@ -256,6 +277,7 @@ $('#id_form_actualiza').bootstrapValidator({
     }   
 });
 
-</script>   		
+</script> 
+   		
 </body>
 </html>
