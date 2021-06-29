@@ -213,11 +213,11 @@ function agregarGrilla(lista) {
                 		'\')"><i data-feather="edit-2"></i></button>';
                 	return btnActualizarCita;
                 },className:'text-center mx-auto'},
-            ]
+            ],
+			 "drawCallback": function( settings ) {
+		            feather.replace();
+		     }
         });
-
-         // Reload icons
-        feather.replace();
 
          $('#id_table_cita').DataTable().columns.adjust().draw();
     }
@@ -242,8 +242,12 @@ $("#id_btn_actualizar_cita").click(function(){
             type: "POST",
             url: "actualizaEstadoCita", 
             data: $('#id_form_actualiza').serialize(),
-            success: function(data){
-          	  agregarGrilla(data.lista);
+            success: function(data) {
+                
+                $.getJSON("listaCita", function (listado){
+            		agregarGrilla(listado);
+            	});
+                
           	  $('#id_modal_ActualizaCita').modal("hide");
           	  mostrarMensaje(data.MENSAJE);
           	  validator.resetForm();
