@@ -681,11 +681,11 @@
 	                            return btnSeleccionar
 	                        },className : 'text-center mx-auto'
 	                    },
-					]
+                    ],
+	   				 "drawCallback": function( settings ) {
+	   			            feather.replace();
+	   			     }
               });
-
-            // Reload icons
-            feather.replace();
 
             $('#id_table_propietario').DataTable().columns.adjust().draw();
         }

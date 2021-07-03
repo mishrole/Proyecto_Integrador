@@ -125,6 +125,12 @@ public class AccesoController {
 		return "repartidorPedido";
 	}
 	
+	/* Especialista */
+	@RequestMapping("/verCita")
+	public String verCita() {
+		return "especialistaCita";
+	}
+	
 	
 	
 	@RequestMapping("/notFound")

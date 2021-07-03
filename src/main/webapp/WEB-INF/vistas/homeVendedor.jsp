@@ -80,37 +80,9 @@
                             </div>
                         </div>
                         
-                        <div class="content__alert row">
-                            <div class="col-12 mt-4 mb-2">
-                                <div class="card__light">
-                                    <div class="card__light__header d-flex justify-content-between my-3">
-                                        <p class="font__subtitle title__color font__semibold">Lista de Reserva de Citas</p>
-                                    </div>
-                                    <div class="card__light__body row">
-                                    	<form id="id_form_elimina" action="eliminaCita">
-											<input type="text" id="id_elimina" name="codigo_cita" class="d-none">
-											<input type="text" id="id_visibilidad_elimina" name="codigo_visibilidad" class="d-none">
-										</form>
-                                        <div class="col-12 table-responsive">
-                                            <table id="id_table" class="font__min display responsive no-footer text-center table table-borderless dataTable">
-                                                <thead class="background__title">
-                                                    <tr>
-														<th>#</th>
-														<th>Fecha Reservada</th>
-														<th>Servicio</th>
-														<th>Propietario</th>
-														<th>Mascota</th>
-														<th>Estado</th>
-														<th>Opciones</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div class="content__alert row">
+
+                        </div>-->
                     </div>
                 </div>
             	</div>
@@ -133,66 +105,6 @@
 	// Load icons
     feather.replace();
     
-    function agregarGrilla(lista) {
-		 $('#id_table').DataTable().clear();
-		 $('#id_table').DataTable().destroy();
-		 $('#id_table').DataTable({
-				data: lista,
-				searching: false,
-				ordering: true,
-				processing: true,
-				pageLength: 6,
-				lengthChange: false,
-				responsive: true,
-				columns:[
-					{data: "codigo_cita"},
-					{data: "fecha_programada_cita"},
-					{data: "servicio.codigo_servicio"},
-					{data: "usuario.codigo_usuario"},
-					{data: "mascota.codigo_mascota"},
-					{data: "estado.codigo_estado_cita"},
-					{data: function(row, type, val, meta){
-					    var btnActualizarCita ='<button type="button" class="btn btn-info btn-sm mx-1 btnModal_ActualizaCita" onclick="editar(\'' + row.codigo_cita +
-						'\',\'' + row.fecha_solicitud_cita +
-						'\',\'' + row.fecha_programada_cita +
-						'\',\'' + row.codigo_servicio +
-						'\',\'' + row.codigo_usuario +
-						'\',\'' + row.codigo_mascota +
-						'\',\'' + row.codigo_estado_cita +
-						'\',\'' + row.motivo_cita  +
-						'\')"><i data-feather="edit-2"></i></button>';
-						
-				var btnEliminarCita ='<button type="button" class="btn btn-danger btn-sm mx-1" onclick="eliminar(\'' + row.codigo_cita + '\')"><i data-feather="trash"></i></button>';
-
-				return btnActualizarCita + btnEliminarCita;
-					},className:'text-center mx-auto'},												
-				]                                                   
-		    });
-		 	
-		 	// Reload icons
-		    feather.replace();
-		 	
-		 	$('#id_table').DataTable().columns.adjust().draw();
-		}
-    
-		function listarCitasDatatable() {
-	        $.getJSON("listaCita", {}, function(lista) {
-	            agregarGrilla(lista);
-	        });
-	    }
-		
-		function listarCitasPorCodigo(codigo_cita) {
-		    $.getJSON("listaCitaPorCodigo", {"codigo_cita": codigo_cita}, function(lista) {
-	            agregarGrilla(lista);
-	        });
-		}
-		
-	
-	$(document).ready(function() {
-		// Mostrar citas al cargar la página
-		listarCitasDatatable();
-		
-	});
 	</script>
 </body>
 </html>

@@ -450,11 +450,11 @@
 
 						return btnActualizarProducto + btnEliminarProducto;
 					},className:'text-center mx-auto'},												
-				]                                                   
+				],
+				 "drawCallback": function( settings ) {
+			            feather.replace();
+			     }                                                  
 		    });
-		 	
-		 	// Reload icons
-		    feather.replace();
 		 	
 		 	$('#id_table').DataTable().columns.adjust().draw();
 		}
